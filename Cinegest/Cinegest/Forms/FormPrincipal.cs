@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinegest.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,13 @@ namespace Cinegest.Forms
 {
     public partial class FormPrincipal : Form
     {
+        CineGestEntities db;
         public FormPrincipal()
         {
             InitializeComponent();
+            db = new CineGestEntities();
+            listarSessoes();
+
         }
 
         //Botões
@@ -87,6 +92,37 @@ namespace Cinegest.Forms
             {
                 MessageBox.Show("Ocorreu um erro ao tentar abrir o formulário.");
             }
+        }
+
+
+        private void listarSessoes()
+        {
+            try
+            {
+                if (db.Sessão.Count() > 0)
+                {
+                    sessãoBindingSource.DataSource = null;
+                    sessãoBindingSource.DataSource = db.Sessão.ToList<Sessão>();
+                }
+                else MessageBox.Show("Não Existe Nenhuma Sessão marcada para hoje");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao listar sessões: {ex.Message}");
+            }
+
+        }
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'cineGestDataSet.Sessão' table. You can move, or remove it, as needed.
+            this.sessãoTableAdapter.Fill(this.cineGestDataSet.Sessão);
+
+        }
+
+        private void Updatetbn_Click(object sender, EventArgs e)
+        {
+            listarSessoes();
         }
     }
 }

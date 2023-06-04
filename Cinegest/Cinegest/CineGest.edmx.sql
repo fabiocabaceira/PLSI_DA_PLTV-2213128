@@ -395,7 +395,8 @@ VALUES ('Filme 1', '120', 'Sim', 1),
 INSERT INTO [dbo].[Sessão] ([DataHora], [Preco], [SalaIdSala], [Filme_IdFilme])
 VALUES ('2023-06-2 10:00:00', '10', 1, 1),
        ('2023-06-2 12:00:00', '12', 2, 2),
-       ('2023-06-2 14:00:00', '8', 3, 3);
+       ('2023-06-2 14:00:00', '8', 3, 3),
+       ('2023-08-2 18:00:00', '8', 3, 3);
 
 -- Pessoas
 INSERT INTO [dbo].[Pessoas] ([Nome], [Morada])

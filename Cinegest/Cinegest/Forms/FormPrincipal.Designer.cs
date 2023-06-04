@@ -28,11 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Cinemabtn = new System.Windows.Forms.Button();
             this.Funcionariosbtn = new System.Windows.Forms.Button();
             this.Clientesbtn = new System.Windows.Forms.Button();
             this.Sessõesbtn = new System.Windows.Forms.Button();
             this.Filmesbtn = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.sessãoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cineGestDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cineGestDataSet = new Cinegest.CineGestDataSet();
+            this.Updatetbn = new System.Windows.Forms.Button();
+            this.sessãoTableAdapter = new Cinegest.CineGestDataSetTableAdapters.SessãoTableAdapter();
+            this.cinemasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cinemasTableAdapter = new Cinegest.CineGestDataSetTableAdapters.CinemasTableAdapter();
+            this.idSessaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataHoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salaIdSalaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.filmeIdFilmeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cinemasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // Cinemabtn
@@ -85,11 +104,98 @@
             this.Filmesbtn.UseVisualStyleBackColor = true;
             this.Filmesbtn.Click += new System.EventHandler(this.Filmesbtn_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idSessaoDataGridViewTextBoxColumn,
+            this.dataHoraDataGridViewTextBoxColumn,
+            this.precoDataGridViewTextBoxColumn,
+            this.salaIdSalaDataGridViewTextBoxColumn,
+            this.filmeIdFilmeDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.sessãoBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(181, 12);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(607, 384);
+            this.dataGridView1.TabIndex = 5;
+            // 
+            // sessãoBindingSource
+            // 
+            this.sessãoBindingSource.DataMember = "Sessão";
+            this.sessãoBindingSource.DataSource = this.cineGestDataSetBindingSource;
+            // 
+            // cineGestDataSetBindingSource
+            // 
+            this.cineGestDataSetBindingSource.DataSource = this.cineGestDataSet;
+            this.cineGestDataSetBindingSource.Position = 0;
+            // 
+            // cineGestDataSet
+            // 
+            this.cineGestDataSet.DataSetName = "CineGestDataSet";
+            this.cineGestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // Updatetbn
+            // 
+            this.Updatetbn.Location = new System.Drawing.Point(389, 402);
+            this.Updatetbn.Name = "Updatetbn";
+            this.Updatetbn.Size = new System.Drawing.Size(185, 23);
+            this.Updatetbn.TabIndex = 6;
+            this.Updatetbn.Text = "Update";
+            this.Updatetbn.UseVisualStyleBackColor = true;
+            this.Updatetbn.Click += new System.EventHandler(this.Updatetbn_Click);
+            // 
+            // sessãoTableAdapter
+            // 
+            this.sessãoTableAdapter.ClearBeforeFill = true;
+            // 
+            // cinemasBindingSource
+            // 
+            this.cinemasBindingSource.DataMember = "Cinemas";
+            this.cinemasBindingSource.DataSource = this.cineGestDataSetBindingSource;
+            // 
+            // cinemasTableAdapter
+            // 
+            this.cinemasTableAdapter.ClearBeforeFill = true;
+            // 
+            // idSessaoDataGridViewTextBoxColumn
+            // 
+            this.idSessaoDataGridViewTextBoxColumn.DataPropertyName = "IdSessao";
+            this.idSessaoDataGridViewTextBoxColumn.HeaderText = "IdSessao";
+            this.idSessaoDataGridViewTextBoxColumn.Name = "idSessaoDataGridViewTextBoxColumn";
+            this.idSessaoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataHoraDataGridViewTextBoxColumn
+            // 
+            this.dataHoraDataGridViewTextBoxColumn.DataPropertyName = "DataHora";
+            this.dataHoraDataGridViewTextBoxColumn.HeaderText = "DataHora";
+            this.dataHoraDataGridViewTextBoxColumn.Name = "dataHoraDataGridViewTextBoxColumn";
+            // 
+            // precoDataGridViewTextBoxColumn
+            // 
+            this.precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
+            this.precoDataGridViewTextBoxColumn.HeaderText = "Preco";
+            this.precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
+            // 
+            // salaIdSalaDataGridViewTextBoxColumn
+            // 
+            this.salaIdSalaDataGridViewTextBoxColumn.DataPropertyName = "SalaIdSala";
+            this.salaIdSalaDataGridViewTextBoxColumn.HeaderText = "SalaIdSala";
+            this.salaIdSalaDataGridViewTextBoxColumn.Name = "salaIdSalaDataGridViewTextBoxColumn";
+            // 
+            // filmeIdFilmeDataGridViewTextBoxColumn
+            // 
+            this.filmeIdFilmeDataGridViewTextBoxColumn.DataPropertyName = "Filme_IdFilme";
+            this.filmeIdFilmeDataGridViewTextBoxColumn.HeaderText = "Filme_IdFilme";
+            this.filmeIdFilmeDataGridViewTextBoxColumn.Name = "filmeIdFilmeDataGridViewTextBoxColumn";
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Updatetbn);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.Filmesbtn);
             this.Controls.Add(this.Sessõesbtn);
             this.Controls.Add(this.Clientesbtn);
@@ -97,6 +203,12 @@
             this.Controls.Add(this.Cinemabtn);
             this.Name = "FormPrincipal";
             this.Text = "FormPrincipal";
+            this.Load += new System.EventHandler(this.FormPrincipal_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cinemasBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -108,5 +220,18 @@
         private System.Windows.Forms.Button Clientesbtn;
         private System.Windows.Forms.Button Sessõesbtn;
         private System.Windows.Forms.Button Filmesbtn;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource cineGestDataSetBindingSource;
+        private CineGestDataSet cineGestDataSet;
+        private System.Windows.Forms.Button Updatetbn;
+        private System.Windows.Forms.BindingSource sessãoBindingSource;
+        private CineGestDataSetTableAdapters.SessãoTableAdapter sessãoTableAdapter;
+        private System.Windows.Forms.BindingSource cinemasBindingSource;
+        private CineGestDataSetTableAdapters.CinemasTableAdapter cinemasTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idSessaoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataHoraDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn salaIdSalaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn filmeIdFilmeDataGridViewTextBoxColumn;
     }
 }

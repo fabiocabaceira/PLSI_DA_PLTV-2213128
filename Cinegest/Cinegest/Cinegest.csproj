@@ -70,6 +70,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CineGest.edmx</DependentUpon>
     </Compile>
+    <Compile Include="CineGestDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CineGestDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormAtendimento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +149,17 @@
     </EntityDeploy>
     <None Include="CineGest.edmx.diagram">
       <DependentUpon>CineGest.edmx</DependentUpon>
+    </None>
+    <None Include="CineGestDataSet.xsc">
+      <DependentUpon>CineGestDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CineGestDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CineGestDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CineGestDataSet.xss">
+      <DependentUpon>CineGestDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

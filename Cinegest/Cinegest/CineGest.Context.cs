@@ -20,9 +20,11 @@ namespace Cinegest
             : base("name=CineGestEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
+            modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
             throw new UnintentionalCodeFirstException();
         }
     
