@@ -70,11 +70,47 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CineGest.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\FormAtendimento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\FormAtendimento.Designer.cs">
+      <DependentUpon>FormAtendimento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormCinema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormCinema.Designer.cs">
+      <DependentUpon>FormCinema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormClientes.Designer.cs">
+      <DependentUpon>FormClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormFilmes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormFilmes.Designer.cs">
+      <DependentUpon>FormFilmes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormFuncionarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormFuncionarios.Designer.cs">
+      <DependentUpon>FormFuncionarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormPrincipal.Designer.cs">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSessoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSessoes.Designer.cs">
+      <DependentUpon>FormSessoes.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Bilhetes.cs" />
     <Compile Include="Models\Categorias.cs" />
@@ -87,6 +123,12 @@
     <Compile Include="Models\Sessão.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FormFuncionarios.resx">
+      <DependentUpon>FormFuncionarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -133,8 +175,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
