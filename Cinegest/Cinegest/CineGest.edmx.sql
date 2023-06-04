@@ -367,6 +367,62 @@ ON [dbo].[Sessão]
     ([SalaIdSala]);
 GO
 
+-- Cinemas
+INSERT INTO [dbo].[Cinemas] ([Nome], [Email], [Morada])
+VALUES ('Cinema 1', 'cinema1@example.com', '123 Main Street'),
+       ('Cinema 2', 'cinema2@example.com', '456 Elm Street'),
+       ('Cinema 3', 'cinema3@example.com', '789 Oak Street');
+
+-- Salas
+INSERT INTO [dbo].[Salas] ([Nome], [Colunas], [Filas], [SessãoIdSessao], [CinemaIdPessoa])
+VALUES ('Sala 1', '10', '8', 1, 1),
+       ('Sala 2', '12', '10', 2, 1),
+       ('Sala 3', '15', '12', 3, 2);
+
+-- Categorias
+INSERT INTO [dbo].[Categorias] ([Nome], [Activa])
+VALUES ('Ação', 'Sim'),
+       ('Comédia', 'Sim'),
+       ('Drama', 'Não');
+
+-- Filmes
+INSERT INTO [dbo].[Filmes] ([Nome], [Duracao], [Activo], [Categoria_IdCategoria])
+VALUES ('Filme 1', '120', 'Sim', 1),
+       ('Filme 2', '90', 'Não', 2),
+       ('Filme 3', '105', 'Sim', 3);
+
+-- Sessão
+INSERT INTO [dbo].[Sessão] ([DataHora], [Preco], [SalaIdSala], [Filme_IdFilme])
+VALUES ('2023-06-2 10:00:00', '10', 1, 1),
+       ('2023-06-2 12:00:00', '12', 2, 2),
+       ('2023-06-2 14:00:00', '8', 3, 3);
+
+-- Pessoas
+INSERT INTO [dbo].[Pessoas] ([Nome], [Morada])
+VALUES ('João Silva', 'Rua A'),
+       ('Marta Oliveira', 'Rua B'),
+       ('Pedro Santos', 'Rua C'),
+       ('Pedro Miguel', 'Rua D'),
+       ('Mateus Leandro', 'Rua E'),
+       ('Luis Matos', 'Rua F');
+
+-- Pessoas_Funcionario
+INSERT INTO [dbo].[Pessoas_Funcionario] ([Salario], [Funcao], [IdPessoa])
+VALUES ('1000', 'Bilheteira', 1),
+       ('1200', 'Gerente', 2),
+       ('900', 'Limpeza', 3);
+
+-- Pessoas_Cliente
+INSERT INTO [dbo].[Pessoas_Cliente] ([NumFiscal], [IdPessoa])
+VALUES ('123456789', 4),
+       ('987654321', 5),
+       ('654321987', 6);
+
+-- Bilhetes
+INSERT INTO [dbo].[Bilhetes] ([Lugar], [Estado], [FuncionarioIdPessoa], [ClienteIdPessoa], [SessãoIdSessao])
+VALUES ('1', 'Vendido', 1, 4, 1),
+       ('2', 'Vendido', 2, 5, 2),
+       ('3', 'Disponível', 3, 6, 3);
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------
