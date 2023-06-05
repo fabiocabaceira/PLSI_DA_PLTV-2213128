@@ -24,7 +24,6 @@ namespace Cinegest
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
-            modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
             throw new UnintentionalCodeFirstException();
         }
     

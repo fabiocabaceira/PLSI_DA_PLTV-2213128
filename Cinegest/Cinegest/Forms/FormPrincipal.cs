@@ -19,7 +19,6 @@ namespace Cinegest.Forms
             InitializeComponent();
             db = new CineGestEntities();
             listarSessoes();
-
         }
 
         //Botões
@@ -94,35 +93,35 @@ namespace Cinegest.Forms
             }
         }
 
-
+        //Método para listar as sessões que estam marcadas para o dia atual
         private void listarSessoes()
         {
             try
             {
-                if (db.Sessão.Count() > 0)
-                {
-                    sessãoBindingSource.DataSource = null;
-                    sessãoBindingSource.DataSource = db.Sessão.ToList<Sessão>();
-                }
-                else MessageBox.Show("Não Existe Nenhuma Sessão marcada para hoje");
+                this.sessãoTableAdapter.FilterByCurrentDate(this.cineGestDataSet.Sessão);
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
-                MessageBox.Show($"Erro ao listar sessões: {ex.Message}");
+                System.Windows.Forms.MessageBox.Show(ex.Message);
             }
-
         }
 
+        // Método que é executado quando o formulário é carregado
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cineGestDataSet.Sessão' table. You can move, or remove it, as needed.
-            this.sessãoTableAdapter.Fill(this.cineGestDataSet.Sessão);
-
         }
 
-        private void Updatetbn_Click(object sender, EventArgs e)
+        // Toolstrip Update
+        private void filterByCurrentDateToolStripButton_Click(object sender, EventArgs e)
         {
-            listarSessoes();
+            try
+            {
+                this.sessãoTableAdapter.FilterByCurrentDate(this.cineGestDataSet.Sessão);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
         }
     }
 }

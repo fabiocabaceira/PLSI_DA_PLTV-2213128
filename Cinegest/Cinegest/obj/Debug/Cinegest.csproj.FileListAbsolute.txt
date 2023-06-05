@@ -15,3 +15,20 @@ C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.exe
 C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.pdb
 C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormPrincipal.resources
 C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormFuncionarios.resources
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\bin\Debug\Cinegest.exe.config
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\bin\Debug\Cinegest.exe
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\bin\Debug\Cinegest.pdb
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\bin\Debug\EntityFramework.dll
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\bin\Debug\EntityFramework.xml
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.csproj.AssemblyReference.cache
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.csproj.SuggestedBindingRedirects.cache
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormFuncionarios.resources
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormPrincipal.resources
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Properties.Resources.resources
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.csproj.GenerateResource.cache
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.csproj.CoreCompileInputs.cache
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.csproj.CopyComplete
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.exe
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.pdb

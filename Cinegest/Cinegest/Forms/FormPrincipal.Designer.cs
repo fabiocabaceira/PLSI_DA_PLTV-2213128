@@ -35,23 +35,25 @@
             this.Sessõesbtn = new System.Windows.Forms.Button();
             this.Filmesbtn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.sessãoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cineGestDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cineGestDataSet = new Cinegest.CineGestDataSet();
-            this.Updatetbn = new System.Windows.Forms.Button();
-            this.sessãoTableAdapter = new Cinegest.CineGestDataSetTableAdapters.SessãoTableAdapter();
-            this.cinemasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cinemasTableAdapter = new Cinegest.CineGestDataSetTableAdapters.CinemasTableAdapter();
             this.idSessaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataHoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.salaIdSalaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.filmeIdFilmeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sessãoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cineGestDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cineGestDataSet = new Cinegest.CineGestDataSet();
+            this.cinemasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sessãoTableAdapter = new Cinegest.CineGestDataSetTableAdapters.SessãoTableAdapter();
+            this.cinemasTableAdapter = new Cinegest.CineGestDataSetTableAdapters.CinemasTableAdapter();
+            this.filterByCurrentDateToolStrip = new System.Windows.Forms.ToolStrip();
+            this.filterByCurrentDateToolStripButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cinemasBindingSource)).BeginInit();
+            this.filterByCurrentDateToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // Cinemabtn
@@ -115,48 +117,10 @@
             this.salaIdSalaDataGridViewTextBoxColumn,
             this.filmeIdFilmeDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.sessãoBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(181, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(189, 54);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(607, 384);
+            this.dataGridView1.Size = new System.Drawing.Size(607, 342);
             this.dataGridView1.TabIndex = 5;
-            // 
-            // sessãoBindingSource
-            // 
-            this.sessãoBindingSource.DataMember = "Sessão";
-            this.sessãoBindingSource.DataSource = this.cineGestDataSetBindingSource;
-            // 
-            // cineGestDataSetBindingSource
-            // 
-            this.cineGestDataSetBindingSource.DataSource = this.cineGestDataSet;
-            this.cineGestDataSetBindingSource.Position = 0;
-            // 
-            // cineGestDataSet
-            // 
-            this.cineGestDataSet.DataSetName = "CineGestDataSet";
-            this.cineGestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // Updatetbn
-            // 
-            this.Updatetbn.Location = new System.Drawing.Point(389, 402);
-            this.Updatetbn.Name = "Updatetbn";
-            this.Updatetbn.Size = new System.Drawing.Size(185, 23);
-            this.Updatetbn.TabIndex = 6;
-            this.Updatetbn.Text = "Update";
-            this.Updatetbn.UseVisualStyleBackColor = true;
-            this.Updatetbn.Click += new System.EventHandler(this.Updatetbn_Click);
-            // 
-            // sessãoTableAdapter
-            // 
-            this.sessãoTableAdapter.ClearBeforeFill = true;
-            // 
-            // cinemasBindingSource
-            // 
-            this.cinemasBindingSource.DataMember = "Cinemas";
-            this.cinemasBindingSource.DataSource = this.cineGestDataSetBindingSource;
-            // 
-            // cinemasTableAdapter
-            // 
-            this.cinemasTableAdapter.ClearBeforeFill = true;
             // 
             // idSessaoDataGridViewTextBoxColumn
             // 
@@ -189,12 +153,61 @@
             this.filmeIdFilmeDataGridViewTextBoxColumn.HeaderText = "Filme_IdFilme";
             this.filmeIdFilmeDataGridViewTextBoxColumn.Name = "filmeIdFilmeDataGridViewTextBoxColumn";
             // 
+            // sessãoBindingSource
+            // 
+            this.sessãoBindingSource.DataMember = "Sessão";
+            this.sessãoBindingSource.DataSource = this.cineGestDataSetBindingSource;
+            // 
+            // cineGestDataSetBindingSource
+            // 
+            this.cineGestDataSetBindingSource.DataSource = this.cineGestDataSet;
+            this.cineGestDataSetBindingSource.Position = 0;
+            // 
+            // cineGestDataSet
+            // 
+            this.cineGestDataSet.DataSetName = "CineGestDataSet";
+            this.cineGestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // cinemasBindingSource
+            // 
+            this.cinemasBindingSource.DataMember = "Cinemas";
+            this.cinemasBindingSource.DataSource = this.cineGestDataSetBindingSource;
+            // 
+            // sessãoTableAdapter
+            // 
+            this.sessãoTableAdapter.ClearBeforeFill = true;
+            // 
+            // cinemasTableAdapter
+            // 
+            this.cinemasTableAdapter.ClearBeforeFill = true;
+            // 
+            // filterByCurrentDateToolStrip
+            // 
+            this.filterByCurrentDateToolStrip.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.filterByCurrentDateToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.filterByCurrentDateToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.filterByCurrentDateToolStripButton});
+            this.filterByCurrentDateToolStrip.Location = new System.Drawing.Point(446, 26);
+            this.filterByCurrentDateToolStrip.Name = "filterByCurrentDateToolStrip";
+            this.filterByCurrentDateToolStrip.ShowItemToolTips = false;
+            this.filterByCurrentDateToolStrip.Size = new System.Drawing.Size(61, 25);
+            this.filterByCurrentDateToolStrip.TabIndex = 7;
+            this.filterByCurrentDateToolStrip.Text = "filterByCurrentDateToolStrip";
+            // 
+            // filterByCurrentDateToolStripButton
+            // 
+            this.filterByCurrentDateToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.filterByCurrentDateToolStripButton.Name = "filterByCurrentDateToolStripButton";
+            this.filterByCurrentDateToolStripButton.Size = new System.Drawing.Size(49, 22);
+            this.filterByCurrentDateToolStripButton.Text = "Update";
+            this.filterByCurrentDateToolStripButton.Click += new System.EventHandler(this.filterByCurrentDateToolStripButton_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.Updatetbn);
+            this.ClientSize = new System.Drawing.Size(816, 450);
+            this.Controls.Add(this.filterByCurrentDateToolStrip);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.Filmesbtn);
             this.Controls.Add(this.Sessõesbtn);
@@ -209,7 +222,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cinemasBindingSource)).EndInit();
+            this.filterByCurrentDateToolStrip.ResumeLayout(false);
+            this.filterByCurrentDateToolStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -223,7 +239,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource cineGestDataSetBindingSource;
         private CineGestDataSet cineGestDataSet;
-        private System.Windows.Forms.Button Updatetbn;
         private System.Windows.Forms.BindingSource sessãoBindingSource;
         private CineGestDataSetTableAdapters.SessãoTableAdapter sessãoTableAdapter;
         private System.Windows.Forms.BindingSource cinemasBindingSource;
@@ -233,5 +248,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn salaIdSalaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn filmeIdFilmeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStrip filterByCurrentDateToolStrip;
+        private System.Windows.Forms.ToolStripButton filterByCurrentDateToolStripButton;
     }
 }
