@@ -1918,6 +1918,12 @@ namespace Cinegest {
             
             private global::System.Data.DataColumn columnMorada;
             
+            private global::System.Data.DataColumn columnSalario;
+            
+            private global::System.Data.DataColumn columnFuncao;
+            
+            private global::System.Data.DataColumn columnExpr1;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public PessoasDataTable() {
@@ -1977,6 +1983,30 @@ namespace Cinegest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SalarioColumn {
+                get {
+                    return this.columnSalario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FuncaoColumn {
+                get {
+                    return this.columnFuncao;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn Expr1Column {
+                get {
+                    return this.columnExpr1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2012,12 +2042,15 @@ namespace Cinegest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public PessoasRow AddPessoasRow(string Nome, string Morada) {
+            public PessoasRow AddPessoasRow(string Nome, string Morada, int Salario, string Funcao, int Expr1) {
                 PessoasRow rowPessoasRow = ((PessoasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Nome,
-                        Morada};
+                        Morada,
+                        Salario,
+                        Funcao,
+                        Expr1};
                 rowPessoasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPessoasRow);
                 return rowPessoasRow;
@@ -2050,6 +2083,9 @@ namespace Cinegest {
                 this.columnIdPessoa = base.Columns["IdPessoa"];
                 this.columnNome = base.Columns["Nome"];
                 this.columnMorada = base.Columns["Morada"];
+                this.columnSalario = base.Columns["Salario"];
+                this.columnFuncao = base.Columns["Funcao"];
+                this.columnExpr1 = base.Columns["Expr1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2061,6 +2097,12 @@ namespace Cinegest {
                 base.Columns.Add(this.columnNome);
                 this.columnMorada = new global::System.Data.DataColumn("Morada", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMorada);
+                this.columnSalario = new global::System.Data.DataColumn("Salario", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSalario);
+                this.columnFuncao = new global::System.Data.DataColumn("Funcao", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFuncao);
+                this.columnExpr1 = new global::System.Data.DataColumn("Expr1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpr1);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdPessoa}, true));
                 this.columnIdPessoa.AutoIncrement = true;
@@ -2073,6 +2115,10 @@ namespace Cinegest {
                 this.columnNome.MaxLength = 2147483647;
                 this.columnMorada.AllowDBNull = false;
                 this.columnMorada.MaxLength = 2147483647;
+                this.columnSalario.AllowDBNull = false;
+                this.columnFuncao.AllowDBNull = false;
+                this.columnFuncao.MaxLength = 2147483647;
+                this.columnExpr1.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4114,6 +4160,39 @@ namespace Cinegest {
                 }
                 set {
                     this[this.tablePessoas.MoradaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Salario {
+                get {
+                    return ((int)(this[this.tablePessoas.SalarioColumn]));
+                }
+                set {
+                    this[this.tablePessoas.SalarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Funcao {
+                get {
+                    return ((string)(this[this.tablePessoas.FuncaoColumn]));
+                }
+                set {
+                    this[this.tablePessoas.FuncaoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Expr1 {
+                get {
+                    return ((int)(this[this.tablePessoas.Expr1Column]));
+                }
+                set {
+                    this[this.tablePessoas.Expr1Column] = value;
                 }
             }
             
@@ -6367,29 +6446,10 @@ SELECT IdFilme, Nome, Duracao, Activo, Categoria_IdCategoria FROM Filmes WHERE (
             tableMapping.ColumnMappings.Add("IdPessoa", "IdPessoa");
             tableMapping.ColumnMappings.Add("Nome", "Nome");
             tableMapping.ColumnMappings.Add("Morada", "Morada");
+            tableMapping.ColumnMappings.Add("Salario", "Salario");
+            tableMapping.ColumnMappings.Add("Funcao", "Funcao");
+            tableMapping.ColumnMappings.Add("Expr1", "Expr1");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Pessoas] WHERE (([IdPessoa] = @Original_IdPessoa))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdPessoa", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdPessoa", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Pessoas] ([Nome], [Morada]) VALUES (@Nome, @Morada);\r\nSELECT I" +
-                "dPessoa, Nome, Morada FROM Pessoas WHERE (IdPessoa = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nome", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Morada", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Morada", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Pessoas] SET [Nome] = @Nome, [Morada] = @Morada WHERE (([IdPessoa] " +
-                "= @Original_IdPessoa));\r\nSELECT IdPessoa, Nome, Morada FROM Pessoas WHERE (IdPes" +
-                "soa = @IdPessoa)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nome", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Morada", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Morada", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdPessoa", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdPessoa", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdPessoa", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IdPessoa", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6405,7 +6465,9 @@ SELECT IdFilme, Nome, Duracao, Activo, Categoria_IdCategoria FROM Filmes WHERE (
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT IdPessoa, Nome, Morada FROM dbo.Pessoas";
+            this._commandCollection[0].CommandText = @"SELECT        Pessoas.IdPessoa, Pessoas.Nome, Pessoas.Morada, Pessoas_Funcionario.Salario, Pessoas_Funcionario.Funcao, Pessoas_Funcionario.IdPessoa AS Expr1
+FROM            Pessoas INNER JOIN
+                         Pessoas_Funcionario ON Pessoas.IdPessoa = Pessoas_Funcionario.IdPessoa";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -6413,7 +6475,7 @@ SELECT IdFilme, Nome, Duracao, Activo, Categoria_IdCategoria FROM Filmes WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(CineGestDataSet.PessoasDataTable dataTable) {
+        public virtual int fill_Funcionario(CineGestDataSet.PessoasDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -6426,138 +6488,11 @@ SELECT IdFilme, Nome, Duracao, Activo, Categoria_IdCategoria FROM Filmes WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual CineGestDataSet.PessoasDataTable GetData() {
+        public virtual CineGestDataSet.PessoasDataTable GetFuncionarioAtual() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             CineGestDataSet.PessoasDataTable dataTable = new CineGestDataSet.PessoasDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(CineGestDataSet.PessoasDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(CineGestDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Pessoas");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_IdPessoa) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_IdPessoa));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Nome, string Morada) {
-            if ((Nome == null)) {
-                throw new global::System.ArgumentNullException("Nome");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Nome));
-            }
-            if ((Morada == null)) {
-                throw new global::System.ArgumentNullException("Morada");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Morada));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Nome, string Morada, int Original_IdPessoa, int IdPessoa) {
-            if ((Nome == null)) {
-                throw new global::System.ArgumentNullException("Nome");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Nome));
-            }
-            if ((Morada == null)) {
-                throw new global::System.ArgumentNullException("Morada");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Morada));
-            }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_IdPessoa));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(IdPessoa));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Nome, string Morada, int Original_IdPessoa) {
-            return this.Update(Nome, Morada, Original_IdPessoa, Original_IdPessoa);
         }
     }
     
@@ -8133,8 +8068,6 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
         
         private FilmesTableAdapter _filmesTableAdapter;
         
-        private PessoasTableAdapter _pessoasTableAdapter;
-        
         private Pessoas_ClienteTableAdapter _pessoas_ClienteTableAdapter;
         
         private Pessoas_FuncionarioTableAdapter _pessoas_FuncionarioTableAdapter;
@@ -8211,20 +8144,6 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
             }
             set {
                 this._filmesTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public PessoasTableAdapter PessoasTableAdapter {
-            get {
-                return this._pessoasTableAdapter;
-            }
-            set {
-                this._pessoasTableAdapter = value;
             }
         }
         
@@ -8319,10 +8238,6 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
                             && (this._filmesTableAdapter.Connection != null))) {
                     return this._filmesTableAdapter.Connection;
                 }
-                if (((this._pessoasTableAdapter != null) 
-                            && (this._pessoasTableAdapter.Connection != null))) {
-                    return this._pessoasTableAdapter.Connection;
-                }
                 if (((this._pessoas_ClienteTableAdapter != null) 
                             && (this._pessoas_ClienteTableAdapter.Connection != null))) {
                     return this._pessoas_ClienteTableAdapter.Connection;
@@ -8364,9 +8279,6 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
                 if ((this._filmesTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._pessoasTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._pessoas_ClienteTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -8390,15 +8302,6 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateUpdatedRows(CineGestDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._pessoasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Pessoas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._pessoasTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._categoriasTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Categorias.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -8481,14 +8384,6 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateInsertedRows(CineGestDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._pessoasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Pessoas.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._pessoasTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._categoriasTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Categorias.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -8627,14 +8522,6 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._pessoasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Pessoas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._pessoasTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             return result;
         }
         
@@ -8691,11 +8578,6 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
             }
             if (((this._filmesTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._filmesTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._pessoasTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._pessoasTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -8785,15 +8667,6 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
                     if (this._filmesTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._filmesTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._filmesTableAdapter.Adapter);
-                    }
-                }
-                if ((this._pessoasTableAdapter != null)) {
-                    revertConnections.Add(this._pessoasTableAdapter, this._pessoasTableAdapter.Connection);
-                    this._pessoasTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._pessoasTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._pessoasTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._pessoasTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._pessoasTableAdapter.Adapter);
                     }
                 }
                 if ((this._pessoas_ClienteTableAdapter != null)) {
@@ -8905,10 +8778,6 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
                 if ((this._filmesTableAdapter != null)) {
                     this._filmesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._filmesTableAdapter]));
                     this._filmesTableAdapter.Transaction = null;
-                }
-                if ((this._pessoasTableAdapter != null)) {
-                    this._pessoasTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._pessoasTableAdapter]));
-                    this._pessoasTableAdapter.Transaction = null;
                 }
                 if ((this._pessoas_ClienteTableAdapter != null)) {
                     this._pessoas_ClienteTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._pessoas_ClienteTableAdapter]));

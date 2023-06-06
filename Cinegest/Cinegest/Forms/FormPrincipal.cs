@@ -19,6 +19,7 @@ namespace Cinegest.Forms
             InitializeComponent();
             db = new CineGestEntities();
             listarSessoes();
+            listarFuncionarios();
         }
 
         // Botões
@@ -107,9 +108,25 @@ namespace Cinegest.Forms
             }
         }
 
+        // Método para listar os funcionarios que estam a usar o formulário
+        private void listarFuncionarios()
+        {
+            try
+            {
+                this.pessoasTableAdapter.fill_Funcionario(this.cineGestDataSet.Pessoas);
+
+
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
         // Método que é executado quando o formulário é carregado
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
+            
         }
 
         // Toolstrip Update
@@ -117,5 +134,7 @@ namespace Cinegest.Forms
         {
             this.sessãoTableAdapter.Fillu(this.cineGestDataSet.Sessão);
         }
+
+       
     }
 }
