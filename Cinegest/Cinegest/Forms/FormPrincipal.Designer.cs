@@ -53,6 +53,7 @@
             this.pessoasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pessoasTableAdapter = new Cinegest.CineGestDataSetTableAdapters.PessoasTableAdapter();
             this.funcionario_atual_lbl = new System.Windows.Forms.Label();
+            this.IdSessao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSetBindingSource)).BeginInit();
@@ -64,7 +65,7 @@
             // 
             // Cinemabtn
             // 
-            this.Cinemabtn.Location = new System.Drawing.Point(968, 54);
+            this.Cinemabtn.Location = new System.Drawing.Point(1040, 54);
             this.Cinemabtn.Name = "Cinemabtn";
             this.Cinemabtn.Size = new System.Drawing.Size(143, 72);
             this.Cinemabtn.TabIndex = 0;
@@ -74,7 +75,7 @@
             // 
             // Funcionariosbtn
             // 
-            this.Funcionariosbtn.Location = new System.Drawing.Point(968, 366);
+            this.Funcionariosbtn.Location = new System.Drawing.Point(1040, 366);
             this.Funcionariosbtn.Name = "Funcionariosbtn";
             this.Funcionariosbtn.Size = new System.Drawing.Size(143, 72);
             this.Funcionariosbtn.TabIndex = 1;
@@ -84,7 +85,7 @@
             // 
             // Clientesbtn
             // 
-            this.Clientesbtn.Location = new System.Drawing.Point(968, 288);
+            this.Clientesbtn.Location = new System.Drawing.Point(1040, 288);
             this.Clientesbtn.Name = "Clientesbtn";
             this.Clientesbtn.Size = new System.Drawing.Size(143, 72);
             this.Clientesbtn.TabIndex = 2;
@@ -94,7 +95,7 @@
             // 
             // Sessõesbtn
             // 
-            this.Sessõesbtn.Location = new System.Drawing.Point(968, 210);
+            this.Sessõesbtn.Location = new System.Drawing.Point(1040, 210);
             this.Sessõesbtn.Name = "Sessõesbtn";
             this.Sessõesbtn.Size = new System.Drawing.Size(143, 72);
             this.Sessõesbtn.TabIndex = 3;
@@ -104,7 +105,7 @@
             // 
             // Filmesbtn
             // 
-            this.Filmesbtn.Location = new System.Drawing.Point(968, 132);
+            this.Filmesbtn.Location = new System.Drawing.Point(1040, 132);
             this.Filmesbtn.Name = "Filmesbtn";
             this.Filmesbtn.Size = new System.Drawing.Size(143, 72);
             this.Filmesbtn.TabIndex = 4;
@@ -114,6 +115,8 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -122,48 +125,57 @@
             this.precoDataGridViewTextBoxColumn,
             this.SalaNome,
             this.Categoria,
-            this.Activo});
+            this.Activo,
+            this.IdSessao});
             this.dataGridView1.DataSource = this.sessãoBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(202, 54);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(738, 384);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(832, 384);
             this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Nome
             // 
             this.Nome.DataPropertyName = "Nome";
             this.Nome.HeaderText = "Nome";
             this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
             // 
             // dataHoraDataGridViewTextBoxColumn
             // 
             this.dataHoraDataGridViewTextBoxColumn.DataPropertyName = "DataHora";
             this.dataHoraDataGridViewTextBoxColumn.HeaderText = "DataHora";
             this.dataHoraDataGridViewTextBoxColumn.Name = "dataHoraDataGridViewTextBoxColumn";
+            this.dataHoraDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // precoDataGridViewTextBoxColumn
             // 
             this.precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
             this.precoDataGridViewTextBoxColumn.HeaderText = "Preco";
             this.precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
+            this.precoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // SalaNome
             // 
             this.SalaNome.DataPropertyName = "Expr1";
             this.SalaNome.HeaderText = "Nome_Da_Sala";
             this.SalaNome.Name = "SalaNome";
+            this.SalaNome.ReadOnly = true;
             // 
             // Categoria
             // 
             this.Categoria.DataPropertyName = "Expr2";
             this.Categoria.HeaderText = "Categoria_Do_Filme";
             this.Categoria.Name = "Categoria";
+            this.Categoria.ReadOnly = true;
             // 
             // Activo
             // 
             this.Activo.DataPropertyName = "Activo";
             this.Activo.HeaderText = "Estado_Do_Filme";
             this.Activo.Name = "Activo";
+            this.Activo.ReadOnly = true;
             // 
             // sessãoBindingSource
             // 
@@ -245,6 +257,13 @@
             this.funcionario_atual_lbl.Text = "Funcionário atual";
             this.funcionario_atual_lbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // IdSessao
+            // 
+            this.IdSessao.DataPropertyName = "IdSessao";
+            this.IdSessao.HeaderText = "IdSessao";
+            this.IdSessao.Name = "IdSessao";
+            this.IdSessao.ReadOnly = true;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,5 +323,6 @@
         private System.Windows.Forms.BindingSource pessoasBindingSource;
         private CineGestDataSetTableAdapters.PessoasTableAdapter pessoasTableAdapter;
         private System.Windows.Forms.Label funcionario_atual_lbl;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdSessao;
     }
 }

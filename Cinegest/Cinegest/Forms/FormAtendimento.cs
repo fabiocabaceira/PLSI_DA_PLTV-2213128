@@ -12,9 +12,18 @@ namespace Cinegest.Forms
 {
     public partial class FormAtendimento : Form
     {
-        public FormAtendimento()
+        public string idSessao;
+        public FormAtendimento(string idSessao)
         {
+            this.idSessao = idSessao;
             InitializeComponent();
+        }
+
+        private void FormAtendimento_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'cineGestDataSet.Sessão' table. You can move, or remove it, as needed.
+            this.sessãoTableAdapter.Fillu(this.cineGestDataSet.Sessão);
+            Console.WriteLine(idSessao);
         }
     }
 }

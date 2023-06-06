@@ -417,7 +417,7 @@ SELECT IdSala, Nome, Colunas, Filas, SessãoIdSessao, CinemaIdPessoa FROM Salas 
               <DbSource ConnectionRef="CineGestConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fillu" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDatau" GeneratorSourceName="Fillu" GetMethodModifier="Public" GetMethodName="GetDatau" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDatau" UserSourceName="Fillu">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Sessão.DataHora, Sessão.Preco, Filmes.Nome, Salas.Nome AS Expr1, Categorias.Nome AS Expr2, Filmes.Activo
+                    <CommandText>SELECT        Sessão.DataHora, Sessão.Preco, Filmes.Nome, Salas.Nome AS Expr1, Categorias.Nome AS Expr2, Filmes.Activo, Sessão.IdSessao
 FROM            Sessão INNER JOIN
                          Filmes ON Sessão.Filme_IdFilme = Filmes.IdFilme INNER JOIN
                          Salas ON Sessão.SalaIdSala = Salas.IdSala INNER JOIN
@@ -435,6 +435,7 @@ WHERE        (CONVERT(date, Sessão.DataHora) = CONVERT(date, GETDATE()))</Comma
               <Mapping SourceColumn="Expr1" DataSetColumn="Expr1" />
               <Mapping SourceColumn="Expr2" DataSetColumn="Expr2" />
               <Mapping SourceColumn="Activo" DataSetColumn="Activo" />
+              <Mapping SourceColumn="IdSessao" DataSetColumn="IdSessao" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -622,15 +623,15 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Salario" msprop:Generator_ColumnPropNameInRow="Salario" msprop:Generator_ColumnPropNameInTable="SalarioColumn" msprop:Generator_ColumnVarNameInTable="columnSalario" msprop:Generator_UserColumnName="Salario" type="xs:int" />
-              <xs:element name="Funcao" msprop:Generator_ColumnPropNameInRow="Funcao" msprop:Generator_ColumnPropNameInTable="FuncaoColumn" msprop:Generator_ColumnVarNameInTable="columnFuncao" msprop:Generator_UserColumnName="Funcao">
+              <xs:element name="Salario" msprop:Generator_UserColumnName="Salario" msprop:Generator_ColumnPropNameInTable="SalarioColumn" msprop:Generator_ColumnPropNameInRow="Salario" msprop:Generator_ColumnVarNameInTable="columnSalario" type="xs:int" />
+              <xs:element name="Funcao" msprop:Generator_UserColumnName="Funcao" msprop:Generator_ColumnPropNameInTable="FuncaoColumn" msprop:Generator_ColumnPropNameInRow="Funcao" msprop:Generator_ColumnVarNameInTable="columnFuncao">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Expr1" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_UserColumnName="Expr1" type="xs:int" />
+              <xs:element name="Expr1" msprop:Generator_UserColumnName="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnVarNameInTable="columnExpr1" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -692,34 +693,35 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
             <xs:sequence>
               <xs:element name="DataHora" msprop:Generator_ColumnPropNameInTable="DataHoraColumn" msprop:Generator_ColumnPropNameInRow="DataHora" msprop:Generator_UserColumnName="DataHora" msprop:Generator_ColumnVarNameInTable="columnDataHora" type="xs:dateTime" />
               <xs:element name="Preco" msprop:Generator_ColumnPropNameInTable="PrecoColumn" msprop:Generator_ColumnPropNameInRow="Preco" msprop:Generator_UserColumnName="Preco" msprop:Generator_ColumnVarNameInTable="columnPreco" type="xs:int" />
-              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome">
+              <xs:element name="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnVarNameInTable="columnNome">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Expr1" msprop:Generator_UserColumnName="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnVarNameInTable="columnExpr1">
+              <xs:element name="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_UserColumnName="Expr1" msprop:Generator_ColumnVarNameInTable="columnExpr1">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Expr2" msprop:Generator_UserColumnName="Expr2" msprop:Generator_ColumnPropNameInTable="Expr2Column" msprop:Generator_ColumnPropNameInRow="Expr2" msprop:Generator_ColumnVarNameInTable="columnExpr2">
+              <xs:element name="Expr2" msprop:Generator_ColumnPropNameInTable="Expr2Column" msprop:Generator_ColumnPropNameInRow="Expr2" msprop:Generator_UserColumnName="Expr2" msprop:Generator_ColumnVarNameInTable="columnExpr2">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Activo" msprop:Generator_UserColumnName="Activo" msprop:Generator_ColumnPropNameInTable="ActivoColumn" msprop:Generator_ColumnPropNameInRow="Activo" msprop:Generator_ColumnVarNameInTable="columnActivo">
+              <xs:element name="Activo" msprop:Generator_ColumnPropNameInTable="ActivoColumn" msprop:Generator_ColumnPropNameInRow="Activo" msprop:Generator_UserColumnName="Activo" msprop:Generator_ColumnVarNameInTable="columnActivo">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="IdSessao" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="IdSessao" msprop:Generator_ColumnPropNameInTable="IdSessaoColumn" msprop:Generator_ColumnVarNameInTable="columnIdSessao" msprop:Generator_UserColumnName="IdSessao" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -774,6 +776,10 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
       <xs:selector xpath=".//mstns:Salas" />
       <xs:field xpath="mstns:IdSala" />
     </xs:unique>
+    <xs:unique name="Sessão_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Sessão" />
+      <xs:field xpath="mstns:IdSessao" />
+    </xs:unique>
     <xs:unique name="sysdiagrams_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:sysdiagrams" />
       <xs:field xpath="mstns:diagram_id" />
@@ -781,12 +787,12 @@ SELECT name, principal_id, diagram_id, version, definition FROM sysdiagrams WHER
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_ClienteBilhete" msdata:parent="Pessoas_Cliente" msdata:child="Bilhetes" msdata:parentkey="IdPessoa" msdata:childkey="ClienteIdPessoa" msprop:Generator_UserParentTable="Pessoas_Cliente" msprop:Generator_UserChildTable="Bilhetes" msprop:Generator_RelationVarName="relationFK_ClienteBilhete" msprop:Generator_ChildPropName="GetBilhetesRows" msprop:Generator_UserRelationName="FK_ClienteBilhete" msprop:Generator_ParentPropName="Pessoas_ClienteRow" />
-      <msdata:Relationship name="FK_FuncionarioBilhete" msdata:parent="Pessoas_Funcionario" msdata:child="Bilhetes" msdata:parentkey="IdPessoa" msdata:childkey="FuncionarioIdPessoa" msprop:Generator_UserParentTable="Pessoas_Funcionario" msprop:Generator_UserChildTable="Bilhetes" msprop:Generator_RelationVarName="relationFK_FuncionarioBilhete" msprop:Generator_ChildPropName="GetBilhetesRows" msprop:Generator_UserRelationName="FK_FuncionarioBilhete" msprop:Generator_ParentPropName="Pessoas_FuncionarioRow" />
-      <msdata:Relationship name="FK_FilmeCategoria" msdata:parent="Categorias" msdata:child="Filmes" msdata:parentkey="IdCategoria" msdata:childkey="Categoria_IdCategoria" msprop:Generator_UserParentTable="Categorias" msprop:Generator_UserChildTable="Filmes" msprop:Generator_RelationVarName="relationFK_FilmeCategoria" msprop:Generator_ChildPropName="GetFilmesRows" msprop:Generator_ParentPropName="CategoriasRow" msprop:Generator_UserRelationName="FK_FilmeCategoria" />
-      <msdata:Relationship name="FK_Cliente_inherits_Pessoa" msdata:parent="Pessoas" msdata:child="Pessoas_Cliente" msdata:parentkey="IdPessoa" msdata:childkey="IdPessoa" msprop:Generator_UserParentTable="Pessoas" msprop:Generator_UserChildTable="Pessoas_Cliente" msprop:Generator_RelationVarName="relationFK_Cliente_inherits_Pessoa" msprop:Generator_ChildPropName="GetPessoas_ClienteRows" msprop:Generator_ParentPropName="PessoasRow" msprop:Generator_UserRelationName="FK_Cliente_inherits_Pessoa" />
-      <msdata:Relationship name="FK_Funcionario_inherits_Pessoa" msdata:parent="Pessoas" msdata:child="Pessoas_Funcionario" msdata:parentkey="IdPessoa" msdata:childkey="IdPessoa" msprop:Generator_UserParentTable="Pessoas" msprop:Generator_UserChildTable="Pessoas_Funcionario" msprop:Generator_RelationVarName="relationFK_Funcionario_inherits_Pessoa" msprop:Generator_ChildPropName="GetPessoas_FuncionarioRows" msprop:Generator_ParentPropName="PessoasRow" msprop:Generator_UserRelationName="FK_Funcionario_inherits_Pessoa" />
-      <msdata:Relationship name="FK_CinemaSala" msdata:parent="Cinemas" msdata:child="Salas" msdata:parentkey="IdPessoa" msdata:childkey="CinemaIdPessoa" msprop:Generator_UserParentTable="Cinemas" msprop:Generator_UserChildTable="Salas" msprop:Generator_RelationVarName="relationFK_CinemaSala" msprop:Generator_ChildPropName="GetSalasRows" msprop:Generator_ParentPropName="CinemasRow" msprop:Generator_UserRelationName="FK_CinemaSala" />
+      <msdata:Relationship name="FK_ClienteBilhete" msdata:parent="Pessoas_Cliente" msdata:child="Bilhetes" msdata:parentkey="IdPessoa" msdata:childkey="ClienteIdPessoa" msprop:Generator_UserParentTable="Pessoas_Cliente" msprop:Generator_UserChildTable="Bilhetes" msprop:Generator_RelationVarName="relationFK_ClienteBilhete" msprop:Generator_ChildPropName="GetBilhetesRows" msprop:Generator_ParentPropName="Pessoas_ClienteRow" msprop:Generator_UserRelationName="FK_ClienteBilhete" />
+      <msdata:Relationship name="FK_FuncionarioBilhete" msdata:parent="Pessoas_Funcionario" msdata:child="Bilhetes" msdata:parentkey="IdPessoa" msdata:childkey="FuncionarioIdPessoa" msprop:Generator_UserParentTable="Pessoas_Funcionario" msprop:Generator_UserChildTable="Bilhetes" msprop:Generator_RelationVarName="relationFK_FuncionarioBilhete" msprop:Generator_ChildPropName="GetBilhetesRows" msprop:Generator_ParentPropName="Pessoas_FuncionarioRow" msprop:Generator_UserRelationName="FK_FuncionarioBilhete" />
+      <msdata:Relationship name="FK_FilmeCategoria" msdata:parent="Categorias" msdata:child="Filmes" msdata:parentkey="IdCategoria" msdata:childkey="Categoria_IdCategoria" msprop:Generator_UserParentTable="Categorias" msprop:Generator_UserChildTable="Filmes" msprop:Generator_RelationVarName="relationFK_FilmeCategoria" msprop:Generator_ChildPropName="GetFilmesRows" msprop:Generator_UserRelationName="FK_FilmeCategoria" msprop:Generator_ParentPropName="CategoriasRow" />
+      <msdata:Relationship name="FK_Cliente_inherits_Pessoa" msdata:parent="Pessoas" msdata:child="Pessoas_Cliente" msdata:parentkey="IdPessoa" msdata:childkey="IdPessoa" msprop:Generator_UserParentTable="Pessoas" msprop:Generator_UserChildTable="Pessoas_Cliente" msprop:Generator_RelationVarName="relationFK_Cliente_inherits_Pessoa" msprop:Generator_ChildPropName="GetPessoas_ClienteRows" msprop:Generator_UserRelationName="FK_Cliente_inherits_Pessoa" msprop:Generator_ParentPropName="PessoasRow" />
+      <msdata:Relationship name="FK_Funcionario_inherits_Pessoa" msdata:parent="Pessoas" msdata:child="Pessoas_Funcionario" msdata:parentkey="IdPessoa" msdata:childkey="IdPessoa" msprop:Generator_UserParentTable="Pessoas" msprop:Generator_UserChildTable="Pessoas_Funcionario" msprop:Generator_RelationVarName="relationFK_Funcionario_inherits_Pessoa" msprop:Generator_ChildPropName="GetPessoas_FuncionarioRows" msprop:Generator_UserRelationName="FK_Funcionario_inherits_Pessoa" msprop:Generator_ParentPropName="PessoasRow" />
+      <msdata:Relationship name="FK_CinemaSala" msdata:parent="Cinemas" msdata:child="Salas" msdata:parentkey="IdPessoa" msdata:childkey="CinemaIdPessoa" msprop:Generator_UserParentTable="Cinemas" msprop:Generator_UserChildTable="Salas" msprop:Generator_RelationVarName="relationFK_CinemaSala" msprop:Generator_ChildPropName="GetSalasRows" msprop:Generator_UserRelationName="FK_CinemaSala" msprop:Generator_ParentPropName="CinemasRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

@@ -135,6 +135,21 @@ namespace Cinegest.Forms
             this.sessãoTableAdapter.Fillu(this.cineGestDataSet.Sessão);
         }
 
-       
+
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                string idSessao = dataGridView1.Rows[e.RowIndex].Cells["IdSessao"].Value.ToString(); // obtém o nome da sessão da célula selecionada
+                FormAtendimento FmAtendimento = new FormAtendimento(idSessao); // instancia o formulário com o nome da sessão como argumento
+                FmAtendimento.ShowDialog();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro ao tentar abrir o formulário.");
+            }
+        }
+
     }
 }
