@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/04/2023 21:42:30
--- Generated from EDMX file: C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGest.edmx
+-- Date Created: 06/06/2023 16:26:54
+-- Generated from EDMX file: C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGest.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -20,29 +20,29 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_BilheteSessão]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_BilheteSessão];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CinemaSala]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Salas] DROP CONSTRAINT [FK_CinemaSala];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Cliente_inherits_Pessoa]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Pessoas_Cliente] DROP CONSTRAINT [FK_Cliente_inherits_Pessoa];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ClienteBilhete]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_ClienteBilhete];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FilmeCategoria]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Filmes] DROP CONSTRAINT [FK_FilmeCategoria];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Funcionario_inherits_Pessoa]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Pessoas_Funcionario] DROP CONSTRAINT [FK_Funcionario_inherits_Pessoa];
 GO
 IF OBJECT_ID(N'[dbo].[FK_FuncionarioBilhete]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_FuncionarioBilhete];
 GO
-IF OBJECT_ID(N'[dbo].[FK_SalaSessão]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Sessão] DROP CONSTRAINT [FK_SalaSessão];
+IF OBJECT_ID(N'[dbo].[FK_FilmeCategoria]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Filmes] DROP CONSTRAINT [FK_FilmeCategoria];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CinemaSala]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Salas] DROP CONSTRAINT [FK_CinemaSala];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SessãoFilme]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Sessão] DROP CONSTRAINT [FK_SessãoFilme];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Cliente_inherits_Pessoa]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Pessoas_Cliente] DROP CONSTRAINT [FK_Cliente_inherits_Pessoa];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Funcionario_inherits_Pessoa]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Pessoas_Funcionario] DROP CONSTRAINT [FK_Funcionario_inherits_Pessoa];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SalaSessão]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Sessão] DROP CONSTRAINT [FK_SalaSessão];
 GO
 
 -- --------------------------------------------------
@@ -391,23 +391,14 @@ VALUES ('Filme 1', '120', 'Sim', 1),
        ('Filme 2', '90', 'Não', 2),
        ('Filme 3', '105', 'Sim', 3);
 
--- Sessão
-INSERT INTO [dbo].[Sessão] ([DataHora], [Preco], [SalaIdSala], [Filme_IdFilme])
-VALUES ('2023-06-2 10:00:00', '10', 1, 1),
-       ('2023-06-2 12:00:00', '12', 2, 2),
-       ('2023-06-2 14:00:00', '8', 3, 3),
-       ('2023-08-2 18:00:00', '8', 3, 3),
-       (GETDATE(), '10', 1, 1),
-       (GETDATE(), '12', 2, 2);
-
 -- Pessoas
 INSERT INTO [dbo].[Pessoas] ([Nome], [Morada])
 VALUES ('João Silva', 'Rua A'),
        ('Marta Oliveira', 'Rua B'),
        ('Pedro Santos', 'Rua C'),
-       ('Pedro Miguel', 'Rua D'),
-       ('Mateus Leandro', 'Rua E'),
-       ('Luis Matos', 'Rua F');
+       ('Miguel Silva', 'Rua A'),
+       ('Jaime Tomé', 'Rua B'),
+       ('Tiago Nunes', 'Rua C');
 
 -- Pessoas_Funcionario
 INSERT INTO [dbo].[Pessoas_Funcionario] ([Salario], [Funcao], [IdPessoa])
@@ -417,15 +408,22 @@ VALUES ('1000', 'Bilheteira', 1),
 
 -- Pessoas_Cliente
 INSERT INTO [dbo].[Pessoas_Cliente] ([NumFiscal], [IdPessoa])
-VALUES ('123456789', 4),
+VALUES ('123456789',4),
        ('987654321', 5),
        ('654321987', 6);
+
+-- Sessão
+INSERT INTO [dbo].[Sessão] ([DataHora], [Preco], [SalaIdSala], [Filme_IdFilme])
+VALUES ('2023-06-10 10:00:00', '10', 1, 1),
+       (GETDATE(), '12', 2, 2),
+       (GETDATE(), '8', 3, 3);
 
 -- Bilhetes
 INSERT INTO [dbo].[Bilhetes] ([Lugar], [Estado], [FuncionarioIdPessoa], [ClienteIdPessoa], [SessãoIdSessao])
 VALUES ('1', 'Vendido', 1, 4, 1),
        ('2', 'Vendido', 2, 5, 2),
        ('3', 'Disponível', 3, 6, 3);
+
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------

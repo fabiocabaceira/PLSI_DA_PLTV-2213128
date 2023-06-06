@@ -70,6 +70,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CineGest.edmx</DependentUpon>
     </Compile>
+    <Compile Include="CineGestDataSet.cs">
+      <DependentUpon>CineGestDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CineGestDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

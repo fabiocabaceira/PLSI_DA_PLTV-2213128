@@ -21,9 +21,9 @@ namespace Cinegest.Forms
             listarSessoes();
         }
 
-        //Botões
+        // Botões
 
-        //Botão Cinema - Abre o FormCinema
+        // Botão Cinema - Abre o FormCinema
         private void Cinemabtn_Click(object sender, EventArgs e)
         {
             try
@@ -37,7 +37,7 @@ namespace Cinegest.Forms
             }
         }
 
-        //Botão Filmes - Abre o FormFilmes
+        // Botão Filmes - Abre o FormFilmes
         private void Filmesbtn_Click(object sender, EventArgs e)
         {
             try
@@ -51,7 +51,7 @@ namespace Cinegest.Forms
             }
         }
 
-        //Botão Sessões - Abre o FormSessões
+        // Botão Sessões - Abre o FormSessões
         private void Sessõesbtn_Click(object sender, EventArgs e)
         {
             try
@@ -65,7 +65,7 @@ namespace Cinegest.Forms
             }
         }
 
-        //Botão Clientes - Abre o FormClientes
+        // Botão Clientes - Abre o FormClientes
         private void Clientesbtn_Click(object sender, EventArgs e)
         {
             try
@@ -79,7 +79,7 @@ namespace Cinegest.Forms
             }
         }
 
-        //Botão Funcionarios - Abre o FormFuncionarios
+        // Botão Funcionarios - Abre o FormFuncionarios
         private void Funcionariosbtn_Click(object sender, EventArgs e)
         {
             try
@@ -93,12 +93,13 @@ namespace Cinegest.Forms
             }
         }
 
-        //Método para listar as sessões que estam marcadas para o dia atual
+        // Método para listar as sessões que estam marcadas para o dia atual
         private void listarSessoes()
         {
             try
             {
-                this.sessãoTableAdapter.FilterByCurrentDate(this.cineGestDataSet.Sessão);
+                this.sessãoTableAdapter.Fillu(this.cineGestDataSet.Sessão);
+
             }
             catch (System.Exception ex)
             {
@@ -114,14 +115,7 @@ namespace Cinegest.Forms
         // Toolstrip Update
         private void filterByCurrentDateToolStripButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                this.sessãoTableAdapter.FilterByCurrentDate(this.cineGestDataSet.Sessão);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
+            this.sessãoTableAdapter.Fillu(this.cineGestDataSet.Sessão);
         }
     }
 }
