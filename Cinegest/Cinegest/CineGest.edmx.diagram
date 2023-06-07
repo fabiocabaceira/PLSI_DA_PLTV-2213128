@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="72aad8e424724657b545ee2c00dad029" Name="Diagram1">
-        <EntityTypeShape EntityType="CineGestModel.Bilhete" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="CineGestModel.Categoria" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CineGestModel.Cinema" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CineGestModel.Filme" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
@@ -15,15 +14,16 @@
         <EntityTypeShape EntityType="CineGestModel.Sala" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="CineGestModel.Sessão" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="CineGestModel.sysdiagram" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="CineGestModel.FK_BilheteSessão" ManuallyRouted="false" />
-        <AssociationConnector Association="CineGestModel.FK_ClienteBilhete" ManuallyRouted="false" />
-        <AssociationConnector Association="CineGestModel.FK_FuncionarioBilhete" ManuallyRouted="false" />
         <AssociationConnector Association="CineGestModel.FK_FilmeCategoria" ManuallyRouted="false" />
         <AssociationConnector Association="CineGestModel.FK_CinemaSala" ManuallyRouted="false" />
         <AssociationConnector Association="CineGestModel.FK_SessãoFilme" ManuallyRouted="false" />
         <AssociationConnector Association="CineGestModel.FK_Cliente_inherits_Pessoa" ManuallyRouted="false" />
         <AssociationConnector Association="CineGestModel.FK_Funcionario_inherits_Pessoa" ManuallyRouted="false" />
         <AssociationConnector Association="CineGestModel.FK_SalaSessão" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CineGestModel.Bilhete" Width="1.5" PointX="7.5" PointY="7.5" />
+        <AssociationConnector Association="CineGestModel.FK_BilheteSessão" />
+        <AssociationConnector Association="CineGestModel.FK_ClienteBilhete" />
+        <AssociationConnector Association="CineGestModel.FK_FuncionarioBilhete" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

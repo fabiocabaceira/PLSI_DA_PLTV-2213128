@@ -15,8 +15,8 @@ namespace Cinegest.Models
         public int SalaIdSala { get; set; }
         public int Filme_IdFilme { get; set; }
 
-        public virtual Salas Salas { get; set; }
-        public virtual Filmes Filmes { get; set; }
+        public virtual Sala Salas { get; set; }
+        public virtual Filme Filmes { get; set; }
 
         
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cinegest.Models
 {
-    public partial class Pessoas_Cliente : Pessoas
+    public partial class Pessoas_Cliente : Pessoa
     {
         public string NumFiscal { get; set; }
     }

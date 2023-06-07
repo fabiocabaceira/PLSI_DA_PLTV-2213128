@@ -11,6 +11,7 @@ namespace Cinegest
 {
     using Cinegest.Models;
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
@@ -20,21 +21,20 @@ namespace Cinegest
             : base("name=CineGestEntities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             throw new UnintentionalCodeFirstException();
         }
-    
-        public virtual DbSet<Bilhetes> Bilhetes { get; set; }
-        public virtual DbSet<Categorias> Categorias { get; set; }
-        public virtual DbSet<Cinemas> Cinemas { get; set; }
-        public virtual DbSet<Filmes> Filmes { get; set; }
-        public virtual DbSet<Pessoas> Pessoas { get; set; }
+
+        public virtual DbSet<Categoria> Categorias { get; set; }
+        public virtual DbSet<Cinema> Cinemas { get; set; }
+        public virtual DbSet<Filme> Filmes { get; set; }
+        public virtual DbSet<Pessoa> Pessoas { get; set; }
         public virtual DbSet<Pessoas_Cliente> Pessoas_Cliente { get; set; }
         public virtual DbSet<Pessoas_Funcionario> Pessoas_Funcionario { get; set; }
-        public virtual DbSet<Salas> Salas { get; set; }
+        public virtual DbSet<Sala> Salas { get; set; }
         public virtual DbSet<Sessão> Sessão { get; set; }
+        public  DbSet<Bilhete> Bilhetes { get; set; }
     }
 }

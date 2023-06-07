@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cinegest.Models
 {
-    public partial class Cinemas
+    public partial class Cinema
     {
         public int IdPessoa { get; set; }
         public string Nome { get; set; }

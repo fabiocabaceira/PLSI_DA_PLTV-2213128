@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cinegest.Models
 {
-    public partial class Pessoas_Funcionario : Pessoas
+    public partial class Pessoas_Funcionario : Pessoa
     {
         public string Salario { get; set; }
         public string Funcao { get; set; }

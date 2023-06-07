@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cinegest.Models
 {
-    public partial class Salas
+    public partial class Sala
     {
         public int IdSala { get; set; }
         public string Nome { get; set; }
@@ -16,6 +16,6 @@ namespace Cinegest.Models
         public int? CinemaIdPessoa { get; set; }
 
         public virtual Sessão Sessão { get; set; }
-        public virtual Cinemas Cinemas { get; set; }
+        public virtual Cinema Cinemas { get; set; }
     }
 }
