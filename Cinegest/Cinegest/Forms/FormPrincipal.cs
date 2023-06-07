@@ -8,21 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Cinegest.Forms
 {
     public partial class FormPrincipal : Form
     {
-        CineGestEntities db;
+
         public FormPrincipal()
         {
-            InitializeComponent();
-            db = new CineGestEntities();
-            listarSessoes();
-            listarFuncionarios();
+            InitializeComponent(); // Inicializa os componentes do formulário
         }
 
-        // Botões
+        // Métodos acionados pelos botões da interface gráfica
 
         // Botão Cinema - Abre o FormCinema
         private void Cinemabtn_Click(object sender, EventArgs e)
@@ -30,7 +28,7 @@ namespace Cinegest.Forms
             try
             {
                 FormCinema FmCinemas = new FormCinema();
-                FmCinemas.ShowDialog();
+                FmCinemas.ShowDialog(); // Abre o formulário FormCinema
             }
             catch (Exception)
             {
@@ -44,7 +42,7 @@ namespace Cinegest.Forms
             try
             {
                 FormFilmes FmFilmes = new FormFilmes();
-                FmFilmes.ShowDialog();
+                FmFilmes.ShowDialog(); // Abre o formulário FormFilmes
             }
             catch (Exception)
             {
@@ -58,7 +56,7 @@ namespace Cinegest.Forms
             try
             {
                 FormSessoes FmSessoes = new FormSessoes();
-                FmSessoes.ShowDialog();
+                FmSessoes.ShowDialog(); // Abre o formulário FormSessoes
             }
             catch (Exception)
             {
@@ -72,7 +70,7 @@ namespace Cinegest.Forms
             try
             {
                 FormClientes FmClientes = new FormClientes();
-                FmClientes.ShowDialog();
+                FmClientes.ShowDialog(); // Abre o formulário FormClientes
             }
             catch (Exception)
             {
@@ -86,64 +84,34 @@ namespace Cinegest.Forms
             try
             {
                 FormFuncionarios FmFuncionarios = new FormFuncionarios();
-                FmFuncionarios.ShowDialog();
+                FmFuncionarios.ShowDialog(); // Abre o formulário FormFuncionarios
             }
             catch (Exception)
             {
                 MessageBox.Show("Ocorreu um erro ao tentar abrir o formulário.");
-            }
-        }
-
-        // Método para listar as sessões que estam marcadas para o dia atual
-        private void listarSessoes()
-        {
-            try
-            {
-                this.sessãoTableAdapter.Fillu(this.cineGestDataSet.Sessão);
-
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-        }
-
-        // Método para listar os funcionarios que estam a usar o formulário
-        private void listarFuncionarios()
-        {
-            try
-            {
-                this.pessoasTableAdapter.fill_Funcionario(this.cineGestDataSet.Pessoas);
-
-
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
 
         // Método que é executado quando o formulário é carregado
+        // Preenche as tabelas com os dados
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            
-        }
+            this.pessoas_FuncionarioTableAdapter.FillFuncionarios(this.data.Pessoas_Funcionario);
+            this.pessoasTableAdapter1.Fill(this.data.Pessoas);
+            this.sessãoTableAdapter1.Sessoes_diarias(this.data.Sessão);
 
-        // Toolstrip Update
-        private void filterByCurrentDateToolStripButton_Click(object sender, EventArgs e)
-        {
-            this.sessãoTableAdapter.Fillu(this.cineGestDataSet.Sessão);
         }
 
 
-
+        // Evento acionado quando uma célula da tabela é clicada
+        // Abre o formulário FormAtendimento passando o o idsessao como argumento
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                string idSessao = dataGridView1.Rows[e.RowIndex].Cells["IdSessao"].Value.ToString(); // obtém o nome da sessão da célula selecionada
-                FormAtendimento FmAtendimento = new FormAtendimento(idSessao); // instancia o formulário com o nome da sessão como argumento
-                FmAtendimento.ShowDialog();
+                string idSessao = dataGridView1.Rows[e.RowIndex].Cells["IdSessao"].Value.ToString(); // Obtém o id da sessão da célula selecionada
+                FormAtendimento FmAtendimento = new FormAtendimento(idSessao); // Instancia o formulário com o id da sessão como argumento
+                FmAtendimento.ShowDialog(); // Abre o formulário FormAtendimento
             }
             catch (Exception)
             {
@@ -151,5 +119,18 @@ namespace Cinegest.Forms
             }
         }
 
+        // Atualiza a lista de sessões diárias
+        private void sessoes_diariasToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.sessãoTableAdapter1.Sessoes_diarias(this.data.Sessão);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }

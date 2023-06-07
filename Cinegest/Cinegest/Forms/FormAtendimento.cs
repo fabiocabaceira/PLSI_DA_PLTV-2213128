@@ -14,29 +14,44 @@ namespace Cinegest.Forms
     public partial class FormAtendimento : Form
     {
         public string idSessao;
-        CineGestEntities db;
 
         public FormAtendimento(string idSessao)
         {
+            // Construtor que recebe o ID da sessão selecionada
             this.idSessao = idSessao;
-
-            db = new CineGestEntities();
             InitializeComponent();
+        }
 
+        private void listarBilhetes()
+        {
+            // Método que lista os bilhetes disponiveis para a sessão selecionada
+            bilhetesBindingSource3.DataSource = null;
+            int s1 = int.Parse(idSessao);
+            Console.WriteLine(s1);
+            var bilhetes = data1.Bilhetes;
+            var bilhetes2 = bilhetes.Where(bilhete => bilhete.SessãoIdSessao == s1);
+            bilhetesBindingSource3.DataSource = bilhetes2;
         }
 
         private void FormAtendimento_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cineGestDataSet.Bilhetes' table. You can move, or remove it, as needed.
-            this.bilhetesTableAdapter.Fill(this.cineGestDataSet.Bilhetes);
-
+            // Evento que ocorre quando o formulário é carregado
+            this.bilhetesTableAdapter1.GetSessaoAtual(this.data1.Bilhetes);
+            listarBilhetes();
             Console.WriteLine(idSessao);
-            int s1 = int.Parse(idSessao);
-            var bilhetes = db.Bilhetes.Where(b => b.SessãoIdSessao == s1).ToList();
+        }
 
-            bilhetesBindingSource.DataSource = bilhetes;
-
-            dataGridView1.DataSource = bilhetesBindingSource;
+        private void getSessaoAtualToolStripButton_Click(object sender, EventArgs e)
+        {
+            // Evento que ocorre quando o botão "getSessaoAtualToolStripButton" é clicado
+            try
+            {
+                this.bilhetesTableAdapter1.GetSessaoAtual(this.data1.Bilhetes);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
         }
     }
 }
