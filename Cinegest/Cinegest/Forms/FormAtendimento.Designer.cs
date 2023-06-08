@@ -42,6 +42,7 @@
             this.bilhetesTableAdapter1 = new Cinegest.dataTableAdapters.BilhetesTableAdapter();
             this.bilhetesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.Lugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataHoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,14 +63,18 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Lugar,
+            this.Estado,
             this.dataHoraDataGridViewTextBoxColumn,
             this.Nome,
             this.Preco});
             this.dataGridView1.DataSource = this.bilhetesBindingSource3;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(18, 18);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(444, 458);
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.Size = new System.Drawing.Size(829, 705);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             // 
             // bilhetesBindingSource3
             // 
@@ -127,32 +132,49 @@
             // 
             this.Lugar.DataPropertyName = "Lugar";
             this.Lugar.HeaderText = "Lugar";
+            this.Lugar.MinimumWidth = 8;
             this.Lugar.Name = "Lugar";
+            this.Lugar.Width = 150;
+            // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "Estado";
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 8;
+            this.Estado.Name = "Estado";
+            this.Estado.Width = 150;
             // 
             // dataHoraDataGridViewTextBoxColumn
             // 
             this.dataHoraDataGridViewTextBoxColumn.DataPropertyName = "DataHora";
             this.dataHoraDataGridViewTextBoxColumn.HeaderText = "DataHora";
+            this.dataHoraDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.dataHoraDataGridViewTextBoxColumn.Name = "dataHoraDataGridViewTextBoxColumn";
+            this.dataHoraDataGridViewTextBoxColumn.Width = 150;
             // 
             // Nome
             // 
             this.Nome.DataPropertyName = "Nome";
             this.Nome.HeaderText = "Nome";
+            this.Nome.MinimumWidth = 8;
             this.Nome.Name = "Nome";
+            this.Nome.Width = 150;
             // 
             // Preco
             // 
             this.Preco.DataPropertyName = "Preco";
             this.Preco.HeaderText = "Preco";
+            this.Preco.MinimumWidth = 8;
             this.Preco.Name = "Preco";
+            this.Preco.Width = 150;
             // 
             // FormAtendimento
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(772, 482);
+            this.ClientSize = new System.Drawing.Size(1158, 742);
             this.Controls.Add(this.dataGridView1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormAtendimento";
             this.Text = "FormAtendimento";
             this.Load += new System.EventHandler(this.FormAtendimento_Load);
@@ -184,6 +206,7 @@
         private System.Windows.Forms.BindingSource bilhetesBindingSource2;
         private System.Windows.Forms.BindingSource bilhetesBindingSource3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lugar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataHoraDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Preco;

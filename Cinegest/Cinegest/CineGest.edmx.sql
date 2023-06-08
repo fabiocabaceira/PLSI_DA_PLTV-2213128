@@ -423,7 +423,7 @@ INSERT INTO [dbo].[Bilhetes] ([Lugar], [Estado], [FuncionarioIdPessoa], [Cliente
 VALUES ('1', 'Vendido', 1, 4, 1),
        ('1', 'Disponível', 3, 6, 2),
        ('2', 'Disponível', 3, 6, 2),
-       ('3', 'Disponível', 3, 6, 2),
+       ('3', 'Vendido', 3, 6, 2),
        ('4', 'Disponível', 3, 6, 2),
        ('5', 'Disponível', 3, 6, 2),
        ('6', 'Disponível', 3, 6, 2),
@@ -436,7 +436,6 @@ VALUES ('1', 'Vendido', 1, 4, 1),
        ('13', 'Disponível', 3, 6, 2),
        ('14', 'Disponível', 3, 6, 2),
        ('15', 'Disponível', 3, 6, 2),
-       ('3', 'Disponível', 3, 6, 3),
        ('16', 'Disponível', 3, 6, 2);
        
 

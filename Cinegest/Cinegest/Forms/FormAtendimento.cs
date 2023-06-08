@@ -38,7 +38,8 @@ namespace Cinegest.Forms
             // Evento que ocorre quando o formulário é carregado
             this.bilhetesTableAdapter1.GetSessaoAtual(this.data1.Bilhetes);
             listarBilhetes();
-            Console.WriteLine(idSessao);
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+
         }
 
         private void getSessaoAtualToolStripButton_Click(object sender, EventArgs e)
@@ -51,6 +52,22 @@ namespace Cinegest.Forms
             catch (System.Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Método que verifica o estado do bilhete e muda a cor de fundo da célula de acordo com o estado
+            if (e.ColumnIndex == dataGridView1.Columns["Estado"].Index && e.Value != null)
+            {
+                if (e.Value.ToString() == "Disponível")
+                {
+                    e.CellStyle.BackColor = Color.LightGreen;
+                }
+                else if (e.Value.ToString() == "Vendido")
+                {
+                    e.CellStyle.BackColor = Color.Gray;
+                }
             }
         }
     }
