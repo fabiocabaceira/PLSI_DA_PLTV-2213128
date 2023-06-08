@@ -41,13 +41,9 @@
             this.bilhetesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bilhetesTableAdapter1 = new Cinegest.dataTableAdapters.BilhetesTableAdapter();
             this.bilhetesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.getSessaoAtualToolStrip = new System.Windows.Forms.ToolStrip();
-            this.getSessaoAtualToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.Lugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataHoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Expr1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource3)).BeginInit();
@@ -58,7 +54,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource2)).BeginInit();
-            this.getSessaoAtualToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -67,15 +62,13 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Lugar,
-            this.Estado,
+            this.dataHoraDataGridViewTextBoxColumn,
             this.Nome,
-            this.DataHora,
-            this.Expr1,
             this.Preco});
             this.dataGridView1.DataSource = this.bilhetesBindingSource3;
-            this.dataGridView1.Location = new System.Drawing.Point(160, 93);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1013, 229);
+            this.dataGridView1.Size = new System.Drawing.Size(444, 458);
             this.dataGridView1.TabIndex = 0;
             // 
             // bilhetesBindingSource3
@@ -130,53 +123,23 @@
             this.bilhetesBindingSource2.DataMember = "Bilhetes";
             this.bilhetesBindingSource2.DataSource = this.data1;
             // 
-            // getSessaoAtualToolStrip
-            // 
-            this.getSessaoAtualToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.getSessaoAtualToolStripButton});
-            this.getSessaoAtualToolStrip.Location = new System.Drawing.Point(0, 0);
-            this.getSessaoAtualToolStrip.Name = "getSessaoAtualToolStrip";
-            this.getSessaoAtualToolStrip.Size = new System.Drawing.Size(1261, 25);
-            this.getSessaoAtualToolStrip.TabIndex = 1;
-            this.getSessaoAtualToolStrip.Text = "getSessaoAtualToolStrip";
-            // 
-            // getSessaoAtualToolStripButton
-            // 
-            this.getSessaoAtualToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.getSessaoAtualToolStripButton.Name = "getSessaoAtualToolStripButton";
-            this.getSessaoAtualToolStripButton.Size = new System.Drawing.Size(92, 22);
-            this.getSessaoAtualToolStripButton.Text = "GetSessaoAtual";
-            this.getSessaoAtualToolStripButton.Click += new System.EventHandler(this.getSessaoAtualToolStripButton_Click);
-            // 
             // Lugar
             // 
             this.Lugar.DataPropertyName = "Lugar";
             this.Lugar.HeaderText = "Lugar";
             this.Lugar.Name = "Lugar";
             // 
-            // Estado
+            // dataHoraDataGridViewTextBoxColumn
             // 
-            this.Estado.DataPropertyName = "Estado";
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
+            this.dataHoraDataGridViewTextBoxColumn.DataPropertyName = "DataHora";
+            this.dataHoraDataGridViewTextBoxColumn.HeaderText = "DataHora";
+            this.dataHoraDataGridViewTextBoxColumn.Name = "dataHoraDataGridViewTextBoxColumn";
             // 
             // Nome
             // 
             this.Nome.DataPropertyName = "Nome";
-            this.Nome.HeaderText = "Nome_Sala";
+            this.Nome.HeaderText = "Nome";
             this.Nome.Name = "Nome";
-            // 
-            // DataHora
-            // 
-            this.DataHora.DataPropertyName = "DataHora";
-            this.DataHora.HeaderText = "DataHora";
-            this.DataHora.Name = "DataHora";
-            // 
-            // Expr1
-            // 
-            this.Expr1.DataPropertyName = "Expr1";
-            this.Expr1.HeaderText = "Nome_Filme";
-            this.Expr1.Name = "Expr1";
             // 
             // Preco
             // 
@@ -188,8 +151,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1261, 450);
-            this.Controls.Add(this.getSessaoAtualToolStrip);
+            this.ClientSize = new System.Drawing.Size(772, 482);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormAtendimento";
             this.Text = "FormAtendimento";
@@ -203,10 +165,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource2)).EndInit();
-            this.getSessaoAtualToolStrip.ResumeLayout(false);
-            this.getSessaoAtualToolStrip.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -224,13 +183,9 @@
         private data data1;
         private System.Windows.Forms.BindingSource bilhetesBindingSource2;
         private System.Windows.Forms.BindingSource bilhetesBindingSource3;
-        private System.Windows.Forms.ToolStrip getSessaoAtualToolStrip;
-        private System.Windows.Forms.ToolStripButton getSessaoAtualToolStripButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lugar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataHoraDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataHora;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Expr1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Preco;
     }
 }

@@ -98,6 +98,7 @@ namespace Cinegest.Forms
         {
             this.pessoas_FuncionarioTableAdapter.FillFuncionarios(this.data.Pessoas_Funcionario);
             this.pessoasTableAdapter1.Fill(this.data.Pessoas);
+            data.EnforceConstraints = false;
             this.sessãoTableAdapter1.Sessoes_diarias(this.data.Sessão);
 
         }
@@ -121,6 +122,19 @@ namespace Cinegest.Forms
 
         // Atualiza a lista de sessões diárias
         private void sessoes_diariasToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.sessãoTableAdapter1.Sessoes_diarias(this.data.Sessão);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void sessoes_diariasToolStripButton1_Click(object sender, EventArgs e)
         {
             try
             {

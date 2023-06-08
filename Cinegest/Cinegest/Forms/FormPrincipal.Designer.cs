@@ -35,21 +35,6 @@
             this.Sessõesbtn = new System.Windows.Forms.Button();
             this.Filmesbtn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SalaNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdSessao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataHoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expr1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expr2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.activoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lugarDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sessãoIdSessaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sessãoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.data = new Cinegest.data();
             this.sessãoBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -65,11 +50,14 @@
             this.pessoasTableAdapter = new Cinegest.CineGestDataSetTableAdapters.PessoasTableAdapter();
             this.funcionario_atual_lbl = new System.Windows.Forms.Label();
             this.sessãoTableAdapter1 = new Cinegest.dataTableAdapters.SessãoTableAdapter();
-            this.sessoes_diariasToolStrip = new System.Windows.Forms.ToolStrip();
-            this.sessoes_diariasToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.pessoasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.pessoasTableAdapter1 = new Cinegest.dataTableAdapters.PessoasTableAdapter();
             this.pessoas_FuncionarioTableAdapter = new Cinegest.dataTableAdapters.Pessoas_FuncionarioTableAdapter();
+            this.sessãoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdSessao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataHoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
@@ -80,13 +68,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pessoasBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasFuncionarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasBindingSource)).BeginInit();
-            this.sessoes_diariasToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // Cinemabtn
             // 
-            this.Cinemabtn.Location = new System.Drawing.Point(1040, 54);
+            this.Cinemabtn.Location = new System.Drawing.Point(624, 54);
             this.Cinemabtn.Name = "Cinemabtn";
             this.Cinemabtn.Size = new System.Drawing.Size(143, 72);
             this.Cinemabtn.TabIndex = 0;
@@ -96,7 +84,7 @@
             // 
             // Funcionariosbtn
             // 
-            this.Funcionariosbtn.Location = new System.Drawing.Point(1040, 366);
+            this.Funcionariosbtn.Location = new System.Drawing.Point(624, 366);
             this.Funcionariosbtn.Name = "Funcionariosbtn";
             this.Funcionariosbtn.Size = new System.Drawing.Size(143, 72);
             this.Funcionariosbtn.TabIndex = 1;
@@ -106,7 +94,7 @@
             // 
             // Clientesbtn
             // 
-            this.Clientesbtn.Location = new System.Drawing.Point(1040, 288);
+            this.Clientesbtn.Location = new System.Drawing.Point(624, 288);
             this.Clientesbtn.Name = "Clientesbtn";
             this.Clientesbtn.Size = new System.Drawing.Size(143, 72);
             this.Clientesbtn.TabIndex = 2;
@@ -116,7 +104,7 @@
             // 
             // Sessõesbtn
             // 
-            this.Sessõesbtn.Location = new System.Drawing.Point(1040, 210);
+            this.Sessõesbtn.Location = new System.Drawing.Point(624, 210);
             this.Sessõesbtn.Name = "Sessõesbtn";
             this.Sessõesbtn.Size = new System.Drawing.Size(143, 72);
             this.Sessõesbtn.TabIndex = 3;
@@ -126,7 +114,7 @@
             // 
             // Filmesbtn
             // 
-            this.Filmesbtn.Location = new System.Drawing.Point(1040, 132);
+            this.Filmesbtn.Location = new System.Drawing.Point(624, 132);
             this.Filmesbtn.Name = "Filmesbtn";
             this.Filmesbtn.Size = new System.Drawing.Size(143, 72);
             this.Filmesbtn.TabIndex = 4;
@@ -142,132 +130,16 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nome,
-            this.SalaNome,
-            this.Categoria,
-            this.Activo,
             this.IdSessao,
-            this.dataGridViewTextBoxColumn1,
             this.dataHoraDataGridViewTextBoxColumn,
-            this.precoDataGridViewTextBoxColumn,
-            this.nomeDataGridViewTextBoxColumn,
-            this.expr1DataGridViewTextBoxColumn,
-            this.expr2DataGridViewTextBoxColumn,
-            this.activoDataGridViewTextBoxColumn,
-            this.estadoDataGridViewTextBoxColumn,
-            this.lugarDataGridViewTextBoxColumn,
-            this.sessãoIdSessaoDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.sessãoBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(202, 54);
+            this.precoDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.sessãoBindingSource2;
+            this.dataGridView1.Location = new System.Drawing.Point(160, 54);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(832, 384);
+            this.dataGridView1.Size = new System.Drawing.Size(458, 384);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // Nome
-            // 
-            this.Nome.DataPropertyName = "Nome";
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            // 
-            // SalaNome
-            // 
-            this.SalaNome.DataPropertyName = "Expr1";
-            this.SalaNome.HeaderText = "Nome_Da_Sala";
-            this.SalaNome.Name = "SalaNome";
-            this.SalaNome.ReadOnly = true;
-            // 
-            // Categoria
-            // 
-            this.Categoria.DataPropertyName = "Expr2";
-            this.Categoria.HeaderText = "Categoria_Do_Filme";
-            this.Categoria.Name = "Categoria";
-            this.Categoria.ReadOnly = true;
-            // 
-            // Activo
-            // 
-            this.Activo.DataPropertyName = "Activo";
-            this.Activo.HeaderText = "Estado_Do_Filme";
-            this.Activo.Name = "Activo";
-            this.Activo.ReadOnly = true;
-            // 
-            // IdSessao
-            // 
-            this.IdSessao.DataPropertyName = "IdSessao";
-            this.IdSessao.HeaderText = "IdSessao";
-            this.IdSessao.Name = "IdSessao";
-            this.IdSessao.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "IdSessao";
-            this.dataGridViewTextBoxColumn1.HeaderText = "IdSessao";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataHoraDataGridViewTextBoxColumn
-            // 
-            this.dataHoraDataGridViewTextBoxColumn.DataPropertyName = "DataHora";
-            this.dataHoraDataGridViewTextBoxColumn.HeaderText = "DataHora";
-            this.dataHoraDataGridViewTextBoxColumn.Name = "dataHoraDataGridViewTextBoxColumn";
-            this.dataHoraDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // precoDataGridViewTextBoxColumn
-            // 
-            this.precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
-            this.precoDataGridViewTextBoxColumn.HeaderText = "Preco";
-            this.precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
-            this.precoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nomeDataGridViewTextBoxColumn
-            // 
-            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
-            this.nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
-            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-            this.nomeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // expr1DataGridViewTextBoxColumn
-            // 
-            this.expr1DataGridViewTextBoxColumn.DataPropertyName = "Expr1";
-            this.expr1DataGridViewTextBoxColumn.HeaderText = "Expr1";
-            this.expr1DataGridViewTextBoxColumn.Name = "expr1DataGridViewTextBoxColumn";
-            this.expr1DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // expr2DataGridViewTextBoxColumn
-            // 
-            this.expr2DataGridViewTextBoxColumn.DataPropertyName = "Expr2";
-            this.expr2DataGridViewTextBoxColumn.HeaderText = "Expr2";
-            this.expr2DataGridViewTextBoxColumn.Name = "expr2DataGridViewTextBoxColumn";
-            this.expr2DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // activoDataGridViewTextBoxColumn
-            // 
-            this.activoDataGridViewTextBoxColumn.DataPropertyName = "Activo";
-            this.activoDataGridViewTextBoxColumn.HeaderText = "Activo";
-            this.activoDataGridViewTextBoxColumn.Name = "activoDataGridViewTextBoxColumn";
-            this.activoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // estadoDataGridViewTextBoxColumn
-            // 
-            this.estadoDataGridViewTextBoxColumn.DataPropertyName = "Estado";
-            this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
-            this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
-            this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // lugarDataGridViewTextBoxColumn
-            // 
-            this.lugarDataGridViewTextBoxColumn.DataPropertyName = "Lugar";
-            this.lugarDataGridViewTextBoxColumn.HeaderText = "Lugar";
-            this.lugarDataGridViewTextBoxColumn.Name = "lugarDataGridViewTextBoxColumn";
-            this.lugarDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sessãoIdSessaoDataGridViewTextBoxColumn
-            // 
-            this.sessãoIdSessaoDataGridViewTextBoxColumn.DataPropertyName = "SessãoIdSessao";
-            this.sessãoIdSessaoDataGridViewTextBoxColumn.HeaderText = "SessãoIdSessao";
-            this.sessãoIdSessaoDataGridViewTextBoxColumn.Name = "sessãoIdSessaoDataGridViewTextBoxColumn";
-            this.sessãoIdSessaoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // sessãoBindingSource1
             // 
@@ -313,9 +185,9 @@
             this.selecionar_funcionario_cb.DataSource = this.pessoasFuncionarioBindingSource;
             this.selecionar_funcionario_cb.DisplayMember = "Nome";
             this.selecionar_funcionario_cb.FormattingEnabled = true;
-            this.selecionar_funcionario_cb.Location = new System.Drawing.Point(26, 81);
+            this.selecionar_funcionario_cb.Location = new System.Drawing.Point(12, 54);
             this.selecionar_funcionario_cb.Name = "selecionar_funcionario_cb";
-            this.selecionar_funcionario_cb.Size = new System.Drawing.Size(121, 21);
+            this.selecionar_funcionario_cb.Size = new System.Drawing.Size(142, 21);
             this.selecionar_funcionario_cb.TabIndex = 8;
             this.selecionar_funcionario_cb.ValueMember = "Nome";
             // 
@@ -342,7 +214,7 @@
             // 
             this.funcionario_atual_lbl.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.funcionario_atual_lbl.AutoSize = true;
-            this.funcionario_atual_lbl.Location = new System.Drawing.Point(41, 54);
+            this.funcionario_atual_lbl.Location = new System.Drawing.Point(-184, 54);
             this.funcionario_atual_lbl.Name = "funcionario_atual_lbl";
             this.funcionario_atual_lbl.Size = new System.Drawing.Size(88, 13);
             this.funcionario_atual_lbl.TabIndex = 9;
@@ -352,24 +224,6 @@
             // sessãoTableAdapter1
             // 
             this.sessãoTableAdapter1.ClearBeforeFill = true;
-            // 
-            // sessoes_diariasToolStrip
-            // 
-            this.sessoes_diariasToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sessoes_diariasToolStripButton});
-            this.sessoes_diariasToolStrip.Location = new System.Drawing.Point(0, 0);
-            this.sessoes_diariasToolStrip.Name = "sessoes_diariasToolStrip";
-            this.sessoes_diariasToolStrip.Size = new System.Drawing.Size(1231, 25);
-            this.sessoes_diariasToolStrip.TabIndex = 10;
-            this.sessoes_diariasToolStrip.Text = "sessoes_diariasToolStrip";
-            // 
-            // sessoes_diariasToolStripButton
-            // 
-            this.sessoes_diariasToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.sessoes_diariasToolStripButton.Name = "sessoes_diariasToolStripButton";
-            this.sessoes_diariasToolStripButton.Size = new System.Drawing.Size(90, 22);
-            this.sessoes_diariasToolStripButton.Text = "Sessoes_diarias";
-            this.sessoes_diariasToolStripButton.Click += new System.EventHandler(this.sessoes_diariasToolStripButton_Click);
             // 
             // pessoasBindingSource1
             // 
@@ -384,12 +238,44 @@
             // 
             this.pessoas_FuncionarioTableAdapter.ClearBeforeFill = true;
             // 
+            // sessãoBindingSource2
+            // 
+            this.sessãoBindingSource2.DataMember = "Sessão";
+            this.sessãoBindingSource2.DataSource = this.data;
+            // 
+            // Nome
+            // 
+            this.Nome.DataPropertyName = "Nome";
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
+            // 
+            // IdSessao
+            // 
+            this.IdSessao.DataPropertyName = "IdSessao";
+            this.IdSessao.HeaderText = "IdSessao";
+            this.IdSessao.Name = "IdSessao";
+            this.IdSessao.ReadOnly = true;
+            // 
+            // dataHoraDataGridViewTextBoxColumn
+            // 
+            this.dataHoraDataGridViewTextBoxColumn.DataPropertyName = "DataHora";
+            this.dataHoraDataGridViewTextBoxColumn.HeaderText = "DataHora";
+            this.dataHoraDataGridViewTextBoxColumn.Name = "dataHoraDataGridViewTextBoxColumn";
+            this.dataHoraDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // precoDataGridViewTextBoxColumn
+            // 
+            this.precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
+            this.precoDataGridViewTextBoxColumn.HeaderText = "Preco";
+            this.precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
+            this.precoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1231, 562);
-            this.Controls.Add(this.sessoes_diariasToolStrip);
+            this.ClientSize = new System.Drawing.Size(780, 453);
             this.Controls.Add(this.funcionario_atual_lbl);
             this.Controls.Add(this.selecionar_funcionario_cb);
             this.Controls.Add(this.dataGridView1);
@@ -411,9 +297,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pessoasBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasFuncionarioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasBindingSource)).EndInit();
-            this.sessoes_diariasToolStrip.ResumeLayout(false);
-            this.sessoes_diariasToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,34 +321,28 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn salaIdSalaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idSessaoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn filmeIdFilmeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SalaNome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Activo;
         private System.Windows.Forms.ComboBox selecionar_funcionario_cb;
         private System.Windows.Forms.BindingSource pessoasBindingSource;
         private CineGestDataSetTableAdapters.PessoasTableAdapter pessoasTableAdapter;
         private System.Windows.Forms.Label funcionario_atual_lbl;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdSessao;
         private data data;
         private System.Windows.Forms.BindingSource sessãoBindingSource1;
         private dataTableAdapters.SessãoTableAdapter sessãoTableAdapter1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataHoraDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn expr1DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn expr2DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn activoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lugarDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sessãoIdSessaoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ToolStrip sessoes_diariasToolStrip;
-        private System.Windows.Forms.ToolStripButton sessoes_diariasToolStripButton;
         private System.Windows.Forms.BindingSource pessoasBindingSource1;
         private dataTableAdapters.PessoasTableAdapter pessoasTableAdapter1;
         private System.Windows.Forms.BindingSource pessoasFuncionarioBindingSource;
         private dataTableAdapters.Pessoas_FuncionarioTableAdapter pessoas_FuncionarioTableAdapter;
         private System.Windows.Forms.BindingSource pessoasBindingSource2;
+        private System.Windows.Forms.BindingSource sessãoBindingSource2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdSessao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataHoraDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
     }
 }

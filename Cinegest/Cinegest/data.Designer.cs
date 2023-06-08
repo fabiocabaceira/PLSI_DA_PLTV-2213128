@@ -1629,17 +1629,7 @@ namespace Cinegest {
             
             private global::System.Data.DataColumn columnNome;
             
-            private global::System.Data.DataColumn columnExpr1;
-            
-            private global::System.Data.DataColumn columnExpr2;
-            
-            private global::System.Data.DataColumn columnActivo;
-            
-            private global::System.Data.DataColumn columnEstado;
-            
-            private global::System.Data.DataColumn columnLugar;
-            
-            private global::System.Data.DataColumn columnSessãoIdSessao;
+            private global::System.Data.DataColumn columnDuracao;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -1708,49 +1698,9 @@ namespace Cinegest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Expr1Column {
+            public global::System.Data.DataColumn DuracaoColumn {
                 get {
-                    return this.columnExpr1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Expr2Column {
-                get {
-                    return this.columnExpr2;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ActivoColumn {
-                get {
-                    return this.columnActivo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn EstadoColumn {
-                get {
-                    return this.columnEstado;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn LugarColumn {
-                get {
-                    return this.columnLugar;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn SessãoIdSessaoColumn {
-                get {
-                    return this.columnSessãoIdSessao;
+                    return this.columnDuracao;
                 }
             }
             
@@ -1791,19 +1741,14 @@ namespace Cinegest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SessãoRow AddSessãoRow(System.DateTime DataHora, int Preco, string Nome, string Expr1, string Expr2, string Activo, string Estado, int Lugar, int SessãoIdSessao) {
+            public SessãoRow AddSessãoRow(System.DateTime DataHora, int Preco, string Nome, string Duracao) {
                 SessãoRow rowSessãoRow = ((SessãoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         DataHora,
                         Preco,
                         Nome,
-                        Expr1,
-                        Expr2,
-                        Activo,
-                        Estado,
-                        Lugar,
-                        SessãoIdSessao};
+                        Duracao};
                 rowSessãoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSessãoRow);
                 return rowSessãoRow;
@@ -1837,12 +1782,7 @@ namespace Cinegest {
                 this.columnDataHora = base.Columns["DataHora"];
                 this.columnPreco = base.Columns["Preco"];
                 this.columnNome = base.Columns["Nome"];
-                this.columnExpr1 = base.Columns["Expr1"];
-                this.columnExpr2 = base.Columns["Expr2"];
-                this.columnActivo = base.Columns["Activo"];
-                this.columnEstado = base.Columns["Estado"];
-                this.columnLugar = base.Columns["Lugar"];
-                this.columnSessãoIdSessao = base.Columns["SessãoIdSessao"];
+                this.columnDuracao = base.Columns["Duracao"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1856,18 +1796,8 @@ namespace Cinegest {
                 base.Columns.Add(this.columnPreco);
                 this.columnNome = new global::System.Data.DataColumn("Nome", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNome);
-                this.columnExpr1 = new global::System.Data.DataColumn("Expr1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnExpr1);
-                this.columnExpr2 = new global::System.Data.DataColumn("Expr2", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnExpr2);
-                this.columnActivo = new global::System.Data.DataColumn("Activo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnActivo);
-                this.columnEstado = new global::System.Data.DataColumn("Estado", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEstado);
-                this.columnLugar = new global::System.Data.DataColumn("Lugar", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLugar);
-                this.columnSessãoIdSessao = new global::System.Data.DataColumn("SessãoIdSessao", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSessãoIdSessao);
+                this.columnDuracao = new global::System.Data.DataColumn("Duracao", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDuracao);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdSessao}, true));
                 this.columnIdSessao.AutoIncrement = true;
@@ -1880,16 +1810,8 @@ namespace Cinegest {
                 this.columnPreco.AllowDBNull = false;
                 this.columnNome.AllowDBNull = false;
                 this.columnNome.MaxLength = 2147483647;
-                this.columnExpr1.AllowDBNull = false;
-                this.columnExpr1.MaxLength = 2147483647;
-                this.columnExpr2.AllowDBNull = false;
-                this.columnExpr2.MaxLength = 2147483647;
-                this.columnActivo.AllowDBNull = false;
-                this.columnActivo.MaxLength = 2147483647;
-                this.columnEstado.AllowDBNull = false;
-                this.columnEstado.MaxLength = 2147483647;
-                this.columnLugar.AllowDBNull = false;
-                this.columnSessãoIdSessao.AllowDBNull = false;
+                this.columnDuracao.AllowDBNull = false;
+                this.columnDuracao.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3942,67 +3864,12 @@ namespace Cinegest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Expr1 {
+            public string Duracao {
                 get {
-                    return ((string)(this[this.tableSessão.Expr1Column]));
+                    return ((string)(this[this.tableSessão.DuracaoColumn]));
                 }
                 set {
-                    this[this.tableSessão.Expr1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Expr2 {
-                get {
-                    return ((string)(this[this.tableSessão.Expr2Column]));
-                }
-                set {
-                    this[this.tableSessão.Expr2Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Activo {
-                get {
-                    return ((string)(this[this.tableSessão.ActivoColumn]));
-                }
-                set {
-                    this[this.tableSessão.ActivoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Estado {
-                get {
-                    return ((string)(this[this.tableSessão.EstadoColumn]));
-                }
-                set {
-                    this[this.tableSessão.EstadoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int Lugar {
-                get {
-                    return ((int)(this[this.tableSessão.LugarColumn]));
-                }
-                set {
-                    this[this.tableSessão.LugarColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int SessãoIdSessao {
-                get {
-                    return ((int)(this[this.tableSessão.SessãoIdSessaoColumn]));
-                }
-                set {
-                    this[this.tableSessão.SessãoIdSessaoColumn] = value;
+                    this[this.tableSessão.DuracaoColumn] = value;
                 }
             }
             
@@ -5498,12 +5365,7 @@ FROM            Pessoas INNER JOIN
             tableMapping.ColumnMappings.Add("DataHora", "DataHora");
             tableMapping.ColumnMappings.Add("Preco", "Preco");
             tableMapping.ColumnMappings.Add("Nome", "Nome");
-            tableMapping.ColumnMappings.Add("Expr1", "Expr1");
-            tableMapping.ColumnMappings.Add("Expr2", "Expr2");
-            tableMapping.ColumnMappings.Add("Activo", "Activo");
-            tableMapping.ColumnMappings.Add("Estado", "Estado");
-            tableMapping.ColumnMappings.Add("Lugar", "Lugar");
-            tableMapping.ColumnMappings.Add("SessãoIdSessao", "SessãoIdSessao");
+            tableMapping.ColumnMappings.Add("Duracao", "Duracao");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -5517,17 +5379,17 @@ FROM            Pessoas INNER JOIN
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        Sessão.DataHora, Sessão.Preco, Filmes.Nome, Salas.Nome AS Expr1, Categorias.Nome AS Expr2, Filmes.Activo, Sessão.IdSessao, Bilhetes.Estado, Bilhetes.Lugar, Bilhetes.SessãoIdSessao
-FROM            Sessão INNER JOIN
-                         Filmes ON Sessão.Filme_IdFilme = Filmes.IdFilme INNER JOIN
-                         Salas ON Sessão.SalaIdSala = Salas.IdSala INNER JOIN
-                         Categorias ON Filmes.Categoria_IdCategoria = Categorias.IdCategoria INNER JOIN
-                         Bilhetes ON Sessão.IdSessao = Bilhetes.SessãoIdSessao
-WHERE        (CONVERT(date, Sessão.DataHora) = CONVERT(date, GETDATE()))";
+            this._commandCollection[0].CommandText = "SELECT        Sessão.DataHora, Sessão.Preco, Sessão.IdSessao, Filmes.Nome, Filmes" +
+                ".Duracao\r\nFROM            Sessão INNER JOIN\r\n                         Filmes ON " +
+                "Sessão.Filme_IdFilme = Filmes.IdFilme";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT DataHora, IdSessao, Preco FROM Sessão";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5549,6 +5411,30 @@ WHERE        (CONVERT(date, Sessão.DataHora) = CONVERT(date, GETDATE()))";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual data.SessãoDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            data.SessãoDataTable dataTable = new data.SessãoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(data.SessãoDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual data.SessãoDataTable GetDataBy() {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
             data.SessãoDataTable dataTable = new data.SessãoDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

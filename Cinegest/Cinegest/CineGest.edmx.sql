@@ -421,8 +421,24 @@ VALUES ('2023-06-10 10:00:00', '10', 1, 1),
 -- Bilhetes
 INSERT INTO [dbo].[Bilhetes] ([Lugar], [Estado], [FuncionarioIdPessoa], [ClienteIdPessoa], [SessãoIdSessao])
 VALUES ('1', 'Vendido', 1, 4, 1),
-       ('2', 'Vendido', 2, 5, 2),
-       ('3', 'Disponível', 3, 6, 3);
+       ('1', 'Disponível', 3, 6, 2),
+       ('2', 'Disponível', 3, 6, 2),
+       ('3', 'Disponível', 3, 6, 2),
+       ('4', 'Disponível', 3, 6, 2),
+       ('5', 'Disponível', 3, 6, 2),
+       ('6', 'Disponível', 3, 6, 2),
+       ('7', 'Disponível', 3, 6, 2),
+       ('8', 'Disponível', 3, 6, 2),
+       ('9', 'Disponível', 3, 6, 2),
+       ('10', 'Disponível', 3, 6, 2),
+       ('11', 'Disponível', 3, 6, 2),
+       ('12', 'Disponível', 3, 6, 2),
+       ('13', 'Disponível', 3, 6, 2),
+       ('14', 'Disponível', 3, 6, 2),
+       ('15', 'Disponível', 3, 6, 2),
+       ('3', 'Disponível', 3, 6, 3),
+       ('16', 'Disponível', 3, 6, 2);
+       
 
 -- --------------------------------------------------
 -- Script has ended
