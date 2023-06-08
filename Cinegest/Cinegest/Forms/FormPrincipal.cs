@@ -98,7 +98,7 @@ namespace Cinegest.Forms
         {
             this.pessoas_FuncionarioTableAdapter.FillFuncionarios(this.data.Pessoas_Funcionario);
             this.pessoasTableAdapter1.Fill(this.data.Pessoas);
-            data.EnforceConstraints = false;
+            //data.EnforceConstraints = false;
             this.sessãoTableAdapter1.Sessoes_diarias(this.data.Sessão);
 
         }
@@ -108,16 +108,13 @@ namespace Cinegest.Forms
         // Abre o formulário FormAtendimento passando o o idsessao como argumento
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
+            
+                string funcionario_Nome = selecionar_funcionario_cb.Text; // Obtém o Nome do Funcionario da célula selecionada da combobox
                 string idSessao = dataGridView1.Rows[e.RowIndex].Cells["IdSessao"].Value.ToString(); // Obtém o id da sessão da célula selecionada
-                FormAtendimento FmAtendimento = new FormAtendimento(idSessao); // Instancia o formulário com o id da sessão como argumento
+                FormAtendimento FmAtendimento = new FormAtendimento(idSessao, funcionario_Nome); // Instancia o formulário com o id da sessão como argumento
                 FmAtendimento.ShowDialog(); // Abre o formulário FormAtendimento
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Ocorreu um erro ao tentar abrir o formulário.");
-            }
+            
+            
         }
 
         // Atualiza a lista de sessões diárias
