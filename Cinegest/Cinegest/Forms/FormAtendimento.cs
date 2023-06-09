@@ -22,17 +22,18 @@ namespace Cinegest.Forms
         // Variáveis de instância
         public string idSessao;
         public string funcionario_Nome;
+        public string nomeFilme;
+        DateTime hora;
         public List<String> Bilhete = new List<String>();
 
-        data s1;
-
         // Construtor
-        public FormAtendimento(string idSessao, String funcionario_Nome)
+        public FormAtendimento(string idSessao, string funcionario_Nome, string nomeFilme, DateTime hora)
         {
             // Construtor que recebe o ID da sessão selecionada e o nome do funcionario
             this.idSessao = idSessao;
             this.funcionario_Nome = funcionario_Nome;
-            s1 = new data();
+            this.nomeFilme = nomeFilme;
+            this.hora = hora;
             InitializeComponent();
         }
 
@@ -50,13 +51,16 @@ namespace Cinegest.Forms
         // Evento que ocorre quando o formulário é carregado
         private void FormAtendimento_Load(object sender, EventArgs e)
         {
-
+            // Preenche a tabela de bilhetes com a sessão atual
             this.bilhetesTableAdapter1.GetSessaoAtual(this.data1.Bilhetes);
+            // Preenche a tabela de clientes
             this.pessoas_ClienteTableAdapter.Fill(this.data1.Pessoas_Cliente);
+            // Mostra o nome do funcionário no formulário
             funcionariolbl.Text = "Funcionário atual: " + funcionario_Nome;
+            // Lista os bilhetes disponíveis para a sessão selecionada
             listarBilhetes();
+            // Adiciona um evento para formatar as células da tabela de bilhetes
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
-
         }
 
         // Evento que ocorre quando o botão "getSessaoAtualToolStripButton" é clicado
@@ -106,46 +110,66 @@ namespace Cinegest.Forms
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void emitir_bilhete()
         {
-            int count = 1;
+            // Cria um arquivo de texto chamado "teste.txt" na pasta Public do usuário
+            TextWriter bilhete1 = new StreamWriter("C:\\\\Users\\\\Public\\\\teste.txt");
+            // Escreve os dados do bilhete
+            // nome do cliente
+            bilhete1.Write("Nome = ");
+            bilhete1.Write($"{cliente_Nometb.Text} ");
+            //  morada do cliente
+            bilhete1.Write("\nMorada = ");
+            bilhete1.Write($"{cliente_Moradatb.Text} ");
+            // número fiscal do cliente
+            bilhete1.Write("\nNumFiscal = ");
+            bilhete1.Write($"{cliente_Numfiscaltb.Text} ");
+            // nome do filme 
+            bilhete1.Write("\nNome Do Filme = ");
+            bilhete1.Write($"{nomeFilme} ");
+            // data e hora da sessão
+            bilhete1.Write("\nData/hora = ");
+            bilhete1.Write($"{hora} ");
+            // lugar(es) do bilhete 
+            bilhete1.Write("\nLugar/Lugares Do Bilhete = ");
             foreach (var lugar1 in Bilhete)
             {
-                TextWriter bilhete1 = new StreamWriter("C:\\Users\\fabio\\\\teste"+ count +".txt");
-                bilhete1.Write("Nome =");
-                bilhete1.Write($"{cliente_Nometb.Text} ");
-                bilhete1.Write("Morada =");
-                bilhete1.Write($"{cliente_Moradatb.Text} ");
-                bilhete1.Write("NumFiscal =");
-                bilhete1.Write($"{cliente_Numfiscaltb.Text} ");
-                bilhete1.Write("Lugar Do Bilhete =");
                 bilhete1.Write($"{lugar1} ");
-                count++;
-                bilhete1.Close();
             }
+            // nome do funcionário 
+            bilhete1.Write("\nFuncionário = ");
+            bilhete1.Write($"{funcionario_Nome} ");
+            // Fecha o arquivo
+            bilhete1.Close();
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            emitir_bilhete();
         }
 
         private void fillByToolStripButton_Click(object sender, EventArgs e)
         {
             try
             {
+                // Preenche o DataTable com os dados da tabela Bilhetes do banco de dados
                 this.bilhetesTableAdapter1.FillBy(this.data.Bilhetes);
             }
             catch (System.Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
-
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             var lugar1 = "";
 
-            if (e.RowIndex > 0)
+            if (e.RowIndex >= 0)
             {
+                // Obtém o lugar do bilhete que foi alterado
                 var lugar = dataGridView1.Rows[e.RowIndex].Cells["Lugar"].Value;
                 lugar1 = lugar.ToString();
+                // Adiciona o lugar a um array de lugares do bilhete
                 Bilhete.Add(lugar1);
             }
         }

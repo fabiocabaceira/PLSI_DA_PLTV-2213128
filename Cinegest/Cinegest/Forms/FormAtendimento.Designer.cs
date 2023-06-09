@@ -30,9 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Selecionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Lugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bilhetesBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
+            this.data1 = new Cinegest.data();
             this.bilhetesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cineGestDataSet = new Cinegest.CineGestDataSet();
             this.sessãoBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -51,10 +50,6 @@
             this.clientesdgv = new System.Windows.Forms.DataGridView();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pessoasClienteBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.data1 = new Cinegest.data();
-            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataHoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bilhetesBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.pessoasClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.data = new Cinegest.data();
             this.bilhetesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -62,14 +57,19 @@
             this.bilhetesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.pessoas_ClienteTableAdapter = new Cinegest.dataTableAdapters.Pessoas_ClienteTableAdapter();
             this.pessoasClienteBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.Selecionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataHoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.data1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesdgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.data1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource1)).BeginInit();
@@ -83,8 +83,8 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Selecionar,
+            this.dataGridViewTextBoxColumn1,
             this.Lugar,
-            this.nomeDataGridViewTextBoxColumn,
             this.Estado,
             this.dataHoraDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.bilhetesBindingSource3;
@@ -96,26 +96,15 @@
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
-            // Selecionar
+            // bilhetesBindingSource3
             // 
-            this.Selecionar.HeaderText = "Selecionar";
-            this.Selecionar.MinimumWidth = 8;
-            this.Selecionar.Name = "Selecionar";
-            this.Selecionar.Width = 150;
+            this.bilhetesBindingSource3.DataMember = "Bilhetes";
+            this.bilhetesBindingSource3.DataSource = this.data1;
             // 
-            // Lugar
+            // data1
             // 
-            this.Lugar.DataPropertyName = "Lugar";
-            this.Lugar.HeaderText = "Lugar";
-            this.Lugar.MinimumWidth = 8;
-            this.Lugar.Name = "Lugar";
-            this.Lugar.Width = 150;
-            // 
-            // Estado
-            // 
-            this.Estado.DataPropertyName = "Estado";
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
+            this.data1.DataSetName = "data";
+            this.data1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bilhetesBindingSource
             // 
@@ -245,28 +234,6 @@
             this.pessoasClienteBindingSource2.DataMember = "Pessoas_Cliente";
             this.pessoasClienteBindingSource2.DataSource = this.data1;
             // 
-            // data1
-            // 
-            this.data1.DataSetName = "data";
-            this.data1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // nomeDataGridViewTextBoxColumn
-            // 
-            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
-            this.nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
-            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-            // 
-            // dataHoraDataGridViewTextBoxColumn
-            // 
-            this.dataHoraDataGridViewTextBoxColumn.DataPropertyName = "DataHora";
-            this.dataHoraDataGridViewTextBoxColumn.HeaderText = "DataHora";
-            this.dataHoraDataGridViewTextBoxColumn.Name = "dataHoraDataGridViewTextBoxColumn";
-            // 
-            // bilhetesBindingSource3
-            // 
-            this.bilhetesBindingSource3.DataMember = "Bilhetes";
-            this.bilhetesBindingSource3.DataSource = this.data1;
-            // 
             // pessoasClienteBindingSource
             // 
             this.pessoasClienteBindingSource.DataMember = "Pessoas_Cliente";
@@ -300,6 +267,39 @@
             this.pessoasClienteBindingSource1.DataMember = "Pessoas_Cliente";
             this.pessoasClienteBindingSource1.DataSource = this.data1;
             // 
+            // Selecionar
+            // 
+            this.Selecionar.HeaderText = "Selecionar";
+            this.Selecionar.MinimumWidth = 8;
+            this.Selecionar.Name = "Selecionar";
+            this.Selecionar.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Nome";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Nome";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // Lugar
+            // 
+            this.Lugar.DataPropertyName = "Lugar";
+            this.Lugar.HeaderText = "Lugar";
+            this.Lugar.MinimumWidth = 8;
+            this.Lugar.Name = "Lugar";
+            this.Lugar.Width = 150;
+            // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "Estado";
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            // 
+            // dataHoraDataGridViewTextBoxColumn
+            // 
+            this.dataHoraDataGridViewTextBoxColumn.DataPropertyName = "DataHora";
+            this.dataHoraDataGridViewTextBoxColumn.HeaderText = "DataHora";
+            this.dataHoraDataGridViewTextBoxColumn.Name = "dataHoraDataGridViewTextBoxColumn";
+            // 
             // FormAtendimento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,13 +321,13 @@
             this.Text = "FormAtendimento";
             this.Load += new System.EventHandler(this.FormAtendimento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.data1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesdgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.data1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource1)).EndInit();
@@ -352,11 +352,6 @@
         private data data1;
         private System.Windows.Forms.BindingSource bilhetesBindingSource2;
         private System.Windows.Forms.BindingSource bilhetesBindingSource3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Selecionar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Lugar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataHoraDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox cliente_Nometb;
         private System.Windows.Forms.TextBox cliente_Moradatb;
         private System.Windows.Forms.TextBox cliente_Numfiscaltb;
@@ -373,5 +368,10 @@
         private System.Windows.Forms.DataGridView clientesdgv;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.BindingSource pessoasClienteBindingSource2;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Selecionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Lugar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataHoraDataGridViewTextBoxColumn;
     }
 }

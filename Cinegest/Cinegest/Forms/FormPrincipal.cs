@@ -1,4 +1,5 @@
-﻿using Cinegest.Models;
+﻿// Importação de bibliotecas
+using Cinegest.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ namespace Cinegest.Forms
 {
     public partial class FormPrincipal : Form
     {
-
+        // Classe do formulário principal
         public FormPrincipal()
         {
             InitializeComponent(); // Inicializa os componentes do formulário
@@ -98,23 +99,23 @@ namespace Cinegest.Forms
         {
             this.pessoas_FuncionarioTableAdapter.FillFuncionarios(this.data.Pessoas_Funcionario);
             this.pessoasTableAdapter1.Fill(this.data.Pessoas);
-            //data.EnforceConstraints = false;
             this.sessãoTableAdapter1.Sessoes_diarias(this.data.Sessão);
 
         }
-
 
         // Evento acionado quando uma célula da tabela é clicada
         // Abre o formulário FormAtendimento passando o o idsessao como argumento
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+            // Verifica se a célula clicada é uma célula de botão
             
                 string funcionario_Nome = selecionar_funcionario_cb.Text; // Obtém o Nome do Funcionario da célula selecionada da combobox
                 string idSessao = dataGridView1.Rows[e.RowIndex].Cells["IdSessao"].Value.ToString(); // Obtém o id da sessão da célula selecionada
-                FormAtendimento FmAtendimento = new FormAtendimento(idSessao, funcionario_Nome); // Instancia o formulário com o id da sessão como argumento
-                FmAtendimento.ShowDialog(); // Abre o formulário FormAtendimento
-            
-            
+                string NomeFilme = dataGridView1.Rows[e.RowIndex].Cells["filmeNome"].Value.ToString(); // Obtém o nome do filme da célula selecionada
+                DateTime hora = DateTime.Parse(dataGridView1.Rows[e.RowIndex].Cells["datahora"].Value.ToString()); // Obtém a data e hora da célula selecionada
+                FormAtendimento FmAtendimento = new FormAtendimento(idSessao, funcionario_Nome, NomeFilme, hora); // Instancia o formulário com o id da sessão como argumento
+                FmAtendimento.ShowDialog(); // Abre o formulário FormAtendimento  
         }
 
         // Atualiza a lista de sessões diárias
@@ -141,7 +142,6 @@ namespace Cinegest.Forms
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
-
         }
     }
 }
