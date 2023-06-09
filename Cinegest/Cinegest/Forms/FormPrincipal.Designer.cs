@@ -40,15 +40,11 @@
             this.sessãoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.sessãoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cineGestDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cineGestDataSet = new Cinegest.CineGestDataSet();
             this.cinemasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sessãoTableAdapter = new Cinegest.CineGestDataSetTableAdapters.SessãoTableAdapter();
-            this.cinemasTableAdapter = new Cinegest.CineGestDataSetTableAdapters.CinemasTableAdapter();
             this.selecionar_funcionario_cb = new System.Windows.Forms.ComboBox();
             this.pessoasBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.pessoasFuncionarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pessoasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pessoasTableAdapter = new Cinegest.CineGestDataSetTableAdapters.PessoasTableAdapter();
             this.funcionario_atual_lbl = new System.Windows.Forms.Label();
             this.sessãoTableAdapter1 = new Cinegest.dataTableAdapters.SessãoTableAdapter();
             this.pessoasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -64,7 +60,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cinemasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasFuncionarioBindingSource)).BeginInit();
@@ -163,13 +158,10 @@
             // 
             // cineGestDataSetBindingSource
             // 
-            this.cineGestDataSetBindingSource.DataSource = this.cineGestDataSet;
             this.cineGestDataSetBindingSource.Position = 0;
             // 
             // cineGestDataSet
             // 
-            this.cineGestDataSet.DataSetName = "CineGestDataSet";
-            this.cineGestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // cinemasBindingSource
             // 
@@ -178,11 +170,9 @@
             // 
             // sessãoTableAdapter
             // 
-            this.sessãoTableAdapter.ClearBeforeFill = true;
             // 
             // cinemasTableAdapter
             // 
-            this.cinemasTableAdapter.ClearBeforeFill = true;
             // 
             // selecionar_funcionario_cb
             // 
@@ -213,7 +203,6 @@
             // 
             // pessoasTableAdapter
             // 
-            this.pessoasTableAdapter.ClearBeforeFill = true;
             // 
             // funcionario_atual_lbl
             // 
@@ -291,8 +280,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cinemasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasFuncionarioBindingSource)).EndInit();
@@ -311,17 +298,13 @@
         private System.Windows.Forms.Button Filmesbtn;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource cineGestDataSetBindingSource;
-        private CineGestDataSet cineGestDataSet;
         private System.Windows.Forms.BindingSource sessãoBindingSource;
-        private CineGestDataSetTableAdapters.SessãoTableAdapter sessãoTableAdapter;
         private System.Windows.Forms.BindingSource cinemasBindingSource;
-        private CineGestDataSetTableAdapters.CinemasTableAdapter cinemasTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn salaIdSalaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idSessaoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn filmeIdFilmeDataGridViewTextBoxColumn;
         private System.Windows.Forms.ComboBox selecionar_funcionario_cb;
         private System.Windows.Forms.BindingSource pessoasBindingSource;
-        private CineGestDataSetTableAdapters.PessoasTableAdapter pessoasTableAdapter;
         private System.Windows.Forms.Label funcionario_atual_lbl;
         private data data;
         private System.Windows.Forms.BindingSource sessãoBindingSource1;

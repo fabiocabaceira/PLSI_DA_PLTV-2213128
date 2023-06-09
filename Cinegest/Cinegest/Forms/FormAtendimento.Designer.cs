@@ -33,10 +33,7 @@
             this.bilhetesBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.data1 = new Cinegest.data();
             this.bilhetesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cineGestDataSet = new Cinegest.CineGestDataSet();
             this.sessãoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sessãoTableAdapter = new Cinegest.CineGestDataSetTableAdapters.SessãoTableAdapter();
-            this.bilhetesTableAdapter = new Cinegest.CineGestDataSetTableAdapters.BilhetesTableAdapter();
             this.cliente_Nometb = new System.Windows.Forms.TextBox();
             this.cliente_Moradatb = new System.Windows.Forms.TextBox();
             this.cliente_Numfiscaltb = new System.Windows.Forms.TextBox();
@@ -66,7 +63,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.data1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesdgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource2)).BeginInit();
@@ -109,25 +105,19 @@
             // bilhetesBindingSource
             // 
             this.bilhetesBindingSource.DataMember = "Bilhetes";
-            this.bilhetesBindingSource.DataSource = this.cineGestDataSet;
             // 
             // cineGestDataSet
             // 
-            this.cineGestDataSet.DataSetName = "CineGestDataSet";
-            this.cineGestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // sessãoBindingSource
             // 
             this.sessãoBindingSource.DataMember = "Sessão";
-            this.sessãoBindingSource.DataSource = this.cineGestDataSet;
             // 
             // sessãoTableAdapter
             // 
-            this.sessãoTableAdapter.ClearBeforeFill = true;
             // 
             // bilhetesTableAdapter
             // 
-            this.bilhetesTableAdapter.ClearBeforeFill = true;
             // 
             // cliente_Nometb
             // 
@@ -324,7 +314,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.data1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessãoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesdgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource2)).EndInit();
@@ -341,11 +330,8 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private CineGestDataSet cineGestDataSet;
         private System.Windows.Forms.BindingSource sessãoBindingSource;
-        private CineGestDataSetTableAdapters.SessãoTableAdapter sessãoTableAdapter;
         private System.Windows.Forms.BindingSource bilhetesBindingSource;
-        private CineGestDataSetTableAdapters.BilhetesTableAdapter bilhetesTableAdapter;
         private data data;
         private System.Windows.Forms.BindingSource bilhetesBindingSource1;
         private dataTableAdapters.BilhetesTableAdapter bilhetesTableAdapter1;

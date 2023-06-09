@@ -11,6 +11,13 @@ namespace Cinegest.Models
     {
         public string NumFiscal { get; set; }
 
+        public Pessoas_Cliente(string nome, string morada, string numFiscal)
+        {
+            this.Nome = nome;   
+            this.Morada = morada;
+            this.NumFiscal = numFiscal;              
+        }
+
         
     }
 }

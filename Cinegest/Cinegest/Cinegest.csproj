@@ -70,14 +70,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CineGest.edmx</DependentUpon>
     </Compile>
-    <Compile Include="CineGestDataSet.cs">
-      <DependentUpon>CineGestDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="CineGestDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CineGestDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="data.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -139,6 +131,9 @@
     <EmbeddedResource Include="Forms\FormAtendimento.resx">
       <DependentUpon>FormAtendimento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormClientes.resx">
+      <DependentUpon>FormClientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormFuncionarios.resx">
       <DependentUpon>FormFuncionarios.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,17 +155,6 @@
     </EntityDeploy>
     <None Include="CineGest.edmx.diagram">
       <DependentUpon>CineGest.edmx</DependentUpon>
-    </None>
-    <None Include="CineGestDataSet.xsc">
-      <DependentUpon>CineGestDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="CineGestDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CineGestDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="CineGestDataSet.xss">
-      <DependentUpon>CineGestDataSet.xsd</DependentUpon>
     </None>
     <None Include="data.xsc">
       <DependentUpon>data.xsd</DependentUpon>

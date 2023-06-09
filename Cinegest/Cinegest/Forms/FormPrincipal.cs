@@ -68,15 +68,11 @@ namespace Cinegest.Forms
         // Botão Clientes - Abre o FormClientes
         private void Clientesbtn_Click(object sender, EventArgs e)
         {
-            try
-            {
+            
                 FormClientes FmClientes = new FormClientes();
                 FmClientes.ShowDialog(); // Abre o formulário FormClientes
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Ocorreu um erro ao tentar abrir o formulário.");
-            }
+            
+            
         }
 
         // Botão Funcionarios - Abre o FormFuncionarios
