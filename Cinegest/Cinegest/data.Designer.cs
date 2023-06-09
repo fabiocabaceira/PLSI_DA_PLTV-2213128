@@ -5327,9 +5327,10 @@ FROM            Pessoas INNER JOIN
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        Sessão.DataHora, Sessão.Preco, Sessão.IdSessao, Filmes.Nome, Filmes" +
-                ".Duracao\r\nFROM            Sessão INNER JOIN\r\n                         Filmes ON " +
-                "Sessão.Filme_IdFilme = Filmes.IdFilme";
+            this._commandCollection[0].CommandText = @"SELECT        Sessão.DataHora, Sessão.Preco, Sessão.IdSessao, Filmes.Nome, Filmes.Duracao
+FROM            Sessão INNER JOIN
+                         Filmes ON Sessão.Filme_IdFilme = Filmes.IdFilme
+WHERE        (CAST(Sessão.DataHora AS DATE) = CAST(GETDATE() AS DATE))";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;

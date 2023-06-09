@@ -100,7 +100,8 @@ FROM            Pessoas INNER JOIN
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        Sessão.DataHora, Sessão.Preco, Sessão.IdSessao, Filmes.Nome, Filmes.Duracao
 FROM            Sessão INNER JOIN
-                         Filmes ON Sessão.Filme_IdFilme = Filmes.IdFilme</CommandText>
+                         Filmes ON Sessão.Filme_IdFilme = Filmes.IdFilme
+WHERE        (CAST(Sessão.DataHora AS DATE) = CAST(GETDATE() AS DATE))</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -448,21 +449,21 @@ SELECT IdFilme, Nome, Duracao, Activo, Categoria_IdCategoria FROM Filmes WHERE (
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdPessoa" msprop:Generator_ColumnPropNameInTable="IdPessoaColumn" msprop:Generator_ColumnPropNameInRow="IdPessoa" msprop:Generator_UserColumnName="IdPessoa" msprop:Generator_ColumnVarNameInTable="columnIdPessoa" type="xs:int" />
-              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome">
+              <xs:element name="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnVarNameInTable="columnNome">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Morada" msprop:Generator_ColumnPropNameInRow="Morada" msprop:Generator_ColumnPropNameInTable="MoradaColumn" msprop:Generator_ColumnVarNameInTable="columnMorada" msprop:Generator_UserColumnName="Morada">
+              <xs:element name="Morada" msprop:Generator_UserColumnName="Morada" msprop:Generator_ColumnPropNameInTable="MoradaColumn" msprop:Generator_ColumnPropNameInRow="Morada" msprop:Generator_ColumnVarNameInTable="columnMorada">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="NumFiscal" msprop:Generator_ColumnPropNameInRow="NumFiscal" msprop:Generator_ColumnPropNameInTable="NumFiscalColumn" msprop:Generator_ColumnVarNameInTable="columnNumFiscal" msprop:Generator_UserColumnName="NumFiscal" type="xs:int" />
+              <xs:element name="NumFiscal" msprop:Generator_UserColumnName="NumFiscal" msprop:Generator_ColumnPropNameInTable="NumFiscalColumn" msprop:Generator_ColumnPropNameInRow="NumFiscal" msprop:Generator_ColumnVarNameInTable="columnNumFiscal" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -689,12 +690,12 @@ SELECT IdFilme, Nome, Duracao, Activo, Categoria_IdCategoria FROM Filmes WHERE (
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_BilheteSessão" msdata:parent="Sessão" msdata:child="Bilhetes" msdata:parentkey="IdSessao" msdata:childkey="SessãoIdSessao" msprop:Generator_UserParentTable="Sessão" msprop:Generator_UserChildTable="Bilhetes" msprop:Generator_RelationVarName="relationFK_BilheteSessão" msprop:Generator_ChildPropName="GetBilhetesRows" msprop:Generator_UserRelationName="FK_BilheteSessão" msprop:Generator_ParentPropName="SessãoRow" />
-      <msdata:Relationship name="FK_Cliente_inherits_Pessoa" msdata:parent="Pessoas" msdata:child="Pessoas_Cliente" msdata:parentkey="IdPessoa" msdata:childkey="IdPessoa" msprop:Generator_UserParentTable="Pessoas" msprop:Generator_UserChildTable="Pessoas_Cliente" msprop:Generator_RelationVarName="relationFK_Cliente_inherits_Pessoa" msprop:Generator_ChildPropName="GetPessoas_ClienteRows" msprop:Generator_UserRelationName="FK_Cliente_inherits_Pessoa" msprop:Generator_ParentPropName="PessoasRow" />
-      <msdata:Relationship name="FK_Funcionario_inherits_Pessoa" msdata:parent="Pessoas" msdata:child="Pessoas_Funcionario" msdata:parentkey="IdPessoa" msdata:childkey="IdPessoa" msprop:Generator_UserParentTable="Pessoas" msprop:Generator_UserChildTable="Pessoas_Funcionario" msprop:Generator_RelationVarName="relationFK_Funcionario_inherits_Pessoa" msprop:Generator_ChildPropName="GetPessoas_FuncionarioRows" msprop:Generator_UserRelationName="FK_Funcionario_inherits_Pessoa" msprop:Generator_ParentPropName="PessoasRow" />
-      <msdata:Relationship name="FK_CinemaSala" msdata:parent="Cinemas" msdata:child="Salas" msdata:parentkey="IdPessoa" msdata:childkey="CinemaIdPessoa" msprop:Generator_UserParentTable="Cinemas" msprop:Generator_UserChildTable="Salas" msprop:Generator_RelationVarName="relationFK_CinemaSala" msprop:Generator_ChildPropName="GetSalasRows" msprop:Generator_UserRelationName="FK_CinemaSala" msprop:Generator_ParentPropName="CinemasRow" />
-      <msdata:Relationship name="FK_FilmeCategoria" msdata:parent="Categorias" msdata:child="Filmes" msdata:parentkey="IdCategoria" msdata:childkey="Categoria_IdCategoria" msprop:Generator_UserParentTable="Categorias" msprop:Generator_UserChildTable="Filmes" msprop:Generator_RelationVarName="relationFK_FilmeCategoria" msprop:Generator_ChildPropName="GetFilmesRows" msprop:Generator_ParentPropName="CategoriasRow" msprop:Generator_UserRelationName="FK_FilmeCategoria" />
-      <msdata:Relationship name="FK_Cliente_inherits_Pessoa1" msdata:parent="Pessoas_Funcionario" msdata:child="Pessoas_Cliente" msdata:parentkey="IdPessoa" msdata:childkey="IdPessoa" msprop:Generator_UserParentTable="Pessoas_Funcionario" msprop:Generator_UserChildTable="Pessoas_Cliente" msprop:Generator_RelationVarName="relationFK_Cliente_inherits_Pessoa1" msprop:Generator_ChildPropName="GetPessoas_ClienteRows" msprop:Generator_ParentPropName="Pessoas_FuncionarioRow" msprop:Generator_UserRelationName="FK_Cliente_inherits_Pessoa1" />
+      <msdata:Relationship name="FK_BilheteSessão" msdata:parent="Sessão" msdata:child="Bilhetes" msdata:parentkey="IdSessao" msdata:childkey="SessãoIdSessao" msprop:Generator_UserParentTable="Sessão" msprop:Generator_UserChildTable="Bilhetes" msprop:Generator_RelationVarName="relationFK_BilheteSessão" msprop:Generator_ChildPropName="GetBilhetesRows" msprop:Generator_ParentPropName="SessãoRow" msprop:Generator_UserRelationName="FK_BilheteSessão" />
+      <msdata:Relationship name="FK_Cliente_inherits_Pessoa" msdata:parent="Pessoas" msdata:child="Pessoas_Cliente" msdata:parentkey="IdPessoa" msdata:childkey="IdPessoa" msprop:Generator_UserParentTable="Pessoas" msprop:Generator_UserChildTable="Pessoas_Cliente" msprop:Generator_RelationVarName="relationFK_Cliente_inherits_Pessoa" msprop:Generator_ChildPropName="GetPessoas_ClienteRows" msprop:Generator_ParentPropName="PessoasRow" msprop:Generator_UserRelationName="FK_Cliente_inherits_Pessoa" />
+      <msdata:Relationship name="FK_Funcionario_inherits_Pessoa" msdata:parent="Pessoas" msdata:child="Pessoas_Funcionario" msdata:parentkey="IdPessoa" msdata:childkey="IdPessoa" msprop:Generator_UserParentTable="Pessoas" msprop:Generator_UserChildTable="Pessoas_Funcionario" msprop:Generator_RelationVarName="relationFK_Funcionario_inherits_Pessoa" msprop:Generator_ChildPropName="GetPessoas_FuncionarioRows" msprop:Generator_ParentPropName="PessoasRow" msprop:Generator_UserRelationName="FK_Funcionario_inherits_Pessoa" />
+      <msdata:Relationship name="FK_CinemaSala" msdata:parent="Cinemas" msdata:child="Salas" msdata:parentkey="IdPessoa" msdata:childkey="CinemaIdPessoa" msprop:Generator_UserParentTable="Cinemas" msprop:Generator_UserChildTable="Salas" msprop:Generator_RelationVarName="relationFK_CinemaSala" msprop:Generator_ChildPropName="GetSalasRows" msprop:Generator_ParentPropName="CinemasRow" msprop:Generator_UserRelationName="FK_CinemaSala" />
+      <msdata:Relationship name="FK_FilmeCategoria" msdata:parent="Categorias" msdata:child="Filmes" msdata:parentkey="IdCategoria" msdata:childkey="Categoria_IdCategoria" msprop:Generator_UserParentTable="Categorias" msprop:Generator_UserChildTable="Filmes" msprop:Generator_RelationVarName="relationFK_FilmeCategoria" msprop:Generator_ChildPropName="GetFilmesRows" msprop:Generator_UserRelationName="FK_FilmeCategoria" msprop:Generator_ParentPropName="CategoriasRow" />
+      <msdata:Relationship name="FK_Cliente_inherits_Pessoa1" msdata:parent="Pessoas_Funcionario" msdata:child="Pessoas_Cliente" msdata:parentkey="IdPessoa" msdata:childkey="IdPessoa" msprop:Generator_UserParentTable="Pessoas_Funcionario" msprop:Generator_UserChildTable="Pessoas_Cliente" msprop:Generator_RelationVarName="relationFK_Cliente_inherits_Pessoa1" msprop:Generator_ChildPropName="GetPessoas_ClienteRows" msprop:Generator_UserRelationName="FK_Cliente_inherits_Pessoa1" msprop:Generator_ParentPropName="Pessoas_FuncionarioRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

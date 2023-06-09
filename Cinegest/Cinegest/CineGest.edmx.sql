@@ -381,16 +381,27 @@ VALUES ('Sala 1', '10', '8', 1, 1),
 
 -- Categorias
 INSERT INTO [dbo].[Categorias] ([Nome], [Activa])
-VALUES ('Ação', 'Sim'),
-       ('Comédia', 'Sim'),
-       ('Drama', 'Não');
+VALUES ('Comédia', 'Sim'),
+('Sci-fi', 'Sim'),
+('Terror', 'Sim'),
+('Romance', 'Sim'),
+('Ação', 'Sim'),
+('Thriller', 'Sim'),
+('Drama', 'Sim'),
+('Mistério', 'Sim'),
+('Crime', 'Sim'),
+('Aventura', 'Sim'),
+('Fantasia', 'Sim'),
+('Animação', 'Sim');
 
 -- Filmes
 INSERT INTO [dbo].[Filmes] ([Nome], [Duracao], [Activo], [Categoria_IdCategoria])
-VALUES ('Filme 1', '120', 'Sim', 1),
-       ('Filme 2', '90', 'Não', 2),
-       ('Filme 3', '105', 'Sim', 3);
-
+VALUES ('The Matrix', '120', 'Sim', 5),
+       ('Avatar', '105', 'Sim', 4),
+       ('Titanic', '105', 'Sim', 4),
+       ('Star Wars: The Force Awakens', '105', 'Sim', 10),
+       ('Incredibles 2', '105', 'Sim', 12);
+    
 -- Pessoas
 INSERT INTO [dbo].[Pessoas] ([Nome], [Morada])
 VALUES ('João Silva', 'Rua A'),
@@ -415,8 +426,13 @@ VALUES ('123456789',4),
 -- Sessão
 INSERT INTO [dbo].[Sessão] ([DataHora], [Preco], [SalaIdSala], [Filme_IdFilme])
 VALUES ('2023-06-10 10:00:00', '10', 1, 1),
-       (GETDATE(), '12', 2, 2),
-       (GETDATE(), '8', 3, 3);
+       (GETDATE(), '12', 2, 1),
+       (GETDATE(), '14', 2, 2),
+       (GETDATE(), '13', 3, 3),
+       (GETDATE(), '11', 2, 4),
+       (GETDATE(), '9', 2, 5);
+    
+
 
 -- Bilhetes
 INSERT INTO [dbo].[Bilhetes] ([Lugar], [Estado], [FuncionarioIdPessoa], [ClienteIdPessoa], [SessãoIdSessao])
