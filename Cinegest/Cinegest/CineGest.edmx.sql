@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/06/2023 16:26:54
--- Generated from EDMX file: C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGest.edmx
+-- Date Created: 06/11/2023 20:40:58
+-- Generated from EDMX file: C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGest.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -20,29 +20,29 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_BilheteSessão]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_BilheteSessão];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ClienteBilhete]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_ClienteBilhete];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FuncionarioBilhete]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_FuncionarioBilhete];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FilmeCategoria]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Filmes] DROP CONSTRAINT [FK_FilmeCategoria];
-GO
 IF OBJECT_ID(N'[dbo].[FK_CinemaSala]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Salas] DROP CONSTRAINT [FK_CinemaSala];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SessãoFilme]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Sessão] DROP CONSTRAINT [FK_SessãoFilme];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Cliente_inherits_Pessoa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pessoas_Cliente] DROP CONSTRAINT [FK_Cliente_inherits_Pessoa];
 GO
+IF OBJECT_ID(N'[dbo].[FK_ClienteBilhete]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_ClienteBilhete];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FilmeCategoria]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Filmes] DROP CONSTRAINT [FK_FilmeCategoria];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Funcionario_inherits_Pessoa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pessoas_Funcionario] DROP CONSTRAINT [FK_Funcionario_inherits_Pessoa];
 GO
+IF OBJECT_ID(N'[dbo].[FK_FuncionarioBilhete]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_FuncionarioBilhete];
+GO
 IF OBJECT_ID(N'[dbo].[FK_SalaSessão]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Sessão] DROP CONSTRAINT [FK_SalaSessão];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SessãoFilme]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Sessão] DROP CONSTRAINT [FK_SessãoFilme];
 GO
 
 -- --------------------------------------------------
@@ -381,27 +381,16 @@ VALUES ('Sala 1', '10', '8', 1, 1),
 
 -- Categorias
 INSERT INTO [dbo].[Categorias] ([Nome], [Activa])
-VALUES ('Comédia', 'Sim'),
-('Sci-fi', 'Sim'),
-('Terror', 'Sim'),
-('Romance', 'Sim'),
-('Ação', 'Sim'),
-('Thriller', 'Sim'),
-('Drama', 'Sim'),
-('Mistério', 'Sim'),
-('Crime', 'Sim'),
-('Aventura', 'Sim'),
-('Fantasia', 'Sim'),
-('Animação', 'Sim');
+VALUES ('Ação', 'Sim'),
+       ('Comédia', 'Sim'),
+       ('Drama', 'Não');
 
 -- Filmes
 INSERT INTO [dbo].[Filmes] ([Nome], [Duracao], [Activo], [Categoria_IdCategoria])
-VALUES ('The Matrix', '120', 'Sim', 5),
-       ('Avatar', '105', 'Sim', 4),
-       ('Titanic', '105', 'Sim', 4),
-       ('Star Wars: The Force Awakens', '105', 'Sim', 10),
-       ('Incredibles 2', '105', 'Sim', 12);
-    
+VALUES ('Filme 1', '120', 'Sim', 1),
+       ('Filme 2', '90', 'Não', 2),
+       ('Filme 3', '105', 'Sim', 3);
+
 -- Pessoas
 INSERT INTO [dbo].[Pessoas] ([Nome], [Morada])
 VALUES ('João Silva', 'Rua A'),
@@ -426,20 +415,15 @@ VALUES ('123456789',4),
 -- Sessão
 INSERT INTO [dbo].[Sessão] ([DataHora], [Preco], [SalaIdSala], [Filme_IdFilme])
 VALUES ('2023-06-10 10:00:00', '10', 1, 1),
-       (GETDATE(), '12', 2, 1),
-       (GETDATE(), '14', 2, 2),
-       (GETDATE(), '13', 3, 3),
-       (GETDATE(), '11', 2, 4),
-       (GETDATE(), '9', 2, 5);
-    
-
+       (GETDATE(), '12', 2, 2),
+       (GETDATE(), '8', 3, 3);
 
 -- Bilhetes
 INSERT INTO [dbo].[Bilhetes] ([Lugar], [Estado], [FuncionarioIdPessoa], [ClienteIdPessoa], [SessãoIdSessao])
 VALUES ('1', 'Vendido', 1, 4, 1),
        ('1', 'Disponível', 3, 6, 2),
        ('2', 'Disponível', 3, 6, 2),
-       ('3', 'Vendido', 3, 6, 2),
+       ('3', 'Disponível', 3, 6, 2),
        ('4', 'Disponível', 3, 6, 2),
        ('5', 'Disponível', 3, 6, 2),
        ('6', 'Disponível', 3, 6, 2),
@@ -452,8 +436,8 @@ VALUES ('1', 'Vendido', 1, 4, 1),
        ('13', 'Disponível', 3, 6, 2),
        ('14', 'Disponível', 3, 6, 2),
        ('15', 'Disponível', 3, 6, 2),
+       ('3', 'Disponível', 3, 6, 3),
        ('16', 'Disponível', 3, 6, 2);
-       
 
 -- --------------------------------------------------
 -- Script has ended

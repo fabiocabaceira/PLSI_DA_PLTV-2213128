@@ -1,5 +1,5 @@
 ﻿// Importação de bibliotecas
-using Cinegest.Models;
+using Cinegest;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

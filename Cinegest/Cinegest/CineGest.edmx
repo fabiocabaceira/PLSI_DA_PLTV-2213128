@@ -4,263 +4,277 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CineGestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Bilhetes">
-          <Key>
-            <PropertyRef Name="IdBilhete" />
-          </Key>
-          <Property Name="IdBilhete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Lugar" Type="int" Nullable="false" />
-          <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="FuncionarioIdPessoa" Type="int" Nullable="false" />
-          <Property Name="ClienteIdPessoa" Type="int" Nullable="false" />
-          <Property Name="SessãoIdSessao" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Categorias">
-          <Key>
-            <PropertyRef Name="IdCategoria" />
-          </Key>
-          <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Activa" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Cinemas">
-          <Key>
-            <PropertyRef Name="IdPessoa" />
-          </Key>
-          <Property Name="IdPessoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Morada" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Filmes">
-          <Key>
-            <PropertyRef Name="IdFilme" />
-          </Key>
-          <Property Name="IdFilme" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Duracao" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Activo" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Categoria_IdCategoria" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Pessoas">
-          <Key>
-            <PropertyRef Name="IdPessoa" />
-          </Key>
-          <Property Name="IdPessoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Morada" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Pessoas_Cliente">
-          <Key>
-            <PropertyRef Name="IdPessoa" />
-          </Key>
-          <Property Name="NumFiscal" Type="int" Nullable="false" />
-          <Property Name="IdPessoa" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Pessoas_Funcionario">
-          <Key>
-            <PropertyRef Name="IdPessoa" />
-          </Key>
-          <Property Name="Salario" Type="int" Nullable="false" />
-          <Property Name="Funcao" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="IdPessoa" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Salas">
-          <Key>
-            <PropertyRef Name="IdSala" />
-          </Key>
-          <Property Name="IdSala" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Colunas" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Filas" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="SessãoIdSessao" Type="int" Nullable="false" />
-          <Property Name="CinemaIdPessoa" Type="int" />
-        </EntityType>
-        <EntityType Name="Sessão">
-          <Key>
-            <PropertyRef Name="IdSessao" />
-          </Key>
-          <Property Name="IdSessao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DataHora" Type="datetime" Nullable="false" />
-          <Property Name="Preco" Type="int" Nullable="false" />
-          <Property Name="SalaIdSala" Type="int" Nullable="false" />
-          <Property Name="Filme_IdFilme" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <Association Name="FK_BilheteSessão">
-          <End Role="Sessão" Type="Self.Sessão" Multiplicity="1" />
-          <End Role="Bilhetes" Type="Self.Bilhetes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sessão">
-              <PropertyRef Name="IdSessao" />
-            </Principal>
-            <Dependent Role="Bilhetes">
-              <PropertyRef Name="SessãoIdSessao" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CinemaSala">
-          <End Role="Cinemas" Type="Self.Cinemas" Multiplicity="0..1" />
-          <End Role="Salas" Type="Self.Salas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cinemas">
-              <PropertyRef Name="IdPessoa" />
-            </Principal>
-            <Dependent Role="Salas">
-              <PropertyRef Name="CinemaIdPessoa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cliente_inherits_Pessoa">
-          <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Pessoas_Cliente" Type="Self.Pessoas_Cliente" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Pessoas">
-              <PropertyRef Name="IdPessoa" />
-            </Principal>
-            <Dependent Role="Pessoas_Cliente">
-              <PropertyRef Name="IdPessoa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClienteBilhete">
-          <End Role="Pessoas_Cliente" Type="Self.Pessoas_Cliente" Multiplicity="1" />
-          <End Role="Bilhetes" Type="Self.Bilhetes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pessoas_Cliente">
-              <PropertyRef Name="IdPessoa" />
-            </Principal>
-            <Dependent Role="Bilhetes">
-              <PropertyRef Name="ClienteIdPessoa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FilmeCategoria">
-          <End Role="Categorias" Type="Self.Categorias" Multiplicity="1" />
-          <End Role="Filmes" Type="Self.Filmes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categorias">
-              <PropertyRef Name="IdCategoria" />
-            </Principal>
-            <Dependent Role="Filmes">
-              <PropertyRef Name="Categoria_IdCategoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Funcionario_inherits_Pessoa">
-          <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Pessoas_Funcionario" Type="Self.Pessoas_Funcionario" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Pessoas">
-              <PropertyRef Name="IdPessoa" />
-            </Principal>
-            <Dependent Role="Pessoas_Funcionario">
-              <PropertyRef Name="IdPessoa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FuncionarioBilhete">
-          <End Role="Pessoas_Funcionario" Type="Self.Pessoas_Funcionario" Multiplicity="1" />
-          <End Role="Bilhetes" Type="Self.Bilhetes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pessoas_Funcionario">
-              <PropertyRef Name="IdPessoa" />
-            </Principal>
-            <Dependent Role="Bilhetes">
-              <PropertyRef Name="FuncionarioIdPessoa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SalaSessão">
-          <End Role="Salas" Type="Self.Salas" Multiplicity="1" />
-          <End Role="Sessão" Type="Self.Sessão" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Salas">
-              <PropertyRef Name="IdSala" />
-            </Principal>
-            <Dependent Role="Sessão">
-              <PropertyRef Name="SalaIdSala" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SessãoFilme">
-          <End Role="Filmes" Type="Self.Filmes" Multiplicity="1" />
-          <End Role="Sessão" Type="Self.Sessão" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Filmes">
-              <PropertyRef Name="IdFilme" />
-            </Principal>
-            <Dependent Role="Sessão">
-              <PropertyRef Name="Filme_IdFilme" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="CineGestModelStoreContainer">
-          <EntitySet Name="Bilhetes" EntityType="Self.Bilhetes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cinemas" EntityType="Self.Cinemas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Filmes" EntityType="Self.Filmes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Pessoas" EntityType="Self.Pessoas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Pessoas_Cliente" EntityType="Self.Pessoas_Cliente" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Pessoas_Funcionario" EntityType="Self.Pessoas_Funcionario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Salas" EntityType="Self.Salas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sessão" EntityType="Self.Sessão" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_BilheteSessão" Association="Self.FK_BilheteSessão">
-            <End Role="Sessão" EntitySet="Sessão" />
-            <End Role="Bilhetes" EntitySet="Bilhetes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CinemaSala" Association="Self.FK_CinemaSala">
-            <End Role="Cinemas" EntitySet="Cinemas" />
-            <End Role="Salas" EntitySet="Salas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cliente_inherits_Pessoa" Association="Self.FK_Cliente_inherits_Pessoa">
-            <End Role="Pessoas" EntitySet="Pessoas" />
-            <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClienteBilhete" Association="Self.FK_ClienteBilhete">
-            <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
-            <End Role="Bilhetes" EntitySet="Bilhetes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FilmeCategoria" Association="Self.FK_FilmeCategoria">
-            <End Role="Categorias" EntitySet="Categorias" />
-            <End Role="Filmes" EntitySet="Filmes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Funcionario_inherits_Pessoa" Association="Self.FK_Funcionario_inherits_Pessoa">
-            <End Role="Pessoas" EntitySet="Pessoas" />
-            <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FuncionarioBilhete" Association="Self.FK_FuncionarioBilhete">
-            <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
-            <End Role="Bilhetes" EntitySet="Bilhetes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalaSessão" Association="Self.FK_SalaSessão">
-            <End Role="Salas" EntitySet="Salas" />
-            <End Role="Sessão" EntitySet="Sessão" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SessãoFilme" Association="Self.FK_SessãoFilme">
-            <End Role="Filmes" EntitySet="Filmes" />
-            <End Role="Sessão" EntitySet="Sessão" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="CineGestModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CineGestModelStoreContainer">
+    <EntitySet Name="Bilhetes" EntityType="CineGestModel.Store.Bilhetes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categorias" EntityType="CineGestModel.Store.Categorias" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Cinemas" EntityType="CineGestModel.Store.Cinemas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Filmes" EntityType="CineGestModel.Store.Filmes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pessoas" EntityType="CineGestModel.Store.Pessoas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pessoas_Cliente" EntityType="CineGestModel.Store.Pessoas_Cliente" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pessoas_Funcionario" EntityType="CineGestModel.Store.Pessoas_Funcionario" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Salas" EntityType="CineGestModel.Store.Salas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sessão" EntityType="CineGestModel.Store.Sessão" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="CineGestModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_BilheteSessão" Association="CineGestModel.Store.FK_BilheteSessão">
+      <End Role="Sessão" EntitySet="Sessão" />
+      <End Role="Bilhetes" EntitySet="Bilhetes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClienteBilhete" Association="CineGestModel.Store.FK_ClienteBilhete">
+      <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
+      <End Role="Bilhetes" EntitySet="Bilhetes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FuncionarioBilhete" Association="CineGestModel.Store.FK_FuncionarioBilhete">
+      <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
+      <End Role="Bilhetes" EntitySet="Bilhetes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FilmeCategoria" Association="CineGestModel.Store.FK_FilmeCategoria">
+      <End Role="Categorias" EntitySet="Categorias" />
+      <End Role="Filmes" EntitySet="Filmes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CinemaSala" Association="CineGestModel.Store.FK_CinemaSala">
+      <End Role="Cinemas" EntitySet="Cinemas" />
+      <End Role="Salas" EntitySet="Salas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SessãoFilme" Association="CineGestModel.Store.FK_SessãoFilme">
+      <End Role="Filmes" EntitySet="Filmes" />
+      <End Role="Sessão" EntitySet="Sessão" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cliente_inherits_Pessoa" Association="CineGestModel.Store.FK_Cliente_inherits_Pessoa">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Funcionario_inherits_Pessoa" Association="CineGestModel.Store.FK_Funcionario_inherits_Pessoa">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalaSessão" Association="CineGestModel.Store.FK_SalaSessão">
+      <End Role="Salas" EntitySet="Salas" />
+      <End Role="Sessão" EntitySet="Sessão" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Bilhetes">
+    <Key>
+      <PropertyRef Name="IdBilhete" />
+    </Key>
+    <Property Name="IdBilhete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Lugar" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FuncionarioIdPessoa" Type="int" Nullable="false" />
+    <Property Name="ClienteIdPessoa" Type="int" Nullable="false" />
+    <Property Name="SessãoIdSessao" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Activa" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cinemas">
+    <Key>
+      <PropertyRef Name="IdPessoa" />
+    </Key>
+    <Property Name="IdPessoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Morada" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Filmes">
+    <Key>
+      <PropertyRef Name="IdFilme" />
+    </Key>
+    <Property Name="IdFilme" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Duracao" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Activo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Categoria_IdCategoria" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pessoas">
+    <Key>
+      <PropertyRef Name="IdPessoa" />
+    </Key>
+    <Property Name="IdPessoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Morada" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pessoas_Cliente">
+    <Key>
+      <PropertyRef Name="IdPessoa" />
+    </Key>
+    <Property Name="NumFiscal" Type="int" Nullable="false" />
+    <Property Name="IdPessoa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pessoas_Funcionario">
+    <Key>
+      <PropertyRef Name="IdPessoa" />
+    </Key>
+    <Property Name="Salario" Type="int" Nullable="false" />
+    <Property Name="Funcao" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdPessoa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Salas">
+    <Key>
+      <PropertyRef Name="IdSala" />
+    </Key>
+    <Property Name="IdSala" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Colunas" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Filas" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SessãoIdSessao" Type="int" Nullable="false" />
+    <Property Name="CinemaIdPessoa" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Sessão">
+    <Key>
+      <PropertyRef Name="IdSessao" />
+    </Key>
+    <Property Name="IdSessao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DataHora" Type="datetime" Nullable="false" />
+    <Property Name="Preco" Type="int" Nullable="false" />
+    <Property Name="SalaIdSala" Type="int" Nullable="false" />
+    <Property Name="Filme_IdFilme" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" Nullable="true" />
+    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_BilheteSessão">
+    <End Role="Sessão" Type="CineGestModel.Store.Sessão" Multiplicity="1" />
+    <End Role="Bilhetes" Type="CineGestModel.Store.Bilhetes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sessão">
+        <PropertyRef Name="IdSessao" />
+      </Principal>
+      <Dependent Role="Bilhetes">
+        <PropertyRef Name="SessãoIdSessao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClienteBilhete">
+    <End Role="Pessoas_Cliente" Type="CineGestModel.Store.Pessoas_Cliente" Multiplicity="1" />
+    <End Role="Bilhetes" Type="CineGestModel.Store.Bilhetes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas_Cliente">
+        <PropertyRef Name="IdPessoa" />
+      </Principal>
+      <Dependent Role="Bilhetes">
+        <PropertyRef Name="ClienteIdPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FuncionarioBilhete">
+    <End Role="Pessoas_Funcionario" Type="CineGestModel.Store.Pessoas_Funcionario" Multiplicity="1" />
+    <End Role="Bilhetes" Type="CineGestModel.Store.Bilhetes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas_Funcionario">
+        <PropertyRef Name="IdPessoa" />
+      </Principal>
+      <Dependent Role="Bilhetes">
+        <PropertyRef Name="FuncionarioIdPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FilmeCategoria">
+    <End Role="Categorias" Type="CineGestModel.Store.Categorias" Multiplicity="1" />
+    <End Role="Filmes" Type="CineGestModel.Store.Filmes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorias">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="Filmes">
+        <PropertyRef Name="Categoria_IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CinemaSala">
+    <End Role="Cinemas" Type="CineGestModel.Store.Cinemas" Multiplicity="0..1" />
+    <End Role="Salas" Type="CineGestModel.Store.Salas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cinemas">
+        <PropertyRef Name="IdPessoa" />
+      </Principal>
+      <Dependent Role="Salas">
+        <PropertyRef Name="CinemaIdPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SessãoFilme">
+    <End Role="Filmes" Type="CineGestModel.Store.Filmes" Multiplicity="1" />
+    <End Role="Sessão" Type="CineGestModel.Store.Sessão" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmes">
+        <PropertyRef Name="IdFilme" />
+      </Principal>
+      <Dependent Role="Sessão">
+        <PropertyRef Name="Filme_IdFilme" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cliente_inherits_Pessoa">
+    <End Role="Pessoas" Type="CineGestModel.Store.Pessoas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pessoas_Cliente" Type="CineGestModel.Store.Pessoas_Cliente" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="IdPessoa" />
+      </Principal>
+      <Dependent Role="Pessoas_Cliente">
+        <PropertyRef Name="IdPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Funcionario_inherits_Pessoa">
+    <End Role="Pessoas" Type="CineGestModel.Store.Pessoas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pessoas_Funcionario" Type="CineGestModel.Store.Pessoas_Funcionario" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="IdPessoa" />
+      </Principal>
+      <Dependent Role="Pessoas_Funcionario">
+        <PropertyRef Name="IdPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalaSessão">
+    <End Role="Salas" Type="CineGestModel.Store.Salas" Multiplicity="1" />
+    <End Role="Sessão" Type="CineGestModel.Store.Sessão" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Salas">
+        <PropertyRef Name="IdSala" />
+      </Principal>
+      <Dependent Role="Sessão">
+        <PropertyRef Name="SalaIdSala" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CineGestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bilhete">
+          <Key>
+            <PropertyRef Name="IdBilhete" />
+          </Key>
+          <Property Name="IdBilhete" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lugar" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FuncionarioIdPessoa" Type="Int32" Nullable="false" />
+          <Property Name="ClienteIdPessoa" Type="Int32" Nullable="false" />
+          <Property Name="SessãoIdSessao" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sessão" Relationship="Self.FK_BilheteSessão" FromRole="Bilhetes" ToRole="Sessão" />
+          <NavigationProperty Name="Pessoas_Cliente" Relationship="Self.FK_ClienteBilhete" FromRole="Bilhetes" ToRole="Pessoas_Cliente" />
+          <NavigationProperty Name="Pessoas_Funcionario" Relationship="Self.FK_FuncionarioBilhete" FromRole="Bilhetes" ToRole="Pessoas_Funcionario" />
+        </EntityType>
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="IdCategoria" />
@@ -308,8 +322,8 @@
           </Key>
           <Property Name="NumFiscal" Type="Int32" Nullable="false" />
           <Property Name="IdPessoa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bilhetes" Relationship="Self.FK_ClienteBilhete" FromRole="Pessoas_Cliente" ToRole="Bilhetes" />
           <NavigationProperty Name="Pessoa" Relationship="Self.FK_Cliente_inherits_Pessoa" FromRole="Pessoas_Cliente" ToRole="Pessoas" />
-          <NavigationProperty Name="Bilhetes" Relationship="CineGestModel.FK_ClienteBilhete" FromRole="Pessoas_Cliente" ToRole="Bilhete" />
         </EntityType>
         <EntityType Name="Pessoas_Funcionario">
           <Key>
@@ -318,8 +332,8 @@
           <Property Name="Salario" Type="Int32" Nullable="false" />
           <Property Name="Funcao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdPessoa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bilhetes" Relationship="Self.FK_FuncionarioBilhete" FromRole="Pessoas_Funcionario" ToRole="Bilhetes" />
           <NavigationProperty Name="Pessoa" Relationship="Self.FK_Funcionario_inherits_Pessoa" FromRole="Pessoas_Funcionario" ToRole="Pessoas" />
-          <NavigationProperty Name="Bilhetes" Relationship="CineGestModel.FK_FuncionarioBilhete" FromRole="Pessoas_Funcionario" ToRole="Bilhete" />
         </EntityType>
         <EntityType Name="Sala">
           <Key>
@@ -343,9 +357,9 @@
           <Property Name="Preco" Type="Int32" Nullable="false" />
           <Property Name="SalaIdSala" Type="Int32" Nullable="false" />
           <Property Name="Filme_IdFilme" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bilhetes" Relationship="Self.FK_BilheteSessão" FromRole="Sessão" ToRole="Bilhetes" />
           <NavigationProperty Name="Filme" Relationship="Self.FK_SessãoFilme" FromRole="Sessão" ToRole="Filmes" />
           <NavigationProperty Name="Sala" Relationship="Self.FK_SalaSessão" FromRole="Sessão" ToRole="Salas" />
-          <NavigationProperty Name="Bilhetes" Relationship="CineGestModel.FK_BilheteSessão" FromRole="Sessão" ToRole="Bilhete" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -357,6 +371,42 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <Association Name="FK_BilheteSessão">
+          <End Role="Sessão" Type="Self.Sessão" Multiplicity="1" />
+          <End Role="Bilhetes" Type="Self.Bilhete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sessão">
+              <PropertyRef Name="IdSessao" />
+            </Principal>
+            <Dependent Role="Bilhetes">
+              <PropertyRef Name="SessãoIdSessao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClienteBilhete">
+          <End Role="Pessoas_Cliente" Type="Self.Pessoas_Cliente" Multiplicity="1" />
+          <End Role="Bilhetes" Type="Self.Bilhete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas_Cliente">
+              <PropertyRef Name="IdPessoa" />
+            </Principal>
+            <Dependent Role="Bilhetes">
+              <PropertyRef Name="ClienteIdPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FuncionarioBilhete">
+          <End Role="Pessoas_Funcionario" Type="Self.Pessoas_Funcionario" Multiplicity="1" />
+          <End Role="Bilhetes" Type="Self.Bilhete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas_Funcionario">
+              <PropertyRef Name="IdPessoa" />
+            </Principal>
+            <Dependent Role="Bilhetes">
+              <PropertyRef Name="FuncionarioIdPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FilmeCategoria">
           <End Role="Categorias" Type="Self.Categoria" Multiplicity="1" />
           <End Role="Filmes" Type="Self.Filme" Multiplicity="*" />
@@ -434,6 +484,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CineGestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bilhetes" EntityType="Self.Bilhete" />
           <EntitySet Name="Categorias" EntityType="Self.Categoria" />
           <EntitySet Name="Cinemas" EntityType="Self.Cinema" />
           <EntitySet Name="Filmes" EntityType="Self.Filme" />
@@ -443,6 +494,18 @@
           <EntitySet Name="Salas" EntityType="Self.Sala" />
           <EntitySet Name="Sessão" EntityType="Self.Sessão" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_BilheteSessão" Association="Self.FK_BilheteSessão">
+            <End Role="Sessão" EntitySet="Sessão" />
+            <End Role="Bilhetes" EntitySet="Bilhetes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClienteBilhete" Association="Self.FK_ClienteBilhete">
+            <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
+            <End Role="Bilhetes" EntitySet="Bilhetes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FuncionarioBilhete" Association="Self.FK_FuncionarioBilhete">
+            <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
+            <End Role="Bilhetes" EntitySet="Bilhetes" />
+          </AssociationSet>
           <AssociationSet Name="FK_FilmeCategoria" Association="Self.FK_FilmeCategoria">
             <End Role="Categorias" EntitySet="Categorias" />
             <End Role="Filmes" EntitySet="Filmes" />
@@ -467,76 +530,25 @@
             <End Role="Salas" EntitySet="Salas" />
             <End Role="Sessão" EntitySet="Sessão" />
           </AssociationSet>
-          <EntitySet Name="Bilhetes" EntityType="CineGestModel.Bilhete" />
-          <AssociationSet Name="FK_BilheteSessão" Association="CineGestModel.FK_BilheteSessão">
-            <End Role="Sessão" EntitySet="Sessão" />
-            <End Role="Bilhete" EntitySet="Bilhetes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClienteBilhete" Association="CineGestModel.FK_ClienteBilhete">
-            <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
-            <End Role="Bilhete" EntitySet="Bilhetes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FuncionarioBilhete" Association="CineGestModel.FK_FuncionarioBilhete">
-            <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
-            <End Role="Bilhete" EntitySet="Bilhetes" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Bilhete">
-          <Key>
-            <PropertyRef Name="IdBilhete" />
-          </Key>
-          <Property Name="IdBilhete" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Lugar" Type="Int32" Nullable="false" />
-          <Property Name="Estado" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FuncionarioIdPessoa" Type="Int32" Nullable="false" />
-          <Property Name="ClienteIdPessoa" Type="Int32" Nullable="false" />
-          <Property Name="SessãoIdSessao" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Sessão" Relationship="CineGestModel.FK_BilheteSessão" FromRole="Bilhete" ToRole="Sessão" />
-          <NavigationProperty Name="Pessoas_Cliente" Relationship="CineGestModel.FK_ClienteBilhete" FromRole="Bilhete" ToRole="Pessoas_Cliente" />
-          <NavigationProperty Name="Pessoas_Funcionario" Relationship="CineGestModel.FK_FuncionarioBilhete" FromRole="Bilhete" ToRole="Pessoas_Funcionario" />
-        </EntityType>
-        <Association Name="FK_BilheteSessão">
-          <End Type="CineGestModel.Sessão" Role="Sessão" Multiplicity="1" />
-          <End Type="CineGestModel.Bilhete" Role="Bilhete" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sessão">
-              <PropertyRef Name="IdSessao" />
-            </Principal>
-            <Dependent Role="Bilhete">
-              <PropertyRef Name="SessãoIdSessao" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClienteBilhete">
-          <End Type="CineGestModel.Pessoas_Cliente" Role="Pessoas_Cliente" Multiplicity="1" />
-          <End Type="CineGestModel.Bilhete" Role="Bilhete" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pessoas_Cliente">
-              <PropertyRef Name="IdPessoa" />
-            </Principal>
-            <Dependent Role="Bilhete">
-              <PropertyRef Name="ClienteIdPessoa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FuncionarioBilhete">
-          <End Type="CineGestModel.Pessoas_Funcionario" Role="Pessoas_Funcionario" Multiplicity="1" />
-          <End Type="CineGestModel.Bilhete" Role="Bilhete" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pessoas_Funcionario">
-              <PropertyRef Name="IdPessoa" />
-            </Principal>
-            <Dependent Role="Bilhete">
-              <PropertyRef Name="FuncionarioIdPessoa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="CineGestModelStoreContainer" CdmEntityContainer="CineGestEntities">
+    <EntitySetMapping Name="Bilhetes">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Bilhete)">
+        <MappingFragment StoreEntitySet="Bilhetes">
+          <ScalarProperty Name="IdBilhete" ColumnName="IdBilhete" />
+          <ScalarProperty Name="Lugar" ColumnName="Lugar" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FuncionarioIdPessoa" ColumnName="FuncionarioIdPessoa" />
+          <ScalarProperty Name="ClienteIdPessoa" ColumnName="ClienteIdPessoa" />
+          <ScalarProperty Name="SessãoIdSessao" ColumnName="SessãoIdSessao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Categorias">
       <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Categoria)">
         <MappingFragment StoreEntitySet="Categorias">
@@ -627,18 +639,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-          <EntitySetMapping Name="Bilhetes">
-            <EntityTypeMapping TypeName="CineGestModel.Bilhete">
-              <MappingFragment StoreEntitySet="Bilhetes">
-                <ScalarProperty Name="SessãoIdSessao" ColumnName="SessãoIdSessao" />
-                <ScalarProperty Name="ClienteIdPessoa" ColumnName="ClienteIdPessoa" />
-                <ScalarProperty Name="FuncionarioIdPessoa" ColumnName="FuncionarioIdPessoa" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Lugar" ColumnName="Lugar" />
-                <ScalarProperty Name="IdBilhete" ColumnName="IdBilhete" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

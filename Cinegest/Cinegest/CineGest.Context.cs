@@ -9,9 +9,7 @@
 
 namespace Cinegest
 {
-    using Cinegest.Models;
     using System;
-    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
@@ -26,7 +24,8 @@ namespace Cinegest
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
+        public virtual DbSet<Bilhete> Bilhetes { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }
         public virtual DbSet<Cinema> Cinemas { get; set; }
         public virtual DbSet<Filme> Filmes { get; set; }
@@ -35,6 +34,6 @@ namespace Cinegest
         public virtual DbSet<Pessoas_Funcionario> Pessoas_Funcionario { get; set; }
         public virtual DbSet<Sala> Salas { get; set; }
         public virtual DbSet<Sessão> Sessão { get; set; }
-        public  DbSet<Bilhete> Bilhetes { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
