@@ -37,3 +37,4 @@ C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cineg
 C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormClientes.resources
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormNovoCliente.resources
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormClientes.resources
+C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormNovoCliente.resources

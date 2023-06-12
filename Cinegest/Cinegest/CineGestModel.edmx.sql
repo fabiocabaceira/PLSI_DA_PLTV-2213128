@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/12/2023 17:57:55
--- Generated from EDMX file: C:\Users\FÃ¡bio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGestModel.edmx
+-- Date Created: 06/12/2023 21:45:14
+-- Generated from EDMX file: C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGestModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -106,8 +106,7 @@ CREATE TABLE [dbo].[Filmes] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Nome] nvarchar(max)  NOT NULL,
     [Duracao] nvarchar(max)  NOT NULL,
-    [Activo] bit  NOT NULL,
-    [CategoriaId] nvarchar(max)  NOT NULL,
+    [Activo] nvarchar(max)  NOT NULL,
     [Categoria_Id] int  NOT NULL
 );
 GO
@@ -151,8 +150,7 @@ CREATE TABLE [dbo].[Sessaos] (
     [SalaId] int  NOT NULL,
     [Datahora] datetime  NOT NULL,
     [Preco] int  NOT NULL,
-    [Filme_Id] int  NOT NULL,
-    [SalaId1] int  NOT NULL
+    [Filme_Id] int  NOT NULL
 );
 GO
 
@@ -316,21 +314,6 @@ ON [dbo].[Filmes]
     ([Categoria_Id]);
 GO
 
--- Creating foreign key on [SalaId1] in table 'Sessaos'
-ALTER TABLE [dbo].[Sessaos]
-ADD CONSTRAINT [FK_SalaSessao]
-    FOREIGN KEY ([SalaId1])
-    REFERENCES [dbo].[Salas]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_SalaSessao'
-CREATE INDEX [IX_FK_SalaSessao]
-ON [dbo].[Sessaos]
-    ([SalaId1]);
-GO
-
 -- Creating foreign key on [Id] in table 'Pessoas_Cliente'
 ALTER TABLE [dbo].[Pessoas_Cliente]
 ADD CONSTRAINT [FK_Cliente_inherits_Pessoa]
@@ -348,6 +331,86 @@ ADD CONSTRAINT [FK_Funcionario_inherits_Pessoa]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
+
+-- Cinemas
+INSERT INTO [dbo].[Cinemas] ([Nome], [Email], [Morada])
+VALUES  ('Cinema 1', 'cinema3@example.com', '789 Oak Street');
+
+-- Salas
+INSERT INTO [dbo].[Salas] ([Nome], [Colunas], [Filas], [CinemaId])
+VALUES ('Sala 1', '3', '3', 1),
+       ('Sala 2', '3', '3', 1),
+       ('Sala 3', '3', '3', 1);
+
+-- Categorias
+INSERT INTO [dbo].[Categorias] ([Nome], [Activa])
+VALUES ('Comédia', 'Sim'),
+       ('Sci_fi', 'Sim'),
+       ('Terror', 'Sim'),       
+       ('Romance', 'Sim'),
+       ('Acção', 'Sim'),
+       ('Thriller', 'Sim'),
+       ('Drama', 'Sim'),       
+       ('Mistério', 'Sim'),
+       ('Crime', 'Sim'),
+       ('Aventura', 'Sim'),
+       ('Fantasia', 'Sim'), 
+       ('Animação', 'Sim');
+
+-- Filmes
+INSERT INTO [dbo].[Filmes] ([Nome], [Duracao], [Activo], [Categoria_Id])
+VALUES ('Matrix', '120', 'Sim', 2),
+       ('The Incredibles 2', '90', 'Não', 12),
+       ('Thor', '105', 'Sim', 10);
+
+-- Sessão
+INSERT INTO [dbo].[Sessaos] ([DataHora], [Preco], [SalaId], [Filme_Id])
+VALUES ('2023-06-2 10:00:00', '10', 1, 1),
+       (GETDATE(), '12', 2, 2),
+       (GETDATE(), '8', 3, 3);
+
+-- Pessoas
+INSERT INTO [dbo].[Pessoas] ([Nome], [Morada])
+VALUES ('João Silva', 'Rua A'),
+       ('Marta Oliveira', 'Rua B'),
+       ('Pedro Santos', 'Rua C'),
+       ('Pedro Miguel', 'Rua D'),
+       ('Mateus Leandro', 'Rua E'),
+       ('Luis Matos', 'Rua F');
+
+-- Pessoas_Funcionario
+INSERT INTO [dbo].[Pessoas_Funcionario] ([Salario], [Funcao], [Id])
+VALUES ('1000', 'Bilheteira', 1),
+       ('1200', 'Gerente', 2),
+       ('900', 'Limpeza', 3);
+
+-- Pessoas_Cliente
+INSERT INTO [dbo].[Pessoas_Cliente] ([NumFiscal], [Id])
+VALUES ('123456789', 4),
+       ('987654321', 5),
+       ('654321987', 6);
+
+-- Bilhetes
+INSERT INTO [dbo].[Bilhetes] ([Lugar], [Estado], [FuncionarioId], [ClienteId], [SessaoId])
+VALUES 
+       ('1', 'Disponível', 3, 6, 2),
+       ('2', 'Disponível', 3, 6, 2),
+       ('3', 'Disponível', 3, 6, 2),
+       ('4', 'Disponível', 3, 6, 2),
+       ('5', 'Disponível', 3, 6, 2),
+       ('6', 'Disponível', 3, 6, 2),
+       ('7', 'Disponível', 3, 6, 2),
+       ('8', 'Disponível', 3, 6, 2),
+       ('9', 'Disponível', 3, 6, 2),
+       ('10', 'Disponível', 3, 6, 2),
+       ('11', 'Disponível', 3, 6, 2),
+       ('12', 'Disponível', 3, 6, 2),
+       ('13', 'Disponível', 3, 6, 2),
+       ('14', 'Disponível', 3, 6, 2),
+       ('15', 'Disponível', 3, 6, 2),
+       ('3', 'Disponível', 3, 6, 3),
+       ('16', 'Disponível', 3, 6, 2);
+
 
 -- --------------------------------------------------
 -- Script has ended

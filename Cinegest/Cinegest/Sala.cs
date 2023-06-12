@@ -14,12 +14,6 @@ namespace Cinegest
     
     public partial class Sala
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sala()
-        {
-            this.Sessaos = new HashSet<Sessao>();
-        }
-    
         public int Id { get; set; }
         public int Colunas { get; set; }
         public int Filas { get; set; }
@@ -27,7 +21,5 @@ namespace Cinegest
         public string Nome { get; set; }
     
         public virtual Cinema Cinema { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sessao> Sessaos { get; set; }
     }
 }

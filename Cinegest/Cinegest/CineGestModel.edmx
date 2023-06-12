@@ -39,10 +39,6 @@
       <End Role="Filme" EntitySet="Filmes" />
       <End Role="Categoria" EntitySet="Categorias" />
     </AssociationSet>
-    <AssociationSet Name="SalaSessao" Association="CineGestModel.Store.SalaSessao">
-      <End Role="Sala" EntitySet="Salas" />
-      <End Role="Sessao" EntitySet="Sessaos" />
-    </AssociationSet>
     <AssociationSet Name="FK_Cliente_inherits_Pessoa" Association="CineGestModel.Store.FK_Cliente_inherits_Pessoa">
       <End Role="Pessoa" EntitySet="Pessoas" />
       <End Role="Cliente" EntitySet="Pessoas_Cliente" />
@@ -79,8 +75,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Duracao" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Activo" Type="bit" Nullable="false" />
-    <Property Name="CategoriaId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Activo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Categoria_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Pessoas">
@@ -125,7 +120,6 @@
     <Property Name="Datahora" Type="datetime" Nullable="false" />
     <Property Name="Preco" Type="int" Nullable="false" />
     <Property Name="Filme_Id" Type="int" Nullable="false" />
-    <Property Name="SalaId1" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Categorias">
     <Key>
@@ -207,18 +201,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="SalaSessao">
-    <End Role="Sala" Type="CineGestModel.Store.Salas" Multiplicity="1" />
-    <End Role="Sessao" Type="CineGestModel.Store.Sessaos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Sala">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Sessao">
-        <PropertyRef Name="SalaId1" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Cliente_inherits_Pessoa">
     <End Role="Pessoa" Type="CineGestModel.Store.Pessoas" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -282,10 +264,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Duracao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Sessaos" Relationship="Self.FK_SessaoFilme" FromRole="Filmes" ToRole="Sessaos" />
-          <Property Name="CategoriaId" Nullable="false" Type="String" />
           <NavigationProperty Name="Categoria" Relationship="CineGestModel.FilmeCategoria" FromRole="Filme" ToRole="Categoria" />
+          <Property Name="Activo" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Pessoa">
           <Key>
@@ -313,7 +294,6 @@
           <Property Name="Filas" Type="Int32" Nullable="false" />
           <Property Name="CinemaId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cinema" Relationship="Self.FK_CinemaSala" FromRole="Salas" ToRole="Cinemas" />
-          <NavigationProperty Name="Sessaos" Relationship="CineGestModel.SalaSessao" FromRole="Sala" ToRole="Sessao" />
           <Property Name="Nome" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Sessao">
@@ -327,8 +307,6 @@
           <Property Name="Filme_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Bilhetes" Relationship="Self.FK_SessaoBilhete" FromRole="Sessaos" ToRole="Bilhetes" />
           <NavigationProperty Name="Filme" Relationship="Self.FK_SessaoFilme" FromRole="Sessaos" ToRole="Filmes" />
-          <NavigationProperty Name="Sala" Relationship="CineGestModel.SalaSessao" FromRole="Sessao" ToRole="Sala" />
-          <Property Name="SalaId1" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_ClienteBilhete">
           <End Role="Pessoas_Cliente" Type="CineGestModel.Cliente" Multiplicity="1" />
@@ -422,10 +400,6 @@
             <End Role="Filme" EntitySet="Filmes" />
             <End Role="Categoria" EntitySet="Categorias" />
           </AssociationSet>
-          <AssociationSet Name="SalaSessao" Association="CineGestModel.SalaSessao">
-            <End Role="Sala" EntitySet="Salas" />
-            <End Role="Sessao" EntitySet="Sessaos" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Categoria">
           <Key>
@@ -439,18 +413,6 @@
         <Association Name="FilmeCategoria">
           <End Type="CineGestModel.Filme" Role="Filme" Multiplicity="1" />
           <End Type="CineGestModel.Categoria" Role="Categoria" Multiplicity="1" />
-        </Association>
-        <Association Name="SalaSessao">
-          <End Type="CineGestModel.Sala" Role="Sala" Multiplicity="1" />
-          <End Type="CineGestModel.Sessao" Role="Sessao" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sala">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Sessao">
-              <PropertyRef Name="SalaId1" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -487,7 +449,6 @@
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Duracao" ColumnName="Duracao" />
           <ScalarProperty Name="Activo" ColumnName="Activo" />
-          <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -532,7 +493,6 @@
           <ScalarProperty Name="Datahora" ColumnName="Datahora" />
           <ScalarProperty Name="Preco" ColumnName="Preco" />
           <ScalarProperty Name="Filme_Id" ColumnName="Filme_Id" />
-          <ScalarProperty Name="SalaId1" ColumnName="SalaId1" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

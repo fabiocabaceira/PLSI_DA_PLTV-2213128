@@ -34,10 +34,6 @@
       <End Role="Filme" EntitySet="Filmes" />
       <End Role="Categoria" EntitySet="Categorias" />
     </AssociationSet>
-    <AssociationSet Name="SalaSessao" Association="CineGestModel.Store.SalaSessao">
-      <End Role="Sala" EntitySet="Salas" />
-      <End Role="Sessao" EntitySet="Sessaos" />
-    </AssociationSet>
     <AssociationSet Name="FK_Cliente_inherits_Pessoa" Association="CineGestModel.Store.FK_Cliente_inherits_Pessoa">
       <End Role="Pessoa" EntitySet="Pessoas" />
       <End Role="Cliente" EntitySet="Pessoas_Cliente" />
@@ -74,8 +70,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Duracao" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Activo" Type="bit" Nullable="false" />
-    <Property Name="CategoriaId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Activo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Categoria_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Pessoas">
@@ -120,7 +115,6 @@
     <Property Name="Datahora" Type="datetime" Nullable="false" />
     <Property Name="Preco" Type="int" Nullable="false" />
     <Property Name="Filme_Id" Type="int" Nullable="false" />
-    <Property Name="SalaId1" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Categorias">
     <Key>
@@ -199,18 +193,6 @@
       </Principal>
       <Dependent Role="Filme">
         <PropertyRef Name="Categoria_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="SalaSessao">
-    <End Role="Sala" Type="CineGestModel.Store.Salas" Multiplicity="1" />
-    <End Role="Sessao" Type="CineGestModel.Store.Sessaos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Sala">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Sessao">
-        <PropertyRef Name="SalaId1" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

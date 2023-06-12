@@ -30,7 +30,6 @@
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Duracao" ColumnName="Duracao" />
           <ScalarProperty Name="Activo" ColumnName="Activo" />
-          <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -75,7 +74,6 @@
           <ScalarProperty Name="Datahora" ColumnName="Datahora" />
           <ScalarProperty Name="Preco" ColumnName="Preco" />
           <ScalarProperty Name="Filme_Id" ColumnName="Filme_Id" />
-          <ScalarProperty Name="SalaId1" ColumnName="SalaId1" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
