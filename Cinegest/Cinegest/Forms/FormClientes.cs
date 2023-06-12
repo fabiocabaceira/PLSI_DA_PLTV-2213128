@@ -1,4 +1,4 @@
-﻿using Cinegest.Models;
+﻿using Cinegest;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +15,11 @@ namespace Cinegest.Forms
     public partial class FormClientes : Form
     {
 
-        CineGestEntities db;
+        CineGestEntities5 db;
         public FormClientes()
         {
             InitializeComponent();
-            db = new CineGestEntities();
+            db = new CineGestEntities5();
         }
 
         private void adicionarbtn_Click(object sender, EventArgs e)
@@ -34,9 +34,14 @@ namespace Cinegest.Forms
             else
             { 
                 Pessoas_Cliente novocliente = new Pessoas_Cliente(nome, morada, numFiscal);
-                db.Pessoas_Cliente.Add(novocliente);     
+                db.Pessoas.Add(novocliente);     
                 db.SaveChanges();
             }
+
+        }
+
+        private void FormClientes_Load(object sender, EventArgs e)
+        {
 
         }
     }

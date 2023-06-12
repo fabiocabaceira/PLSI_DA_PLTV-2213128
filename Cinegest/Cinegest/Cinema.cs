@@ -23,6 +23,7 @@ namespace Cinegest
         public int Id { get; set; }
         public string Morada { get; set; }
         public string Email { get; set; }
+        public string Nome { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sala> Salas { get; set; }

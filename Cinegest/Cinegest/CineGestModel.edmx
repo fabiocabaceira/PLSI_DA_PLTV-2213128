@@ -70,7 +70,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Activa" Type="bit" Nullable="false" />
-    <Property Name="Filme_Id" Type="int" Nullable="false" />
+    <Property Name="Filme_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
   </EntityType>
   <EntityType Name="Cinemas">
     <Key>
@@ -79,6 +79,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Morada" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Filmes">
     <Key>
@@ -261,16 +262,6 @@
           <NavigationProperty Name="Pessoas_Funcionario" Relationship="Self.FK_FuncionarioBilhete" FromRole="Bilhetes" ToRole="Pessoas_Funcionario" />
           <NavigationProperty Name="Sessao" Relationship="Self.FK_SessaoBilhete" FromRole="Bilhetes" ToRole="Sessaos" />
         </EntityType>
-        <EntityType Name="Categoria">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Activa" Type="Boolean" Nullable="false" />
-          <Property Name="Filme_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Filme" Relationship="Self.FK_CategoriaFilme" FromRole="Categorias" ToRole="Filmes" />
-        </EntityType>
         <EntityType Name="Cinema">
           <Key>
             <PropertyRef Name="Id" />
@@ -279,6 +270,7 @@
           <Property Name="Morada" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Salas" Relationship="Self.FK_CinemaSala" FromRole="Cinemas" ToRole="Salas" />
+          <Property Name="Nome" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Filme">
           <Key>
@@ -288,7 +280,6 @@
           <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Duracao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Categorias" Relationship="Self.FK_CategoriaFilme" FromRole="Filmes" ToRole="Categorias" />
           <NavigationProperty Name="Sessaos" Relationship="Self.FK_SessaoFilme" FromRole="Filmes" ToRole="Sessaos" />
         </EntityType>
         <EntityType Name="Pessoa">
@@ -380,18 +371,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CategoriaFilme">
-          <End Role="Filmes" Type="Self.Filme" Multiplicity="1" />
-          <End Role="Categorias" Type="Self.Categoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Filmes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Categorias">
-              <PropertyRef Name="Filme_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CinemaSala">
           <End Role="Cinemas" Type="Self.Cinema" Multiplicity="1" />
           <End Role="Salas" Type="Self.Sala" Multiplicity="*" />
@@ -431,10 +410,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Funcionario_inherits_Pessoa">
-          <End Role="Pessoas" Type="Self.Pessoa" Multiplicity="1">
+          <End Type="Self.Pessoa" Multiplicity="1" Role="Pessoas">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Pessoas_Funcionario" Type="Self.Pessoas_Funcionario" Multiplicity="0..1" />
+          <End Type="Self.Pessoas_Funcionario" Multiplicity="0..1" Role="Pessoas_Funcionario" />
           <ReferentialConstraint>
             <Principal Role="Pessoas">
               <PropertyRef Name="Id" />
@@ -458,7 +437,6 @@
         </Association>
         <EntityContainer Name="CineGestEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bilhetes" EntityType="Self.Bilhete" />
-          <EntitySet Name="Categorias" EntityType="Self.Categoria" />
           <EntitySet Name="Cinemas" EntityType="Self.Cinema" />
           <EntitySet Name="Filmes" EntityType="Self.Filme" />
           <EntitySet Name="Pessoas" EntityType="Self.Pessoa" />
@@ -478,10 +456,6 @@
             <End Role="Sessaos" EntitySet="Sessaos" />
             <End Role="Bilhetes" EntitySet="Bilhetes" />
           </AssociationSet>
-          <AssociationSet Name="FK_CategoriaFilme" Association="Self.FK_CategoriaFilme">
-            <End Role="Filmes" EntitySet="Filmes" />
-            <End Role="Categorias" EntitySet="Categorias" />
-          </AssociationSet>
           <AssociationSet Name="FK_CinemaSala" Association="Self.FK_CinemaSala">
             <End Role="Cinemas" EntitySet="Cinemas" />
             <End Role="Salas" EntitySet="Salas" />
@@ -495,8 +469,8 @@
             <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
           </AssociationSet>
           <AssociationSet Name="FK_Funcionario_inherits_Pessoa" Association="Self.FK_Funcionario_inherits_Pessoa">
-            <End Role="Pessoas" EntitySet="Pessoas" />
-            <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
+            <End EntitySet="Pessoas" Role="Pessoas" />
+            <End EntitySet="Pessoas_Funcionario" Role="Pessoas_Funcionario" />
           </AssociationSet>
           <AssociationSet Name="FK_SalaSessao" Association="Self.FK_SalaSessao">
             <End Role="Salas" EntitySet="Salas" />
@@ -521,33 +495,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Categorias">
-      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Categoria)">
-        <MappingFragment StoreEntitySet="Categorias">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
-          <ScalarProperty Name="Activa" ColumnName="Activa" />
-          <ScalarProperty Name="Filme_Id" ColumnName="Filme_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Cinemas">
       <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Cinema)">
         <MappingFragment StoreEntitySet="Cinemas">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Morada" ColumnName="Morada" />
           <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Filmes">
       <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Filme)">
         <MappingFragment StoreEntitySet="Filmes">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Duracao" ColumnName="Duracao" />
           <ScalarProperty Name="Activo" ColumnName="Activo" />
         </MappingFragment>
+              <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="Id" ColumnName="Filme_Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+              </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Pessoas">

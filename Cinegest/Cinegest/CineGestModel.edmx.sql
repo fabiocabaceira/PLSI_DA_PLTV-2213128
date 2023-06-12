@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/12/2023 10:47:46
+-- Date Created: 06/12/2023 11:00:12
 -- Generated from EDMX file: C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGestModel.edmx
 -- --------------------------------------------------
 
@@ -17,32 +17,32 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_ClienteBilhete]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_ClienteBilhete];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FuncionarioBilhete]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_FuncionarioBilhete];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SessaoBilhete]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_SessaoBilhete];
+GO
 IF OBJECT_ID(N'[dbo].[FK_CategoriaFilme]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Categorias] DROP CONSTRAINT [FK_CategoriaFilme];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CinemaSala]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Salas] DROP CONSTRAINT [FK_CinemaSala];
 GO
+IF OBJECT_ID(N'[dbo].[FK_SessaoFilme]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Sessaos] DROP CONSTRAINT [FK_SessaoFilme];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Cliente_inherits_Pessoa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pessoas_Cliente] DROP CONSTRAINT [FK_Cliente_inherits_Pessoa];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ClienteBilhete]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_ClienteBilhete];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Funcionario_inherits_Pessoa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pessoas_Funcionario] DROP CONSTRAINT [FK_Funcionario_inherits_Pessoa];
 GO
-IF OBJECT_ID(N'[dbo].[FK_FuncionarioBilhete]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_FuncionarioBilhete];
-GO
 IF OBJECT_ID(N'[dbo].[FK_SalaSessao]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Sessaos] DROP CONSTRAINT [FK_SalaSessao];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SessaoBilhete]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_SessaoBilhete];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SessaoFilme]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Sessaos] DROP CONSTRAINT [FK_SessaoFilme];
 GO
 
 -- --------------------------------------------------
@@ -96,8 +96,7 @@ GO
 CREATE TABLE [dbo].[Categorias] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Nome] nvarchar(max)  NOT NULL,
-    [Activa] bit  NOT NULL,
-    [Filme_Id] int  NOT NULL
+    [Activa] bit  NOT NULL
 );
 GO
 
@@ -105,7 +104,8 @@ GO
 CREATE TABLE [dbo].[Cinemas] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Morada] nvarchar(max)  NOT NULL,
-    [Email] nvarchar(max)  NOT NULL
+    [Email] nvarchar(max)  NOT NULL,
+    [Nome] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -114,7 +114,8 @@ CREATE TABLE [dbo].[Filmes] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Nome] nvarchar(max)  NOT NULL,
     [Duracao] nvarchar(max)  NOT NULL,
-    [Activo] bit  NOT NULL
+    [Activo] bit  NOT NULL,
+    [Categoria_Id] int  NOT NULL
 );
 GO
 
@@ -267,21 +268,6 @@ ON [dbo].[Bilhetes]
     ([SessaoId]);
 GO
 
--- Creating foreign key on [Filme_Id] in table 'Categorias'
-ALTER TABLE [dbo].[Categorias]
-ADD CONSTRAINT [FK_CategoriaFilme]
-    FOREIGN KEY ([Filme_Id])
-    REFERENCES [dbo].[Filmes]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CategoriaFilme'
-CREATE INDEX [IX_FK_CategoriaFilme]
-ON [dbo].[Categorias]
-    ([Filme_Id]);
-GO
-
 -- Creating foreign key on [CinemaId] in table 'Salas'
 ALTER TABLE [dbo].[Salas]
 ADD CONSTRAINT [FK_CinemaSala]
@@ -344,6 +330,93 @@ CREATE INDEX [IX_FK_SalaSessao]
 ON [dbo].[Sessaos]
     ([SalaId]);
 GO
+
+-- Creating foreign key on [Categoria_Id] in table 'Filmes'
+ALTER TABLE [dbo].[Filmes]
+ADD CONSTRAINT [FK_FilmeCategoria]
+    FOREIGN KEY ([Categoria_Id])
+    REFERENCES [dbo].[Categorias]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FilmeCategoria'
+CREATE INDEX [IX_FK_FilmeCategoria]
+ON [dbo].[Filmes]
+    ([Categoria_Id]);
+GO
+
+-- Cinemas
+INSERT INTO [dbo].[Cinemas] ([Nome], [Email], [Morada])
+VALUES ('Cinema 1', 'cinema1@example.com', '123 Main Street');
+   
+-- Salas
+INSERT INTO [dbo].[Salas] ([Colunas], [Filas], [CinemaId])
+VALUES ('10', '8', 1),
+       ('12', '10', 1),
+       ('15', '12', 1);
+
+-- Categorias
+INSERT INTO [dbo].[Categorias] ([Nome], [Activa])
+VALUES ('Ação', 1),
+       ('Comédia', 0),
+       ('Drama', 1);
+
+-- Filmes
+INSERT INTO [dbo].[Filmes] ([Nome], [Duracao], [Activo], [Categoria_Id])
+VALUES ('Matrix', '120', 1, 1),
+       ('The Incredibles 2', '90', 1, 2),
+       ('Thor', '105', 0, 3);
+
+-- Pessoas
+INSERT INTO [dbo].[Pessoas] ([Nome], [Morada])
+VALUES ('João Silva', 'Rua A'),
+       ('Marta Oliveira', 'Rua B'),
+       ('Pedro Santos', 'Rua C'),
+       ('Miguel Silva', 'Rua A'),
+       ('Jaime Tomé', 'Rua B'),
+       ('Tiago Nunes', 'Rua C');
+
+-- Pessoas_Funcionario
+INSERT INTO [dbo].[Pessoas_Funcionario] ([Id], [Salario], [Funcao])
+VALUES (1, '1000', 'Bilheteira'),
+       (2, '1200', 'Gerente'),
+       (3, '900', 'Limpeza');
+
+-- Pessoas_Cliente
+INSERT INTO [dbo].[Pessoas_Cliente] ([Id], [NumFiscal])
+VALUES (4, '123456789'),
+       (5, '987654321'),
+       (6, '654321987');
+
+
+-- Sessão
+INSERT INTO [dbo].[Sessaos] ([Datahora], [Preco], [SalaId], [Filme_Id])
+VALUES ('2023-06-10 10:00:00', '10', 1, 1),
+       (GETDATE(), '12', 2, 2),
+       (GETDATE(), '8', 3, 3);
+
+-- Bilhetes
+INSERT INTO [dbo].[Bilhetes] ([Lugar], [Estado], [FuncionarioId], [ClienteId], [SessaoId])
+VALUES ('1', 'Vendido', 1, 4, 1),
+       ('1', 'Disponível', 3, 6, 2),
+       ('2', 'Disponível', 3, 6, 2),
+       ('3', 'Disponível', 3, 6, 2),
+       ('4', 'Disponível', 3, 6, 2),
+       ('5', 'Disponível', 3, 6, 2),
+       ('6', 'Disponível', 3, 6, 2),
+       ('7', 'Disponível', 3, 6, 2),
+       ('8', 'Disponível', 3, 6, 2),
+       ('9', 'Disponível', 3, 6, 2),
+       ('10', 'Disponível', 3, 6, 2),
+       ('11', 'Disponível', 3, 6, 2),
+       ('12', 'Disponível', 3, 6, 2),
+       ('13', 'Disponível', 3, 6, 2),
+       ('14', 'Disponível', 3, 6, 2),
+       ('15', 'Disponível', 3, 6, 2),
+       ('3', 'Disponível', 3, 6, 3),
+       ('16', 'Disponível', 3, 6, 2);
+
 
 -- --------------------------------------------------
 -- Script has ended

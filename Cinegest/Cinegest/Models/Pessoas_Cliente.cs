@@ -12,7 +12,7 @@ namespace Cinegest
         {
             this.Nome = Nome;
             this.Morada = Morada;
-            this.Pessoas_Cliente.NumFiscal = NumFiscal;
+            this.NumFiscal = NumFiscal;
         }    
     }
 }

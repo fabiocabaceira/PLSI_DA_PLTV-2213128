@@ -58,8 +58,10 @@
     <Compile Include="Bilhete.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Categoria.cs">
-      <DependentUpon>CineGestModel.tt</DependentUpon>
+    <Compile Include="CineGestDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CineGestDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="CineGestModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -78,11 +80,6 @@
     </Compile>
     <Compile Include="Cinema.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="data.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>data.xsd</DependentUpon>
     </Compile>
     <Compile Include="Filme.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
@@ -129,6 +126,12 @@
     <Compile Include="Forms\FormSessoes.Designer.cs">
       <DependentUpon>FormSessoes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Pessoas_Cliente.cs" />
     <Compile Include="Pessoa.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
@@ -172,19 +175,19 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CineGestModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="CineGestModel.edmx.diagram">
-      <DependentUpon>CineGestModel.edmx</DependentUpon>
+    <None Include="CineGestDataSet.xsc">
+      <DependentUpon>CineGestDataSet.xsd</DependentUpon>
     </None>
-    <None Include="data.xsc">
-      <DependentUpon>data.xsd</DependentUpon>
-    </None>
-    <None Include="data.xsd">
+    <None Include="CineGestDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>data.Designer.cs</LastGenOutput>
+      <LastGenOutput>CineGestDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="data.xss">
-      <DependentUpon>data.xsd</DependentUpon>
+    <None Include="CineGestDataSet.xss">
+      <DependentUpon>CineGestDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CineGestModel.edmx.diagram">
+      <DependentUpon>CineGestModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

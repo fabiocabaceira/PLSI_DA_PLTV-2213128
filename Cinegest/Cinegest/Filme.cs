@@ -17,7 +17,6 @@ namespace Cinegest
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Filme()
         {
-            this.Categorias = new HashSet<Categoria>();
             this.Sessaos = new HashSet<Sessao>();
         }
     
@@ -26,8 +25,6 @@ namespace Cinegest
         public string Duracao { get; set; }
         public bool Activo { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Categoria> Categorias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sessao> Sessaos { get; set; }
     }

@@ -1,0 +1,635 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CineGestDataSet" targetNamespace="http://tempuri.org/CineGestDataSet.xsd" xmlns:mstns="http://tempuri.org/CineGestDataSet.xsd" xmlns="http://tempuri.org/CineGestDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="CineGestConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="CineGestConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Cinegest.Properties.Settings.GlobalReference.Default.CineGestConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BilhetesTableAdapter" GeneratorDataComponentClassName="BilhetesTableAdapter" Name="Bilhetes" UserDataComponentName="BilhetesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CineGestConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Bilhetes.Id, Bilhetes.Lugar, Bilhetes.Estado, Bilhetes.SessaoId, Bilhetes.FuncionarioId, Bilhetes.ClienteId, Sessaos.Datahora, Sessaos.Preco, Filmes.Nome, Filmes.Duracao, Salas.Colunas, Salas.Filas
+FROM            Bilhetes INNER JOIN
+                         Sessaos ON Bilhetes.SessaoId = Sessaos.Id INNER JOIN
+                         Filmes ON Sessaos.Filme_Id = Filmes.Id INNER JOIN
+                         Salas ON Sessaos.SalaId = Salas.Id</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="Lugar" DataSetColumn="Lugar" />
+              <Mapping SourceColumn="Estado" DataSetColumn="Estado" />
+              <Mapping SourceColumn="SessaoId" DataSetColumn="SessaoId" />
+              <Mapping SourceColumn="FuncionarioId" DataSetColumn="FuncionarioId" />
+              <Mapping SourceColumn="ClienteId" DataSetColumn="ClienteId" />
+              <Mapping SourceColumn="Datahora" DataSetColumn="Datahora" />
+              <Mapping SourceColumn="Preco" DataSetColumn="Preco" />
+              <Mapping SourceColumn="Nome" DataSetColumn="Nome" />
+              <Mapping SourceColumn="Duracao" DataSetColumn="Duracao" />
+              <Mapping SourceColumn="Colunas" DataSetColumn="Colunas" />
+              <Mapping SourceColumn="Filas" DataSetColumn="Filas" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CategoriasTableAdapter" GeneratorDataComponentClassName="CategoriasTableAdapter" Name="Categorias" UserDataComponentName="CategoriasTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CineGestConnectionString (Settings)" DbObjectName="CineGest.dbo.Categorias" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[Categorias] WHERE (([Id] = @Original_Id) AND ([Activa] = @Original_Activa))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Activa" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Activa" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[Categorias] ([Nome], [Activa]) VALUES (@Nome, @Activa);
+SELECT Id, Nome, Activa FROM Categorias WHERE (Id = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Nome" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Nome" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Activa" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Activa" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, Nome, Activa FROM dbo.Categorias</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[Categorias] SET [Nome] = @Nome, [Activa] = @Activa WHERE (([Id] = @Original_Id) AND ([Activa] = @Original_Activa));
+SELECT Id, Nome, Activa FROM Categorias WHERE (Id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Nome" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Nome" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Activa" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Activa" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Activa" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Activa" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="Id" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="Nome" DataSetColumn="Nome" />
+              <Mapping SourceColumn="Activa" DataSetColumn="Activa" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CinemasTableAdapter" GeneratorDataComponentClassName="CinemasTableAdapter" Name="Cinemas" UserDataComponentName="CinemasTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CineGestConnectionString (Settings)" DbObjectName="CineGest.dbo.Cinemas" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[Cinemas] WHERE (([Id] = @Original_Id))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[Cinemas] ([Morada], [Email], [Nome]) VALUES (@Morada, @Email, @Nome);
+SELECT Id, Morada, Email, Nome FROM Cinemas WHERE (Id = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Morada" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Morada" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Email" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Email" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Nome" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Nome" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, Morada, Email, Nome FROM dbo.Cinemas</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[Cinemas] SET [Morada] = @Morada, [Email] = @Email, [Nome] = @Nome WHERE (([Id] = @Original_Id));
+SELECT Id, Morada, Email, Nome FROM Cinemas WHERE (Id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Morada" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Morada" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Email" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Email" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Nome" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Nome" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="Id" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="Morada" DataSetColumn="Morada" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+              <Mapping SourceColumn="Nome" DataSetColumn="Nome" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FilmesTableAdapter" GeneratorDataComponentClassName="FilmesTableAdapter" Name="Filmes" UserDataComponentName="FilmesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CineGestConnectionString (Settings)" DbObjectName="CineGest.dbo.Filmes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[Filmes] WHERE (([Id] = @Original_Id) AND ([Activo] = @Original_Activo) AND ([Categoria_Id] = @Original_Categoria_Id))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Activo" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Activo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Categoria_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Categoria_Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[Filmes] ([Nome], [Duracao], [Activo], [Categoria_Id]) VALUES (@Nome, @Duracao, @Activo, @Categoria_Id);
+SELECT Id, Nome, Duracao, Activo, Categoria_Id FROM Filmes WHERE (Id = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Nome" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Nome" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Duracao" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Duracao" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Activo" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Activo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Categoria_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Categoria_Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, Nome, Duracao, Activo, Categoria_Id FROM dbo.Filmes</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[Filmes] SET [Nome] = @Nome, [Duracao] = @Duracao, [Activo] = @Activo, [Categoria_Id] = @Categoria_Id WHERE (([Id] = @Original_Id) AND ([Activo] = @Original_Activo) AND ([Categoria_Id] = @Original_Categoria_Id));
+SELECT Id, Nome, Duracao, Activo, Categoria_Id FROM Filmes WHERE (Id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Nome" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Nome" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Duracao" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Duracao" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Activo" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Activo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Categoria_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Categoria_Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Activo" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Activo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Categoria_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Categoria_Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="Id" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="Nome" DataSetColumn="Nome" />
+              <Mapping SourceColumn="Duracao" DataSetColumn="Duracao" />
+              <Mapping SourceColumn="Activo" DataSetColumn="Activo" />
+              <Mapping SourceColumn="Categoria_Id" DataSetColumn="Categoria_Id" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PessoasTableAdapter" GeneratorDataComponentClassName="PessoasTableAdapter" Name="Pessoas" UserDataComponentName="PessoasTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CineGestConnectionString (Settings)" DbObjectName="CineGest.dbo.Pessoas" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[Pessoas] WHERE (([Id] = @Original_Id))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[Pessoas] ([Nome], [Morada]) VALUES (@Nome, @Morada);
+SELECT Id, Nome, Morada FROM Pessoas WHERE (Id = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Nome" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Nome" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Morada" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Morada" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, Nome, Morada FROM dbo.Pessoas</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[Pessoas] SET [Nome] = @Nome, [Morada] = @Morada WHERE (([Id] = @Original_Id));
+SELECT Id, Nome, Morada FROM Pessoas WHERE (Id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Nome" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Nome" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Morada" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Morada" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="Id" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="Nome" DataSetColumn="Nome" />
+              <Mapping SourceColumn="Morada" DataSetColumn="Morada" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Pessoas_ClienteTableAdapter" GeneratorDataComponentClassName="Pessoas_ClienteTableAdapter" Name="Pessoas_Cliente" UserDataComponentName="Pessoas_ClienteTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CineGestConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Pessoas_Cliente.NumFiscal, Pessoas_Cliente.Id, Pessoas.Nome, Pessoas.Morada
+FROM            Pessoas_Cliente INNER JOIN
+                         Pessoas ON Pessoas_Cliente.Id = Pessoas.Id</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="NumFiscal" DataSetColumn="NumFiscal" />
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="Nome" DataSetColumn="Nome" />
+              <Mapping SourceColumn="Morada" DataSetColumn="Morada" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Pessoas_FuncionarioTableAdapter" GeneratorDataComponentClassName="Pessoas_FuncionarioTableAdapter" Name="Pessoas_Funcionario" UserDataComponentName="Pessoas_FuncionarioTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CineGestConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Pessoas_Funcionario.Salario, Pessoas_Funcionario.Funcao, Pessoas_Funcionario.Id, Pessoas.Nome, Pessoas.Morada
+FROM            Pessoas_Funcionario INNER JOIN
+                         Pessoas ON Pessoas_Funcionario.Id = Pessoas.Id</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Salario" DataSetColumn="Salario" />
+              <Mapping SourceColumn="Funcao" DataSetColumn="Funcao" />
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="Nome" DataSetColumn="Nome" />
+              <Mapping SourceColumn="Morada" DataSetColumn="Morada" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SalasTableAdapter" GeneratorDataComponentClassName="SalasTableAdapter" Name="Salas" UserDataComponentName="SalasTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CineGestConnectionString (Settings)" DbObjectName="CineGest.dbo.Salas" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[Salas] WHERE (([Id] = @Original_Id) AND ([Colunas] = @Original_Colunas) AND ([Filas] = @Original_Filas) AND ([CinemaId] = @Original_CinemaId))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Colunas" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Colunas" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Filas" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Filas" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_CinemaId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CinemaId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[Salas] ([Colunas], [Filas], [CinemaId]) VALUES (@Colunas, @Filas, @CinemaId);
+SELECT Id, Colunas, Filas, CinemaId FROM Salas WHERE (Id = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Colunas" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Colunas" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Filas" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Filas" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@CinemaId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CinemaId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, Colunas, Filas, CinemaId FROM dbo.Salas</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[Salas] SET [Colunas] = @Colunas, [Filas] = @Filas, [CinemaId] = @CinemaId WHERE (([Id] = @Original_Id) AND ([Colunas] = @Original_Colunas) AND ([Filas] = @Original_Filas) AND ([CinemaId] = @Original_CinemaId));
+SELECT Id, Colunas, Filas, CinemaId FROM Salas WHERE (Id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Colunas" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Colunas" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Filas" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Filas" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@CinemaId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CinemaId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Colunas" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Colunas" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Filas" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Filas" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_CinemaId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CinemaId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="Id" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="Colunas" DataSetColumn="Colunas" />
+              <Mapping SourceColumn="Filas" DataSetColumn="Filas" />
+              <Mapping SourceColumn="CinemaId" DataSetColumn="CinemaId" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SessaosTableAdapter" GeneratorDataComponentClassName="SessaosTableAdapter" Name="Sessaos" UserDataComponentName="SessaosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CineGestConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Sessaos.Id, Sessaos.SalaId, Sessaos.Datahora, Sessaos.Preco, Sessaos.Filme_Id, Filmes.Nome
+FROM            Sessaos INNER JOIN
+                         Filmes ON Sessaos.Filme_Id = Filmes.Id
+WHERE        (CONVERT(date, Sessaos.Datahora) = CONVERT(date, GETDATE()))</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="SalaId" DataSetColumn="SalaId" />
+              <Mapping SourceColumn="Datahora" DataSetColumn="Datahora" />
+              <Mapping SourceColumn="Preco" DataSetColumn="Preco" />
+              <Mapping SourceColumn="Filme_Id" DataSetColumn="Filme_Id" />
+              <Mapping SourceColumn="Nome" DataSetColumn="Nome" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CineGestDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="CineGestDataSet" msprop:Generator_DataSetName="CineGestDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Bilhetes" msprop:Generator_RowEvHandlerName="BilhetesRowChangeEventHandler" msprop:Generator_RowDeletedName="BilhetesRowDeleted" msprop:Generator_RowDeletingName="BilhetesRowDeleting" msprop:Generator_RowEvArgName="BilhetesRowChangeEvent" msprop:Generator_TablePropName="Bilhetes" msprop:Generator_RowChangedName="BilhetesRowChanged" msprop:Generator_RowChangingName="BilhetesRowChanging" msprop:Generator_TableClassName="BilhetesDataTable" msprop:Generator_RowClassName="BilhetesRow" msprop:Generator_TableVarName="tableBilhetes" msprop:Generator_UserTableName="Bilhetes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Lugar" msprop:Generator_ColumnPropNameInRow="Lugar" msprop:Generator_ColumnPropNameInTable="LugarColumn" msprop:Generator_ColumnVarNameInTable="columnLugar" msprop:Generator_UserColumnName="Lugar" type="xs:int" />
+              <xs:element name="Estado" msprop:Generator_ColumnPropNameInRow="Estado" msprop:Generator_ColumnPropNameInTable="EstadoColumn" msprop:Generator_ColumnVarNameInTable="columnEstado" msprop:Generator_UserColumnName="Estado">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SessaoId" msprop:Generator_ColumnPropNameInRow="SessaoId" msprop:Generator_ColumnPropNameInTable="SessaoIdColumn" msprop:Generator_ColumnVarNameInTable="columnSessaoId" msprop:Generator_UserColumnName="SessaoId" type="xs:int" />
+              <xs:element name="FuncionarioId" msprop:Generator_ColumnPropNameInRow="FuncionarioId" msprop:Generator_ColumnPropNameInTable="FuncionarioIdColumn" msprop:Generator_ColumnVarNameInTable="columnFuncionarioId" msprop:Generator_UserColumnName="FuncionarioId" type="xs:int" />
+              <xs:element name="ClienteId" msprop:Generator_ColumnPropNameInRow="ClienteId" msprop:Generator_ColumnPropNameInTable="ClienteIdColumn" msprop:Generator_ColumnVarNameInTable="columnClienteId" msprop:Generator_UserColumnName="ClienteId" type="xs:int" />
+              <xs:element name="Datahora" msprop:Generator_ColumnPropNameInRow="Datahora" msprop:Generator_ColumnPropNameInTable="DatahoraColumn" msprop:Generator_ColumnVarNameInTable="columnDatahora" msprop:Generator_UserColumnName="Datahora" type="xs:dateTime" />
+              <xs:element name="Preco" msprop:Generator_ColumnPropNameInRow="Preco" msprop:Generator_ColumnPropNameInTable="PrecoColumn" msprop:Generator_ColumnVarNameInTable="columnPreco" msprop:Generator_UserColumnName="Preco" type="xs:int" />
+              <xs:element name="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_UserColumnName="Nome">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Duracao" msprop:Generator_ColumnPropNameInRow="Duracao" msprop:Generator_ColumnPropNameInTable="DuracaoColumn" msprop:Generator_ColumnVarNameInTable="columnDuracao" msprop:Generator_UserColumnName="Duracao">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Colunas" msprop:Generator_ColumnPropNameInRow="Colunas" msprop:Generator_ColumnPropNameInTable="ColunasColumn" msprop:Generator_ColumnVarNameInTable="columnColunas" msprop:Generator_UserColumnName="Colunas" type="xs:int" />
+              <xs:element name="Filas" msprop:Generator_ColumnPropNameInRow="Filas" msprop:Generator_ColumnPropNameInTable="FilasColumn" msprop:Generator_ColumnVarNameInTable="columnFilas" msprop:Generator_UserColumnName="Filas" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Categorias" msprop:Generator_RowEvHandlerName="CategoriasRowChangeEventHandler" msprop:Generator_RowDeletedName="CategoriasRowDeleted" msprop:Generator_RowDeletingName="CategoriasRowDeleting" msprop:Generator_RowEvArgName="CategoriasRowChangeEvent" msprop:Generator_TablePropName="Categorias" msprop:Generator_RowChangedName="CategoriasRowChanged" msprop:Generator_RowChangingName="CategoriasRowChanging" msprop:Generator_TableClassName="CategoriasDataTable" msprop:Generator_RowClassName="CategoriasRow" msprop:Generator_TableVarName="tableCategorias" msprop:Generator_UserTableName="Categorias">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_UserColumnName="Nome">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Activa" msprop:Generator_ColumnPropNameInRow="Activa" msprop:Generator_ColumnPropNameInTable="ActivaColumn" msprop:Generator_ColumnVarNameInTable="columnActiva" msprop:Generator_UserColumnName="Activa" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Cinemas" msprop:Generator_RowEvHandlerName="CinemasRowChangeEventHandler" msprop:Generator_RowDeletedName="CinemasRowDeleted" msprop:Generator_RowDeletingName="CinemasRowDeleting" msprop:Generator_RowEvArgName="CinemasRowChangeEvent" msprop:Generator_TablePropName="Cinemas" msprop:Generator_RowChangedName="CinemasRowChanged" msprop:Generator_RowChangingName="CinemasRowChanging" msprop:Generator_TableClassName="CinemasDataTable" msprop:Generator_RowClassName="CinemasRow" msprop:Generator_TableVarName="tableCinemas" msprop:Generator_UserTableName="Cinemas">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Morada" msprop:Generator_ColumnPropNameInRow="Morada" msprop:Generator_ColumnPropNameInTable="MoradaColumn" msprop:Generator_ColumnVarNameInTable="columnMorada" msprop:Generator_UserColumnName="Morada">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_UserColumnName="Email">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_UserColumnName="Nome">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Filmes" msprop:Generator_RowEvHandlerName="FilmesRowChangeEventHandler" msprop:Generator_RowDeletedName="FilmesRowDeleted" msprop:Generator_RowDeletingName="FilmesRowDeleting" msprop:Generator_RowEvArgName="FilmesRowChangeEvent" msprop:Generator_TablePropName="Filmes" msprop:Generator_RowChangedName="FilmesRowChanged" msprop:Generator_RowChangingName="FilmesRowChanging" msprop:Generator_TableClassName="FilmesDataTable" msprop:Generator_RowClassName="FilmesRow" msprop:Generator_TableVarName="tableFilmes" msprop:Generator_UserTableName="Filmes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_UserColumnName="Nome">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Duracao" msprop:Generator_ColumnPropNameInRow="Duracao" msprop:Generator_ColumnPropNameInTable="DuracaoColumn" msprop:Generator_ColumnVarNameInTable="columnDuracao" msprop:Generator_UserColumnName="Duracao">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Activo" msprop:Generator_ColumnPropNameInRow="Activo" msprop:Generator_ColumnPropNameInTable="ActivoColumn" msprop:Generator_ColumnVarNameInTable="columnActivo" msprop:Generator_UserColumnName="Activo" type="xs:boolean" />
+              <xs:element name="Categoria_Id" msprop:Generator_ColumnPropNameInRow="Categoria_Id" msprop:Generator_ColumnPropNameInTable="Categoria_IdColumn" msprop:Generator_ColumnVarNameInTable="columnCategoria_Id" msprop:Generator_UserColumnName="Categoria_Id" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Pessoas" msprop:Generator_RowEvHandlerName="PessoasRowChangeEventHandler" msprop:Generator_RowDeletedName="PessoasRowDeleted" msprop:Generator_RowDeletingName="PessoasRowDeleting" msprop:Generator_RowEvArgName="PessoasRowChangeEvent" msprop:Generator_TablePropName="Pessoas" msprop:Generator_RowChangedName="PessoasRowChanged" msprop:Generator_RowChangingName="PessoasRowChanging" msprop:Generator_TableClassName="PessoasDataTable" msprop:Generator_RowClassName="PessoasRow" msprop:Generator_TableVarName="tablePessoas" msprop:Generator_UserTableName="Pessoas">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_UserColumnName="Nome">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Morada" msprop:Generator_ColumnPropNameInRow="Morada" msprop:Generator_ColumnPropNameInTable="MoradaColumn" msprop:Generator_ColumnVarNameInTable="columnMorada" msprop:Generator_UserColumnName="Morada">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Pessoas_Cliente" msprop:Generator_RowEvHandlerName="Pessoas_ClienteRowChangeEventHandler" msprop:Generator_RowDeletedName="Pessoas_ClienteRowDeleted" msprop:Generator_RowDeletingName="Pessoas_ClienteRowDeleting" msprop:Generator_RowEvArgName="Pessoas_ClienteRowChangeEvent" msprop:Generator_TablePropName="Pessoas_Cliente" msprop:Generator_RowChangedName="Pessoas_ClienteRowChanged" msprop:Generator_RowChangingName="Pessoas_ClienteRowChanging" msprop:Generator_TableClassName="Pessoas_ClienteDataTable" msprop:Generator_RowClassName="Pessoas_ClienteRow" msprop:Generator_TableVarName="tablePessoas_Cliente" msprop:Generator_UserTableName="Pessoas_Cliente">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NumFiscal" msprop:Generator_ColumnPropNameInRow="NumFiscal" msprop:Generator_ColumnPropNameInTable="NumFiscalColumn" msprop:Generator_ColumnVarNameInTable="columnNumFiscal" msprop:Generator_UserColumnName="NumFiscal" type="xs:int" />
+              <xs:element name="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_UserColumnName="Nome">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Morada" msprop:Generator_ColumnPropNameInRow="Morada" msprop:Generator_ColumnPropNameInTable="MoradaColumn" msprop:Generator_ColumnVarNameInTable="columnMorada" msprop:Generator_UserColumnName="Morada">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Pessoas_Funcionario" msprop:Generator_RowEvHandlerName="Pessoas_FuncionarioRowChangeEventHandler" msprop:Generator_RowDeletedName="Pessoas_FuncionarioRowDeleted" msprop:Generator_RowDeletingName="Pessoas_FuncionarioRowDeleting" msprop:Generator_RowEvArgName="Pessoas_FuncionarioRowChangeEvent" msprop:Generator_TablePropName="Pessoas_Funcionario" msprop:Generator_RowChangedName="Pessoas_FuncionarioRowChanged" msprop:Generator_RowChangingName="Pessoas_FuncionarioRowChanging" msprop:Generator_TableClassName="Pessoas_FuncionarioDataTable" msprop:Generator_RowClassName="Pessoas_FuncionarioRow" msprop:Generator_TableVarName="tablePessoas_Funcionario" msprop:Generator_UserTableName="Pessoas_Funcionario">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Salario" msprop:Generator_ColumnPropNameInRow="Salario" msprop:Generator_ColumnPropNameInTable="SalarioColumn" msprop:Generator_ColumnVarNameInTable="columnSalario" msprop:Generator_UserColumnName="Salario" type="xs:int" />
+              <xs:element name="Funcao" msprop:Generator_ColumnPropNameInRow="Funcao" msprop:Generator_ColumnPropNameInTable="FuncaoColumn" msprop:Generator_ColumnVarNameInTable="columnFuncao" msprop:Generator_UserColumnName="Funcao">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_UserColumnName="Nome">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Morada" msprop:Generator_ColumnPropNameInRow="Morada" msprop:Generator_ColumnPropNameInTable="MoradaColumn" msprop:Generator_ColumnVarNameInTable="columnMorada" msprop:Generator_UserColumnName="Morada">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Salas" msprop:Generator_RowEvHandlerName="SalasRowChangeEventHandler" msprop:Generator_RowDeletedName="SalasRowDeleted" msprop:Generator_RowDeletingName="SalasRowDeleting" msprop:Generator_RowEvArgName="SalasRowChangeEvent" msprop:Generator_TablePropName="Salas" msprop:Generator_RowChangedName="SalasRowChanged" msprop:Generator_RowChangingName="SalasRowChanging" msprop:Generator_TableClassName="SalasDataTable" msprop:Generator_RowClassName="SalasRow" msprop:Generator_TableVarName="tableSalas" msprop:Generator_UserTableName="Salas">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Colunas" msprop:Generator_ColumnPropNameInRow="Colunas" msprop:Generator_ColumnPropNameInTable="ColunasColumn" msprop:Generator_ColumnVarNameInTable="columnColunas" msprop:Generator_UserColumnName="Colunas" type="xs:int" />
+              <xs:element name="Filas" msprop:Generator_ColumnPropNameInRow="Filas" msprop:Generator_ColumnPropNameInTable="FilasColumn" msprop:Generator_ColumnVarNameInTable="columnFilas" msprop:Generator_UserColumnName="Filas" type="xs:int" />
+              <xs:element name="CinemaId" msprop:Generator_ColumnPropNameInRow="CinemaId" msprop:Generator_ColumnPropNameInTable="CinemaIdColumn" msprop:Generator_ColumnVarNameInTable="columnCinemaId" msprop:Generator_UserColumnName="CinemaId" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Sessaos" msprop:Generator_RowEvHandlerName="SessaosRowChangeEventHandler" msprop:Generator_RowDeletedName="SessaosRowDeleted" msprop:Generator_RowDeletingName="SessaosRowDeleting" msprop:Generator_RowEvArgName="SessaosRowChangeEvent" msprop:Generator_TablePropName="Sessaos" msprop:Generator_RowChangedName="SessaosRowChanged" msprop:Generator_RowChangingName="SessaosRowChanging" msprop:Generator_TableClassName="SessaosDataTable" msprop:Generator_RowClassName="SessaosRow" msprop:Generator_TableVarName="tableSessaos" msprop:Generator_UserTableName="Sessaos">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="SalaId" msprop:Generator_ColumnPropNameInRow="SalaId" msprop:Generator_ColumnPropNameInTable="SalaIdColumn" msprop:Generator_ColumnVarNameInTable="columnSalaId" msprop:Generator_UserColumnName="SalaId" type="xs:int" />
+              <xs:element name="Datahora" msprop:Generator_ColumnPropNameInRow="Datahora" msprop:Generator_ColumnPropNameInTable="DatahoraColumn" msprop:Generator_ColumnVarNameInTable="columnDatahora" msprop:Generator_UserColumnName="Datahora" type="xs:dateTime" />
+              <xs:element name="Preco" msprop:Generator_ColumnPropNameInRow="Preco" msprop:Generator_ColumnPropNameInTable="PrecoColumn" msprop:Generator_ColumnVarNameInTable="columnPreco" msprop:Generator_UserColumnName="Preco" type="xs:int" />
+              <xs:element name="Filme_Id" msprop:Generator_ColumnPropNameInRow="Filme_Id" msprop:Generator_ColumnPropNameInTable="Filme_IdColumn" msprop:Generator_ColumnVarNameInTable="columnFilme_Id" msprop:Generator_UserColumnName="Filme_Id" type="xs:int" />
+              <xs:element name="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_UserColumnName="Nome">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Bilhetes" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Categorias_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Categorias" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Cinemas_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Cinemas" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Filmes_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Filmes" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Pessoas_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Pessoas" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Pessoas_Cliente_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Pessoas_Cliente" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Pessoas_Funcionario_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Pessoas_Funcionario" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Salas_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Salas" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Sessaos_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Sessaos" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_FilmeCategoria" msdata:parent="Categorias" msdata:child="Filmes" msdata:parentkey="Id" msdata:childkey="Categoria_Id" msprop:Generator_UserParentTable="Categorias" msprop:Generator_UserChildTable="Filmes" msprop:Generator_RelationVarName="relationFK_FilmeCategoria" msprop:Generator_ChildPropName="GetFilmesRows" msprop:Generator_ParentPropName="CategoriasRow" msprop:Generator_UserRelationName="FK_FilmeCategoria" />
+      <msdata:Relationship name="FK_ClienteBilhete" msdata:parent="Pessoas_Cliente" msdata:child="Bilhetes" msdata:parentkey="Id" msdata:childkey="ClienteId" msprop:Generator_UserParentTable="Pessoas_Cliente" msprop:Generator_UserChildTable="Bilhetes" msprop:Generator_RelationVarName="relationFK_ClienteBilhete" msprop:Generator_UserRelationName="FK_ClienteBilhete" msprop:Generator_ChildPropName="GetBilhetesRows" msprop:Generator_ParentPropName="Pessoas_ClienteRow" />
+      <msdata:Relationship name="FK_Cliente_inherits_Pessoa" msdata:parent="Pessoas" msdata:child="Pessoas_Cliente" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserParentTable="Pessoas" msprop:Generator_UserChildTable="Pessoas_Cliente" msprop:Generator_RelationVarName="relationFK_Cliente_inherits_Pessoa" msprop:Generator_ChildPropName="GetPessoas_ClienteRows" msprop:Generator_ParentPropName="PessoasRow" msprop:Generator_UserRelationName="FK_Cliente_inherits_Pessoa" />
+      <msdata:Relationship name="FK_FuncionarioBilhete" msdata:parent="Pessoas_Funcionario" msdata:child="Bilhetes" msdata:parentkey="Id" msdata:childkey="FuncionarioId" msprop:Generator_UserParentTable="Pessoas_Funcionario" msprop:Generator_UserChildTable="Bilhetes" msprop:Generator_RelationVarName="relationFK_FuncionarioBilhete" msprop:Generator_UserRelationName="FK_FuncionarioBilhete" msprop:Generator_ChildPropName="GetBilhetesRows" msprop:Generator_ParentPropName="Pessoas_FuncionarioRow" />
+      <msdata:Relationship name="FK_Funcionario_inherits_Pessoa" msdata:parent="Pessoas" msdata:child="Pessoas_Funcionario" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserParentTable="Pessoas" msprop:Generator_UserChildTable="Pessoas_Funcionario" msprop:Generator_RelationVarName="relationFK_Funcionario_inherits_Pessoa" msprop:Generator_ChildPropName="GetPessoas_FuncionarioRows" msprop:Generator_ParentPropName="PessoasRow" msprop:Generator_UserRelationName="FK_Funcionario_inherits_Pessoa" />
+      <msdata:Relationship name="FK_CinemaSala" msdata:parent="Cinemas" msdata:child="Salas" msdata:parentkey="Id" msdata:childkey="CinemaId" msprop:Generator_UserParentTable="Cinemas" msprop:Generator_UserChildTable="Salas" msprop:Generator_RelationVarName="relationFK_CinemaSala" msprop:Generator_ChildPropName="GetSalasRows" msprop:Generator_ParentPropName="CinemasRow" msprop:Generator_UserRelationName="FK_CinemaSala" />
+      <msdata:Relationship name="FK_SessaoBilhete" msdata:parent="Sessaos" msdata:child="Bilhetes" msdata:parentkey="Id" msdata:childkey="SessaoId" msprop:Generator_UserParentTable="Sessaos" msprop:Generator_UserChildTable="Bilhetes" msprop:Generator_RelationVarName="relationFK_SessaoBilhete" msprop:Generator_UserRelationName="FK_SessaoBilhete" msprop:Generator_ChildPropName="GetBilhetesRows" msprop:Generator_ParentPropName="SessaosRow" />
+      <msdata:Relationship name="FK_SalaSessao" msdata:parent="Salas" msdata:child="Sessaos" msdata:parentkey="Id" msdata:childkey="SalaId" msprop:Generator_UserParentTable="Salas" msprop:Generator_UserChildTable="Sessaos" msprop:Generator_RelationVarName="relationFK_SalaSessao" msprop:Generator_ChildPropName="GetSessaosRows" msprop:Generator_ParentPropName="SalasRow" msprop:Generator_UserRelationName="FK_SalaSessao" />
+      <msdata:Relationship name="FK_SessaoFilme" msdata:parent="Filmes" msdata:child="Sessaos" msdata:parentkey="Id" msdata:childkey="Filme_Id" msprop:Generator_UserParentTable="Filmes" msprop:Generator_UserChildTable="Sessaos" msprop:Generator_RelationVarName="relationFK_SessaoFilme" msprop:Generator_ChildPropName="GetSessaosRows" msprop:Generator_ParentPropName="FilmesRow" msprop:Generator_UserRelationName="FK_SessaoFilme" />
+      <msdata:Relationship name="FK_Cliente_inherits_Pessoa1" msdata:parent="Pessoas_Funcionario" msdata:child="Pessoas_Cliente" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserParentTable="Pessoas_Funcionario" msprop:Generator_UserChildTable="Pessoas_Cliente" msprop:Generator_RelationVarName="relationFK_Cliente_inherits_Pessoa1" msprop:Generator_UserRelationName="FK_Cliente_inherits_Pessoa1" msprop:Generator_ChildPropName="GetPessoas_ClienteRows" msprop:Generator_ParentPropName="Pessoas_FuncionarioRow" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CineGestModelStoreContainer" CdmEntityContainer="CineGestEntities5">
+    <EntitySetMapping Name="Bilhetes">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Bilhete)">
+        <MappingFragment StoreEntitySet="Bilhetes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Lugar" ColumnName="Lugar" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="SessaoId" ColumnName="SessaoId" />
+          <ScalarProperty Name="FuncionarioId" ColumnName="FuncionarioId" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Categoria)">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Activa" ColumnName="Activa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cinemas">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Cinema)">
+        <MappingFragment StoreEntitySet="Cinemas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Morada" ColumnName="Morada" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Filmes">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Filme)">
+        <MappingFragment StoreEntitySet="Filmes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Duracao" ColumnName="Duracao" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pessoas">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Pessoa)">
+        <MappingFragment StoreEntitySet="Pessoas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Morada" ColumnName="Morada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pessoas_Cliente">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Pessoas_Cliente)">
+        <MappingFragment StoreEntitySet="Pessoas_Cliente">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NumFiscal" ColumnName="NumFiscal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pessoas_Funcionario">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Pessoas_Funcionario)">
+        <MappingFragment StoreEntitySet="Pessoas_Funcionario">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Salario" ColumnName="Salario" />
+          <ScalarProperty Name="Funcao" ColumnName="Funcao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salas">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Sala)">
+        <MappingFragment StoreEntitySet="Salas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Colunas" ColumnName="Colunas" />
+          <ScalarProperty Name="Filas" ColumnName="Filas" />
+          <ScalarProperty Name="CinemaId" ColumnName="CinemaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sessaos">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Sessao)">
+        <MappingFragment StoreEntitySet="Sessaos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SalaId" ColumnName="SalaId" />
+          <ScalarProperty Name="Datahora" ColumnName="Datahora" />
+          <ScalarProperty Name="Preco" ColumnName="Preco" />
+          <ScalarProperty Name="Filme_Id" ColumnName="Filme_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
