@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Cinegest
 {
-    public partial class Pessoas_Cliente : Pessoa
+    public partial class Cliente : Pessoa
     {
-        public Pessoas_Cliente(string Nome, string Morada, int NumFiscal) 
+        public Cliente(string Nome, string Morada, int NumFiscal) 
         {
             this.Nome = Nome;
             this.Morada = Morada;

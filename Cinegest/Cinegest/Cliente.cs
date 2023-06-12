@@ -12,20 +12,17 @@ namespace Cinegest
     using System;
     using System.Collections.Generic;
     
-    public partial class Pessoas_Funcionario
+    public partial class Cliente : Pessoa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pessoas_Funcionario()
+        public Cliente()
         {
             this.Bilhetes = new HashSet<Bilhete>();
         }
     
-        public int Salario { get; set; }
-        public string Funcao { get; set; }
-        public int Id { get; set; }
+        public int NumFiscal { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bilhete> Bilhetes { get; set; }
-        public virtual Pessoa Pessoa { get; set; }
     }
 }

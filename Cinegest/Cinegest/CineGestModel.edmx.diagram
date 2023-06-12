@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="54937cd4ec6d4db6be79c3a98c793cd8" Name="Diagram1">
+      <Diagram DiagramId="54937cd4ec6d4db6be79c3a98c793cd8" Name="Diagram1" ZoomLevel="111">
         <EntityTypeShape EntityType="CineGestModel.Bilhete" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CineGestModel.Cinema" Width="1.5" PointX="7.625" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CineGestModel.Filme" Width="1.5" PointX="0.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineGestModel.Filme" Width="1.5" PointX="0.5" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CineGestModel.Pessoa" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CineGestModel.Pessoas_Cliente" Width="1.5" PointX="9.375" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CineGestModel.Pessoas_Funcionario" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineGestModel.Cliente" Width="1.5" PointX="9.375" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineGestModel.Funcionario" Width="1.5" PointX="5.375" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CineGestModel.Sala" Width="1.5" PointX="10.75" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CineGestModel.Sessao" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="CineGestModel.FK_ClienteBilhete" ManuallyRouted="false" />
@@ -18,9 +18,11 @@
         <AssociationConnector Association="CineGestModel.FK_SessaoBilhete" ManuallyRouted="false" />
         <AssociationConnector Association="CineGestModel.FK_CinemaSala" ManuallyRouted="false" />
         <AssociationConnector Association="CineGestModel.FK_SessaoFilme" ManuallyRouted="false" />
-        <AssociationConnector Association="CineGestModel.FK_Cliente_inherits_Pessoa" ManuallyRouted="false" />
-        <AssociationConnector ManuallyRouted="false" Association="CineGestModel.FK_Funcionario_inherits_Pessoa" />
         <AssociationConnector Association="CineGestModel.FK_SalaSessao" ManuallyRouted="false" />
+        <InheritanceConnector EntityType="CineGestModel.Funcionario" />
+        <InheritanceConnector EntityType="CineGestModel.Cliente" />
+        <EntityTypeShape EntityType="CineGestModel.Categoria" Width="1.5" PointX="3.125" PointY="8" />
+        <AssociationConnector Association="CineGestModel.FilmeCategoria" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

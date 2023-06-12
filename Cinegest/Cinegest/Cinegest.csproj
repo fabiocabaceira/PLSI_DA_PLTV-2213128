@@ -58,6 +58,9 @@
     <Compile Include="Bilhete.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Categoria.cs">
+      <DependentUpon>CineGestModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CineGestDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -79,6 +82,9 @@
       <DependentUpon>CineGestModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Cinema.cs">
+      <DependentUpon>CineGestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Filme.cs">
@@ -138,14 +144,11 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Funcionario.cs">
+      <DependentUpon>CineGestModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Pessoas_Cliente.cs" />
     <Compile Include="Pessoa.cs">
-      <DependentUpon>CineGestModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Pessoas_Cliente.cs">
-      <DependentUpon>CineGestModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Pessoas_Funcionario.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />

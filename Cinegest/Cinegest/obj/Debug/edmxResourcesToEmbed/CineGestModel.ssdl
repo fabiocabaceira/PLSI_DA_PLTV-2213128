@@ -2,7 +2,6 @@
 <Schema Namespace="CineGestModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="CineGestModelStoreContainer">
     <EntitySet Name="Bilhetes" EntityType="CineGestModel.Store.Bilhetes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Categorias" EntityType="CineGestModel.Store.Categorias" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Cinemas" EntityType="CineGestModel.Store.Cinemas" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Filmes" EntityType="CineGestModel.Store.Filmes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pessoas" EntityType="CineGestModel.Store.Pessoas" store:Type="Tables" Schema="dbo" />
@@ -10,6 +9,7 @@
     <EntitySet Name="Pessoas_Funcionario" EntityType="CineGestModel.Store.Pessoas_Funcionario" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Salas" EntityType="CineGestModel.Store.Salas" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Sessaos" EntityType="CineGestModel.Store.Sessaos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categorias" EntityType="CineGestModel.Store.Categorias" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_ClienteBilhete" Association="CineGestModel.Store.FK_ClienteBilhete">
       <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
       <End Role="Bilhetes" EntitySet="Bilhetes" />
@@ -22,10 +22,6 @@
       <End Role="Sessaos" EntitySet="Sessaos" />
       <End Role="Bilhetes" EntitySet="Bilhetes" />
     </AssociationSet>
-    <AssociationSet Name="FK_CategoriaFilme" Association="CineGestModel.Store.FK_CategoriaFilme">
-      <End Role="Filmes" EntitySet="Filmes" />
-      <End Role="Categorias" EntitySet="Categorias" />
-    </AssociationSet>
     <AssociationSet Name="FK_CinemaSala" Association="CineGestModel.Store.FK_CinemaSala">
       <End Role="Cinemas" EntitySet="Cinemas" />
       <End Role="Salas" EntitySet="Salas" />
@@ -34,17 +30,21 @@
       <End Role="Filmes" EntitySet="Filmes" />
       <End Role="Sessaos" EntitySet="Sessaos" />
     </AssociationSet>
-    <AssociationSet Name="FK_Cliente_inherits_Pessoa" Association="CineGestModel.Store.FK_Cliente_inherits_Pessoa">
-      <End Role="Pessoas" EntitySet="Pessoas" />
-      <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Funcionario_inherits_Pessoa" Association="CineGestModel.Store.FK_Funcionario_inherits_Pessoa">
-      <End Role="Pessoas" EntitySet="Pessoas" />
-      <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
-    </AssociationSet>
     <AssociationSet Name="FK_SalaSessao" Association="CineGestModel.Store.FK_SalaSessao">
       <End Role="Salas" EntitySet="Salas" />
       <End Role="Sessaos" EntitySet="Sessaos" />
+    </AssociationSet>
+    <AssociationSet Name="FilmeCategoria" Association="CineGestModel.Store.FilmeCategoria">
+      <End Role="Filme" EntitySet="Filmes" />
+      <End Role="Categoria" EntitySet="Categorias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cliente_inherits_Pessoa" Association="CineGestModel.Store.FK_Cliente_inherits_Pessoa">
+      <End Role="Pessoa" EntitySet="Pessoas" />
+      <End Role="Cliente" EntitySet="Pessoas_Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Funcionario_inherits_Pessoa" Association="CineGestModel.Store.FK_Funcionario_inherits_Pessoa">
+      <End Role="Pessoa" EntitySet="Pessoas" />
+      <End Role="Funcionario" EntitySet="Pessoas_Funcionario" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Bilhetes">
@@ -57,15 +57,6 @@
     <Property Name="SessaoId" Type="int" Nullable="false" />
     <Property Name="FuncionarioId" Type="int" Nullable="false" />
     <Property Name="ClienteId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Categorias">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Activa" Type="bit" Nullable="false" />
-    <Property Name="Filme_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
   </EntityType>
   <EntityType Name="Cinemas">
     <Key>
@@ -84,6 +75,8 @@
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Duracao" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Activo" Type="bit" Nullable="false" />
+    <Property Name="CategoriaId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Categoria_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Pessoas">
     <Key>
@@ -127,6 +120,14 @@
     <Property Name="Preco" Type="int" Nullable="false" />
     <Property Name="Filme_Id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Activa" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
   <Association Name="FK_ClienteBilhete">
     <End Role="Pessoas_Cliente" Type="CineGestModel.Store.Pessoas_Cliente" Multiplicity="1" />
     <End Role="Bilhetes" Type="CineGestModel.Store.Bilhetes" Multiplicity="*" />
@@ -163,18 +164,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CategoriaFilme">
-    <End Role="Filmes" Type="CineGestModel.Store.Filmes" Multiplicity="1" />
-    <End Role="Categorias" Type="CineGestModel.Store.Categorias" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Filmes">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Categorias">
-        <PropertyRef Name="Filme_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_CinemaSala">
     <End Role="Cinemas" Type="CineGestModel.Store.Cinemas" Multiplicity="1" />
     <End Role="Salas" Type="CineGestModel.Store.Salas" Multiplicity="*" />
@@ -199,34 +188,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Cliente_inherits_Pessoa">
-    <End Role="Pessoas" Type="CineGestModel.Store.Pessoas" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Pessoas_Cliente" Type="CineGestModel.Store.Pessoas_Cliente" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Pessoas">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Pessoas_Cliente">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Funcionario_inherits_Pessoa">
-    <End Role="Pessoas" Type="CineGestModel.Store.Pessoas" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Pessoas_Funcionario" Type="CineGestModel.Store.Pessoas_Funcionario" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Pessoas">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Pessoas_Funcionario">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_SalaSessao">
     <End Role="Salas" Type="CineGestModel.Store.Salas" Multiplicity="1" />
     <End Role="Sessaos" Type="CineGestModel.Store.Sessaos" Multiplicity="*" />
@@ -236,6 +197,46 @@
       </Principal>
       <Dependent Role="Sessaos">
         <PropertyRef Name="SalaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FilmeCategoria">
+    <End Role="Filme" Type="CineGestModel.Store.Filmes" Multiplicity="*" />
+    <End Role="Categoria" Type="CineGestModel.Store.Categorias" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Filme">
+        <PropertyRef Name="Categoria_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cliente_inherits_Pessoa">
+    <End Role="Pessoa" Type="CineGestModel.Store.Pessoas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cliente" Type="CineGestModel.Store.Pessoas_Cliente" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Funcionario_inherits_Pessoa">
+    <End Role="Pessoa" Type="CineGestModel.Store.Pessoas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Funcionario" Type="CineGestModel.Store.Pessoas_Funcionario" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Funcionario">
+        <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

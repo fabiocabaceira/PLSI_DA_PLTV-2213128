@@ -30,10 +30,7 @@
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Duracao" ColumnName="Duracao" />
           <ScalarProperty Name="Activo" ColumnName="Activo" />
-        </MappingFragment>
-        <MappingFragment StoreEntitySet="Categorias">
-          <ScalarProperty Name="Id" ColumnName="Filme_Id" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -45,17 +42,13 @@
           <ScalarProperty Name="Morada" ColumnName="Morada" />
         </MappingFragment>
       </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Pessoas_Cliente">
-      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Pessoas_Cliente)">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Cliente)">
         <MappingFragment StoreEntitySet="Pessoas_Cliente">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="NumFiscal" ColumnName="NumFiscal" />
         </MappingFragment>
       </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Pessoas_Funcionario">
-      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Pessoas_Funcionario)">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Funcionario)">
         <MappingFragment StoreEntitySet="Pessoas_Funcionario">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Salario" ColumnName="Salario" />
@@ -84,5 +77,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Categoria)">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Activa" ColumnName="Activa" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FilmeCategoria" TypeName="CineGestModel.FilmeCategoria" StoreEntitySet="Filmes">
+      <EndProperty Name="Categoria">
+        <ScalarProperty Name="Id" ColumnName="Categoria_Id" />
+      </EndProperty>
+      <EndProperty Name="Filme">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

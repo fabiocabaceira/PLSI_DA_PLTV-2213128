@@ -29,9 +29,8 @@ namespace Cinegest
         public virtual DbSet<Cinema> Cinemas { get; set; }
         public virtual DbSet<Filme> Filmes { get; set; }
         public virtual DbSet<Pessoa> Pessoas { get; set; }
-        public virtual DbSet<Pessoas_Cliente> Pessoas_Cliente { get; set; }
-        public virtual DbSet<Pessoas_Funcionario> Pessoas_Funcionario { get; set; }
         public virtual DbSet<Sala> Salas { get; set; }
         public virtual DbSet<Sessao> Sessaos { get; set; }
+        public virtual DbSet<Categoria> Categorias { get; set; }
     }
 }

@@ -21,8 +21,8 @@ namespace Cinegest
         public int FuncionarioId { get; set; }
         public int ClienteId { get; set; }
     
-        public virtual Pessoas_Cliente Pessoas_Cliente { get; set; }
-        public virtual Pessoas_Funcionario Pessoas_Funcionario { get; set; }
+        public virtual Cliente Pessoas_Cliente { get; set; }
+        public virtual Funcionario Pessoas_Funcionario { get; set; }
         public virtual Sessao Sessao { get; set; }
     }
 }

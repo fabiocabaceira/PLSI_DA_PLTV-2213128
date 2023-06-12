@@ -33,7 +33,7 @@ namespace Cinegest.Forms
             }
             else
             { 
-                Pessoas_Cliente novocliente = new Pessoas_Cliente(nome, morada, numFiscal);
+                Cliente novocliente = new Cliente(nome, morada, numFiscal);
                 db.Pessoas.Add(novocliente);     
                 db.SaveChanges();
             }

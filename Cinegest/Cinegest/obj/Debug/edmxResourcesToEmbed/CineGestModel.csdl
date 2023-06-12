@@ -33,6 +33,8 @@
     <Property Name="Duracao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Activo" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Sessaos" Relationship="Self.FK_SessaoFilme" FromRole="Filmes" ToRole="Sessaos" />
+    <Property Name="CategoriaId" Nullable="false" Type="String" />
+    <NavigationProperty Name="Categoria" Relationship="CineGestModel.FilmeCategoria" FromRole="Filme" ToRole="Categoria" />
   </EntityType>
   <EntityType Name="Pessoa">
     <Key>
@@ -41,27 +43,15 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Morada" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Pessoas_Cliente" Relationship="Self.FK_Cliente_inherits_Pessoa" FromRole="Pessoas" ToRole="Pessoas_Cliente" />
-    <NavigationProperty Name="Pessoas_Funcionario" Relationship="Self.FK_Funcionario_inherits_Pessoa" FromRole="Pessoas" ToRole="Pessoas_Funcionario" />
   </EntityType>
-  <EntityType Name="Pessoas_Cliente">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
+  <EntityType Name="Cliente" BaseType="CineGestModel.Pessoa">
     <Property Name="NumFiscal" Type="Int32" Nullable="false" />
-    <Property Name="Id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Bilhetes" Relationship="Self.FK_ClienteBilhete" FromRole="Pessoas_Cliente" ToRole="Bilhetes" />
-    <NavigationProperty Name="Pessoa" Relationship="Self.FK_Cliente_inherits_Pessoa" FromRole="Pessoas_Cliente" ToRole="Pessoas" />
   </EntityType>
-  <EntityType Name="Pessoas_Funcionario">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
+  <EntityType Name="Funcionario" BaseType="CineGestModel.Pessoa">
     <Property Name="Salario" Type="Int32" Nullable="false" />
     <Property Name="Funcao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Bilhetes" Relationship="Self.FK_FuncionarioBilhete" FromRole="Pessoas_Funcionario" ToRole="Bilhetes" />
-    <NavigationProperty Name="Pessoa" Relationship="Self.FK_Funcionario_inherits_Pessoa" FromRole="Pessoas_Funcionario" ToRole="Pessoas" />
   </EntityType>
   <EntityType Name="Sala">
     <Key>
@@ -88,7 +78,7 @@
     <NavigationProperty Name="Sala" Relationship="Self.FK_SalaSessao" FromRole="Sessaos" ToRole="Salas" />
   </EntityType>
   <Association Name="FK_ClienteBilhete">
-    <End Role="Pessoas_Cliente" Type="Self.Pessoas_Cliente" Multiplicity="1" />
+    <End Role="Pessoas_Cliente" Type="CineGestModel.Cliente" Multiplicity="1" />
     <End Role="Bilhetes" Type="Self.Bilhete" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Pessoas_Cliente">
@@ -100,7 +90,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_FuncionarioBilhete">
-    <End Role="Pessoas_Funcionario" Type="Self.Pessoas_Funcionario" Multiplicity="1" />
+    <End Role="Pessoas_Funcionario" Type="CineGestModel.Funcionario" Multiplicity="1" />
     <End Role="Bilhetes" Type="Self.Bilhete" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Pessoas_Funcionario">
@@ -147,34 +137,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Cliente_inherits_Pessoa">
-    <End Role="Pessoas" Type="Self.Pessoa" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Pessoas_Cliente" Type="Self.Pessoas_Cliente" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Pessoas">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Pessoas_Cliente">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Funcionario_inherits_Pessoa">
-    <End Type="Self.Pessoa" Multiplicity="1" Role="Pessoas">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="Self.Pessoas_Funcionario" Multiplicity="0..1" Role="Pessoas_Funcionario" />
-    <ReferentialConstraint>
-      <Principal Role="Pessoas">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Pessoas_Funcionario">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_SalaSessao">
     <End Role="Salas" Type="Self.Sala" Multiplicity="1" />
     <End Role="Sessaos" Type="Self.Sessao" Multiplicity="*" />
@@ -192,16 +154,14 @@
     <EntitySet Name="Cinemas" EntityType="Self.Cinema" />
     <EntitySet Name="Filmes" EntityType="Self.Filme" />
     <EntitySet Name="Pessoas" EntityType="Self.Pessoa" />
-    <EntitySet Name="Pessoas_Cliente" EntityType="Self.Pessoas_Cliente" />
-    <EntitySet Name="Pessoas_Funcionario" EntityType="Self.Pessoas_Funcionario" />
     <EntitySet Name="Salas" EntityType="Self.Sala" />
     <EntitySet Name="Sessaos" EntityType="Self.Sessao" />
     <AssociationSet Name="FK_ClienteBilhete" Association="Self.FK_ClienteBilhete">
-      <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
+      <End Role="Pessoas_Cliente" EntitySet="Pessoas" />
       <End Role="Bilhetes" EntitySet="Bilhetes" />
     </AssociationSet>
     <AssociationSet Name="FK_FuncionarioBilhete" Association="Self.FK_FuncionarioBilhete">
-      <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
+      <End Role="Pessoas_Funcionario" EntitySet="Pessoas" />
       <End Role="Bilhetes" EntitySet="Bilhetes" />
     </AssociationSet>
     <AssociationSet Name="FK_SessaoBilhete" Association="Self.FK_SessaoBilhete">
@@ -216,17 +176,27 @@
       <End Role="Filmes" EntitySet="Filmes" />
       <End Role="Sessaos" EntitySet="Sessaos" />
     </AssociationSet>
-    <AssociationSet Name="FK_Cliente_inherits_Pessoa" Association="Self.FK_Cliente_inherits_Pessoa">
-      <End Role="Pessoas" EntitySet="Pessoas" />
-      <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Funcionario_inherits_Pessoa" Association="Self.FK_Funcionario_inherits_Pessoa">
-      <End EntitySet="Pessoas" Role="Pessoas" />
-      <End EntitySet="Pessoas_Funcionario" Role="Pessoas_Funcionario" />
-    </AssociationSet>
     <AssociationSet Name="FK_SalaSessao" Association="Self.FK_SalaSessao">
       <End Role="Salas" EntitySet="Salas" />
       <End Role="Sessaos" EntitySet="Sessaos" />
     </AssociationSet>
+    <EntitySet Name="Categorias" EntityType="CineGestModel.Categoria" />
+    <AssociationSet Name="FilmeCategoria" Association="CineGestModel.FilmeCategoria">
+      <End Role="Filme" EntitySet="Filmes" />
+      <End Role="Categoria" EntitySet="Categorias" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Activa" Type="String" Nullable="false" />
+    <Property Name="Nome" Type="String" Nullable="false" />
+    <NavigationProperty Name="Filme" Relationship="CineGestModel.FilmeCategoria" FromRole="Categoria" ToRole="Filme" />
+  </EntityType>
+  <Association Name="FilmeCategoria">
+    <End Type="CineGestModel.Filme" Role="Filme" Multiplicity="1" />
+    <End Type="CineGestModel.Categoria" Role="Categoria" Multiplicity="1" />
+  </Association>
 </Schema>

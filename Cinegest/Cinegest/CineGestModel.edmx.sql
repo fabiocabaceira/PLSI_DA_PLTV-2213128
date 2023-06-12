@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/12/2023 11:00:12
+-- Date Created: 06/12/2023 17:04:17
 -- Generated from EDMX file: C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGestModel.edmx
 -- --------------------------------------------------
 
@@ -26,9 +26,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_SessaoBilhete]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Bilhetes] DROP CONSTRAINT [FK_SessaoBilhete];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CategoriaFilme]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Categorias] DROP CONSTRAINT [FK_CategoriaFilme];
-GO
 IF OBJECT_ID(N'[dbo].[FK_CinemaSala]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Salas] DROP CONSTRAINT [FK_CinemaSala];
 GO
@@ -51,9 +48,6 @@ GO
 
 IF OBJECT_ID(N'[dbo].[Bilhetes]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Bilhetes];
-GO
-IF OBJECT_ID(N'[dbo].[Categorias]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Categorias];
 GO
 IF OBJECT_ID(N'[dbo].[Cinemas]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Cinemas];
@@ -92,14 +86,6 @@ CREATE TABLE [dbo].[Bilhetes] (
 );
 GO
 
--- Creating table 'Categorias'
-CREATE TABLE [dbo].[Categorias] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [Nome] nvarchar(max)  NOT NULL,
-    [Activa] bit  NOT NULL
-);
-GO
-
 -- Creating table 'Cinemas'
 CREATE TABLE [dbo].[Cinemas] (
     [Id] int IDENTITY(1,1) NOT NULL,
@@ -115,6 +101,7 @@ CREATE TABLE [dbo].[Filmes] (
     [Nome] nvarchar(max)  NOT NULL,
     [Duracao] nvarchar(max)  NOT NULL,
     [Activo] bit  NOT NULL,
+    [CategoriaId] nvarchar(max)  NOT NULL,
     [Categoria_Id] int  NOT NULL
 );
 GO
@@ -161,6 +148,14 @@ CREATE TABLE [dbo].[Sessaos] (
 );
 GO
 
+-- Creating table 'Categorias'
+CREATE TABLE [dbo].[Categorias] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Activa] nvarchar(max)  NOT NULL,
+    [Nome] nvarchar(max)  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -168,12 +163,6 @@ GO
 -- Creating primary key on [Id] in table 'Bilhetes'
 ALTER TABLE [dbo].[Bilhetes]
 ADD CONSTRAINT [PK_Bilhetes]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'Categorias'
-ALTER TABLE [dbo].[Categorias]
-ADD CONSTRAINT [PK_Categorias]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -216,6 +205,12 @@ GO
 -- Creating primary key on [Id] in table 'Sessaos'
 ALTER TABLE [dbo].[Sessaos]
 ADD CONSTRAINT [PK_Sessaos]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Categorias'
+ALTER TABLE [dbo].[Categorias]
+ADD CONSTRAINT [PK_Categorias]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -298,24 +293,6 @@ ON [dbo].[Sessaos]
     ([Filme_Id]);
 GO
 
--- Creating foreign key on [Id] in table 'Pessoas_Cliente'
-ALTER TABLE [dbo].[Pessoas_Cliente]
-ADD CONSTRAINT [FK_Cliente_inherits_Pessoa]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[Pessoas]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Id] in table 'Pessoas_Funcionario'
-ALTER TABLE [dbo].[Pessoas_Funcionario]
-ADD CONSTRAINT [FK_Funcionario_inherits_Pessoa]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[Pessoas]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
 -- Creating foreign key on [SalaId] in table 'Sessaos'
 ALTER TABLE [dbo].[Sessaos]
 ADD CONSTRAINT [FK_SalaSessao]
@@ -346,77 +323,23 @@ ON [dbo].[Filmes]
     ([Categoria_Id]);
 GO
 
--- Cinemas
-INSERT INTO [dbo].[Cinemas] ([Nome], [Email], [Morada])
-VALUES ('Cinema 1', 'cinema1@example.com', '123 Main Street');
-   
--- Salas
-INSERT INTO [dbo].[Salas] ([Colunas], [Filas], [CinemaId])
-VALUES ('10', '8', 1),
-       ('12', '10', 1),
-       ('15', '12', 1);
+-- Creating foreign key on [Id] in table 'Pessoas_Cliente'
+ALTER TABLE [dbo].[Pessoas_Cliente]
+ADD CONSTRAINT [FK_Cliente_inherits_Pessoa]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[Pessoas]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
 
--- Categorias
-INSERT INTO [dbo].[Categorias] ([Nome], [Activa])
-VALUES ('Ação', 1),
-       ('Comédia', 0),
-       ('Drama', 1);
-
--- Filmes
-INSERT INTO [dbo].[Filmes] ([Nome], [Duracao], [Activo], [Categoria_Id])
-VALUES ('Matrix', '120', 1, 1),
-       ('The Incredibles 2', '90', 1, 2),
-       ('Thor', '105', 0, 3);
-
--- Pessoas
-INSERT INTO [dbo].[Pessoas] ([Nome], [Morada])
-VALUES ('João Silva', 'Rua A'),
-       ('Marta Oliveira', 'Rua B'),
-       ('Pedro Santos', 'Rua C'),
-       ('Miguel Silva', 'Rua A'),
-       ('Jaime Tomé', 'Rua B'),
-       ('Tiago Nunes', 'Rua C');
-
--- Pessoas_Funcionario
-INSERT INTO [dbo].[Pessoas_Funcionario] ([Id], [Salario], [Funcao])
-VALUES (1, '1000', 'Bilheteira'),
-       (2, '1200', 'Gerente'),
-       (3, '900', 'Limpeza');
-
--- Pessoas_Cliente
-INSERT INTO [dbo].[Pessoas_Cliente] ([Id], [NumFiscal])
-VALUES (4, '123456789'),
-       (5, '987654321'),
-       (6, '654321987');
-
-
--- Sessão
-INSERT INTO [dbo].[Sessaos] ([Datahora], [Preco], [SalaId], [Filme_Id])
-VALUES ('2023-06-10 10:00:00', '10', 1, 1),
-       (GETDATE(), '12', 2, 2),
-       (GETDATE(), '8', 3, 3);
-
--- Bilhetes
-INSERT INTO [dbo].[Bilhetes] ([Lugar], [Estado], [FuncionarioId], [ClienteId], [SessaoId])
-VALUES ('1', 'Vendido', 1, 4, 1),
-       ('1', 'Disponível', 3, 6, 2),
-       ('2', 'Disponível', 3, 6, 2),
-       ('3', 'Disponível', 3, 6, 2),
-       ('4', 'Disponível', 3, 6, 2),
-       ('5', 'Disponível', 3, 6, 2),
-       ('6', 'Disponível', 3, 6, 2),
-       ('7', 'Disponível', 3, 6, 2),
-       ('8', 'Disponível', 3, 6, 2),
-       ('9', 'Disponível', 3, 6, 2),
-       ('10', 'Disponível', 3, 6, 2),
-       ('11', 'Disponível', 3, 6, 2),
-       ('12', 'Disponível', 3, 6, 2),
-       ('13', 'Disponível', 3, 6, 2),
-       ('14', 'Disponível', 3, 6, 2),
-       ('15', 'Disponível', 3, 6, 2),
-       ('3', 'Disponível', 3, 6, 3),
-       ('16', 'Disponível', 3, 6, 2);
-
+-- Creating foreign key on [Id] in table 'Pessoas_Funcionario'
+ALTER TABLE [dbo].[Pessoas_Funcionario]
+ADD CONSTRAINT [FK_Funcionario_inherits_Pessoa]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[Pessoas]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
 
 -- --------------------------------------------------
 -- Script has ended

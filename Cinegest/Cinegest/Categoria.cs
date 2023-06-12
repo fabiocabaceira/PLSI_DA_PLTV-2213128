@@ -12,10 +12,12 @@ namespace Cinegest
     using System;
     using System.Collections.Generic;
     
-    public partial class Pessoa
+    public partial class Categoria
     {
         public int Id { get; set; }
+        public string Activa { get; set; }
         public string Nome { get; set; }
-        public string Morada { get; set; }
+    
+        public virtual Filme Filme { get; set; }
     }
 }
