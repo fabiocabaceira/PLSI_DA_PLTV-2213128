@@ -17,17 +17,18 @@ namespace Cinegest
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Filme()
         {
-            this.Sessão = new HashSet<Sessão>();
+            this.Categorias = new HashSet<Categoria>();
+            this.Sessaos = new HashSet<Sessao>();
         }
     
-        public int IdFilme { get; set; }
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Duracao { get; set; }
-        public string Activo { get; set; }
-        public int Categoria_IdCategoria { get; set; }
+        public bool Activo { get; set; }
     
-        public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sessão> Sessão { get; set; }
+        public virtual ICollection<Categoria> Categorias { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sessao> Sessaos { get; set; }
     }
 }

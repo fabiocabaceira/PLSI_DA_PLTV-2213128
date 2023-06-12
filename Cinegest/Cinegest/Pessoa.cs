@@ -14,7 +14,7 @@ namespace Cinegest
     
     public partial class Pessoa
     {
-        public int IdPessoa { get; set; }
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Morada { get; set; }
     

@@ -21,7 +21,7 @@ namespace Cinegest
         }
     
         public int NumFiscal { get; set; }
-        public int IdPessoa { get; set; }
+        public int Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bilhete> Bilhetes { get; set; }

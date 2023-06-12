@@ -26,8 +26,8 @@ namespace Cinegest.Forms
         {
             string nome = nometb.Text;
             string morada = moradatb.Text;
-            string numFiscal = numFiscaltb.Text;
-            if (nome == "" || morada == "" || numFiscal == "")
+            int numFiscal = int.Parse(numFiscaltb.Text);
+            if (nome == "" || morada == "" )
             {
                 MessageBox.Show("Tem de insirir todos os campos para poder adicionar um cliente");
             }

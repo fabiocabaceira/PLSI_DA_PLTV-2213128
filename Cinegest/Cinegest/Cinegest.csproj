@@ -56,28 +56,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bilhete.cs">
-      <DependentUpon>CineGest.tt</DependentUpon>
+      <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Categoria.cs">
-      <DependentUpon>CineGest.tt</DependentUpon>
+      <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CineGest.Context.cs">
+    <Compile Include="CineGestModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CineGest.Context.tt</DependentUpon>
+      <DependentUpon>CineGestModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="CineGest.cs">
+    <Compile Include="CineGestModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CineGest.tt</DependentUpon>
+      <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CineGest.Designer.cs">
+    <Compile Include="CineGestModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CineGest.edmx</DependentUpon>
+      <DependentUpon>CineGestModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Cinema.cs">
-      <DependentUpon>CineGest.tt</DependentUpon>
+      <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="data.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -85,7 +85,7 @@
       <DependentUpon>data.xsd</DependentUpon>
     </Compile>
     <Compile Include="Filme.cs">
-      <DependentUpon>CineGest.tt</DependentUpon>
+      <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormAtendimento.cs">
       <SubType>Form</SubType>
@@ -131,24 +131,21 @@
     </Compile>
     <Compile Include="Models\Pessoas_Cliente.cs" />
     <Compile Include="Pessoa.cs">
-      <DependentUpon>CineGest.tt</DependentUpon>
+      <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Pessoas_Cliente.cs">
-      <DependentUpon>CineGest.tt</DependentUpon>
+      <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Pessoas_Funcionario.cs">
-      <DependentUpon>CineGest.tt</DependentUpon>
+      <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sala.cs">
-      <DependentUpon>CineGest.tt</DependentUpon>
+      <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sessão.cs">
-      <DependentUpon>CineGest.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>CineGest.tt</DependentUpon>
+    <Compile Include="Sessao.cs">
+      <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\FormAtendimento.resx">
       <DependentUpon>FormAtendimento.cs</DependentUpon>
@@ -171,12 +168,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="CineGest.edmx">
+    <EntityDeploy Include="CineGestModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CineGest.Designer.cs</LastGenOutput>
+      <LastGenOutput>CineGestModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="CineGest.edmx.diagram">
-      <DependentUpon>CineGest.edmx</DependentUpon>
+    <None Include="CineGestModel.edmx.diagram">
+      <DependentUpon>CineGestModel.edmx</DependentUpon>
     </None>
     <None Include="data.xsc">
       <DependentUpon>data.xsd</DependentUpon>
@@ -206,18 +203,17 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="CineGest.Context.tt">
+    <Content Include="CineGestModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CineGest.edmx</DependentUpon>
-      <LastGenOutput>CineGest.Context.cs</LastGenOutput>
+      <DependentUpon>CineGestModel.edmx</DependentUpon>
+      <LastGenOutput>CineGestModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="CineGest.edmx.sql" />
-    <Content Include="CineGest.tt">
+    <Content Include="CineGestModel.edmx.sql" />
+    <Content Include="CineGestModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CineGest.edmx</DependentUpon>
-      <LastGenOutput>CineGest.cs</LastGenOutput>
+      <DependentUpon>CineGestModel.edmx</DependentUpon>
+      <LastGenOutput>CineGestModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

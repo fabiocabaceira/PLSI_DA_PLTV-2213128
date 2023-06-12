@@ -13,10 +13,10 @@ namespace Cinegest
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CineGestEntities : DbContext
+    public partial class CineGestEntities5 : DbContext
     {
-        public CineGestEntities()
-            : base("name=CineGestEntities")
+        public CineGestEntities5()
+            : base("name=CineGestEntities5")
         {
         }
     
@@ -33,7 +33,6 @@ namespace Cinegest
         public virtual DbSet<Pessoas_Cliente> Pessoas_Cliente { get; set; }
         public virtual DbSet<Pessoas_Funcionario> Pessoas_Funcionario { get; set; }
         public virtual DbSet<Sala> Salas { get; set; }
-        public virtual DbSet<Sessão> Sessão { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Sessao> Sessaos { get; set; }
     }
 }

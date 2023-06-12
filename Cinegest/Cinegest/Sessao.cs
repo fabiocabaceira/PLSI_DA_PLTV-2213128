@@ -12,19 +12,19 @@ namespace Cinegest
     using System;
     using System.Collections.Generic;
     
-    public partial class Sessão
+    public partial class Sessao
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sessão()
+        public Sessao()
         {
             this.Bilhetes = new HashSet<Bilhete>();
         }
     
-        public int IdSessao { get; set; }
-        public System.DateTime DataHora { get; set; }
+        public int Id { get; set; }
+        public int SalaId { get; set; }
+        public System.DateTime Datahora { get; set; }
         public int Preco { get; set; }
-        public int SalaIdSala { get; set; }
-        public int Filme_IdFilme { get; set; }
+        public int Filme_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bilhete> Bilhetes { get; set; }

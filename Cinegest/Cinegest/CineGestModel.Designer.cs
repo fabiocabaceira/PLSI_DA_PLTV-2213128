@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGest.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGestModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

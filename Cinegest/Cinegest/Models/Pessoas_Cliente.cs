@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cinegest.Models
+namespace Cinegest
 {
     public partial class Pessoas_Cliente : Pessoa
     {

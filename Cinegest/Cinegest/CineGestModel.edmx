@@ -14,12 +14,7 @@
     <EntitySet Name="Pessoas_Cliente" EntityType="CineGestModel.Store.Pessoas_Cliente" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pessoas_Funcionario" EntityType="CineGestModel.Store.Pessoas_Funcionario" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Salas" EntityType="CineGestModel.Store.Salas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Sessão" EntityType="CineGestModel.Store.Sessão" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="sysdiagrams" EntityType="CineGestModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_BilheteSessão" Association="CineGestModel.Store.FK_BilheteSessão">
-      <End Role="Sessão" EntitySet="Sessão" />
-      <End Role="Bilhetes" EntitySet="Bilhetes" />
-    </AssociationSet>
+    <EntitySet Name="Sessaos" EntityType="CineGestModel.Store.Sessaos" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_ClienteBilhete" Association="CineGestModel.Store.FK_ClienteBilhete">
       <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
       <End Role="Bilhetes" EntitySet="Bilhetes" />
@@ -28,17 +23,21 @@
       <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
       <End Role="Bilhetes" EntitySet="Bilhetes" />
     </AssociationSet>
-    <AssociationSet Name="FK_FilmeCategoria" Association="CineGestModel.Store.FK_FilmeCategoria">
-      <End Role="Categorias" EntitySet="Categorias" />
+    <AssociationSet Name="FK_SessaoBilhete" Association="CineGestModel.Store.FK_SessaoBilhete">
+      <End Role="Sessaos" EntitySet="Sessaos" />
+      <End Role="Bilhetes" EntitySet="Bilhetes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoriaFilme" Association="CineGestModel.Store.FK_CategoriaFilme">
       <End Role="Filmes" EntitySet="Filmes" />
+      <End Role="Categorias" EntitySet="Categorias" />
     </AssociationSet>
     <AssociationSet Name="FK_CinemaSala" Association="CineGestModel.Store.FK_CinemaSala">
       <End Role="Cinemas" EntitySet="Cinemas" />
       <End Role="Salas" EntitySet="Salas" />
     </AssociationSet>
-    <AssociationSet Name="FK_SessãoFilme" Association="CineGestModel.Store.FK_SessãoFilme">
+    <AssociationSet Name="FK_SessaoFilme" Association="CineGestModel.Store.FK_SessaoFilme">
       <End Role="Filmes" EntitySet="Filmes" />
-      <End Role="Sessão" EntitySet="Sessão" />
+      <End Role="Sessaos" EntitySet="Sessaos" />
     </AssociationSet>
     <AssociationSet Name="FK_Cliente_inherits_Pessoa" Association="CineGestModel.Store.FK_Cliente_inherits_Pessoa">
       <End Role="Pessoas" EntitySet="Pessoas" />
@@ -48,124 +47,99 @@
       <End Role="Pessoas" EntitySet="Pessoas" />
       <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
     </AssociationSet>
-    <AssociationSet Name="FK_SalaSessão" Association="CineGestModel.Store.FK_SalaSessão">
+    <AssociationSet Name="FK_SalaSessao" Association="CineGestModel.Store.FK_SalaSessao">
       <End Role="Salas" EntitySet="Salas" />
-      <End Role="Sessão" EntitySet="Sessão" />
+      <End Role="Sessaos" EntitySet="Sessaos" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Bilhetes">
     <Key>
-      <PropertyRef Name="IdBilhete" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="IdBilhete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Lugar" Type="int" Nullable="false" />
     <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FuncionarioIdPessoa" Type="int" Nullable="false" />
-    <Property Name="ClienteIdPessoa" Type="int" Nullable="false" />
-    <Property Name="SessãoIdSessao" Type="int" Nullable="false" />
+    <Property Name="SessaoId" Type="int" Nullable="false" />
+    <Property Name="FuncionarioId" Type="int" Nullable="false" />
+    <Property Name="ClienteId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Categorias">
     <Key>
-      <PropertyRef Name="IdCategoria" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Activa" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Activa" Type="bit" Nullable="false" />
+    <Property Name="Filme_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Cinemas">
     <Key>
-      <PropertyRef Name="IdPessoa" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="IdPessoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Morada" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Filmes">
     <Key>
-      <PropertyRef Name="IdFilme" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="IdFilme" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Duracao" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Activo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Categoria_IdCategoria" Type="int" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Pessoas">
     <Key>
-      <PropertyRef Name="IdPessoa" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="IdPessoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Morada" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Pessoas_Cliente">
     <Key>
-      <PropertyRef Name="IdPessoa" />
+      <PropertyRef Name="Id" />
     </Key>
     <Property Name="NumFiscal" Type="int" Nullable="false" />
-    <Property Name="IdPessoa" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Pessoas_Funcionario">
     <Key>
-      <PropertyRef Name="IdPessoa" />
+      <PropertyRef Name="Id" />
     </Key>
     <Property Name="Salario" Type="int" Nullable="false" />
     <Property Name="Funcao" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IdPessoa" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Salas">
     <Key>
-      <PropertyRef Name="IdSala" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="IdSala" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Colunas" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Filas" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="SessãoIdSessao" Type="int" Nullable="false" />
-    <Property Name="CinemaIdPessoa" Type="int" Nullable="true" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Colunas" Type="int" Nullable="false" />
+    <Property Name="Filas" Type="int" Nullable="false" />
+    <Property Name="CinemaId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Sessão">
+  <EntityType Name="Sessaos">
     <Key>
-      <PropertyRef Name="IdSessao" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="IdSessao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DataHora" Type="datetime" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SalaId" Type="int" Nullable="false" />
+    <Property Name="Datahora" Type="datetime" Nullable="false" />
     <Property Name="Preco" Type="int" Nullable="false" />
-    <Property Name="SalaIdSala" Type="int" Nullable="false" />
-    <Property Name="Filme_IdFilme" Type="int" Nullable="false" />
+    <Property Name="Filme_Id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" Nullable="true" />
-    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
-  </EntityType>
-  <Association Name="FK_BilheteSessão">
-    <End Role="Sessão" Type="CineGestModel.Store.Sessão" Multiplicity="1" />
-    <End Role="Bilhetes" Type="CineGestModel.Store.Bilhetes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Sessão">
-        <PropertyRef Name="IdSessao" />
-      </Principal>
-      <Dependent Role="Bilhetes">
-        <PropertyRef Name="SessãoIdSessao" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ClienteBilhete">
     <End Role="Pessoas_Cliente" Type="CineGestModel.Store.Pessoas_Cliente" Multiplicity="1" />
     <End Role="Bilhetes" Type="CineGestModel.Store.Bilhetes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Pessoas_Cliente">
-        <PropertyRef Name="IdPessoa" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Bilhetes">
-        <PropertyRef Name="ClienteIdPessoa" />
+        <PropertyRef Name="ClienteId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -174,46 +148,58 @@
     <End Role="Bilhetes" Type="CineGestModel.Store.Bilhetes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Pessoas_Funcionario">
-        <PropertyRef Name="IdPessoa" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Bilhetes">
-        <PropertyRef Name="FuncionarioIdPessoa" />
+        <PropertyRef Name="FuncionarioId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_FilmeCategoria">
-    <End Role="Categorias" Type="CineGestModel.Store.Categorias" Multiplicity="1" />
-    <End Role="Filmes" Type="CineGestModel.Store.Filmes" Multiplicity="*" />
+  <Association Name="FK_SessaoBilhete">
+    <End Role="Sessaos" Type="CineGestModel.Store.Sessaos" Multiplicity="1" />
+    <End Role="Bilhetes" Type="CineGestModel.Store.Bilhetes" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Categorias">
-        <PropertyRef Name="IdCategoria" />
+      <Principal Role="Sessaos">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Filmes">
-        <PropertyRef Name="Categoria_IdCategoria" />
+      <Dependent Role="Bilhetes">
+        <PropertyRef Name="SessaoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoriaFilme">
+    <End Role="Filmes" Type="CineGestModel.Store.Filmes" Multiplicity="1" />
+    <End Role="Categorias" Type="CineGestModel.Store.Categorias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Categorias">
+        <PropertyRef Name="Filme_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CinemaSala">
-    <End Role="Cinemas" Type="CineGestModel.Store.Cinemas" Multiplicity="0..1" />
+    <End Role="Cinemas" Type="CineGestModel.Store.Cinemas" Multiplicity="1" />
     <End Role="Salas" Type="CineGestModel.Store.Salas" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Cinemas">
-        <PropertyRef Name="IdPessoa" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Salas">
-        <PropertyRef Name="CinemaIdPessoa" />
+        <PropertyRef Name="CinemaId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SessãoFilme">
+  <Association Name="FK_SessaoFilme">
     <End Role="Filmes" Type="CineGestModel.Store.Filmes" Multiplicity="1" />
-    <End Role="Sessão" Type="CineGestModel.Store.Sessão" Multiplicity="*" />
+    <End Role="Sessaos" Type="CineGestModel.Store.Sessaos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Filmes">
-        <PropertyRef Name="IdFilme" />
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Sessão">
-        <PropertyRef Name="Filme_IdFilme" />
+      <Dependent Role="Sessaos">
+        <PropertyRef Name="Filme_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -224,10 +210,10 @@
     <End Role="Pessoas_Cliente" Type="CineGestModel.Store.Pessoas_Cliente" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Pessoas">
-        <PropertyRef Name="IdPessoa" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Pessoas_Cliente">
-        <PropertyRef Name="IdPessoa" />
+        <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -238,22 +224,22 @@
     <End Role="Pessoas_Funcionario" Type="CineGestModel.Store.Pessoas_Funcionario" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Pessoas">
-        <PropertyRef Name="IdPessoa" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Pessoas_Funcionario">
-        <PropertyRef Name="IdPessoa" />
+        <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SalaSessão">
+  <Association Name="FK_SalaSessao">
     <End Role="Salas" Type="CineGestModel.Store.Salas" Multiplicity="1" />
-    <End Role="Sessão" Type="CineGestModel.Store.Sessão" Multiplicity="*" />
+    <End Role="Sessaos" Type="CineGestModel.Store.Sessaos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Salas">
-        <PropertyRef Name="IdSala" />
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Sessão">
-        <PropertyRef Name="SalaIdSala" />
+      <Dependent Role="Sessaos">
+        <PropertyRef Name="SalaId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -263,54 +249,53 @@
       <Schema Namespace="CineGestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Bilhete">
           <Key>
-            <PropertyRef Name="IdBilhete" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="IdBilhete" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Lugar" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FuncionarioIdPessoa" Type="Int32" Nullable="false" />
-          <Property Name="ClienteIdPessoa" Type="Int32" Nullable="false" />
-          <Property Name="SessãoIdSessao" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Sessão" Relationship="Self.FK_BilheteSessão" FromRole="Bilhetes" ToRole="Sessão" />
+          <Property Name="SessaoId" Type="Int32" Nullable="false" />
+          <Property Name="FuncionarioId" Type="Int32" Nullable="false" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pessoas_Cliente" Relationship="Self.FK_ClienteBilhete" FromRole="Bilhetes" ToRole="Pessoas_Cliente" />
           <NavigationProperty Name="Pessoas_Funcionario" Relationship="Self.FK_FuncionarioBilhete" FromRole="Bilhetes" ToRole="Pessoas_Funcionario" />
+          <NavigationProperty Name="Sessao" Relationship="Self.FK_SessaoBilhete" FromRole="Bilhetes" ToRole="Sessaos" />
         </EntityType>
         <EntityType Name="Categoria">
           <Key>
-            <PropertyRef Name="IdCategoria" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Activa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Filmes" Relationship="Self.FK_FilmeCategoria" FromRole="Categorias" ToRole="Filmes" />
+          <Property Name="Activa" Type="Boolean" Nullable="false" />
+          <Property Name="Filme_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Filme" Relationship="Self.FK_CategoriaFilme" FromRole="Categorias" ToRole="Filmes" />
         </EntityType>
         <EntityType Name="Cinema">
           <Key>
-            <PropertyRef Name="IdPessoa" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="IdPessoa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Morada" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Salas" Relationship="Self.FK_CinemaSala" FromRole="Cinemas" ToRole="Salas" />
         </EntityType>
         <EntityType Name="Filme">
           <Key>
-            <PropertyRef Name="IdFilme" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="IdFilme" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Duracao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Activo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Categoria_IdCategoria" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Categoria" Relationship="Self.FK_FilmeCategoria" FromRole="Filmes" ToRole="Categorias" />
-          <NavigationProperty Name="Sessão" Relationship="Self.FK_SessãoFilme" FromRole="Filmes" ToRole="Sessão" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Categorias" Relationship="Self.FK_CategoriaFilme" FromRole="Filmes" ToRole="Categorias" />
+          <NavigationProperty Name="Sessaos" Relationship="Self.FK_SessaoFilme" FromRole="Filmes" ToRole="Sessaos" />
         </EntityType>
         <EntityType Name="Pessoa">
           <Key>
-            <PropertyRef Name="IdPessoa" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="IdPessoa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Morada" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Pessoas_Cliente" Relationship="Self.FK_Cliente_inherits_Pessoa" FromRole="Pessoas" ToRole="Pessoas_Cliente" />
@@ -318,80 +303,56 @@
         </EntityType>
         <EntityType Name="Pessoas_Cliente">
           <Key>
-            <PropertyRef Name="IdPessoa" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="NumFiscal" Type="Int32" Nullable="false" />
-          <Property Name="IdPessoa" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Bilhetes" Relationship="Self.FK_ClienteBilhete" FromRole="Pessoas_Cliente" ToRole="Bilhetes" />
           <NavigationProperty Name="Pessoa" Relationship="Self.FK_Cliente_inherits_Pessoa" FromRole="Pessoas_Cliente" ToRole="Pessoas" />
         </EntityType>
         <EntityType Name="Pessoas_Funcionario">
           <Key>
-            <PropertyRef Name="IdPessoa" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="Salario" Type="Int32" Nullable="false" />
           <Property Name="Funcao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdPessoa" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Bilhetes" Relationship="Self.FK_FuncionarioBilhete" FromRole="Pessoas_Funcionario" ToRole="Bilhetes" />
           <NavigationProperty Name="Pessoa" Relationship="Self.FK_Funcionario_inherits_Pessoa" FromRole="Pessoas_Funcionario" ToRole="Pessoas" />
         </EntityType>
         <EntityType Name="Sala">
           <Key>
-            <PropertyRef Name="IdSala" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="IdSala" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Colunas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Filas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SessãoIdSessao" Type="Int32" Nullable="false" />
-          <Property Name="CinemaIdPessoa" Type="Int32" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Colunas" Type="Int32" Nullable="false" />
+          <Property Name="Filas" Type="Int32" Nullable="false" />
+          <Property Name="CinemaId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cinema" Relationship="Self.FK_CinemaSala" FromRole="Salas" ToRole="Cinemas" />
-          <NavigationProperty Name="Sessão" Relationship="Self.FK_SalaSessão" FromRole="Salas" ToRole="Sessão" />
+          <NavigationProperty Name="Sessaos" Relationship="Self.FK_SalaSessao" FromRole="Salas" ToRole="Sessaos" />
         </EntityType>
-        <EntityType Name="Sessão">
+        <EntityType Name="Sessao">
           <Key>
-            <PropertyRef Name="IdSessao" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="IdSessao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DataHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SalaId" Type="Int32" Nullable="false" />
+          <Property Name="Datahora" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Preco" Type="Int32" Nullable="false" />
-          <Property Name="SalaIdSala" Type="Int32" Nullable="false" />
-          <Property Name="Filme_IdFilme" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bilhetes" Relationship="Self.FK_BilheteSessão" FromRole="Sessão" ToRole="Bilhetes" />
-          <NavigationProperty Name="Filme" Relationship="Self.FK_SessãoFilme" FromRole="Sessão" ToRole="Filmes" />
-          <NavigationProperty Name="Sala" Relationship="Self.FK_SalaSessão" FromRole="Sessão" ToRole="Salas" />
+          <Property Name="Filme_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bilhetes" Relationship="Self.FK_SessaoBilhete" FromRole="Sessaos" ToRole="Bilhetes" />
+          <NavigationProperty Name="Filme" Relationship="Self.FK_SessaoFilme" FromRole="Sessaos" ToRole="Filmes" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK_SalaSessao" FromRole="Sessaos" ToRole="Salas" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_BilheteSessão">
-          <End Role="Sessão" Type="Self.Sessão" Multiplicity="1" />
-          <End Role="Bilhetes" Type="Self.Bilhete" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sessão">
-              <PropertyRef Name="IdSessao" />
-            </Principal>
-            <Dependent Role="Bilhetes">
-              <PropertyRef Name="SessãoIdSessao" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ClienteBilhete">
           <End Role="Pessoas_Cliente" Type="Self.Pessoas_Cliente" Multiplicity="1" />
           <End Role="Bilhetes" Type="Self.Bilhete" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pessoas_Cliente">
-              <PropertyRef Name="IdPessoa" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Bilhetes">
-              <PropertyRef Name="ClienteIdPessoa" />
+              <PropertyRef Name="ClienteId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -400,46 +361,58 @@
           <End Role="Bilhetes" Type="Self.Bilhete" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pessoas_Funcionario">
-              <PropertyRef Name="IdPessoa" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Bilhetes">
-              <PropertyRef Name="FuncionarioIdPessoa" />
+              <PropertyRef Name="FuncionarioId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FilmeCategoria">
-          <End Role="Categorias" Type="Self.Categoria" Multiplicity="1" />
-          <End Role="Filmes" Type="Self.Filme" Multiplicity="*" />
+        <Association Name="FK_SessaoBilhete">
+          <End Role="Sessaos" Type="Self.Sessao" Multiplicity="1" />
+          <End Role="Bilhetes" Type="Self.Bilhete" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Categorias">
-              <PropertyRef Name="IdCategoria" />
+            <Principal Role="Sessaos">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Filmes">
-              <PropertyRef Name="Categoria_IdCategoria" />
+            <Dependent Role="Bilhetes">
+              <PropertyRef Name="SessaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoriaFilme">
+          <End Role="Filmes" Type="Self.Filme" Multiplicity="1" />
+          <End Role="Categorias" Type="Self.Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filmes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Categorias">
+              <PropertyRef Name="Filme_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CinemaSala">
-          <End Role="Cinemas" Type="Self.Cinema" Multiplicity="0..1" />
+          <End Role="Cinemas" Type="Self.Cinema" Multiplicity="1" />
           <End Role="Salas" Type="Self.Sala" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cinemas">
-              <PropertyRef Name="IdPessoa" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Salas">
-              <PropertyRef Name="CinemaIdPessoa" />
+              <PropertyRef Name="CinemaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SessãoFilme">
+        <Association Name="FK_SessaoFilme">
           <End Role="Filmes" Type="Self.Filme" Multiplicity="1" />
-          <End Role="Sessão" Type="Self.Sessão" Multiplicity="*" />
+          <End Role="Sessaos" Type="Self.Sessao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Filmes">
-              <PropertyRef Name="IdFilme" />
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Sessão">
-              <PropertyRef Name="Filme_IdFilme" />
+            <Dependent Role="Sessaos">
+              <PropertyRef Name="Filme_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -450,10 +423,10 @@
           <End Role="Pessoas_Cliente" Type="Self.Pessoas_Cliente" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Pessoas">
-              <PropertyRef Name="IdPessoa" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Pessoas_Cliente">
-              <PropertyRef Name="IdPessoa" />
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -464,26 +437,26 @@
           <End Role="Pessoas_Funcionario" Type="Self.Pessoas_Funcionario" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Pessoas">
-              <PropertyRef Name="IdPessoa" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Pessoas_Funcionario">
-              <PropertyRef Name="IdPessoa" />
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SalaSessão">
+        <Association Name="FK_SalaSessao">
           <End Role="Salas" Type="Self.Sala" Multiplicity="1" />
-          <End Role="Sessão" Type="Self.Sessão" Multiplicity="*" />
+          <End Role="Sessaos" Type="Self.Sessao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Salas">
-              <PropertyRef Name="IdSala" />
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Sessão">
-              <PropertyRef Name="SalaIdSala" />
+            <Dependent Role="Sessaos">
+              <PropertyRef Name="SalaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CineGestEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CineGestEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bilhetes" EntityType="Self.Bilhete" />
           <EntitySet Name="Categorias" EntityType="Self.Categoria" />
           <EntitySet Name="Cinemas" EntityType="Self.Cinema" />
@@ -492,12 +465,7 @@
           <EntitySet Name="Pessoas_Cliente" EntityType="Self.Pessoas_Cliente" />
           <EntitySet Name="Pessoas_Funcionario" EntityType="Self.Pessoas_Funcionario" />
           <EntitySet Name="Salas" EntityType="Self.Sala" />
-          <EntitySet Name="Sessão" EntityType="Self.Sessão" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <AssociationSet Name="FK_BilheteSessão" Association="Self.FK_BilheteSessão">
-            <End Role="Sessão" EntitySet="Sessão" />
-            <End Role="Bilhetes" EntitySet="Bilhetes" />
-          </AssociationSet>
+          <EntitySet Name="Sessaos" EntityType="Self.Sessao" />
           <AssociationSet Name="FK_ClienteBilhete" Association="Self.FK_ClienteBilhete">
             <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
             <End Role="Bilhetes" EntitySet="Bilhetes" />
@@ -506,17 +474,21 @@
             <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
             <End Role="Bilhetes" EntitySet="Bilhetes" />
           </AssociationSet>
-          <AssociationSet Name="FK_FilmeCategoria" Association="Self.FK_FilmeCategoria">
-            <End Role="Categorias" EntitySet="Categorias" />
+          <AssociationSet Name="FK_SessaoBilhete" Association="Self.FK_SessaoBilhete">
+            <End Role="Sessaos" EntitySet="Sessaos" />
+            <End Role="Bilhetes" EntitySet="Bilhetes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoriaFilme" Association="Self.FK_CategoriaFilme">
             <End Role="Filmes" EntitySet="Filmes" />
+            <End Role="Categorias" EntitySet="Categorias" />
           </AssociationSet>
           <AssociationSet Name="FK_CinemaSala" Association="Self.FK_CinemaSala">
             <End Role="Cinemas" EntitySet="Cinemas" />
             <End Role="Salas" EntitySet="Salas" />
           </AssociationSet>
-          <AssociationSet Name="FK_SessãoFilme" Association="Self.FK_SessãoFilme">
+          <AssociationSet Name="FK_SessaoFilme" Association="Self.FK_SessaoFilme">
             <End Role="Filmes" EntitySet="Filmes" />
-            <End Role="Sessão" EntitySet="Sessão" />
+            <End Role="Sessaos" EntitySet="Sessaos" />
           </AssociationSet>
           <AssociationSet Name="FK_Cliente_inherits_Pessoa" Association="Self.FK_Cliente_inherits_Pessoa">
             <End Role="Pessoas" EntitySet="Pessoas" />
@@ -526,9 +498,9 @@
             <End Role="Pessoas" EntitySet="Pessoas" />
             <End Role="Pessoas_Funcionario" EntitySet="Pessoas_Funcionario" />
           </AssociationSet>
-          <AssociationSet Name="FK_SalaSessão" Association="Self.FK_SalaSessão">
+          <AssociationSet Name="FK_SalaSessao" Association="Self.FK_SalaSessao">
             <End Role="Salas" EntitySet="Salas" />
-            <End Role="Sessão" EntitySet="Sessão" />
+            <End Role="Sessaos" EntitySet="Sessaos" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -536,53 +508,52 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CineGestModelStoreContainer" CdmEntityContainer="CineGestEntities">
+  <EntityContainerMapping StorageEntityContainer="CineGestModelStoreContainer" CdmEntityContainer="CineGestEntities5">
     <EntitySetMapping Name="Bilhetes">
       <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Bilhete)">
         <MappingFragment StoreEntitySet="Bilhetes">
-          <ScalarProperty Name="IdBilhete" ColumnName="IdBilhete" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Lugar" ColumnName="Lugar" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="FuncionarioIdPessoa" ColumnName="FuncionarioIdPessoa" />
-          <ScalarProperty Name="ClienteIdPessoa" ColumnName="ClienteIdPessoa" />
-          <ScalarProperty Name="SessãoIdSessao" ColumnName="SessãoIdSessao" />
+          <ScalarProperty Name="SessaoId" ColumnName="SessaoId" />
+          <ScalarProperty Name="FuncionarioId" ColumnName="FuncionarioId" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Categorias">
       <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Categoria)">
         <MappingFragment StoreEntitySet="Categorias">
-          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Activa" ColumnName="Activa" />
+          <ScalarProperty Name="Filme_Id" ColumnName="Filme_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Cinemas">
       <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Cinema)">
         <MappingFragment StoreEntitySet="Cinemas">
-          <ScalarProperty Name="IdPessoa" ColumnName="IdPessoa" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Morada" ColumnName="Morada" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Filmes">
       <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Filme)">
         <MappingFragment StoreEntitySet="Filmes">
-          <ScalarProperty Name="IdFilme" ColumnName="IdFilme" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Duracao" ColumnName="Duracao" />
           <ScalarProperty Name="Activo" ColumnName="Activo" />
-          <ScalarProperty Name="Categoria_IdCategoria" ColumnName="Categoria_IdCategoria" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Pessoas">
       <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Pessoa)">
         <MappingFragment StoreEntitySet="Pessoas">
-          <ScalarProperty Name="IdPessoa" ColumnName="IdPessoa" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Morada" ColumnName="Morada" />
         </MappingFragment>
@@ -591,7 +562,7 @@
     <EntitySetMapping Name="Pessoas_Cliente">
       <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Pessoas_Cliente)">
         <MappingFragment StoreEntitySet="Pessoas_Cliente">
-          <ScalarProperty Name="IdPessoa" ColumnName="IdPessoa" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="NumFiscal" ColumnName="NumFiscal" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -599,7 +570,7 @@
     <EntitySetMapping Name="Pessoas_Funcionario">
       <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Pessoas_Funcionario)">
         <MappingFragment StoreEntitySet="Pessoas_Funcionario">
-          <ScalarProperty Name="IdPessoa" ColumnName="IdPessoa" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Salario" ColumnName="Salario" />
           <ScalarProperty Name="Funcao" ColumnName="Funcao" />
         </MappingFragment>
@@ -608,34 +579,21 @@
     <EntitySetMapping Name="Salas">
       <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Sala)">
         <MappingFragment StoreEntitySet="Salas">
-          <ScalarProperty Name="IdSala" ColumnName="IdSala" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Colunas" ColumnName="Colunas" />
           <ScalarProperty Name="Filas" ColumnName="Filas" />
-          <ScalarProperty Name="SessãoIdSessao" ColumnName="SessãoIdSessao" />
-          <ScalarProperty Name="CinemaIdPessoa" ColumnName="CinemaIdPessoa" />
+          <ScalarProperty Name="CinemaId" ColumnName="CinemaId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Sessão">
-      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Sessão)">
-        <MappingFragment StoreEntitySet="Sessão">
-          <ScalarProperty Name="IdSessao" ColumnName="IdSessao" />
-          <ScalarProperty Name="DataHora" ColumnName="DataHora" />
+    <EntitySetMapping Name="Sessaos">
+      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Sessao)">
+        <MappingFragment StoreEntitySet="Sessaos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SalaId" ColumnName="SalaId" />
+          <ScalarProperty Name="Datahora" ColumnName="Datahora" />
           <ScalarProperty Name="Preco" ColumnName="Preco" />
-          <ScalarProperty Name="SalaIdSala" ColumnName="SalaIdSala" />
-          <ScalarProperty Name="Filme_IdFilme" ColumnName="Filme_IdFilme" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.sysdiagram)">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="Filme_Id" ColumnName="Filme_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

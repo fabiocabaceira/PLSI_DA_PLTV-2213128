@@ -14,15 +14,15 @@ namespace Cinegest
     
     public partial class Bilhete
     {
-        public int IdBilhete { get; set; }
+        public int Id { get; set; }
         public int Lugar { get; set; }
         public string Estado { get; set; }
-        public int FuncionarioIdPessoa { get; set; }
-        public int ClienteIdPessoa { get; set; }
-        public int SessãoIdSessao { get; set; }
+        public int SessaoId { get; set; }
+        public int FuncionarioId { get; set; }
+        public int ClienteId { get; set; }
     
-        public virtual Sessão Sessão { get; set; }
         public virtual Pessoas_Cliente Pessoas_Cliente { get; set; }
         public virtual Pessoas_Funcionario Pessoas_Funcionario { get; set; }
+        public virtual Sessao Sessao { get; set; }
     }
 }
