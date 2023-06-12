@@ -25,6 +25,7 @@ namespace Cinegest
         public System.DateTime Datahora { get; set; }
         public int Preco { get; set; }
         public int Filme_Id { get; set; }
+        public int SalaId1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bilhete> Bilhetes { get; set; }

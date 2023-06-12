@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/12/2023 17:04:17
+-- Date Created: 06/12/2023 17:57:55
 -- Generated from EDMX file: C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGestModel.edmx
 -- --------------------------------------------------
 
@@ -32,14 +32,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_SessaoFilme]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Sessaos] DROP CONSTRAINT [FK_SessaoFilme];
 GO
+IF OBJECT_ID(N'[dbo].[FK_FilmeCategoria]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Filmes] DROP CONSTRAINT [FK_FilmeCategoria];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SalaSessao]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Sessaos] DROP CONSTRAINT [FK_SalaSessao];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Cliente_inherits_Pessoa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pessoas_Cliente] DROP CONSTRAINT [FK_Cliente_inherits_Pessoa];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Funcionario_inherits_Pessoa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pessoas_Funcionario] DROP CONSTRAINT [FK_Funcionario_inherits_Pessoa];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SalaSessao]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Sessaos] DROP CONSTRAINT [FK_SalaSessao];
 GO
 
 -- --------------------------------------------------
@@ -69,6 +72,9 @@ IF OBJECT_ID(N'[dbo].[Salas]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Sessaos]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Sessaos];
+GO
+IF OBJECT_ID(N'[dbo].[Categorias]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Categorias];
 GO
 
 -- --------------------------------------------------
@@ -134,7 +140,8 @@ CREATE TABLE [dbo].[Salas] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Colunas] int  NOT NULL,
     [Filas] int  NOT NULL,
-    [CinemaId] int  NOT NULL
+    [CinemaId] int  NOT NULL,
+    [Nome] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -144,7 +151,8 @@ CREATE TABLE [dbo].[Sessaos] (
     [SalaId] int  NOT NULL,
     [Datahora] datetime  NOT NULL,
     [Preco] int  NOT NULL,
-    [Filme_Id] int  NOT NULL
+    [Filme_Id] int  NOT NULL,
+    [SalaId1] int  NOT NULL
 );
 GO
 
@@ -293,21 +301,6 @@ ON [dbo].[Sessaos]
     ([Filme_Id]);
 GO
 
--- Creating foreign key on [SalaId] in table 'Sessaos'
-ALTER TABLE [dbo].[Sessaos]
-ADD CONSTRAINT [FK_SalaSessao]
-    FOREIGN KEY ([SalaId])
-    REFERENCES [dbo].[Salas]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_SalaSessao'
-CREATE INDEX [IX_FK_SalaSessao]
-ON [dbo].[Sessaos]
-    ([SalaId]);
-GO
-
 -- Creating foreign key on [Categoria_Id] in table 'Filmes'
 ALTER TABLE [dbo].[Filmes]
 ADD CONSTRAINT [FK_FilmeCategoria]
@@ -321,6 +314,21 @@ GO
 CREATE INDEX [IX_FK_FilmeCategoria]
 ON [dbo].[Filmes]
     ([Categoria_Id]);
+GO
+
+-- Creating foreign key on [SalaId1] in table 'Sessaos'
+ALTER TABLE [dbo].[Sessaos]
+ADD CONSTRAINT [FK_SalaSessao]
+    FOREIGN KEY ([SalaId1])
+    REFERENCES [dbo].[Salas]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SalaSessao'
+CREATE INDEX [IX_FK_SalaSessao]
+ON [dbo].[Sessaos]
+    ([SalaId1]);
 GO
 
 -- Creating foreign key on [Id] in table 'Pessoas_Cliente'

@@ -62,7 +62,8 @@
     <Property Name="Filas" Type="Int32" Nullable="false" />
     <Property Name="CinemaId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Cinema" Relationship="Self.FK_CinemaSala" FromRole="Salas" ToRole="Cinemas" />
-    <NavigationProperty Name="Sessaos" Relationship="Self.FK_SalaSessao" FromRole="Salas" ToRole="Sessaos" />
+    <NavigationProperty Name="Sessaos" Relationship="CineGestModel.SalaSessao" FromRole="Sala" ToRole="Sessao" />
+    <Property Name="Nome" Type="String" Nullable="false" />
   </EntityType>
   <EntityType Name="Sessao">
     <Key>
@@ -75,7 +76,8 @@
     <Property Name="Filme_Id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Bilhetes" Relationship="Self.FK_SessaoBilhete" FromRole="Sessaos" ToRole="Bilhetes" />
     <NavigationProperty Name="Filme" Relationship="Self.FK_SessaoFilme" FromRole="Sessaos" ToRole="Filmes" />
-    <NavigationProperty Name="Sala" Relationship="Self.FK_SalaSessao" FromRole="Sessaos" ToRole="Salas" />
+    <NavigationProperty Name="Sala" Relationship="CineGestModel.SalaSessao" FromRole="Sessao" ToRole="Sala" />
+    <Property Name="SalaId1" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK_ClienteBilhete">
     <End Role="Pessoas_Cliente" Type="CineGestModel.Cliente" Multiplicity="1" />
@@ -137,18 +139,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SalaSessao">
-    <End Role="Salas" Type="Self.Sala" Multiplicity="1" />
-    <End Role="Sessaos" Type="Self.Sessao" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Salas">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Sessaos">
-        <PropertyRef Name="SalaId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="CineGestEntities5" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Bilhetes" EntityType="Self.Bilhete" />
     <EntitySet Name="Cinemas" EntityType="Self.Cinema" />
@@ -176,14 +166,14 @@
       <End Role="Filmes" EntitySet="Filmes" />
       <End Role="Sessaos" EntitySet="Sessaos" />
     </AssociationSet>
-    <AssociationSet Name="FK_SalaSessao" Association="Self.FK_SalaSessao">
-      <End Role="Salas" EntitySet="Salas" />
-      <End Role="Sessaos" EntitySet="Sessaos" />
-    </AssociationSet>
     <EntitySet Name="Categorias" EntityType="CineGestModel.Categoria" />
     <AssociationSet Name="FilmeCategoria" Association="CineGestModel.FilmeCategoria">
       <End Role="Filme" EntitySet="Filmes" />
       <End Role="Categoria" EntitySet="Categorias" />
+    </AssociationSet>
+    <AssociationSet Name="SalaSessao" Association="CineGestModel.SalaSessao">
+      <End Role="Sala" EntitySet="Salas" />
+      <End Role="Sessao" EntitySet="Sessaos" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Categoria">
@@ -198,5 +188,17 @@
   <Association Name="FilmeCategoria">
     <End Type="CineGestModel.Filme" Role="Filme" Multiplicity="1" />
     <End Type="CineGestModel.Categoria" Role="Categoria" Multiplicity="1" />
+  </Association>
+  <Association Name="SalaSessao">
+    <End Type="CineGestModel.Sala" Role="Sala" Multiplicity="1" />
+    <End Type="CineGestModel.Sessao" Role="Sessao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sala">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sessao">
+        <PropertyRef Name="SalaId1" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

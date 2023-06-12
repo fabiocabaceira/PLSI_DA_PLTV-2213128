@@ -24,6 +24,7 @@ namespace Cinegest
         public int Colunas { get; set; }
         public int Filas { get; set; }
         public int CinemaId { get; set; }
+        public string Nome { get; set; }
     
         public virtual Cinema Cinema { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
