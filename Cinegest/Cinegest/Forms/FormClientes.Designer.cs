@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.alterarClientebtn = new System.Windows.Forms.Button();
-            this.cineGestDataSet = new Cinegest.CineGestDataSet();
             this.pessoasClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cineGestDataSet = new Cinegest.CineGestDataSet();
+            this.alterarClientebtn = new System.Windows.Forms.Button();
             this.pessoas_ClienteTableAdapter = new Cinegest.CineGestDataSetTableAdapters.Pessoas_ClienteTableAdapter();
             this.apagarClientebtn = new System.Windows.Forms.Button();
             this.novoClientebtn = new System.Windows.Forms.Button();
@@ -46,12 +46,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numFiscalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumFiscal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moradaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -60,7 +60,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nome,
-            this.numFiscalDataGridViewTextBoxColumn,
+            this.NumFiscal,
             this.idDataGridViewTextBoxColumn,
             this.moradaDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.pessoasClienteBindingSource;
@@ -68,7 +68,17 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(445, 473);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
+            // 
+            // pessoasClienteBindingSource
+            // 
+            this.pessoasClienteBindingSource.DataMember = "Pessoas_Cliente";
+            this.pessoasClienteBindingSource.DataSource = this.cineGestDataSet;
+            // 
+            // cineGestDataSet
+            // 
+            this.cineGestDataSet.DataSetName = "CineGestDataSet";
+            this.cineGestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // alterarClientebtn
             // 
@@ -79,16 +89,6 @@
             this.alterarClientebtn.Text = "Guardar Alterações";
             this.alterarClientebtn.UseVisualStyleBackColor = true;
             this.alterarClientebtn.Click += new System.EventHandler(this.alterarClientebtn_Click);
-            // 
-            // cineGestDataSet
-            // 
-            this.cineGestDataSet.DataSetName = "CineGestDataSet";
-            this.cineGestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // pessoasClienteBindingSource
-            // 
-            this.pessoasClienteBindingSource.DataMember = "Pessoas_Cliente";
-            this.pessoasClienteBindingSource.DataSource = this.cineGestDataSet;
             // 
             // pessoas_ClienteTableAdapter
             // 
@@ -138,7 +138,7 @@
             // 
             this.label1.Location = new System.Drawing.Point(460, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(307, 23);
+            this.label1.Size = new System.Drawing.Size(315, 23);
             this.label1.TabIndex = 7;
             this.label1.Text = "Alterar Cliente Selecionado";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -194,11 +194,11 @@
             this.Nome.HeaderText = "Nome";
             this.Nome.Name = "Nome";
             // 
-            // numFiscalDataGridViewTextBoxColumn
+            // NumFiscal
             // 
-            this.numFiscalDataGridViewTextBoxColumn.DataPropertyName = "NumFiscal";
-            this.numFiscalDataGridViewTextBoxColumn.HeaderText = "NumFiscal";
-            this.numFiscalDataGridViewTextBoxColumn.Name = "numFiscalDataGridViewTextBoxColumn";
+            this.NumFiscal.DataPropertyName = "NumFiscal";
+            this.NumFiscal.HeaderText = "NumFiscal";
+            this.NumFiscal.Name = "NumFiscal";
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -234,8 +234,8 @@
             this.Text = "FormClientes";
             this.Load += new System.EventHandler(this.FormClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,7 +260,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numFiscalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumFiscal;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn moradaDataGridViewTextBoxColumn;
     }

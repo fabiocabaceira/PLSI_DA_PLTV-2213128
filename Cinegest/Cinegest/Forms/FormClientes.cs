@@ -33,12 +33,24 @@ namespace Cinegest.Forms
             formNovoCliente.ShowDialog();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+       
+
+        private void alterarClientebtn_Click(object sender, EventArgs e)
+        {
+            string nome = alterarNomelbl.Text;
+            string morada = alterarMoradalbl.Text;
+            string numFiscal = alterarNumFiscallbl.Text;
+
+            
+
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             string nomeCliente = dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
 
-            var clientes = this.pessoas_ClienteTableAdapter.GetData().ToList();
-            foreach (var cliente in clientes)
+            var pessoasClientes = cinegest.Pessoas.OfType<Cliente>().ToList();
+            foreach (var cliente in pessoasClientes)
             {
                 if (cliente.Nome.Contains(nomeCliente))
                 {
@@ -48,15 +60,6 @@ namespace Cinegest.Forms
                     break;
                 }
             }
-        }
-
-        private void alterarClientebtn_Click(object sender, EventArgs e)
-        {
-            string nome = alterarNomelbl.Text;
-            string morada = alterarMoradalbl.Text;
-            string numFiscal = alterarNumFiscallbl.Text;
-
-            
 
         }
     }

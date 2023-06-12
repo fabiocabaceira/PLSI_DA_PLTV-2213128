@@ -33,6 +33,11 @@
             this.pessoasFuncionarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cineGestDataSet = new Cinegest.CineGestDataSet();
             this.sessoesdgv = new System.Windows.Forms.DataGridView();
+            this.salaIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Datahora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FilmeNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sessaosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cineGestDataSet1 = new Cinegest.CineGestDataSet();
             this.pessoas_FuncionarioTableAdapter = new Cinegest.CineGestDataSetTableAdapters.Pessoas_FuncionarioTableAdapter();
@@ -42,11 +47,6 @@
             this.sessaobtn = new System.Windows.Forms.Button();
             this.clientesbtn = new System.Windows.Forms.Button();
             this.funcionariosbtn = new System.Windows.Forms.Button();
-            this.salaIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Datahora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FilmeNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasFuncionarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessoesdgv)).BeginInit();
@@ -92,6 +92,37 @@
             this.sessoesdgv.Size = new System.Drawing.Size(604, 369);
             this.sessoesdgv.TabIndex = 1;
             this.sessoesdgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.sessoesdgv_CellContentClick);
+            // 
+            // salaIdDataGridViewTextBoxColumn
+            // 
+            this.salaIdDataGridViewTextBoxColumn.DataPropertyName = "SalaId";
+            this.salaIdDataGridViewTextBoxColumn.HeaderText = "SalaId";
+            this.salaIdDataGridViewTextBoxColumn.Name = "salaIdDataGridViewTextBoxColumn";
+            // 
+            // Datahora
+            // 
+            this.Datahora.DataPropertyName = "Datahora";
+            this.Datahora.HeaderText = "Datahora";
+            this.Datahora.Name = "Datahora";
+            // 
+            // precoDataGridViewTextBoxColumn
+            // 
+            this.precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
+            this.precoDataGridViewTextBoxColumn.HeaderText = "Preco";
+            this.precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
+            // 
+            // FilmeNome
+            // 
+            this.FilmeNome.DataPropertyName = "Nome";
+            this.FilmeNome.HeaderText = "Nome";
+            this.FilmeNome.Name = "FilmeNome";
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
             // 
             // sessaosBindingSource
             // 
@@ -160,37 +191,6 @@
             this.funcionariosbtn.Text = "Funcionarios";
             this.funcionariosbtn.UseVisualStyleBackColor = true;
             this.funcionariosbtn.Click += new System.EventHandler(this.funcionariosbtn_Click);
-            // 
-            // salaIdDataGridViewTextBoxColumn
-            // 
-            this.salaIdDataGridViewTextBoxColumn.DataPropertyName = "SalaId";
-            this.salaIdDataGridViewTextBoxColumn.HeaderText = "SalaId";
-            this.salaIdDataGridViewTextBoxColumn.Name = "salaIdDataGridViewTextBoxColumn";
-            // 
-            // Datahora
-            // 
-            this.Datahora.DataPropertyName = "Datahora";
-            this.Datahora.HeaderText = "Datahora";
-            this.Datahora.Name = "Datahora";
-            // 
-            // precoDataGridViewTextBoxColumn
-            // 
-            this.precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
-            this.precoDataGridViewTextBoxColumn.HeaderText = "Preco";
-            this.precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
-            // 
-            // FilmeNome
-            // 
-            this.FilmeNome.DataPropertyName = "Nome";
-            this.FilmeNome.HeaderText = "Nome";
-            this.FilmeNome.Name = "FilmeNome";
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
             // 
             // FormPrincipal
             // 
