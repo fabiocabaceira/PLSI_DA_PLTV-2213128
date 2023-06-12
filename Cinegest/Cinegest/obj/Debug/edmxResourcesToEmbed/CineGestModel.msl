@@ -13,15 +13,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Categorias">
-      <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Categoria)">
-        <MappingFragment StoreEntitySet="Categorias">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
-          <ScalarProperty Name="Activa" ColumnName="Activa" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Cinemas">
       <EntityTypeMapping TypeName="IsTypeOf(CineGestModel.Cinema)">
         <MappingFragment StoreEntitySet="Cinemas">
@@ -39,6 +30,10 @@
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Duracao" ColumnName="Duracao" />
           <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="Id" ColumnName="Filme_Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

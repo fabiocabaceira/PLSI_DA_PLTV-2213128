@@ -34,5 +34,6 @@ C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cineg
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.pdb
 C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormAtendimento.resources
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormAtendimento.resources
-C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormClientes.resources
 C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormClientes.resources
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormNovoCliente.resources
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormClientes.resources

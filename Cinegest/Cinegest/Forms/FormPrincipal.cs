@@ -76,8 +76,6 @@ namespace Cinegest.Forms
                 FormClientes FmClientes = new FormClientes(); // Instancia o formulário FormClientes
                 FmClientes.ShowDialog(); // Abre o formulário FormClientes
             
-           
-
         }
 
         private void funcionariosbtn_Click(object sender, EventArgs e)
