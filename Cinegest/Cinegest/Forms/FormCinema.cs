@@ -65,9 +65,9 @@ namespace Cinegest.Forms
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            nomeFuncionario = dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
+            nomeFuncionario = dataGridView1.Rows[e.RowIndex].Cells["nomefunc"].Value.ToString();
 
-            var funcionario = cinegest.Pessoas.OfType<Funcionario>().FirstOrDefault(f => f.Nome.Contains(nomeFuncionario));
+            var funcionario = cinegest.Pessoas.OfType<Funcionario>().FirstOrDefault(f => f.Nome == nomeFuncionario);
             if (funcionario != null)
             {
                 funcionarioNometb.Text = funcionario.Nome.ToString();
@@ -125,7 +125,7 @@ namespace Cinegest.Forms
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             nomeSala = dataGridView2.Rows[e.RowIndex].Cells["salanome"].Value.ToString();
 
             var sala = cinegest.Salas.OfType<Sala>().FirstOrDefault(v => v.Nome == (nomeSala));
@@ -135,6 +135,17 @@ namespace Cinegest.Forms
                 salaColunastb.Text = sala.Colunas.ToString();
                 salaFilastb.Text = sala.Filas.ToString();
             }
+        }
+
+        private void guardarSalabtn_Click(object sender, EventArgs e)
+        {
+            Sala sala = cinegest.Salas.OfType<Sala>().FirstOrDefault(f => f.Nome == nomeSala);
+
+            sala.Nome = salaNometb.Text.ToString();
+            sala.Colunas = int.Parse(salaColunastb.Text);
+            sala.Filas = int.Parse(salaFilastb.Text);
+            cinegest.SaveChanges();
+
         }
     }
 }

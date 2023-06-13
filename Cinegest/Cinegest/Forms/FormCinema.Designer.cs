@@ -38,10 +38,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.criarCinemabtn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.salarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.funcaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.moradaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pessoasFuncionarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cineGestDataSet = new Cinegest.CineGestDataSet();
             this.funcionarioMoradatb = new System.Windows.Forms.TextBox();
@@ -57,6 +53,9 @@
             this.apagarFuncionariobtn = new System.Windows.Forms.Button();
             this.guardarAlteracoesFuncionariobtn = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.salanome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colunas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Filas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.salasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pessoas_FuncionarioTableAdapter = new Cinegest.CineGestDataSetTableAdapters.Pessoas_FuncionarioTableAdapter();
             this.salasTableAdapter = new Cinegest.CineGestDataSetTableAdapters.SalasTableAdapter();
@@ -68,9 +67,11 @@
             this.salaColunastb = new System.Windows.Forms.TextBox();
             this.criarSalabtn = new System.Windows.Forms.Button();
             this.apagarSalabtn = new System.Windows.Forms.Button();
-            this.salanome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Colunas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Filas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.funcaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nomefunc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.moradaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.guardarSalabtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasFuncionarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
@@ -139,7 +140,7 @@
             // 
             this.criarCinemabtn.Location = new System.Drawing.Point(5, 226);
             this.criarCinemabtn.Name = "criarCinemabtn";
-            this.criarCinemabtn.Size = new System.Drawing.Size(460, 23);
+            this.criarCinemabtn.Size = new System.Drawing.Size(460, 227);
             this.criarCinemabtn.TabIndex = 7;
             this.criarCinemabtn.Text = "Criar Cinema";
             this.criarCinemabtn.UseVisualStyleBackColor = true;
@@ -152,7 +153,7 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.salarioDataGridViewTextBoxColumn,
             this.funcaoDataGridViewTextBoxColumn,
-            this.Nome,
+            this.Nomefunc,
             this.moradaDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.pessoasFuncionarioBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(484, 8);
@@ -160,30 +161,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(430, 241);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // salarioDataGridViewTextBoxColumn
-            // 
-            this.salarioDataGridViewTextBoxColumn.DataPropertyName = "Salario";
-            this.salarioDataGridViewTextBoxColumn.HeaderText = "Salario";
-            this.salarioDataGridViewTextBoxColumn.Name = "salarioDataGridViewTextBoxColumn";
-            // 
-            // funcaoDataGridViewTextBoxColumn
-            // 
-            this.funcaoDataGridViewTextBoxColumn.DataPropertyName = "Funcao";
-            this.funcaoDataGridViewTextBoxColumn.HeaderText = "Funcao";
-            this.funcaoDataGridViewTextBoxColumn.Name = "funcaoDataGridViewTextBoxColumn";
-            // 
-            // Nome
-            // 
-            this.Nome.DataPropertyName = "Nome";
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            // 
-            // moradaDataGridViewTextBoxColumn
-            // 
-            this.moradaDataGridViewTextBoxColumn.DataPropertyName = "Morada";
-            this.moradaDataGridViewTextBoxColumn.HeaderText = "Morada";
-            this.moradaDataGridViewTextBoxColumn.Name = "moradaDataGridViewTextBoxColumn";
             // 
             // pessoasFuncionarioBindingSource
             // 
@@ -309,9 +286,27 @@
             this.dataGridView2.DataSource = this.salasBindingSource;
             this.dataGridView2.Location = new System.Drawing.Point(484, 260);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(430, 150);
+            this.dataGridView2.Size = new System.Drawing.Size(430, 193);
             this.dataGridView2.TabIndex = 23;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            // 
+            // salanome
+            // 
+            this.salanome.DataPropertyName = "Nome";
+            this.salanome.HeaderText = "Nome";
+            this.salanome.Name = "salanome";
+            // 
+            // Colunas
+            // 
+            this.Colunas.DataPropertyName = "Colunas";
+            this.Colunas.HeaderText = "Colunas";
+            this.Colunas.Name = "Colunas";
+            // 
+            // Filas
+            // 
+            this.Filas.DataPropertyName = "Filas";
+            this.Filas.HeaderText = "Filas";
+            this.Filas.Name = "Filas";
             // 
             // salasBindingSource
             // 
@@ -395,29 +390,46 @@
             this.apagarSalabtn.UseVisualStyleBackColor = true;
             this.apagarSalabtn.Click += new System.EventHandler(this.apagarSalabtn_Click);
             // 
-            // salanome
+            // salarioDataGridViewTextBoxColumn
             // 
-            this.salanome.DataPropertyName = "Nome";
-            this.salanome.HeaderText = "Nome";
-            this.salanome.Name = "salanome";
+            this.salarioDataGridViewTextBoxColumn.DataPropertyName = "Salario";
+            this.salarioDataGridViewTextBoxColumn.HeaderText = "Salario";
+            this.salarioDataGridViewTextBoxColumn.Name = "salarioDataGridViewTextBoxColumn";
             // 
-            // Colunas
+            // funcaoDataGridViewTextBoxColumn
             // 
-            this.Colunas.DataPropertyName = "Colunas";
-            this.Colunas.HeaderText = "Colunas";
-            this.Colunas.Name = "Colunas";
+            this.funcaoDataGridViewTextBoxColumn.DataPropertyName = "Funcao";
+            this.funcaoDataGridViewTextBoxColumn.HeaderText = "Funcao";
+            this.funcaoDataGridViewTextBoxColumn.Name = "funcaoDataGridViewTextBoxColumn";
             // 
-            // Filas
+            // Nomefunc
             // 
-            this.Filas.DataPropertyName = "Filas";
-            this.Filas.HeaderText = "Filas";
-            this.Filas.Name = "Filas";
+            this.Nomefunc.DataPropertyName = "Nome";
+            this.Nomefunc.HeaderText = "Nome";
+            this.Nomefunc.Name = "Nomefunc";
+            // 
+            // moradaDataGridViewTextBoxColumn
+            // 
+            this.moradaDataGridViewTextBoxColumn.DataPropertyName = "Morada";
+            this.moradaDataGridViewTextBoxColumn.HeaderText = "Morada";
+            this.moradaDataGridViewTextBoxColumn.Name = "moradaDataGridViewTextBoxColumn";
+            // 
+            // guardarSalabtn
+            // 
+            this.guardarSalabtn.Location = new System.Drawing.Point(937, 416);
+            this.guardarSalabtn.Name = "guardarSalabtn";
+            this.guardarSalabtn.Size = new System.Drawing.Size(371, 37);
+            this.guardarSalabtn.TabIndex = 32;
+            this.guardarSalabtn.Text = "Guardar Alterações Na Sala";
+            this.guardarSalabtn.UseVisualStyleBackColor = true;
+            this.guardarSalabtn.Click += new System.EventHandler(this.guardarSalabtn_Click);
             // 
             // FormCinema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1321, 611);
+            this.ClientSize = new System.Drawing.Size(1321, 494);
+            this.Controls.Add(this.guardarSalabtn);
             this.Controls.Add(this.apagarSalabtn);
             this.Controls.Add(this.criarSalabtn);
             this.Controls.Add(this.filaslbl);
@@ -487,10 +499,6 @@
         private System.Windows.Forms.Button novoFuncionariotb;
         private System.Windows.Forms.Button apagarFuncionariobtn;
         private System.Windows.Forms.Button guardarAlteracoesFuncionariobtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salarioDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn funcaoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn moradaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource salasBindingSource;
         private CineGestDataSetTableAdapters.SalasTableAdapter salasTableAdapter;
@@ -505,5 +513,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn salanome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colunas;
         private System.Windows.Forms.DataGridViewTextBoxColumn Filas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn salarioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn funcaoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nomefunc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn moradaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button guardarSalabtn;
     }
 }
