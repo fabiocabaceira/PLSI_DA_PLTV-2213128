@@ -42,15 +42,15 @@
             this.bilhetesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cineGestDataSet = new Cinegest.CineGestDataSet();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pessoasClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cineGestDataSet1 = new Cinegest.CineGestDataSet();
             this.bilhetesTableAdapter = new Cinegest.CineGestDataSetTableAdapters.BilhetesTableAdapter();
             this.label6 = new System.Windows.Forms.Label();
             this.pessoas_ClienteTableAdapter = new Cinegest.CineGestDataSetTableAdapters.Pessoas_ClienteTableAdapter();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Selecionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Lugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datahoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -141,7 +141,7 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Selecionar,
             this.Lugar,
-            this.estadoDataGridViewTextBoxColumn,
+            this.Estado,
             this.datahoraDataGridViewTextBoxColumn,
             this.precoDataGridViewTextBoxColumn,
             this.nomeDataGridViewTextBoxColumn,
@@ -151,7 +151,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(778, 699);
             this.dataGridView1.TabIndex = 9;
-            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
             // bilhetesBindingSource
@@ -176,6 +175,12 @@
             this.dataGridView3.Size = new System.Drawing.Size(231, 648);
             this.dataGridView3.TabIndex = 11;
             this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
+            // 
+            // Nome
+            // 
+            this.Nome.DataPropertyName = "Nome";
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
             // 
             // pessoasClienteBindingSource
             // 
@@ -203,12 +208,6 @@
             // 
             this.pessoas_ClienteTableAdapter.ClearBeforeFill = true;
             // 
-            // Nome
-            // 
-            this.Nome.DataPropertyName = "Nome";
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            // 
             // Selecionar
             // 
             this.Selecionar.HeaderText = ":";
@@ -220,11 +219,11 @@
             this.Lugar.HeaderText = "Lugar";
             this.Lugar.Name = "Lugar";
             // 
-            // estadoDataGridViewTextBoxColumn
+            // Estado
             // 
-            this.estadoDataGridViewTextBoxColumn.DataPropertyName = "Estado";
-            this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
-            this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
+            this.Estado.DataPropertyName = "Estado";
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
             // 
             // datahoraDataGridViewTextBoxColumn
             // 
@@ -304,7 +303,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Selecionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lugar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn datahoraDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;

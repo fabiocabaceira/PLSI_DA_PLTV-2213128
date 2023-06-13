@@ -32,6 +32,5 @@ namespace Cinegest
         public virtual DbSet<Sala> Salas { get; set; }
         public virtual DbSet<Sessao> Sessaos { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }
-        public virtual DbSet<Categoria> Cliente { get; set; }
     }
 }

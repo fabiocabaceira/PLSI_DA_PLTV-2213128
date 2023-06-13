@@ -19,6 +19,7 @@ namespace Cinegest.Forms
         public string nomeFilme;
         DateTime hora;
         public List<String> Bilhete = new List<String>();
+        CineGestEntities5 cinegest;
 
         public FormAtendimento(string idSessao, string funcionario_Nome, string nomeFilme, DateTime hora)
         {
@@ -27,6 +28,7 @@ namespace Cinegest.Forms
             this.funcionario_Nome = funcionario_Nome;
             this.nomeFilme = nomeFilme;
             this.hora = hora;
+            cinegest = new CineGestEntities5();
             InitializeComponent();
         }
 
@@ -55,16 +57,14 @@ namespace Cinegest.Forms
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            
-               // if (e.Value.ToString() == "Disponível")
-               // {
-                //    e.CellStyle.BackColor = Color.LightGreen;
-               // }
-               // else if (e.Value.ToString() == "Vendido")
-                //{
-                //    e.CellStyle.BackColor = Color.Gray;
-               // }
-            
+            if (dataGridView1.Rows[e.RowIndex].Cells["Estado"].Value.ToString() == "Disponível")
+            {
+                e.CellStyle.BackColor = Color.LightGreen;
+            }
+            else if (dataGridView1.Rows[e.RowIndex].Cells["Estado"].Value.ToString() == "Vendido")
+            {
+                e.CellStyle.BackColor = Color.Gray;
+            }
 
         }
 
@@ -84,7 +84,6 @@ namespace Cinegest.Forms
                 }
             }
         }
-
 
         private void emitir_bilhete()
         {
@@ -111,6 +110,10 @@ namespace Cinegest.Forms
             foreach (var lugar1 in Bilhete)
             {
                 bilhete1.Write($"{lugar1} ");
+                var lugar2 = int.Parse(lugar1);
+                Bilhete bilhete = cinegest.Bilhetes.FirstOrDefault(b => b.Lugar == lugar2);
+                bilhete.Estado = "Vendido";
+                cinegest.SaveChanges();
             }
             // nome do funcionário 
             bilhete1.Write("\nFuncionário = ");
@@ -118,7 +121,6 @@ namespace Cinegest.Forms
             // Fecha o arquivo
             bilhete1.Close();
         }
-       
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -136,6 +138,7 @@ namespace Cinegest.Forms
 
         private void emitirbtn_Click(object sender, EventArgs e)
         {
+
             emitir_bilhete();
         }
     }
