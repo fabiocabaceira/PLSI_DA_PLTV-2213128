@@ -12,8 +12,8 @@ namespace Cinegest
         {
             this.Nome = Nome;
             this.Morada = Morada;
-            this.Salario = Salario;
             this.Funcao = Funcao;
+            this.Salario = Salario;
 
             
         }

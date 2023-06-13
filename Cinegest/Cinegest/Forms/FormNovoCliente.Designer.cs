@@ -101,11 +101,11 @@
             this.adicionarbtn.UseVisualStyleBackColor = true;
             this.adicionarbtn.Click += new System.EventHandler(this.adicionarbtn_Click);
             // 
-            // FormClientes
+            // FormNovoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1110, 450);
+            this.ClientSize = new System.Drawing.Size(220, 186);
             this.Controls.Add(this.adicionarbtn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -114,7 +114,7 @@
             this.Controls.Add(this.numFiscaltb);
             this.Controls.Add(this.nometb);
             this.Controls.Add(this.label1);
-            this.Name = "FormClientes";
+            this.Name = "FormNovoCliente";
             this.Text = "FormClientes";
             this.Load += new System.EventHandler(this.FormClientes_Load);
             this.ResumeLayout(false);
