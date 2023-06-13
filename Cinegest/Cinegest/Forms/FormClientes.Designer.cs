@@ -30,14 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumFiscal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.moradaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pessoasClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cineGestDataSet = new Cinegest.CineGestDataSet();
             this.alterarClientebtn = new System.Windows.Forms.Button();
-            this.pessoas_ClienteTableAdapter = new Cinegest.CineGestDataSetTableAdapters.Pessoas_ClienteTableAdapter();
             this.apagarClientebtn = new System.Windows.Forms.Button();
             this.novoClientebtn = new System.Windows.Forms.Button();
             this.alterarNomelbl = new System.Windows.Forms.TextBox();
@@ -49,6 +44,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.pessoas_ClienteTableAdapter = new Cinegest.CineGestDataSetTableAdapters.Pessoas_ClienteTableAdapter();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BilhetesVendidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumFiscal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.moradaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
@@ -60,39 +61,16 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nome,
+            this.BilhetesVendidos,
+            this.ValorTotal,
             this.NumFiscal,
-            this.idDataGridViewTextBoxColumn,
             this.moradaDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.pessoasClienteBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(445, 473);
+            this.dataGridView1.Size = new System.Drawing.Size(590, 473);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
-            // 
-            // Nome
-            // 
-            this.Nome.DataPropertyName = "Nome";
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            // 
-            // NumFiscal
-            // 
-            this.NumFiscal.DataPropertyName = "NumFiscal";
-            this.NumFiscal.HeaderText = "NumFiscal";
-            this.NumFiscal.Name = "NumFiscal";
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // moradaDataGridViewTextBoxColumn
-            // 
-            this.moradaDataGridViewTextBoxColumn.DataPropertyName = "Morada";
-            this.moradaDataGridViewTextBoxColumn.HeaderText = "Morada";
-            this.moradaDataGridViewTextBoxColumn.Name = "moradaDataGridViewTextBoxColumn";
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             // 
             // pessoasClienteBindingSource
             // 
@@ -106,7 +84,7 @@
             // 
             // alterarClientebtn
             // 
-            this.alterarClientebtn.Location = new System.Drawing.Point(792, 12);
+            this.alterarClientebtn.Location = new System.Drawing.Point(1082, 12);
             this.alterarClientebtn.Name = "alterarClientebtn";
             this.alterarClientebtn.Size = new System.Drawing.Size(118, 196);
             this.alterarClientebtn.TabIndex = 1;
@@ -114,13 +92,9 @@
             this.alterarClientebtn.UseVisualStyleBackColor = true;
             this.alterarClientebtn.Click += new System.EventHandler(this.alterarClientebtn_Click);
             // 
-            // pessoas_ClienteTableAdapter
-            // 
-            this.pessoas_ClienteTableAdapter.ClearBeforeFill = true;
-            // 
             // apagarClientebtn
             // 
-            this.apagarClientebtn.Location = new System.Drawing.Point(471, 415);
+            this.apagarClientebtn.Location = new System.Drawing.Point(761, 415);
             this.apagarClientebtn.Name = "apagarClientebtn";
             this.apagarClientebtn.Size = new System.Drawing.Size(433, 70);
             this.apagarClientebtn.TabIndex = 2;
@@ -130,7 +104,7 @@
             // 
             // novoClientebtn
             // 
-            this.novoClientebtn.Location = new System.Drawing.Point(466, 303);
+            this.novoClientebtn.Location = new System.Drawing.Point(756, 303);
             this.novoClientebtn.Name = "novoClientebtn";
             this.novoClientebtn.Size = new System.Drawing.Size(433, 70);
             this.novoClientebtn.TabIndex = 3;
@@ -140,28 +114,28 @@
             // 
             // alterarNomelbl
             // 
-            this.alterarNomelbl.Location = new System.Drawing.Point(465, 86);
+            this.alterarNomelbl.Location = new System.Drawing.Point(755, 86);
             this.alterarNomelbl.Name = "alterarNomelbl";
             this.alterarNomelbl.Size = new System.Drawing.Size(309, 20);
             this.alterarNomelbl.TabIndex = 4;
             // 
             // alterarMoradalbl
             // 
-            this.alterarMoradalbl.Location = new System.Drawing.Point(466, 135);
+            this.alterarMoradalbl.Location = new System.Drawing.Point(756, 135);
             this.alterarMoradalbl.Name = "alterarMoradalbl";
             this.alterarMoradalbl.Size = new System.Drawing.Size(309, 20);
             this.alterarMoradalbl.TabIndex = 5;
             // 
             // alterarNumFiscallbl
             // 
-            this.alterarNumFiscallbl.Location = new System.Drawing.Point(466, 188);
+            this.alterarNumFiscallbl.Location = new System.Drawing.Point(756, 188);
             this.alterarNumFiscallbl.Name = "alterarNumFiscallbl";
             this.alterarNumFiscallbl.Size = new System.Drawing.Size(309, 20);
             this.alterarNumFiscallbl.TabIndex = 6;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(460, 12);
+            this.label1.Location = new System.Drawing.Point(750, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(315, 23);
             this.label1.TabIndex = 7;
@@ -170,7 +144,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(463, 60);
+            this.label2.Location = new System.Drawing.Point(753, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(307, 23);
             this.label2.TabIndex = 8;
@@ -179,7 +153,7 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(463, 109);
+            this.label3.Location = new System.Drawing.Point(753, 109);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(307, 23);
             this.label3.TabIndex = 9;
@@ -188,7 +162,7 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(463, 158);
+            this.label4.Location = new System.Drawing.Point(753, 158);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(307, 23);
             this.label4.TabIndex = 10;
@@ -197,7 +171,7 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(468, 257);
+            this.label5.Location = new System.Drawing.Point(758, 257);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(430, 23);
             this.label5.TabIndex = 11;
@@ -206,18 +180,50 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(468, 389);
+            this.label6.Location = new System.Drawing.Point(758, 389);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(430, 23);
             this.label6.TabIndex = 12;
             this.label6.Text = "Apagar Um Cliente";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pessoas_ClienteTableAdapter
+            // 
+            this.pessoas_ClienteTableAdapter.ClearBeforeFill = true;
+            // 
+            // Nome
+            // 
+            this.Nome.DataPropertyName = "Nome";
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
+            // 
+            // BilhetesVendidos
+            // 
+            this.BilhetesVendidos.HeaderText = "BilhetesVendidos";
+            this.BilhetesVendidos.Name = "BilhetesVendidos";
+            // 
+            // ValorTotal
+            // 
+            this.ValorTotal.HeaderText = "ValorTotal";
+            this.ValorTotal.Name = "ValorTotal";
+            // 
+            // NumFiscal
+            // 
+            this.NumFiscal.DataPropertyName = "NumFiscal";
+            this.NumFiscal.HeaderText = "NumFiscal";
+            this.NumFiscal.Name = "NumFiscal";
+            // 
+            // moradaDataGridViewTextBoxColumn
+            // 
+            this.moradaDataGridViewTextBoxColumn.DataPropertyName = "Morada";
+            this.moradaDataGridViewTextBoxColumn.HeaderText = "Morada";
+            this.moradaDataGridViewTextBoxColumn.Name = "moradaDataGridViewTextBoxColumn";
+            // 
             // FormClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(922, 498);
+            this.ClientSize = new System.Drawing.Size(1219, 498);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -261,8 +267,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BilhetesVendidos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ValorTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumFiscal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn moradaDataGridViewTextBoxColumn;
     }
 }

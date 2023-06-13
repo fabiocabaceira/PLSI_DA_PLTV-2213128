@@ -33,6 +33,7 @@ namespace Cinegest
         public virtual DbSet<Sessao> Sessaos { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }
         public virtual DbSet<Cliente> Clientes { get; set; }
-     
+        public virtual DbSet<Funcionario> Funcionarios { get; set; }
+
     }
 }

@@ -20,6 +20,9 @@ namespace Cinegest.Forms
         DateTime hora;
         public List<String> Bilhete = new List<String>();
         CineGestEntities5 cinegest;
+        string nomeCliente;
+        Cliente cliente;
+        Funcionario funcionario;
 
         public FormAtendimento(string idSessao, string funcionario_Nome, string nomeFilme, DateTime hora)
         {
@@ -51,6 +54,7 @@ namespace Cinegest.Forms
             this.bilhetesTableAdapter.Fill(this.cineGestDataSet.Bilhetes);
             funcionariolbl.Text = "Funcionário atual: " + funcionario_Nome;
             listarBilhetes();
+            funcionario = cinegest.Funcionarios.FirstOrDefault(b => b.Nome == funcionario_Nome);
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
 
         }
@@ -71,18 +75,13 @@ namespace Cinegest.Forms
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string nomeCliente = dataGridView3.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
-
+            cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
             var clientes = this.pessoas_ClienteTableAdapter.GetData().ToList();
-            foreach (var cliente in clientes)
-            {
-                if (cliente.Nome.Contains(nomeCliente))
-                {
-                    cliente_Nometb.Text = cliente.Nome;
-                    cliente_Moradatb.Text = cliente.Morada;
-                    cliente_Numfiscaltb.Text = cliente.NumFiscal.ToString();
-                    break;
-                }
-            }
+
+            cliente_Nometb.Text = cliente.Nome;
+            cliente_Moradatb.Text = cliente.Morada;
+            cliente_Numfiscaltb.Text = cliente.NumFiscal.ToString();
+
         }
 
         private void emitir_bilhete()
@@ -113,6 +112,8 @@ namespace Cinegest.Forms
                 var lugar2 = int.Parse(lugar1);
                 Bilhete bilhete = cinegest.Bilhetes.FirstOrDefault(b => b.Lugar == lugar2);
                 bilhete.Estado = "Vendido";
+                bilhete.ClienteId = cliente.Id;
+                bilhete.FuncionarioId = funcionario.Id;
                 cinegest.SaveChanges();
             }
             // nome do funcionário 

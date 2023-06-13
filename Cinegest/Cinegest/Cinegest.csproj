@@ -148,6 +148,7 @@
       <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Pessoas_Cliente.cs" />
+    <Compile Include="Models\Pessoas_Funcionario.cs" />
     <Compile Include="Pessoa.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
