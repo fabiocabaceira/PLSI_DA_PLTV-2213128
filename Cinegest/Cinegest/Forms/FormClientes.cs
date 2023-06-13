@@ -23,9 +23,10 @@ namespace Cinegest.Forms
             InitializeComponent();
         }
 
+        // Consultar
         private void FormClientes_Load(object sender, EventArgs e)
         {
-            // Consultar
+
             this.pessoas_ClienteTableAdapter.Fill(this.cineGestDataSet.Pessoas_Cliente);
 
         }
@@ -51,8 +52,6 @@ namespace Cinegest.Forms
             cinegest.SaveChanges();
         }
 
-        
-
         //Apagar
         private void apagarClientebtn_Click(object sender, EventArgs e)
         {
@@ -63,51 +62,45 @@ namespace Cinegest.Forms
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == this.dataGridView1.Columns["BilhetesVendidos"].Index || e.ColumnIndex == this.dataGridView1.Columns["ValorTotal"].Index)
+            // Verifica se a coluna atual é a "BilhetesVendidos" ou "ValorTotal"
+            if (e.ColumnIndex != this.dataGridView1.Columns["BilhetesVendidos"].Index && e.ColumnIndex != this.dataGridView1.Columns["ValorTotal"].Index)
             {
-                nomeCliente = dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value == null ?
-                  string.Empty : dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
+                return;
+            }
 
-                Cliente cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
+            // Obtém o nome do cliente a partir da linha atual
+            var nomeCliente = dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value?.ToString();
 
-                var nrDeBilhetes = cliente != null && cliente.Bilhetes != null ? cliente.Bilhetes.Count : 0;
-                var bilhetes = cinegest.Bilhetes.OfType<Bilhete>().ToList();
-                var bilhetesDoCliente = bilhetes.Where(b => b.ClienteId == cliente?.Id);
+            // Obtém o cliente correspondente ao nome
+            var cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
 
-                int precoTotal = 0;
-                foreach (var bilhete in bilhetesDoCliente)
-                {
-                    var sessaos = cinegest.Sessaos.OfType<Sessao>().ToList();
-                    var sessoesDoCliente = sessaos.Where(s => s.Id == bilhete.SessaoId);
-                    foreach (var sessao in sessoesDoCliente)
-                    {
-                        precoTotal += sessao.Preco;
-                    }
-                }
+            // Obtém o número de bilhetes comprados pelo cliente
+            var nrDeBilhetes = cliente?.Bilhetes?.Count ?? 0;
 
-                if (e.ColumnIndex == this.dataGridView1.Columns["BilhetesVendidos"].Index)
-                {
-                    if (nrDeBilhetes > 0)
-                    {
-                        e.Value = nrDeBilhetes;
-                    }
-                    else
-                    {
-                        e.Value = 0;
-                    }
-                }
-                else if (e.ColumnIndex == this.dataGridView1.Columns["ValorTotal"].Index)
-                {
-                    if (precoTotal > 0)
-                    {
-                        e.Value = precoTotal;
+            // Obtém todos os bilhetes vendidos
+            var bilhetes = cinegest.Bilhetes.OfType<Bilhete>().ToList();
 
-                    }
-                    else
-                    {
-                        e.Value = 0;
-                    }
-                }
+            // Obtém apenas os bilhetes vendidos pelo cliente atual
+            var bilhetesDoCliente = bilhetes.Where(b => b.ClienteId == cliente?.Id);
+
+            // Calcula o preço total dos bilhetes vendidos pelo cliente atual
+            var precoTotal = bilhetesDoCliente.Sum(b => cinegest.Sessaos.OfType<Sessao>().FirstOrDefault(s => s.Id == b.SessaoId)?.Preco ?? 0);
+
+            // Define o valor da célula atual com o número de bilhetes vendidos ou com o valor total, dependendo da coluna
+            e.Value = e.ColumnIndex == this.dataGridView1.Columns["BilhetesVendidos"].Index ? nrDeBilhetes : precoTotal;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            nomeCliente = dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
+
+            var cliente = cinegest.Pessoas.OfType<Cliente>().FirstOrDefault(c => c.Nome.Contains(nomeCliente));
+
+            if (cliente != null)
+            {
+                alterarNomelbl.Text = cliente.Nome;
+                alterarMoradalbl.Text = cliente.Morada;
+                alterarNumFiscallbl.Text = cliente.NumFiscal.ToString();
             }
         }
 

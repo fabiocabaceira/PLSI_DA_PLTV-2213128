@@ -13,7 +13,8 @@ namespace Cinegest.Forms
 {
     public partial class FormAtendimento : Form
     {
-        // Variáveis de instância
+        // Variáveis 
+        public int contador;
         public string idSessao;
         public string funcionario_Nome;
         public string nomeFilme;
@@ -86,8 +87,9 @@ namespace Cinegest.Forms
 
         private void emitir_bilhete()
         {
-            // Cria um arquivo de texto chamado "teste.txt" na pasta Public do usuário
-            TextWriter bilhete1 = new StreamWriter("C:\\\\Users\\\\Public\\\\teste.txt");
+            contador++;
+            // Cria um arquivo de texto com um nome de arquivo exclusivo para cada bilhete
+            TextWriter bilhete1 = new StreamWriter($"C:\\\\Users\\\\Public\\\\bilhete{contador}.txt");
             // Escreve os dados do bilhete
             // nome do cliente
             bilhete1.Write("Nome = ");
@@ -119,6 +121,7 @@ namespace Cinegest.Forms
             // nome do funcionário 
             bilhete1.Write("\nFuncionário = ");
             bilhete1.Write($"{funcionario_Nome} ");
+            
             // Fecha o arquivo
             bilhete1.Close();
         }

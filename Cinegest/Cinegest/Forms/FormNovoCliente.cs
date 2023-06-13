@@ -29,7 +29,7 @@ namespace Cinegest.Forms
             int numFiscal = int.Parse(numFiscaltb.Text);
             if (nome == "" || morada == "" )
             {
-                MessageBox.Show("Tem de insirir todos os campos para poder adicionar um cliente");
+                MessageBox.Show("Tem de insirir todos os campo");
             }
             else
             { 
