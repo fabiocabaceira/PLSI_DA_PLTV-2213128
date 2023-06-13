@@ -30,15 +30,11 @@ namespace Cinegest.Forms
 
         private void cinemabtn_Click(object sender, EventArgs e)
         {
-            try
-            {
+           
                 FormCinema FmCinemas = new FormCinema(); // Instancia o formulário FormCinema
                 FmCinemas.ShowDialog(); // Abre o formulário FormCinema
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erro ao abrir o formulario"); // Exibe uma mensagem de erro em caso de falha
-            }
+            
+            
 
         }
 

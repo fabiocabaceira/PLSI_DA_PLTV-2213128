@@ -15,6 +15,8 @@ namespace Cinegest.Forms
     {
         CineGestEntities5 cinegest;
         string nomeFuncionario = "";
+        string nomeSala = "";
+        int cinemaId = 0;
         public FormCinema()
         {
             cinegest = new CineGestEntities5();
@@ -23,6 +25,8 @@ namespace Cinegest.Forms
 
         private void FormCinema_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'cineGestDataSet.Salas' table. You can move, or remove it, as needed.
+            this.salasTableAdapter.Fill(this.cineGestDataSet.Salas);
             // TODO: This line of code loads data into the 'cineGestDataSet.Pessoas_Funcionario' table. You can move, or remove it, as needed.
             this.pessoas_FuncionarioTableAdapter.Fill(this.cineGestDataSet.Pessoas_Funcionario);
             listarCinema();
@@ -39,6 +43,7 @@ namespace Cinegest.Forms
                 cinemaNometb.Text = primeiroCinema.Nome;
                 cinemaMoradatb.Text = primeiroCinema.Morada;
                 cinemaEmailtb.Text = primeiroCinema.Email;
+                cinemaId = primeiroCinema.Id;
                 cinegest.SaveChanges();
             }
         }
@@ -57,8 +62,6 @@ namespace Cinegest.Forms
                 cinegest.SaveChanges();
             }
         }
-
-       
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -87,6 +90,7 @@ namespace Cinegest.Forms
 
         private void novoFuncionariotb_Click(object sender, EventArgs e)
         {
+
             FormNovoFuncionario fmNovoFuncionario = new FormNovoFuncionario();
             fmNovoFuncionario.ShowDialog();
         }
@@ -101,6 +105,36 @@ namespace Cinegest.Forms
             funcionario.Salario = int.Parse(funcionarioSalariotb.Text);
             cinegest.SaveChanges();
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormNovaSala fmNovaSala = new FormNovaSala(cinemaId);
+            fmNovaSala.ShowDialog();
+        }
+
+        private void apagarSalabtn_Click(object sender, EventArgs e)
+        {
+            Sala sala = cinegest.Salas.OfType<Sala>().FirstOrDefault(f => f.Nome == nomeSala);
+            if (sala != null)
+            {
+                cinegest.Salas.Remove(sala);
+                cinegest.SaveChanges();
+            }
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            nomeSala = dataGridView2.Rows[e.RowIndex].Cells["salanome"].Value.ToString();
+
+            var sala = cinegest.Salas.OfType<Sala>().FirstOrDefault(v => v.Nome == (nomeSala));
+            if (sala != null)
+            {
+                salaNometb.Text = sala.Nome.ToString();
+                salaColunastb.Text = sala.Colunas.ToString();
+                salaFilastb.Text = sala.Filas.ToString();
+            }
         }
     }
 }

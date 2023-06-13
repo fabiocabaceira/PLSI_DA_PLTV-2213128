@@ -19,7 +19,11 @@ namespace Cinegest
         public int Filas { get; set; }
         public int CinemaId { get; set; }
         public string Nome { get; set; }
-    
+        public Sala()
+        {
+            // Parameterless constructor
+        }
+
         public virtual Cinema Cinema { get; set; }
     }
 }

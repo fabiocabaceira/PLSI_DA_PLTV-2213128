@@ -2932,6 +2932,8 @@ namespace Cinegest {
             
             private global::System.Data.DataColumn columnCinemaId;
             
+            private global::System.Data.DataColumn columnNome;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public SalasDataTable() {
@@ -2999,6 +3001,14 @@ namespace Cinegest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NomeColumn {
+                get {
+                    return this.columnNome;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3034,13 +3044,14 @@ namespace Cinegest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SalasRow AddSalasRow(int Colunas, int Filas, CinemasRow parentCinemasRowByFK_CinemaSala) {
+            public SalasRow AddSalasRow(int Colunas, int Filas, CinemasRow parentCinemasRowByFK_CinemaSala, string Nome) {
                 SalasRow rowSalasRow = ((SalasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Colunas,
                         Filas,
-                        null};
+                        null,
+                        Nome};
                 if ((parentCinemasRowByFK_CinemaSala != null)) {
                     columnValuesArray[3] = parentCinemasRowByFK_CinemaSala[0];
                 }
@@ -3077,6 +3088,7 @@ namespace Cinegest {
                 this.columnColunas = base.Columns["Colunas"];
                 this.columnFilas = base.Columns["Filas"];
                 this.columnCinemaId = base.Columns["CinemaId"];
+                this.columnNome = base.Columns["Nome"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3090,6 +3102,8 @@ namespace Cinegest {
                 base.Columns.Add(this.columnFilas);
                 this.columnCinemaId = new global::System.Data.DataColumn("CinemaId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCinemaId);
+                this.columnNome = new global::System.Data.DataColumn("Nome", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNome);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -3101,6 +3115,8 @@ namespace Cinegest {
                 this.columnColunas.AllowDBNull = false;
                 this.columnFilas.AllowDBNull = false;
                 this.columnCinemaId.AllowDBNull = false;
+                this.columnNome.AllowDBNull = false;
+                this.columnNome.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4292,6 +4308,17 @@ namespace Cinegest {
                 }
                 set {
                     this[this.tableSalas.CinemaIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Nome {
+                get {
+                    return ((string)(this[this.tableSalas.NomeColumn]));
+                }
+                set {
+                    this[this.tableSalas.NomeColumn] = value;
                 }
             }
             
@@ -6696,12 +6723,12 @@ SELECT Id, Nome, Duracao, Activo, Categoria_Id FROM Filmes WHERE (Id = @Id)";
             tableMapping.ColumnMappings.Add("Colunas", "Colunas");
             tableMapping.ColumnMappings.Add("Filas", "Filas");
             tableMapping.ColumnMappings.Add("CinemaId", "CinemaId");
+            tableMapping.ColumnMappings.Add("Nome", "Nome");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Salas] WHERE (([Id] = @Original_Id) AND ([Colunas] = @Original" +
-                "_Colunas) AND ([Filas] = @Original_Filas) AND ([CinemaId] = @Original_CinemaId))" +
-                "";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Salas] WHERE (([Id] = @Original_Id) AND ([Colunas] = @Original_Colun" +
+                "as) AND ([Filas] = @Original_Filas) AND ([CinemaId] = @Original_CinemaId))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Colunas", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Colunas", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -6709,21 +6736,23 @@ SELECT Id, Nome, Duracao, Activo, Categoria_Id FROM Filmes WHERE (Id = @Id)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CinemaId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CinemaId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Salas] ([Colunas], [Filas], [CinemaId]) VALUES (@Colunas, @Fil" +
-                "as, @CinemaId);\r\nSELECT Id, Colunas, Filas, CinemaId FROM Salas WHERE (Id = SCOP" +
-                "E_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Salas] ([Colunas], [Filas], [CinemaId], [Nome]) VALUES (@Colunas, @F" +
+                "ilas, @CinemaId, @Nome);\r\nSELECT Id, Colunas, Filas, CinemaId, Nome FROM Salas W" +
+                "HERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Colunas", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Colunas", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Filas", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Filas", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CinemaId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CinemaId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nome", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Salas] SET [Colunas] = @Colunas, [Filas] = @Filas, [CinemaId] = @CinemaId WHERE (([Id] = @Original_Id) AND ([Colunas] = @Original_Colunas) AND ([Filas] = @Original_Filas) AND ([CinemaId] = @Original_CinemaId));
-SELECT Id, Colunas, Filas, CinemaId FROM Salas WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Salas] SET [Colunas] = @Colunas, [Filas] = @Filas, [CinemaId] = @CinemaId, [Nome] = @Nome WHERE (([Id] = @Original_Id) AND ([Colunas] = @Original_Colunas) AND ([Filas] = @Original_Filas) AND ([CinemaId] = @Original_CinemaId));
+SELECT Id, Colunas, Filas, CinemaId, Nome FROM Salas WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Colunas", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Colunas", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Filas", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Filas", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CinemaId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CinemaId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nome", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Colunas", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Colunas", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Filas", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Filas", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -6744,7 +6773,7 @@ SELECT Id, Colunas, Filas, CinemaId FROM Salas WHERE (Id = @Id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, Colunas, Filas, CinemaId FROM dbo.Salas";
+            this._commandCollection[0].CommandText = "SELECT        Id, Colunas, Filas, CinemaId, Nome\r\nFROM            Salas";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -6830,10 +6859,16 @@ SELECT Id, Colunas, Filas, CinemaId FROM Salas WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Colunas, int Filas, int CinemaId) {
+        public virtual int Insert(int Colunas, int Filas, int CinemaId, string Nome) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Colunas));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(Filas));
             this.Adapter.InsertCommand.Parameters[2].Value = ((int)(CinemaId));
+            if ((Nome == null)) {
+                throw new global::System.ArgumentNullException("Nome");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Nome));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6854,15 +6889,21 @@ SELECT Id, Colunas, Filas, CinemaId FROM Salas WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Colunas, int Filas, int CinemaId, int Original_Id, int Original_Colunas, int Original_Filas, int Original_CinemaId, int Id) {
+        public virtual int Update(int Colunas, int Filas, int CinemaId, string Nome, int Original_Id, int Original_Colunas, int Original_Filas, int Original_CinemaId, int Id) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Colunas));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Filas));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(CinemaId));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_Id));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_Colunas));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Filas));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_CinemaId));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Id));
+            if ((Nome == null)) {
+                throw new global::System.ArgumentNullException("Nome");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Nome));
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_Id));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Colunas));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Filas));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_CinemaId));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6883,8 +6924,8 @@ SELECT Id, Colunas, Filas, CinemaId FROM Salas WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Colunas, int Filas, int CinemaId, int Original_Id, int Original_Colunas, int Original_Filas, int Original_CinemaId) {
-            return this.Update(Colunas, Filas, CinemaId, Original_Id, Original_Colunas, Original_Filas, Original_CinemaId, Original_Id);
+        public virtual int Update(int Colunas, int Filas, int CinemaId, string Nome, int Original_Id, int Original_Colunas, int Original_Filas, int Original_CinemaId) {
+            return this.Update(Colunas, Filas, CinemaId, Nome, Original_Id, Original_Colunas, Original_Filas, Original_CinemaId, Original_Id);
         }
     }
     

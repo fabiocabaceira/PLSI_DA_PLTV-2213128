@@ -44,7 +44,6 @@
             this.moradaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pessoasFuncionarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cineGestDataSet = new Cinegest.CineGestDataSet();
-            this.pessoas_FuncionarioTableAdapter = new Cinegest.CineGestDataSetTableAdapters.Pessoas_FuncionarioTableAdapter();
             this.funcionarioMoradatb = new System.Windows.Forms.TextBox();
             this.funcionarioNometb = new System.Windows.Forms.TextBox();
             this.funcionarioFuncaotb = new System.Windows.Forms.TextBox();
@@ -54,14 +53,29 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.apagarFuncionario = new System.Windows.Forms.Label();
-            this.criarNovoFuncionariolbl = new System.Windows.Forms.Label();
             this.novoFuncionariotb = new System.Windows.Forms.Button();
             this.apagarFuncionariobtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.guardarAlteracoesFuncionariobtn = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.salasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pessoas_FuncionarioTableAdapter = new Cinegest.CineGestDataSetTableAdapters.Pessoas_FuncionarioTableAdapter();
+            this.salasTableAdapter = new Cinegest.CineGestDataSetTableAdapters.SalasTableAdapter();
+            this.filaslbl = new System.Windows.Forms.Label();
+            this.colunaslbl = new System.Windows.Forms.Label();
+            this.nomelbl = new System.Windows.Forms.Label();
+            this.salaFilastb = new System.Windows.Forms.TextBox();
+            this.salaNometb = new System.Windows.Forms.TextBox();
+            this.salaColunastb = new System.Windows.Forms.TextBox();
+            this.criarSalabtn = new System.Windows.Forms.Button();
+            this.apagarSalabtn = new System.Windows.Forms.Button();
+            this.salanome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colunas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Filas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasFuncionarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // headerlbl
@@ -181,10 +195,6 @@
             this.cineGestDataSet.DataSetName = "CineGestDataSet";
             this.cineGestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // pessoas_FuncionarioTableAdapter
-            // 
-            this.pessoas_FuncionarioTableAdapter.ClearBeforeFill = true;
-            // 
             // funcionarioMoradatb
             // 
             this.funcionarioMoradatb.Location = new System.Drawing.Point(938, 134);
@@ -194,9 +204,9 @@
             // 
             // funcionarioNometb
             // 
-            this.funcionarioNometb.Location = new System.Drawing.Point(938, 85);
+            this.funcionarioNometb.Location = new System.Drawing.Point(937, 85);
             this.funcionarioNometb.Name = "funcionarioNometb";
-            this.funcionarioNometb.Size = new System.Drawing.Size(260, 20);
+            this.funcionarioNometb.Size = new System.Drawing.Size(261, 20);
             this.funcionarioNometb.TabIndex = 10;
             // 
             // funcionarioFuncaotb
@@ -219,7 +229,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(260, 23);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Nome";
+            this.label1.Text = "Nome Do Funcionario";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label5
@@ -228,7 +238,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(260, 23);
             this.label5.TabIndex = 14;
-            this.label5.Text = "Morada";
+            this.label5.Text = "Morada  Do Funcionario";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label6
@@ -237,7 +247,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(261, 23);
             this.label6.TabIndex = 15;
-            this.label6.Text = "Funcao";
+            this.label6.Text = "Funcao  Do Funcionario";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label7
@@ -246,7 +256,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(263, 23);
             this.label7.TabIndex = 16;
-            this.label7.Text = "Salario";
+            this.label7.Text = "Salario  Do Funcionario";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label8
@@ -258,29 +268,11 @@
             this.label8.Text = "Guardar Informações Do Funcionario";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // apagarFuncionario
-            // 
-            this.apagarFuncionario.Location = new System.Drawing.Point(484, 369);
-            this.apagarFuncionario.Name = "apagarFuncionario";
-            this.apagarFuncionario.Size = new System.Drawing.Size(433, 23);
-            this.apagarFuncionario.TabIndex = 21;
-            this.apagarFuncionario.Text = "Apagar Um Funcionario";
-            this.apagarFuncionario.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // criarNovoFuncionariolbl
-            // 
-            this.criarNovoFuncionariolbl.Location = new System.Drawing.Point(484, 270);
-            this.criarNovoFuncionariolbl.Name = "criarNovoFuncionariolbl";
-            this.criarNovoFuncionariolbl.Size = new System.Drawing.Size(430, 23);
-            this.criarNovoFuncionariolbl.TabIndex = 20;
-            this.criarNovoFuncionariolbl.Text = "Criar Um Novo Funcionario";
-            this.criarNovoFuncionariolbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // novoFuncionariotb
             // 
-            this.novoFuncionariotb.Location = new System.Drawing.Point(487, 296);
+            this.novoFuncionariotb.Location = new System.Drawing.Point(1205, 114);
             this.novoFuncionariotb.Name = "novoFuncionariotb";
-            this.novoFuncionariotb.Size = new System.Drawing.Size(430, 70);
+            this.novoFuncionariotb.Size = new System.Drawing.Size(104, 66);
             this.novoFuncionariotb.TabIndex = 19;
             this.novoFuncionariotb.Text = "Criar Funcionario";
             this.novoFuncionariotb.UseVisualStyleBackColor = true;
@@ -288,32 +280,154 @@
             // 
             // apagarFuncionariobtn
             // 
-            this.apagarFuncionariobtn.Location = new System.Drawing.Point(484, 395);
+            this.apagarFuncionariobtn.Location = new System.Drawing.Point(1205, 183);
             this.apagarFuncionariobtn.Name = "apagarFuncionariobtn";
-            this.apagarFuncionariobtn.Size = new System.Drawing.Size(433, 70);
+            this.apagarFuncionariobtn.Size = new System.Drawing.Size(104, 66);
             this.apagarFuncionariobtn.TabIndex = 18;
-            this.apagarFuncionariobtn.Text = "Apagar ";
+            this.apagarFuncionariobtn.Text = "Apagar Funcionario";
             this.apagarFuncionariobtn.UseVisualStyleBackColor = true;
             this.apagarFuncionariobtn.Click += new System.EventHandler(this.apagarFuncionariobtn_Click);
             // 
-            // button1
+            // guardarAlteracoesFuncionariobtn
             // 
-            this.button1.Location = new System.Drawing.Point(1204, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 241);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Guardar Alterações";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.guardarAlteracoesFuncionariobtn.Location = new System.Drawing.Point(1204, 45);
+            this.guardarAlteracoesFuncionariobtn.Name = "guardarAlteracoesFuncionariobtn";
+            this.guardarAlteracoesFuncionariobtn.Size = new System.Drawing.Size(104, 66);
+            this.guardarAlteracoesFuncionariobtn.TabIndex = 22;
+            this.guardarAlteracoesFuncionariobtn.Text = "Guardar Alterações No Funcionario";
+            this.guardarAlteracoesFuncionariobtn.UseVisualStyleBackColor = true;
+            this.guardarAlteracoesFuncionariobtn.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AutoGenerateColumns = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.salanome,
+            this.Colunas,
+            this.Filas});
+            this.dataGridView2.DataSource = this.salasBindingSource;
+            this.dataGridView2.Location = new System.Drawing.Point(484, 260);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(430, 150);
+            this.dataGridView2.TabIndex = 23;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            // 
+            // salasBindingSource
+            // 
+            this.salasBindingSource.DataMember = "Salas";
+            this.salasBindingSource.DataSource = this.cineGestDataSet;
+            // 
+            // pessoas_FuncionarioTableAdapter
+            // 
+            this.pessoas_FuncionarioTableAdapter.ClearBeforeFill = true;
+            // 
+            // salasTableAdapter
+            // 
+            this.salasTableAdapter.ClearBeforeFill = true;
+            // 
+            // filaslbl
+            // 
+            this.filaslbl.Location = new System.Drawing.Point(937, 358);
+            this.filaslbl.Name = "filaslbl";
+            this.filaslbl.Size = new System.Drawing.Size(261, 23);
+            this.filaslbl.TabIndex = 29;
+            this.filaslbl.Text = "Filas Da Sala";
+            this.filaslbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // colunaslbl
+            // 
+            this.colunaslbl.Location = new System.Drawing.Point(938, 309);
+            this.colunaslbl.Name = "colunaslbl";
+            this.colunaslbl.Size = new System.Drawing.Size(260, 23);
+            this.colunaslbl.TabIndex = 28;
+            this.colunaslbl.Text = "Colunas Da Sala";
+            this.colunaslbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // nomelbl
+            // 
+            this.nomelbl.Location = new System.Drawing.Point(938, 260);
+            this.nomelbl.Name = "nomelbl";
+            this.nomelbl.Size = new System.Drawing.Size(260, 23);
+            this.nomelbl.TabIndex = 27;
+            this.nomelbl.Text = "Nome Da Sala";
+            this.nomelbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // salaFilastb
+            // 
+            this.salaFilastb.Location = new System.Drawing.Point(937, 381);
+            this.salaFilastb.Name = "salaFilastb";
+            this.salaFilastb.Size = new System.Drawing.Size(260, 20);
+            this.salaFilastb.TabIndex = 26;
+            // 
+            // salaNometb
+            // 
+            this.salaNometb.Location = new System.Drawing.Point(937, 286);
+            this.salaNometb.Name = "salaNometb";
+            this.salaNometb.Size = new System.Drawing.Size(261, 20);
+            this.salaNometb.TabIndex = 25;
+            // 
+            // salaColunastb
+            // 
+            this.salaColunastb.Location = new System.Drawing.Point(938, 335);
+            this.salaColunastb.Name = "salaColunastb";
+            this.salaColunastb.Size = new System.Drawing.Size(260, 20);
+            this.salaColunastb.TabIndex = 24;
+            // 
+            // criarSalabtn
+            // 
+            this.criarSalabtn.Location = new System.Drawing.Point(1204, 262);
+            this.criarSalabtn.Name = "criarSalabtn";
+            this.criarSalabtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.criarSalabtn.Size = new System.Drawing.Size(104, 70);
+            this.criarSalabtn.TabIndex = 30;
+            this.criarSalabtn.Text = "Criar Sala";
+            this.criarSalabtn.UseVisualStyleBackColor = true;
+            this.criarSalabtn.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // apagarSalabtn
+            // 
+            this.apagarSalabtn.Location = new System.Drawing.Point(1205, 340);
+            this.apagarSalabtn.Name = "apagarSalabtn";
+            this.apagarSalabtn.Size = new System.Drawing.Size(103, 70);
+            this.apagarSalabtn.TabIndex = 31;
+            this.apagarSalabtn.Text = "Apagar Sala";
+            this.apagarSalabtn.UseVisualStyleBackColor = true;
+            this.apagarSalabtn.Click += new System.EventHandler(this.apagarSalabtn_Click);
+            // 
+            // salanome
+            // 
+            this.salanome.DataPropertyName = "Nome";
+            this.salanome.HeaderText = "Nome";
+            this.salanome.Name = "salanome";
+            // 
+            // Colunas
+            // 
+            this.Colunas.DataPropertyName = "Colunas";
+            this.Colunas.HeaderText = "Colunas";
+            this.Colunas.Name = "Colunas";
+            // 
+            // Filas
+            // 
+            this.Filas.DataPropertyName = "Filas";
+            this.Filas.HeaderText = "Filas";
+            this.Filas.Name = "Filas";
             // 
             // FormCinema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1321, 611);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.apagarFuncionario);
-            this.Controls.Add(this.criarNovoFuncionariolbl);
+            this.Controls.Add(this.apagarSalabtn);
+            this.Controls.Add(this.criarSalabtn);
+            this.Controls.Add(this.filaslbl);
+            this.Controls.Add(this.colunaslbl);
+            this.Controls.Add(this.nomelbl);
+            this.Controls.Add(this.salaFilastb);
+            this.Controls.Add(this.salaNometb);
+            this.Controls.Add(this.salaColunastb);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.guardarAlteracoesFuncionariobtn);
             this.Controls.Add(this.novoFuncionariotb);
             this.Controls.Add(this.apagarFuncionariobtn);
             this.Controls.Add(this.label8);
@@ -340,6 +454,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasFuncionarioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salasBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -368,14 +484,26 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label apagarFuncionario;
-        private System.Windows.Forms.Label criarNovoFuncionariolbl;
         private System.Windows.Forms.Button novoFuncionariotb;
         private System.Windows.Forms.Button apagarFuncionariobtn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button guardarAlteracoesFuncionariobtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn salarioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn funcaoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn moradaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.BindingSource salasBindingSource;
+        private CineGestDataSetTableAdapters.SalasTableAdapter salasTableAdapter;
+        private System.Windows.Forms.Label filaslbl;
+        private System.Windows.Forms.Label colunaslbl;
+        private System.Windows.Forms.Label nomelbl;
+        private System.Windows.Forms.TextBox salaFilastb;
+        private System.Windows.Forms.TextBox salaNometb;
+        private System.Windows.Forms.TextBox salaColunastb;
+        private System.Windows.Forms.Button criarSalabtn;
+        private System.Windows.Forms.Button apagarSalabtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn salanome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Colunas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Filas;
     }
 }
