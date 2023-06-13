@@ -22,20 +22,19 @@ namespace Cinegest.Forms
 
         private void FormClientes_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cineGestDataSet.Pessoas_Cliente' table. You can move, or remove it, as needed.
+            // Consultar
             this.pessoas_ClienteTableAdapter.Fill(this.cineGestDataSet.Pessoas_Cliente);
-            
 
         }
 
+        //Registar
         private void novoClientebtn_Click(object sender, EventArgs e)
         {
             FormNovoCliente formNovoCliente = new FormNovoCliente();
             formNovoCliente.ShowDialog();
         }
 
-       
-
+        //Alterar
         private void alterarClientebtn_Click(object sender, EventArgs e)
         {
             string nome = alterarNomelbl.Text;
@@ -50,7 +49,7 @@ namespace Cinegest.Forms
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-             nomeCliente = dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
+            nomeCliente = dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
 
             var pessoasClientes = cinegest.Pessoas.OfType<Cliente>().ToList();
             foreach (var cliente in pessoasClientes)
@@ -64,6 +63,14 @@ namespace Cinegest.Forms
                 }
             }
 
+        }
+
+        //Apagar
+        private void apagarClientebtn_Click(object sender, EventArgs e)
+        {
+            Cliente cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
+            cinegest.Clientes.Remove(cliente);
+            cinegest.SaveChanges();
         }
     }
 }
