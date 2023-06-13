@@ -1,4 +1,4 @@
-﻿using System; 
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +16,7 @@ namespace Cinegest.Forms
         public FormPrincipal()
         {
             InitializeComponent(); // Inicializa os componentes do FormPrincipal
-            db = new CineGestEntities5();   
+            db = new CineGestEntities5();
         }
 
         private void FormPrincipal_Load(object sender, EventArgs e)
@@ -72,10 +72,10 @@ namespace Cinegest.Forms
 
         private void clientesbtn_Click(object sender, EventArgs e)
         {
-           
-                FormClientes FmClientes = new FormClientes(); // Instancia o formulário FormClientes
-                FmClientes.ShowDialog(); // Abre o formulário FormClientes
-            
+
+            FormClientes FmClientes = new FormClientes(); // Instancia o formulário FormClientes
+            FmClientes.ShowDialog(); // Abre o formulário FormClientes
+
         }
 
         private void funcionariosbtn_Click(object sender, EventArgs e)

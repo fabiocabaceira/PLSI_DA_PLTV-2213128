@@ -13,6 +13,7 @@ namespace Cinegest.Forms
     public partial class FormClientes : Form
     {
         CineGestEntities5 cinegest;
+        string nomeCliente;
         public FormClientes()
         {
             cinegest = new CineGestEntities5();
@@ -39,15 +40,17 @@ namespace Cinegest.Forms
         {
             string nome = alterarNomelbl.Text;
             string morada = alterarMoradalbl.Text;
-            string numFiscal = alterarNumFiscallbl.Text;
-
-            
-
+            int numFiscal = int.Parse(alterarNumFiscallbl.Text);
+            Cliente cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
+            cliente.Nome = nome;
+            cliente.Morada = morada;
+            cliente.NumFiscal = numFiscal;
+            cinegest.SaveChanges();
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            string nomeCliente = dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
+             nomeCliente = dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
 
             var pessoasClientes = cinegest.Pessoas.OfType<Cliente>().ToList();
             foreach (var cliente in pessoasClientes)
