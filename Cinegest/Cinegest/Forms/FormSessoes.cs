@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace Cinegest.Forms
         private void FormSessoes_Load(object sender, EventArgs e)
         {
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "MM/dd/yyyy hh:mm:ss";
+            dateTimePicker1.CustomFormat = "HH:mm:ss tt";
             var salas = cinegest.Salas.ToList();
             var filmes = cinegest.Filmes.ToList();
 
@@ -31,6 +32,15 @@ namespace Cinegest.Forms
 
             filmescb.DataSource = filmes;
             filmescb.DisplayMember = "Nome";
+        }
+        private int verificarSeExisteSessaoMarcada(Sala sala, DateTime dataHora)
+        {
+            var sessoes = cinegest.Sessaos
+              .Where(s => s.SalaId == sala.Id && DbFunctions.TruncateTime(s.Datahora) == dataHora.Date && s.Datahora.Hour == dataHora.Hour && s.Datahora.Minute == dataHora.Minute)
+              .ToList();
+
+            return sessoes.Count;
+
         }
 
         private void criarSessaobtn_Click(object sender, EventArgs e)
@@ -43,9 +53,16 @@ namespace Cinegest.Forms
             int salaId = sala.Id;
             Filme filme = cinegest.Filmes.ToList().FirstOrDefault(c => c.Nome == nomeFilme);
             int filmeId = filme.Id;
-            Sessao novaSessao = new Sessao(salaId, Datahora, preco, filmeId);
-            cinegest.Sessaos.Add(novaSessao);
-            cinegest.SaveChanges();
+            if (verificarSeExisteSessaoMarcada(sala, Datahora) == 0)
+            {
+                Sessao novaSessao = new Sessao(salaId, Datahora, preco, filmeId);
+                cinegest.Sessaos.Add(novaSessao);
+                cinegest.SaveChanges();
+            }
+            else
+            {
+                MessageBox.Show("A sala já está ocupada a esta hora, escolha uma hora/sala diferente");
+            }
 
         }
     }
