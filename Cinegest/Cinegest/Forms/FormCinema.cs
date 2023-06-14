@@ -16,7 +16,7 @@ namespace Cinegest.Forms
         CineGestEntities5 cinegest;
         string nomeFuncionario = "";
         string nomeSala = "";
-        int cinemaId = 0;
+        int cinemaId = 1;
         public FormCinema()
         {
             cinegest = new CineGestEntities5();
@@ -35,15 +35,14 @@ namespace Cinegest.Forms
         public void listarCinema()
         {
             var cinemas = cinegest.Cinemas.ToList<Cinema>();
+            Cinema cinema = cinegest.Cinemas.OfType<Cinema>().FirstOrDefault(f => f.Id == cinemaId);
 
             if (cinemas.Count > 0)
             {
-                criarCinemabtn.Text = "Alterar Detalhes";
-                Cinema primeiroCinema = cinemas.First();
-                cinemaNometb.Text = primeiroCinema.Nome;
-                cinemaMoradatb.Text = primeiroCinema.Morada;
-                cinemaEmailtb.Text = primeiroCinema.Email;
-                cinemaId = primeiroCinema.Id;
+                cinemaNometb.Text = cinema.Nome;
+                cinemaMoradatb.Text = cinema.Morada;
+                cinemaEmailtb.Text = cinema.Email;
+                cinemaId = cinema.Id;
                 cinegest.SaveChanges();
             }
         }
@@ -54,7 +53,6 @@ namespace Cinegest.Forms
 
             if (cinemas.Count < 0)
             {
-                criarCinemabtn.Text = "Criar Cinema";
                 Cinema cinema = new Cinema();
                 cinema.Nome = cinemaNometb.Text;
                 cinema.Morada = cinemaMoradatb.Text;
@@ -144,6 +142,16 @@ namespace Cinegest.Forms
             sala.Nome = salaNometb.Text.ToString();
             sala.Colunas = int.Parse(salaColunastb.Text);
             sala.Filas = int.Parse(salaFilastb.Text);
+            cinegest.SaveChanges();
+
+        }
+
+        private void guardarCinemabtn_Click(object sender, EventArgs e)
+        {
+            Cinema cinema = cinegest.Cinemas.OfType<Cinema>().FirstOrDefault(f => f.Id == cinemaId);
+            cinema.Nome = cinemaNometb.Text;
+            cinema.Morada = cinemaMoradatb.Text;
+            cinema.Email = cinemaEmailtb.Text;
             cinegest.SaveChanges();
 
         }

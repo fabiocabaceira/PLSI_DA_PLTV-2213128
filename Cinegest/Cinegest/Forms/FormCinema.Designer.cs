@@ -38,6 +38,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.criarCinemabtn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.salarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.funcaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nomefunc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.moradaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pessoasFuncionarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cineGestDataSet = new Cinegest.CineGestDataSet();
             this.funcionarioMoradatb = new System.Windows.Forms.TextBox();
@@ -67,11 +71,8 @@
             this.salaColunastb = new System.Windows.Forms.TextBox();
             this.criarSalabtn = new System.Windows.Forms.Button();
             this.apagarSalabtn = new System.Windows.Forms.Button();
-            this.salarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.funcaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nomefunc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.moradaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guardarSalabtn = new System.Windows.Forms.Button();
+            this.guardarCinemabtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasFuncionarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
@@ -140,7 +141,7 @@
             // 
             this.criarCinemabtn.Location = new System.Drawing.Point(5, 226);
             this.criarCinemabtn.Name = "criarCinemabtn";
-            this.criarCinemabtn.Size = new System.Drawing.Size(460, 227);
+            this.criarCinemabtn.Size = new System.Drawing.Size(221, 129);
             this.criarCinemabtn.TabIndex = 7;
             this.criarCinemabtn.Text = "Criar Cinema";
             this.criarCinemabtn.UseVisualStyleBackColor = true;
@@ -161,6 +162,30 @@
             this.dataGridView1.Size = new System.Drawing.Size(430, 241);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // salarioDataGridViewTextBoxColumn
+            // 
+            this.salarioDataGridViewTextBoxColumn.DataPropertyName = "Salario";
+            this.salarioDataGridViewTextBoxColumn.HeaderText = "Salario";
+            this.salarioDataGridViewTextBoxColumn.Name = "salarioDataGridViewTextBoxColumn";
+            // 
+            // funcaoDataGridViewTextBoxColumn
+            // 
+            this.funcaoDataGridViewTextBoxColumn.DataPropertyName = "Funcao";
+            this.funcaoDataGridViewTextBoxColumn.HeaderText = "Funcao";
+            this.funcaoDataGridViewTextBoxColumn.Name = "funcaoDataGridViewTextBoxColumn";
+            // 
+            // Nomefunc
+            // 
+            this.Nomefunc.DataPropertyName = "Nome";
+            this.Nomefunc.HeaderText = "Nome";
+            this.Nomefunc.Name = "Nomefunc";
+            // 
+            // moradaDataGridViewTextBoxColumn
+            // 
+            this.moradaDataGridViewTextBoxColumn.DataPropertyName = "Morada";
+            this.moradaDataGridViewTextBoxColumn.HeaderText = "Morada";
+            this.moradaDataGridViewTextBoxColumn.Name = "moradaDataGridViewTextBoxColumn";
             // 
             // pessoasFuncionarioBindingSource
             // 
@@ -390,30 +415,6 @@
             this.apagarSalabtn.UseVisualStyleBackColor = true;
             this.apagarSalabtn.Click += new System.EventHandler(this.apagarSalabtn_Click);
             // 
-            // salarioDataGridViewTextBoxColumn
-            // 
-            this.salarioDataGridViewTextBoxColumn.DataPropertyName = "Salario";
-            this.salarioDataGridViewTextBoxColumn.HeaderText = "Salario";
-            this.salarioDataGridViewTextBoxColumn.Name = "salarioDataGridViewTextBoxColumn";
-            // 
-            // funcaoDataGridViewTextBoxColumn
-            // 
-            this.funcaoDataGridViewTextBoxColumn.DataPropertyName = "Funcao";
-            this.funcaoDataGridViewTextBoxColumn.HeaderText = "Funcao";
-            this.funcaoDataGridViewTextBoxColumn.Name = "funcaoDataGridViewTextBoxColumn";
-            // 
-            // Nomefunc
-            // 
-            this.Nomefunc.DataPropertyName = "Nome";
-            this.Nomefunc.HeaderText = "Nome";
-            this.Nomefunc.Name = "Nomefunc";
-            // 
-            // moradaDataGridViewTextBoxColumn
-            // 
-            this.moradaDataGridViewTextBoxColumn.DataPropertyName = "Morada";
-            this.moradaDataGridViewTextBoxColumn.HeaderText = "Morada";
-            this.moradaDataGridViewTextBoxColumn.Name = "moradaDataGridViewTextBoxColumn";
-            // 
             // guardarSalabtn
             // 
             this.guardarSalabtn.Location = new System.Drawing.Point(937, 416);
@@ -424,11 +425,22 @@
             this.guardarSalabtn.UseVisualStyleBackColor = true;
             this.guardarSalabtn.Click += new System.EventHandler(this.guardarSalabtn_Click);
             // 
+            // guardarCinemabtn
+            // 
+            this.guardarCinemabtn.Location = new System.Drawing.Point(244, 226);
+            this.guardarCinemabtn.Name = "guardarCinemabtn";
+            this.guardarCinemabtn.Size = new System.Drawing.Size(221, 129);
+            this.guardarCinemabtn.TabIndex = 33;
+            this.guardarCinemabtn.Text = "Guardar Cinema";
+            this.guardarCinemabtn.UseVisualStyleBackColor = true;
+            this.guardarCinemabtn.Click += new System.EventHandler(this.guardarCinemabtn_Click);
+            // 
             // FormCinema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1321, 494);
+            this.Controls.Add(this.guardarCinemabtn);
             this.Controls.Add(this.guardarSalabtn);
             this.Controls.Add(this.apagarSalabtn);
             this.Controls.Add(this.criarSalabtn);
@@ -518,5 +530,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nomefunc;
         private System.Windows.Forms.DataGridViewTextBoxColumn moradaDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button guardarSalabtn;
+        private System.Windows.Forms.Button guardarCinemabtn;
     }
 }
