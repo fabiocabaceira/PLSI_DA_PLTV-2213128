@@ -30,11 +30,9 @@
         {
             this.categorialbl = new System.Windows.Forms.Label();
             this.adicionarbtn = new System.Windows.Forms.Button();
-            this.activolbl = new System.Windows.Forms.Label();
             this.duracaolbl = new System.Windows.Forms.Label();
             this.nomelbl = new System.Windows.Forms.Label();
             this.duracaoFilmetb = new System.Windows.Forms.TextBox();
-            this.activoFilmetb = new System.Windows.Forms.TextBox();
             this.nomeFilmetb = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.categoriaFilmescb = new System.Windows.Forms.ComboBox();
@@ -42,7 +40,7 @@
             // 
             // categorialbl
             // 
-            this.categorialbl.Location = new System.Drawing.Point(11, 138);
+            this.categorialbl.Location = new System.Drawing.Point(9, 107);
             this.categorialbl.Name = "categorialbl";
             this.categorialbl.Size = new System.Drawing.Size(86, 20);
             this.categorialbl.TabIndex = 27;
@@ -52,19 +50,11 @@
             // 
             this.adicionarbtn.Location = new System.Drawing.Point(233, 10);
             this.adicionarbtn.Name = "adicionarbtn";
-            this.adicionarbtn.Size = new System.Drawing.Size(63, 145);
+            this.adicionarbtn.Size = new System.Drawing.Size(63, 118);
             this.adicionarbtn.TabIndex = 25;
             this.adicionarbtn.Text = "Adicionar";
             this.adicionarbtn.UseVisualStyleBackColor = true;
             this.adicionarbtn.Click += new System.EventHandler(this.adicionarbtn_Click);
-            // 
-            // activolbl
-            // 
-            this.activolbl.Location = new System.Drawing.Point(9, 110);
-            this.activolbl.Name = "activolbl";
-            this.activolbl.Size = new System.Drawing.Size(86, 20);
-            this.activolbl.TabIndex = 24;
-            this.activolbl.Text = "Activo";
             // 
             // duracaolbl
             // 
@@ -89,13 +79,6 @@
             this.duracaoFilmetb.Size = new System.Drawing.Size(100, 20);
             this.duracaoFilmetb.TabIndex = 21;
             // 
-            // activoFilmetb
-            // 
-            this.activoFilmetb.Location = new System.Drawing.Point(101, 107);
-            this.activoFilmetb.Name = "activoFilmetb";
-            this.activoFilmetb.Size = new System.Drawing.Size(100, 20);
-            this.activoFilmetb.TabIndex = 20;
-            // 
             // nomeFilmetb
             // 
             this.nomeFilmetb.Location = new System.Drawing.Point(101, 55);
@@ -114,7 +97,7 @@
             // categoriaFilmescb
             // 
             this.categoriaFilmescb.FormattingEnabled = true;
-            this.categoriaFilmescb.Location = new System.Drawing.Point(101, 136);
+            this.categoriaFilmescb.Location = new System.Drawing.Point(101, 107);
             this.categoriaFilmescb.Name = "categoriaFilmescb";
             this.categoriaFilmescb.Size = new System.Drawing.Size(100, 21);
             this.categoriaFilmescb.TabIndex = 28;
@@ -123,15 +106,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 408);
+            this.ClientSize = new System.Drawing.Size(302, 408);
             this.Controls.Add(this.categoriaFilmescb);
             this.Controls.Add(this.categorialbl);
             this.Controls.Add(this.adicionarbtn);
-            this.Controls.Add(this.activolbl);
             this.Controls.Add(this.duracaolbl);
             this.Controls.Add(this.nomelbl);
             this.Controls.Add(this.duracaoFilmetb);
-            this.Controls.Add(this.activoFilmetb);
             this.Controls.Add(this.nomeFilmetb);
             this.Controls.Add(this.label1);
             this.Name = "FormNovoFilme";
@@ -146,11 +127,9 @@
 
         private System.Windows.Forms.Label categorialbl;
         private System.Windows.Forms.Button adicionarbtn;
-        private System.Windows.Forms.Label activolbl;
         private System.Windows.Forms.Label duracaolbl;
         private System.Windows.Forms.Label nomelbl;
         private System.Windows.Forms.TextBox duracaoFilmetb;
-        private System.Windows.Forms.TextBox activoFilmetb;
         private System.Windows.Forms.TextBox nomeFilmetb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox categoriaFilmescb;

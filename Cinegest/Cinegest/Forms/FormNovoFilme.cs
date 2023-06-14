@@ -32,7 +32,7 @@ namespace Cinegest.Forms
         {
             string nomeFilme = nomeFilmetb.Text;
             string duracaoFilme = duracaoFilmetb.Text;
-            string Activo = activoFilmetb.Text;
+            string Activo = "Desactivado";
             string categoria_nome = categoriaFilmescb.Text.ToString();
 
             Categoria categoria = cinegest.Categorias.ToList().FirstOrDefault(c => c.Nome == categoria_nome);

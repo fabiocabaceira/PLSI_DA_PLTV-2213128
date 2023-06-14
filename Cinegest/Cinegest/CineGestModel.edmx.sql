@@ -356,9 +356,9 @@ VALUES ('Comédia', 'Sim'),
 
 -- Filmes
 INSERT INTO [dbo].[Filmes] ([Nome], [Duracao], [Activo], [CategoriaId])
-VALUES ('Matrix', '120', 'Sim', 2),
-       ('The Incredibles 2', '90', 'Não', 12),
-       ('Thor', '105', 'Sim', 10);
+VALUES ('Matrix', '120', 'Activo', 2),
+       ('The Incredibles 2', '90', 'Activo', 12),
+       ('Thor', '105', 'Activo', 10);
 
 -- Sessão
 INSERT INTO [dbo].[Sessaos] ([DataHora], [Preco], [SalaId], [Filme_Id])
