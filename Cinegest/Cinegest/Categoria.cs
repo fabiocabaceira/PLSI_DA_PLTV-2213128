@@ -14,10 +14,17 @@ namespace Cinegest
     
     public partial class Categoria
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Categoria()
+        {
+            this.Filmes = new HashSet<Filme>();
+        }
+    
         public int Id { get; set; }
         public string Activa { get; set; }
         public string Nome { get; set; }
     
-        public virtual Filme Filme { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Filme> Filmes { get; set; }
     }
 }

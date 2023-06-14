@@ -32,8 +32,9 @@
     <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Duracao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Sessaos" Relationship="Self.FK_SessaoFilme" FromRole="Filmes" ToRole="Sessaos" />
-    <NavigationProperty Name="Categoria" Relationship="CineGestModel.FilmeCategoria" FromRole="Filme" ToRole="Categoria" />
     <Property Name="Activo" Type="String" Nullable="false" />
+    <NavigationProperty Name="Categoria" Relationship="CineGestModel.FilmeCategoria" FromRole="Filme" ToRole="Categoria" />
+    <Property Name="CategoriaId" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Pessoa">
     <Key>
@@ -175,10 +176,18 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Activa" Type="String" Nullable="false" />
     <Property Name="Nome" Type="String" Nullable="false" />
-    <NavigationProperty Name="Filme" Relationship="CineGestModel.FilmeCategoria" FromRole="Categoria" ToRole="Filme" />
+    <NavigationProperty Name="Filmes" Relationship="CineGestModel.FilmeCategoria" FromRole="Categoria" ToRole="Filme" />
   </EntityType>
   <Association Name="FilmeCategoria">
-    <End Type="CineGestModel.Filme" Role="Filme" Multiplicity="1" />
+    <End Type="CineGestModel.Filme" Role="Filme" Multiplicity="*" />
     <End Type="CineGestModel.Categoria" Role="Categoria" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Filme">
+        <PropertyRef Name="CategoriaId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

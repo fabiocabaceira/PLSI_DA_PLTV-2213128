@@ -24,6 +24,7 @@ namespace Cinegest
         public string Nome { get; set; }
         public string Duracao { get; set; }
         public string Activo { get; set; }
+        public int CategoriaId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sessao> Sessaos { get; set; }

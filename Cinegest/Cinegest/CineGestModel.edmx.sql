@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/12/2023 21:45:14
--- Generated from EDMX file: C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGestModel.edmx
+-- Date Created: 06/14/2023 14:42:47
+-- Generated from EDMX file: C:\Users\F√°bio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\CineGestModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -34,9 +34,6 @@ IF OBJECT_ID(N'[dbo].[FK_SessaoFilme]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_FilmeCategoria]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Filmes] DROP CONSTRAINT [FK_FilmeCategoria];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SalaSessao]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Sessaos] DROP CONSTRAINT [FK_SalaSessao];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Cliente_inherits_Pessoa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pessoas_Cliente] DROP CONSTRAINT [FK_Cliente_inherits_Pessoa];
@@ -107,7 +104,7 @@ CREATE TABLE [dbo].[Filmes] (
     [Nome] nvarchar(max)  NOT NULL,
     [Duracao] nvarchar(max)  NOT NULL,
     [Activo] nvarchar(max)  NOT NULL,
-    [Categoria_Id] int  NOT NULL
+    [CategoriaId] int  NOT NULL
 );
 GO
 
@@ -299,10 +296,10 @@ ON [dbo].[Sessaos]
     ([Filme_Id]);
 GO
 
--- Creating foreign key on [Categoria_Id] in table 'Filmes'
+-- Creating foreign key on [CategoriaId] in table 'Filmes'
 ALTER TABLE [dbo].[Filmes]
 ADD CONSTRAINT [FK_FilmeCategoria]
-    FOREIGN KEY ([Categoria_Id])
+    FOREIGN KEY ([CategoriaId])
     REFERENCES [dbo].[Categorias]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -311,7 +308,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_FilmeCategoria'
 CREATE INDEX [IX_FK_FilmeCategoria]
 ON [dbo].[Filmes]
-    ([Categoria_Id]);
+    ([CategoriaId]);
 GO
 
 -- Creating foreign key on [Id] in table 'Pessoas_Cliente'
@@ -344,26 +341,26 @@ VALUES ('Sala 1', '3', '3', 1),
 
 -- Categorias
 INSERT INTO [dbo].[Categorias] ([Nome], [Activa])
-VALUES ('ComÈdia', 'Sim'),
+VALUES ('Com√©dia', 'Sim'),
        ('Sci_fi', 'Sim'),
        ('Terror', 'Sim'),       
        ('Romance', 'Sim'),
-       ('AcÁ„o', 'Sim'),
+       ('Ac√ß√£o', 'Sim'),
        ('Thriller', 'Sim'),
        ('Drama', 'Sim'),       
-       ('MistÈrio', 'Sim'),
+       ('Mist√©rio', 'Sim'),
        ('Crime', 'Sim'),
        ('Aventura', 'Sim'),
        ('Fantasia', 'Sim'), 
-       ('AnimaÁ„o', 'Sim');
+       ('Anima√ß√£o', 'Sim');
 
 -- Filmes
-INSERT INTO [dbo].[Filmes] ([Nome], [Duracao], [Activo], [Categoria_Id])
+INSERT INTO [dbo].[Filmes] ([Nome], [Duracao], [Activo], [CategoriaId])
 VALUES ('Matrix', '120', 'Sim', 2),
-       ('The Incredibles 2', '90', 'N„o', 5),
-       ('Thor', '105', 'Sim', 6);
+       ('The Incredibles 2', '90', 'N√£o', 12),
+       ('Thor', '105', 'Sim', 10);
 
--- Sess„o
+-- Sess√£o
 INSERT INTO [dbo].[Sessaos] ([DataHora], [Preco], [SalaId], [Filme_Id])
 VALUES ('2023-06-2 10:00:00', '10', 1, 1),
        (GETDATE(), '12', 2, 2),
@@ -371,7 +368,7 @@ VALUES ('2023-06-2 10:00:00', '10', 1, 1),
 
 -- Pessoas
 INSERT INTO [dbo].[Pessoas] ([Nome], [Morada])
-VALUES ('Jo„o Silva', 'Rua A'),
+VALUES ('Jo√£o Silva', 'Rua A'),
        ('Marta Oliveira', 'Rua B'),
        ('Pedro Santos', 'Rua C'),
        ('Pedro Miguel', 'Rua D'),
@@ -393,25 +390,23 @@ VALUES ('123456789', 4),
 -- Bilhetes
 INSERT INTO [dbo].[Bilhetes] ([Lugar], [Estado], [FuncionarioId], [ClienteId], [SessaoId])
 VALUES 
-       ('1', 'DisponÌvel', 3, 6, 2),
-       ('2', 'DisponÌvel', 3, 6, 2),
-       ('3', 'DisponÌvel', 3, 6, 2),
-       ('4', 'DisponÌvel', 3, 6, 2),
-       ('5', 'DisponÌvel', 3, 6, 2),
-       ('6', 'DisponÌvel', 3, 6, 2),
-       ('7', 'DisponÌvel', 3, 6, 2),
-       ('8', 'DisponÌvel', 3, 6, 2),
-       ('9', 'DisponÌvel', 3, 6, 2),
-       ('10', 'DisponÌvel', 3, 6, 2),
-       ('11', 'DisponÌvel', 3, 6, 2),
-       ('12', 'DisponÌvel', 3, 6, 2),
-       ('13', 'DisponÌvel', 3, 6, 2),
-       ('14', 'DisponÌvel', 3, 6, 2),
-       ('15', 'DisponÌvel', 3, 6, 2),
-       ('3', 'DisponÌvel', 3, 6, 3),
-       ('16', 'DisponÌvel', 3, 6, 2);
-
-
+       ('1', 'Dispon√≠vel', 3, 6, 2),
+       ('2', 'Dispon√≠vel', 3, 6, 2),
+       ('3', 'Dispon√≠vel', 3, 6, 2),
+       ('4', 'Dispon√≠vel', 3, 6, 2),
+       ('5', 'Dispon√≠vel', 3, 6, 2),
+       ('6', 'Dispon√≠vel', 3, 6, 2),
+       ('7', 'Dispon√≠vel', 3, 6, 2),
+       ('8', 'Dispon√≠vel', 3, 6, 2),
+       ('9', 'Dispon√≠vel', 3, 6, 2),
+       ('10', 'Dispon√≠vel', 3, 6, 2),
+       ('11', 'Dispon√≠vel', 3, 6, 2),
+       ('12', 'Dispon√≠vel', 3, 6, 2),
+       ('13', 'Dispon√≠vel', 3, 6, 2),
+       ('14', 'Dispon√≠vel', 3, 6, 2),
+       ('15', 'Dispon√≠vel', 3, 6, 2),
+       ('3', 'Dispon√≠vel', 3, 6, 3),
+       ('16', 'Dispon√≠vel', 3, 6, 2);
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------

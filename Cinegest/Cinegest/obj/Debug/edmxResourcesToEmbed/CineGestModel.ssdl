@@ -71,7 +71,7 @@
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Duracao" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Activo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Categoria_Id" Type="int" Nullable="false" />
+    <Property Name="CategoriaId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Pessoas">
     <Key>
@@ -192,7 +192,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Filme">
-        <PropertyRef Name="Categoria_Id" />
+        <PropertyRef Name="CategoriaId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
