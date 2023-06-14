@@ -50,15 +50,11 @@ namespace Cinegest.Forms
 
         private void sessaobtn_Click(object sender, EventArgs e)
         {
-            try
-            {
+            
                 FormSessoes FmSessoes = new FormSessoes(); // Instancia o formulário FormSessoes
                 FmSessoes.ShowDialog(); // Abre o formulário FormSessoes
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erro ao abrir o formulario"); // Exibe uma mensagem de erro em caso de falha
-            }
+           
+            
 
         }
 
@@ -70,19 +66,8 @@ namespace Cinegest.Forms
 
         }
 
-        private void funcionariosbtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FormFuncionarios formFuncionarios = new FormFuncionarios(); // Instancia o formulário FormFuncionarios
-                formFuncionarios.ShowDialog(); // Abre o formulário FormFuncionarios
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erro ao abrir o formulario"); // Exibe uma mensagem de erro em caso de falha
-            }
-
-        }
+       
+        
 
         private void sessoesdgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -99,6 +84,12 @@ namespace Cinegest.Forms
             // Abre o formulário FormAtendimento
             FmAtendimento.ShowDialog();
 
+        }
+
+        private void funcionariosbtn_Click(object sender, EventArgs e)
+        {
+            FormCinema fmcinema2 = new FormCinema();
+            fmcinema2.ShowDialog();
         }
     }
 }
