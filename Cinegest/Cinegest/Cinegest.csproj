@@ -132,6 +132,12 @@
     <Compile Include="Forms\FormFuncionarios.Designer.cs">
       <DependentUpon>FormFuncionarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormNovoFilme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormNovoFilme.Designer.cs">
+      <DependentUpon>FormNovoFilme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormNovoFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,7 +165,9 @@
     <Compile Include="Funcionario.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Cinema.cs" />
+    <Compile Include="Models\Filme.cs" />
     <Compile Include="Models\Pessoas_Cliente.cs" />
     <Compile Include="Models\Pessoas_Funcionario.cs" />
     <Compile Include="Models\Sala.cs" />
@@ -183,6 +191,9 @@
     <EmbeddedResource Include="Forms\FormClientes.resx">
       <DependentUpon>FormClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFilmes.resx">
+      <DependentUpon>FormFilmes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNovaSala.resx">
       <DependentUpon>FormNovaSala.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormFuncionarios.resx">
       <DependentUpon>FormFuncionarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormNovoFilme.resx">
+      <DependentUpon>FormNovoFilme.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNovoFuncionario.resx">
       <DependentUpon>FormNovoFuncionario.cs</DependentUpon>

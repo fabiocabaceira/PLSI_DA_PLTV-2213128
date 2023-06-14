@@ -8,8 +8,13 @@ namespace Cinegest
 {
     public partial class Sala
     {
-     
 
+
+        public Sala()
+        {
+          
+
+        }
         public Sala(int Colunas, int filas, int CinemaId, string Nome) 
         {
             this.Colunas = Colunas;

@@ -16,5 +16,12 @@ namespace Cinegest.Forms
         {
             InitializeComponent();
         }
+
+        private void FormFuncionarios_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'cineGestDataSet.Filmes' table. You can move, or remove it, as needed.
+            this.filmesTableAdapter.Fill(this.cineGestDataSet.Filmes);
+
+        }
     }
 }

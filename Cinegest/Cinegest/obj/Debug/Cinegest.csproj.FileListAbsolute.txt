@@ -41,3 +41,5 @@ C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.F
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormCinema.resources
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormNovoFuncionario.resources
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormNovaSala.resources
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormFilmes.resources
+C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormNovoFilme.resources

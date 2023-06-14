@@ -113,7 +113,7 @@
             // 
             // funcaoFuncionariotb
             // 
-            this.funcaoFuncionariotb.Location = new System.Drawing.Point(103, 140);
+            this.funcaoFuncionariotb.Location = new System.Drawing.Point(101, 140);
             this.funcaoFuncionariotb.Name = "funcaoFuncionariotb";
             this.funcaoFuncionariotb.Size = new System.Drawing.Size(100, 20);
             this.funcaoFuncionariotb.TabIndex = 16;

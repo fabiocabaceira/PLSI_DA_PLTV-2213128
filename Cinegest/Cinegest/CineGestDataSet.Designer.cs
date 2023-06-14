@@ -42,8 +42,6 @@ namespace Cinegest {
         
         private SessaosDataTable tableSessaos;
         
-        private global::System.Data.DataRelation relationFK_FilmeCategoria;
-        
         private global::System.Data.DataRelation relationFK_ClienteBilhete;
         
         private global::System.Data.DataRelation relationFK_Cliente_inherits_Pessoa;
@@ -54,13 +52,15 @@ namespace Cinegest {
         
         private global::System.Data.DataRelation relationFK_CinemaSala;
         
-        private global::System.Data.DataRelation relationFK_SessaoBilhete;
+        private global::System.Data.DataRelation relationFK_Cliente_inherits_Pessoa1;
         
-        private global::System.Data.DataRelation relationFK_SalaSessao;
+        private global::System.Data.DataRelation relationFK_FilmeCategoria;
         
         private global::System.Data.DataRelation relationFK_SessaoFilme;
         
-        private global::System.Data.DataRelation relationFK_Cliente_inherits_Pessoa1;
+        private global::System.Data.DataRelation relationFK_SalaSessao;
+        
+        private global::System.Data.DataRelation relationFK_SessaoBilhete;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -406,16 +406,16 @@ namespace Cinegest {
                     this.tableSessaos.InitVars();
                 }
             }
-            this.relationFK_FilmeCategoria = this.Relations["FK_FilmeCategoria"];
             this.relationFK_ClienteBilhete = this.Relations["FK_ClienteBilhete"];
             this.relationFK_Cliente_inherits_Pessoa = this.Relations["FK_Cliente_inherits_Pessoa"];
             this.relationFK_FuncionarioBilhete = this.Relations["FK_FuncionarioBilhete"];
             this.relationFK_Funcionario_inherits_Pessoa = this.Relations["FK_Funcionario_inherits_Pessoa"];
             this.relationFK_CinemaSala = this.Relations["FK_CinemaSala"];
-            this.relationFK_SessaoBilhete = this.Relations["FK_SessaoBilhete"];
-            this.relationFK_SalaSessao = this.Relations["FK_SalaSessao"];
-            this.relationFK_SessaoFilme = this.Relations["FK_SessaoFilme"];
             this.relationFK_Cliente_inherits_Pessoa1 = this.Relations["FK_Cliente_inherits_Pessoa1"];
+            this.relationFK_FilmeCategoria = this.Relations["FK_FilmeCategoria"];
+            this.relationFK_SessaoFilme = this.Relations["FK_SessaoFilme"];
+            this.relationFK_SalaSessao = this.Relations["FK_SalaSessao"];
+            this.relationFK_SessaoBilhete = this.Relations["FK_SessaoBilhete"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -444,10 +444,6 @@ namespace Cinegest {
             base.Tables.Add(this.tableSalas);
             this.tableSessaos = new SessaosDataTable();
             base.Tables.Add(this.tableSessaos);
-            this.relationFK_FilmeCategoria = new global::System.Data.DataRelation("FK_FilmeCategoria", new global::System.Data.DataColumn[] {
-                        this.tableCategorias.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableFilmes.Categoria_IdColumn}, false);
-            this.Relations.Add(this.relationFK_FilmeCategoria);
             this.relationFK_ClienteBilhete = new global::System.Data.DataRelation("FK_ClienteBilhete", new global::System.Data.DataColumn[] {
                         this.tablePessoas_Cliente.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableBilhetes.ClienteIdColumn}, false);
@@ -468,22 +464,26 @@ namespace Cinegest {
                         this.tableCinemas.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableSalas.CinemaIdColumn}, false);
             this.Relations.Add(this.relationFK_CinemaSala);
-            this.relationFK_SessaoBilhete = new global::System.Data.DataRelation("FK_SessaoBilhete", new global::System.Data.DataColumn[] {
-                        this.tableSessaos.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableBilhetes.SessaoIdColumn}, false);
-            this.Relations.Add(this.relationFK_SessaoBilhete);
-            this.relationFK_SalaSessao = new global::System.Data.DataRelation("FK_SalaSessao", new global::System.Data.DataColumn[] {
-                        this.tableSalas.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableSessaos.SalaIdColumn}, false);
-            this.Relations.Add(this.relationFK_SalaSessao);
-            this.relationFK_SessaoFilme = new global::System.Data.DataRelation("FK_SessaoFilme", new global::System.Data.DataColumn[] {
-                        this.tableFilmes.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableSessaos.Filme_IdColumn}, false);
-            this.Relations.Add(this.relationFK_SessaoFilme);
             this.relationFK_Cliente_inherits_Pessoa1 = new global::System.Data.DataRelation("FK_Cliente_inherits_Pessoa1", new global::System.Data.DataColumn[] {
                         this.tablePessoas_Funcionario.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tablePessoas_Cliente.IdColumn}, false);
             this.Relations.Add(this.relationFK_Cliente_inherits_Pessoa1);
+            this.relationFK_FilmeCategoria = new global::System.Data.DataRelation("FK_FilmeCategoria", new global::System.Data.DataColumn[] {
+                        this.tableCategorias.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableFilmes.Categoria_IdColumn}, false);
+            this.Relations.Add(this.relationFK_FilmeCategoria);
+            this.relationFK_SessaoFilme = new global::System.Data.DataRelation("FK_SessaoFilme", new global::System.Data.DataColumn[] {
+                        this.tableFilmes.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSessaos.Filme_IdColumn}, false);
+            this.Relations.Add(this.relationFK_SessaoFilme);
+            this.relationFK_SalaSessao = new global::System.Data.DataRelation("FK_SalaSessao", new global::System.Data.DataColumn[] {
+                        this.tableSalas.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSessaos.SalaIdColumn}, false);
+            this.Relations.Add(this.relationFK_SalaSessao);
+            this.relationFK_SessaoBilhete = new global::System.Data.DataRelation("FK_SessaoBilhete", new global::System.Data.DataColumn[] {
+                        this.tableSessaos.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBilhetes.SessaoIdColumn}, false);
+            this.Relations.Add(this.relationFK_SessaoBilhete);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1791,7 +1791,7 @@ namespace Cinegest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FilmesRow AddFilmesRow(string Nome, string Duracao, bool Activo, CategoriasRow parentCategoriasRowByFK_FilmeCategoria) {
+            public FilmesRow AddFilmesRow(string Nome, string Duracao, string Activo, CategoriasRow parentCategoriasRowByFK_FilmeCategoria) {
                 FilmesRow rowFilmesRow = ((FilmesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1847,7 +1847,7 @@ namespace Cinegest {
                 base.Columns.Add(this.columnNome);
                 this.columnDuracao = new global::System.Data.DataColumn("Duracao", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDuracao);
-                this.columnActivo = new global::System.Data.DataColumn("Activo", typeof(bool), null, global::System.Data.MappingType.Element);
+                this.columnActivo = new global::System.Data.DataColumn("Activo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnActivo);
                 this.columnCategoria_Id = new global::System.Data.DataColumn("Categoria_Id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCategoria_Id);
@@ -3945,9 +3945,9 @@ namespace Cinegest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Activo {
+            public string Activo {
                 get {
-                    return ((bool)(this[this.tableFilmes.ActivoColumn]));
+                    return ((string)(this[this.tableFilmes.ActivoColumn]));
                 }
                 set {
                     this[this.tableFilmes.ActivoColumn] = value;
@@ -4427,23 +4427,23 @@ namespace Cinegest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SalasRow SalasRow {
-                get {
-                    return ((SalasRow)(this.GetParentRow(this.Table.ParentRelations["FK_SalaSessao"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_SalaSessao"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public FilmesRow FilmesRow {
                 get {
                     return ((FilmesRow)(this.GetParentRow(this.Table.ParentRelations["FK_SessaoFilme"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_SessaoFilme"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SalasRow SalasRow {
+                get {
+                    return ((SalasRow)(this.GetParentRow(this.Table.ParentRelations["FK_SalaSessao"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_SalaSessao"]);
                 }
             }
             
@@ -5727,11 +5727,10 @@ FROM            Bilhetes INNER JOIN
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Filmes] WHERE (([Id] = @Original_Id) AND ([Activo] = @Original" +
-                "_Activo) AND ([Categoria_Id] = @Original_Categoria_Id))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Filmes] WHERE (([Id] = @Original_Id) AND ([Categoria_Id] = @Or" +
+                "iginal_Categoria_Id))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Activo", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Categoria_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Categoria_Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
@@ -5741,19 +5740,18 @@ FROM            Bilhetes INNER JOIN
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nome", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Duracao", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Duracao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Activo", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Activo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Categoria_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Categoria_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Filmes] SET [Nome] = @Nome, [Duracao] = @Duracao, [Activo] = @Activo, [Categoria_Id] = @Categoria_Id WHERE (([Id] = @Original_Id) AND ([Activo] = @Original_Activo) AND ([Categoria_Id] = @Original_Categoria_Id));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Filmes] SET [Nome] = @Nome, [Duracao] = @Duracao, [Activo] = @Activo, [Categoria_Id] = @Categoria_Id WHERE (([Id] = @Original_Id) AND ([Categoria_Id] = @Original_Categoria_Id));
 SELECT Id, Nome, Duracao, Activo, Categoria_Id FROM Filmes WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nome", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Duracao", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Duracao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Activo", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Activo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Categoria_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Categoria_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Activo", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Categoria_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Categoria_Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -5832,10 +5830,9 @@ SELECT Id, Nome, Duracao, Activo, Categoria_Id FROM Filmes WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, bool Original_Activo, int Original_Categoria_Id) {
+        public virtual int Delete(int Original_Id, int Original_Categoria_Id) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((bool)(Original_Activo));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_Categoria_Id));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_Categoria_Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5856,7 +5853,7 @@ SELECT Id, Nome, Duracao, Activo, Categoria_Id FROM Filmes WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Nome, string Duracao, bool Activo, int Categoria_Id) {
+        public virtual int Insert(string Nome, string Duracao, string Activo, int Categoria_Id) {
             if ((Nome == null)) {
                 throw new global::System.ArgumentNullException("Nome");
             }
@@ -5869,7 +5866,12 @@ SELECT Id, Nome, Duracao, Activo, Categoria_Id FROM Filmes WHERE (Id = @Id)";
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Duracao));
             }
-            this.Adapter.InsertCommand.Parameters[2].Value = ((bool)(Activo));
+            if ((Activo == null)) {
+                throw new global::System.ArgumentNullException("Activo");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Activo));
+            }
             this.Adapter.InsertCommand.Parameters[3].Value = ((int)(Categoria_Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5891,7 +5893,7 @@ SELECT Id, Nome, Duracao, Activo, Categoria_Id FROM Filmes WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Nome, string Duracao, bool Activo, int Categoria_Id, int Original_Id, bool Original_Activo, int Original_Categoria_Id, int Id) {
+        public virtual int Update(string Nome, string Duracao, string Activo, int Categoria_Id, int Original_Id, int Original_Categoria_Id, int Id) {
             if ((Nome == null)) {
                 throw new global::System.ArgumentNullException("Nome");
             }
@@ -5904,12 +5906,16 @@ SELECT Id, Nome, Duracao, Activo, Categoria_Id FROM Filmes WHERE (Id = @Id)";
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Duracao));
             }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((bool)(Activo));
+            if ((Activo == null)) {
+                throw new global::System.ArgumentNullException("Activo");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Activo));
+            }
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Categoria_Id));
             this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_Id));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(Original_Activo));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Categoria_Id));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Id));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Categoria_Id));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5930,8 +5936,8 @@ SELECT Id, Nome, Duracao, Activo, Categoria_Id FROM Filmes WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Nome, string Duracao, bool Activo, int Categoria_Id, int Original_Id, bool Original_Activo, int Original_Categoria_Id) {
-            return this.Update(Nome, Duracao, Activo, Categoria_Id, Original_Id, Original_Activo, Original_Categoria_Id, Original_Id);
+        public virtual int Update(string Nome, string Duracao, string Activo, int Categoria_Id, int Original_Id, int Original_Categoria_Id) {
+            return this.Update(Nome, Duracao, Activo, Categoria_Id, Original_Id, Original_Categoria_Id, Original_Id);
         }
     }
     
@@ -7289,15 +7295,6 @@ WHERE        (CONVERT(date, Sessaos.Datahora) = CONVERT(date, GETDATE()))";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateUpdatedRows(CineGestDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._categoriasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Categorias.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._categoriasTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._cinemasTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Cinemas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -7316,12 +7313,12 @@ WHERE        (CONVERT(date, Sessaos.Datahora) = CONVERT(date, GETDATE()))";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._filmesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Filmes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._categoriasTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Categorias.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._filmesTableAdapter.Update(updatedRows));
+                    result = (result + this._categoriasTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -7331,6 +7328,15 @@ WHERE        (CONVERT(date, Sessaos.Datahora) = CONVERT(date, GETDATE()))";
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._salasTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._filmesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Filmes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._filmesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -7344,14 +7350,6 @@ WHERE        (CONVERT(date, Sessaos.Datahora) = CONVERT(date, GETDATE()))";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateInsertedRows(CineGestDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._categoriasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Categorias.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._categoriasTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._cinemasTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Cinemas.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -7368,11 +7366,11 @@ WHERE        (CONVERT(date, Sessaos.Datahora) = CONVERT(date, GETDATE()))";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._filmesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Filmes.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._categoriasTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Categorias.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._filmesTableAdapter.Update(addedRows));
+                    result = (result + this._categoriasTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7381,6 +7379,14 @@ WHERE        (CONVERT(date, Sessaos.Datahora) = CONVERT(date, GETDATE()))";
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._salasTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._filmesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Filmes.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._filmesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7394,6 +7400,14 @@ WHERE        (CONVERT(date, Sessaos.Datahora) = CONVERT(date, GETDATE()))";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(CineGestDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._filmesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Filmes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._filmesTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._salasTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Salas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -7402,11 +7416,11 @@ WHERE        (CONVERT(date, Sessaos.Datahora) = CONVERT(date, GETDATE()))";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._filmesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Filmes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._categoriasTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Categorias.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._filmesTableAdapter.Update(deletedRows));
+                    result = (result + this._categoriasTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -7423,14 +7437,6 @@ WHERE        (CONVERT(date, Sessaos.Datahora) = CONVERT(date, GETDATE()))";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._cinemasTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._categoriasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Categorias.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._categoriasTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
