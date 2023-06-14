@@ -51,12 +51,13 @@ namespace Cinegest.Forms
         {
             var cinemas = cinegest.Cinemas.ToList<Cinema>();
 
-            if (cinemas.Count < 0)
+            if (cinemas.Count <= 0)
             {
-                Cinema cinema = new Cinema();
-                cinema.Nome = cinemaNometb.Text;
-                cinema.Morada = cinemaMoradatb.Text;
-                cinema.Email = cinemaEmailtb.Text;
+                String Nome = cinemaNometb.Text;
+                String Morada = cinemaMoradatb.Text;
+                String Email = cinemaEmailtb.Text;
+                Cinema novoCinema = new Cinema(Nome, Morada, Email);
+                cinegest.Cinemas.Add(novoCinema);
                 cinegest.SaveChanges();
             }
         }
