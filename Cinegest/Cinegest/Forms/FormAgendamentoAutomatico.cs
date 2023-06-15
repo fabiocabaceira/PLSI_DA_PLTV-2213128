@@ -14,8 +14,9 @@ namespace Cinegest.Forms
     {
         //Declaração de Variáveis
         CineGestEntities5 cinegest;
-        DateTime espacoTempo;
         int nrSessoes;
+        DateTime tempoInicial;
+        DateTime tempoFinal;
 
         //Construtor
         public FormAgendamentoAutomatico()
@@ -56,10 +57,19 @@ namespace Cinegest.Forms
                 filmescb.DisplayMember = "Nome";
                 salacb.DisplayMember = "Nome";
                 //DateTimePicker
-                agenAutodtp.Format = DateTimePickerFormat.Custom;
-                agenAutodtp.CustomFormat = "HH:mm:ss tt";
-                agenAutodtp.MinDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1);
-                agenAutodtp.MaxDate = new DateTime(2100, 12, 31);
+                agenAutoIniciodtp.Format = DateTimePickerFormat.Custom;
+                agenAutoIniciodtp.CustomFormat = "dd/MM/yyyy";
+                agenAutoFimdtp.Format = DateTimePickerFormat.Custom;
+                agenAutoFimdtp.CustomFormat = "dd/MM/yyyy";
+                agenAutoIniciodtp.MinDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1);
+                agenAutoIniciodtp.MaxDate = new DateTime(2100, 12, 31);
+                agenAutoFimdtp.MinDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1);
+                agenAutoFimdtp.MaxDate = new DateTime(2100, 12, 31);
+                Controls.Add(agenAutoIniciodtp);
+                Controls.Add(agenAutoFimdtp);
+
+                
+
                 //NumericUpDown
                 nrSessoesnud.Value = 0;
                 nrSessoesnud.Minimum = 0;
@@ -149,26 +159,46 @@ namespace Cinegest.Forms
                 MessageBox.Show("Erro: " + ex.Message);
             }
         }
+       
 
-        /// <summary>
-        /// Evento que é ativado quando o valor do DateTimePicker de tempo é alterado.
-        /// </summary>
-        /// <param name="sender">O objeto que gerou o evento.</param>
-        /// <param name="e">Os argumentos do evento.</param>
-        private void agenAutodtp_ValueChanged(object sender, EventArgs e)
+        private void definirTempobtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                espacoTempo = agenAutodtp.Value;
+            tempoInicial = agenAutoIniciodtp.Value.Date;
+            tempoFinal = agenAutoFimdtp.Value.Date;
+        }
 
-                if (agenAutodtp.Value.Date == DateTime.Now.Date)
-                {
-                    MessageBox.Show("Não pode selecionar a data de hoje");
-                }
-            }
-            catch (Exception ex)
+        private void CriarSessoesDiarias(DateTime tempoInicial, DateTime tempoFinal)
+        {
+
+            for (var data = tempoInicial.Date; data <= tempoFinal.Date; data = data.AddDays(1))
             {
-                MessageBox.Show("Erro: " + ex.Message);
+                for (var hora = new DateTime(data.Year, data.Month, data.Day, 10, 0, 0); hora <= new DateTime(data.Year, data.Month, data.Day, 22, 0, 0);)
+                {
+                    //NomeSala
+                    string nomeSala = salacb.Text.ToString();
+                    var salaSelecionadas = cinegest.Salas.ToList().Where(s => s.Nome == nomeSala);
+                    foreach (var salaSelecionada in salaSelecionadas)
+                    {
+                        //Sala Id
+                        int SalaId = salaSelecionada.Id;
+                    }
+
+                    //NomeFilme
+                    string nomeFilme = filmescb.Text.ToString();
+                    var filmeSelecionados = cinegest.Filmes.ToList().Where(f => f.Nome == nomeFilme);
+                    foreach (var filmeSelecionado in filmeSelecionados)
+                    {
+                        //Filme 
+                        int FilmeId = filmeSelecionado.Id;
+
+                    }
+
+                    //Preço
+                    int Preco = int.Parse(filmePrecotb.Text.ToString()); 
+
+                    //Datahora
+                   
+                }
             }
         }
 

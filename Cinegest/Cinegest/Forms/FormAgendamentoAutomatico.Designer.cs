@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.salacb = new System.Windows.Forms.ComboBox();
-            this.agenAutodtp = new System.Windows.Forms.DateTimePicker();
+            this.agenAutoIniciodtp = new System.Windows.Forms.DateTimePicker();
             this.cineGestDataSet = new Cinegest.CineGestDataSet();
             this.filmesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.filmesTableAdapter = new Cinegest.CineGestDataSetTableAdapters.FilmesTableAdapter();
@@ -50,6 +50,13 @@
             this.sessoeslbl = new System.Windows.Forms.Label();
             this.sessao5lbl = new System.Windows.Forms.Label();
             this.sessao5dtp = new System.Windows.Forms.DateTimePicker();
+            this.agenAutoFimdtp = new System.Windows.Forms.DateTimePicker();
+            this.dataIniciolbl = new System.Windows.Forms.Label();
+            this.dataFimlbl = new System.Windows.Forms.Label();
+            this.definirTempobtn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.filmePrecotb = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.filmesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nrSessoesnud)).BeginInit();
@@ -58,18 +65,17 @@
             // salacb
             // 
             this.salacb.FormattingEnabled = true;
-            this.salacb.Location = new System.Drawing.Point(167, 70);
+            this.salacb.Location = new System.Drawing.Point(167, 85);
             this.salacb.Name = "salacb";
             this.salacb.Size = new System.Drawing.Size(121, 21);
             this.salacb.TabIndex = 1;
             // 
-            // agenAutodtp
+            // agenAutoIniciodtp
             // 
-            this.agenAutodtp.Location = new System.Drawing.Point(323, 71);
-            this.agenAutodtp.Name = "agenAutodtp";
-            this.agenAutodtp.Size = new System.Drawing.Size(200, 20);
-            this.agenAutodtp.TabIndex = 2;
-            this.agenAutodtp.ValueChanged += new System.EventHandler(this.agenAutodtp_ValueChanged);
+            this.agenAutoIniciodtp.Location = new System.Drawing.Point(323, 86);
+            this.agenAutoIniciodtp.Name = "agenAutoIniciodtp";
+            this.agenAutoIniciodtp.Size = new System.Drawing.Size(128, 20);
+            this.agenAutoIniciodtp.TabIndex = 2;
             // 
             // cineGestDataSet
             // 
@@ -88,7 +94,7 @@
             // filmescb
             // 
             this.filmescb.FormattingEnabled = true;
-            this.filmescb.Location = new System.Drawing.Point(21, 70);
+            this.filmescb.Location = new System.Drawing.Point(19, 86);
             this.filmescb.Name = "filmescb";
             this.filmescb.Size = new System.Drawing.Size(121, 21);
             this.filmescb.TabIndex = 3;
@@ -115,14 +121,14 @@
             // 
             this.espacoDeTempolbl.Location = new System.Drawing.Point(320, 38);
             this.espacoDeTempolbl.Name = "espacoDeTempolbl";
-            this.espacoDeTempolbl.Size = new System.Drawing.Size(203, 23);
+            this.espacoDeTempolbl.Size = new System.Drawing.Size(265, 23);
             this.espacoDeTempolbl.TabIndex = 6;
             this.espacoDeTempolbl.Text = " Espaço De Tempo";
             this.espacoDeTempolbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // nrSessoesnud
             // 
-            this.nrSessoesnud.Location = new System.Drawing.Point(547, 70);
+            this.nrSessoesnud.Location = new System.Drawing.Point(729, 85);
             this.nrSessoesnud.Name = "nrSessoesnud";
             this.nrSessoesnud.Size = new System.Drawing.Size(120, 20);
             this.nrSessoesnud.TabIndex = 7;
@@ -217,11 +223,78 @@
             this.sessao5dtp.Size = new System.Drawing.Size(121, 20);
             this.sessao5dtp.TabIndex = 17;
             // 
+            // agenAutoFimdtp
+            // 
+            this.agenAutoFimdtp.Location = new System.Drawing.Point(457, 86);
+            this.agenAutoFimdtp.Name = "agenAutoFimdtp";
+            this.agenAutoFimdtp.Size = new System.Drawing.Size(128, 20);
+            this.agenAutoFimdtp.TabIndex = 19;
+            // 
+            // dataIniciolbl
+            // 
+            this.dataIniciolbl.Location = new System.Drawing.Point(323, 60);
+            this.dataIniciolbl.Name = "dataIniciolbl";
+            this.dataIniciolbl.Size = new System.Drawing.Size(128, 23);
+            this.dataIniciolbl.TabIndex = 20;
+            this.dataIniciolbl.Text = "Data Inicio";
+            this.dataIniciolbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // dataFimlbl
+            // 
+            this.dataFimlbl.Location = new System.Drawing.Point(457, 60);
+            this.dataFimlbl.Name = "dataFimlbl";
+            this.dataFimlbl.Size = new System.Drawing.Size(128, 23);
+            this.dataFimlbl.TabIndex = 21;
+            this.dataFimlbl.Text = "Data Fim";
+            this.dataFimlbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // definirTempobtn
+            // 
+            this.definirTempobtn.Location = new System.Drawing.Point(323, 113);
+            this.definirTempobtn.Name = "definirTempobtn";
+            this.definirTempobtn.Size = new System.Drawing.Size(262, 23);
+            this.definirTempobtn.TabIndex = 22;
+            this.definirTempobtn.Text = "Definir Espaço Tempo";
+            this.definirTempobtn.UseVisualStyleBackColor = true;
+            this.definirTempobtn.Click += new System.EventHandler(this.definirTempobtn_Click);
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(726, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(123, 23);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Sessões";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(599, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(124, 23);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Preço";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // filmePrecotb
+            // 
+            this.filmePrecotb.Location = new System.Drawing.Point(602, 84);
+            this.filmePrecotb.Name = "filmePrecotb";
+            this.filmePrecotb.Size = new System.Drawing.Size(121, 20);
+            this.filmePrecotb.TabIndex = 26;
+            // 
             // FormAgendamentoAutomatico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1366, 450);
+            this.Controls.Add(this.filmePrecotb);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.definirTempobtn);
+            this.Controls.Add(this.dataFimlbl);
+            this.Controls.Add(this.dataIniciolbl);
+            this.Controls.Add(this.agenAutoFimdtp);
             this.Controls.Add(this.sessao5lbl);
             this.Controls.Add(this.sessao5dtp);
             this.Controls.Add(this.sessoeslbl);
@@ -238,7 +311,7 @@
             this.Controls.Add(this.nomeDaSalalbl);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.filmescb);
-            this.Controls.Add(this.agenAutodtp);
+            this.Controls.Add(this.agenAutoIniciodtp);
             this.Controls.Add(this.salacb);
             this.Name = "FormAgendamentoAutomatico";
             this.Text = "FormAgendamentoAutomatico";
@@ -247,12 +320,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.filmesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nrSessoesnud)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.ComboBox salacb;
-        private System.Windows.Forms.DateTimePicker agenAutodtp;
+        private System.Windows.Forms.DateTimePicker agenAutoIniciodtp;
         private CineGestDataSet cineGestDataSet;
         private System.Windows.Forms.BindingSource filmesBindingSource;
         private CineGestDataSetTableAdapters.FilmesTableAdapter filmesTableAdapter;
@@ -272,5 +346,12 @@
         private System.Windows.Forms.Label sessoeslbl;
         private System.Windows.Forms.Label sessao5lbl;
         private System.Windows.Forms.DateTimePicker sessao5dtp;
+        private System.Windows.Forms.DateTimePicker agenAutoFimdtp;
+        private System.Windows.Forms.Label dataIniciolbl;
+        private System.Windows.Forms.Label dataFimlbl;
+        private System.Windows.Forms.Button definirTempobtn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox filmePrecotb;
     }
 }
