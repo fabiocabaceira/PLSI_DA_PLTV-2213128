@@ -93,6 +93,12 @@
     <Compile Include="Filme.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormAgendamentoAutomatico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAgendamentoAutomatico.Designer.cs">
+      <DependentUpon>FormAgendamentoAutomatico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormAtendimento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     <Compile Include="Sessao.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\FormAgendamentoAutomatico.resx">
+      <DependentUpon>FormAgendamentoAutomatico.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormAtendimento.resx">
       <DependentUpon>FormAtendimento.cs</DependentUpon>
     </EmbeddedResource>

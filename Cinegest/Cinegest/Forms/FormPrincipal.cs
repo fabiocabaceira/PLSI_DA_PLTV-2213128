@@ -91,5 +91,7 @@ namespace Cinegest.Forms
             FormCinema fmcinema2 = new FormCinema();
             fmcinema2.ShowDialog();
         }
+
+       
     }
 }

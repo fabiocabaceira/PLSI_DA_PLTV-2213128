@@ -38,13 +38,14 @@
             this.datahoralbl = new System.Windows.Forms.Label();
             this.precotb = new System.Windows.Forms.TextBox();
             this.precolbl = new System.Windows.Forms.Label();
+            this.agendamentoAutomaticobtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // criarSessaobtn
             // 
-            this.criarSessaobtn.Location = new System.Drawing.Point(568, 12);
+            this.criarSessaobtn.Location = new System.Drawing.Point(592, 12);
             this.criarSessaobtn.Name = "criarSessaobtn";
-            this.criarSessaobtn.Size = new System.Drawing.Size(119, 470);
+            this.criarSessaobtn.Size = new System.Drawing.Size(119, 218);
             this.criarSessaobtn.TabIndex = 0;
             this.criarSessaobtn.Text = "Criar Sessão";
             this.criarSessaobtn.UseVisualStyleBackColor = true;
@@ -129,11 +130,22 @@
             this.precolbl.Text = "Preco";
             this.precolbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // agendamentoAutomaticobtn
+            // 
+            this.agendamentoAutomaticobtn.Location = new System.Drawing.Point(592, 236);
+            this.agendamentoAutomaticobtn.Name = "agendamentoAutomaticobtn";
+            this.agendamentoAutomaticobtn.Size = new System.Drawing.Size(116, 220);
+            this.agendamentoAutomaticobtn.TabIndex = 11;
+            this.agendamentoAutomaticobtn.Text = "Agendamento Automatico";
+            this.agendamentoAutomaticobtn.UseVisualStyleBackColor = true;
+            this.agendamentoAutomaticobtn.Click += new System.EventHandler(this.agendamentoAutomaticobtn_Click);
+            // 
             // FormSessoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 494);
+            this.Controls.Add(this.agendamentoAutomaticobtn);
             this.Controls.Add(this.precolbl);
             this.Controls.Add(this.precotb);
             this.Controls.Add(this.datahoralbl);
@@ -164,5 +176,6 @@
         private System.Windows.Forms.Label datahoralbl;
         private System.Windows.Forms.TextBox precotb;
         private System.Windows.Forms.Label precolbl;
+        private System.Windows.Forms.Button agendamentoAutomaticobtn;
     }
 }

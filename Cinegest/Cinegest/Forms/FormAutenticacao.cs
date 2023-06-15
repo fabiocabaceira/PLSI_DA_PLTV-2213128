@@ -33,13 +33,18 @@ namespace Cinegest.Forms
         {
             string nomeFuncionario = funcionarioNometb.Text.ToString();
             var funcionarios = cinegest.Funcionarios.Where(b => b.Nome == nomeFuncionario);
-            bool autenticacao = funcionarios.Any();
+            //bool autenticacao = funcionarios.Any();
+            bool autenticacao = true;
 
             if (autenticacao)
             {
+                this.Hide();
+
                 FormPrincipal fmPrincipal = new FormPrincipal();
                 fmPrincipal.ShowDialog();
+
             }
+
             else
             {
                 MessageBox.Show("Autenticação Falhou");

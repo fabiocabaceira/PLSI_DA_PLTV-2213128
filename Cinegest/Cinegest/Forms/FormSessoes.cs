@@ -65,5 +65,11 @@ namespace Cinegest.Forms
             }
 
         }
+
+        private void agendamentoAutomaticobtn_Click(object sender, EventArgs e)
+        {
+            FormAgendamentoAutomatico formAgendamentoAutomatico = new FormAgendamentoAutomatico();
+            formAgendamentoAutomatico.ShowDialog();
+        }
     }
 }
