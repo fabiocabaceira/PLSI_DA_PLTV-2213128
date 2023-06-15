@@ -329,16 +329,6 @@ ADD CONSTRAINT [FK_Funcionario_inherits_Pessoa]
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Cinemas
-INSERT INTO [dbo].[Cinemas] ([Nome], [Email], [Morada])
-VALUES  ('Cinema 1', 'cinema3@example.com', '789 Oak Street');
-
--- Salas
-INSERT INTO [dbo].[Salas] ([Nome], [Colunas], [Filas], [CinemaId])
-VALUES ('Sala 1', '3', '3', 1),
-       ('Sala 2', '3', '3', 1),
-       ('Sala 3', '3', '3', 1);
-
 -- Categorias
 INSERT INTO [dbo].[Categorias] ([Nome], [Activa])
 VALUES ('Comédia', 'Sim'),
@@ -354,17 +344,6 @@ VALUES ('Comédia', 'Sim'),
        ('Fantasia', 'Sim'), 
        ('Animação', 'Sim');
 
--- Filmes
-INSERT INTO [dbo].[Filmes] ([Nome], [Duracao], [Activo], [CategoriaId])
-VALUES ('Matrix', '120', 'Activo', 2),
-       ('The Incredibles 2', '90', 'Activo', 12),
-       ('Thor', '105', 'Activo', 10);
-
--- Sessão
-INSERT INTO [dbo].[Sessaos] ([DataHora], [Preco], [SalaId], [Filme_Id])
-VALUES ('2023-06-2 10:00:00', '10', 1, 1),
-       (GETDATE(), '12', 2, 2),
-       (GETDATE(), '8', 3, 3);
 
 -- Pessoas
 INSERT INTO [dbo].[Pessoas] ([Nome], [Morada])

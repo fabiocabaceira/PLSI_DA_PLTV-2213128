@@ -99,6 +99,12 @@
     <Compile Include="Forms\FormAtendimento.Designer.cs">
       <DependentUpon>FormAtendimento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormAutenticacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAutenticacao.Designer.cs">
+      <DependentUpon>FormAutenticacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormCinema.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\FormAtendimento.resx">
       <DependentUpon>FormAtendimento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormAutenticacao.resx">
+      <DependentUpon>FormAutenticacao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCinema.resx">
       <DependentUpon>FormCinema.cs</DependentUpon>

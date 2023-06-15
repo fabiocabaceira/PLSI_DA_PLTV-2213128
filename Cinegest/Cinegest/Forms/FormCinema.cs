@@ -60,6 +60,10 @@ namespace Cinegest.Forms
                 cinegest.Cinemas.Add(novoCinema);
                 cinegest.SaveChanges();
             }
+            else
+            {
+                MessageBox.Show("Só pode haver um cinema na base de dados");
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
