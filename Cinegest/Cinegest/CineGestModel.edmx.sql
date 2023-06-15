@@ -387,26 +387,7 @@ VALUES ('123456789', 4),
        ('987654321', 5),
        ('654321987', 6);
 
--- Bilhetes
-INSERT INTO [dbo].[Bilhetes] ([Lugar], [Estado], [FuncionarioId], [ClienteId], [SessaoId])
-VALUES 
-       ('1', 'Disponível', 3, 6, 2),
-       ('2', 'Disponível', 3, 6, 2),
-       ('3', 'Disponível', 3, 6, 2),
-       ('4', 'Disponível', 3, 6, 2),
-       ('5', 'Disponível', 3, 6, 2),
-       ('6', 'Disponível', 3, 6, 2),
-       ('7', 'Disponível', 3, 6, 2),
-       ('8', 'Disponível', 3, 6, 2),
-       ('9', 'Disponível', 3, 6, 2),
-       ('10', 'Disponível', 3, 6, 2),
-       ('11', 'Disponível', 3, 6, 2),
-       ('12', 'Disponível', 3, 6, 2),
-       ('13', 'Disponível', 3, 6, 2),
-       ('14', 'Disponível', 3, 6, 2),
-       ('15', 'Disponível', 3, 6, 2),
-       ('3', 'Disponível', 3, 6, 3),
-       ('16', 'Disponível', 3, 6, 2);
+
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------

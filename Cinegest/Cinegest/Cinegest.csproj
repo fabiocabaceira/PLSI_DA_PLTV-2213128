@@ -162,6 +162,7 @@
     <Compile Include="Funcionario.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bilhete.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Cinema.cs" />
     <Compile Include="Models\Filme.cs" />

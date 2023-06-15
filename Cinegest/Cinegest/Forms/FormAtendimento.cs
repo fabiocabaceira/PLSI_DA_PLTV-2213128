@@ -14,7 +14,7 @@ namespace Cinegest.Forms
     public partial class FormAtendimento : Form
     {
         // Variáveis 
-        public int contador;
+        public int contador = 1;
         public string idSessao;
         public string funcionario_Nome;
         public string nomeFilme;
@@ -24,7 +24,9 @@ namespace Cinegest.Forms
         string nomeCliente;
         Cliente cliente;
         Funcionario funcionario;
-
+        public int i = 1;
+        public string nomeCliente1;
+        public string lugar2;
         public FormAtendimento(string idSessao, string funcionario_Nome, string nomeFilme, DateTime hora)
         {
             // Construtor que recebe o ID da sessão selecionada e o nome do funcionario
@@ -36,15 +38,44 @@ namespace Cinegest.Forms
             InitializeComponent();
         }
 
+        private void criarBilhetes()
+        {
+            int s1 = int.Parse(idSessao);
+
+            var bilhetes = cinegest.Bilhetes.FirstOrDefault(b => b.SessaoId == s1);
+
+            if (bilhetes == null)
+            {
+
+                Sessao sessao = cinegest.Sessaos.FirstOrDefault(b => b.Id == s1);
+                Sala sala = cinegest.Salas.FirstOrDefault(b => b.Id == sessao.SalaId);
+                int lugares = sala.Filas * sala.Colunas;
+                funcionario = cinegest.Funcionarios.FirstOrDefault(b => b.Nome == funcionario_Nome);
+                while (i <= lugares)
+                {
+                    int lugar = i;
+                    string estado = "Disponível";
+                    int sessao_id = int.Parse(idSessao);
+                    int funcionario_id = funcionario.Id;
+                    int cliente_id = 4;
+                    Bilhete bilhete = new Bilhete(lugar, estado, sessao_id, funcionario_id, cliente_id);
+                    cinegest.Bilhetes.Add(bilhete);
+                    cinegest.SaveChanges();
+                    i++;
+                }
+            }
+
+        }
+
         // Método que lista os bilhetes disponíveis para a sessão selecionada
         private void listarBilhetes()
         {
-            bilhetesBindingSource.DataSource = null;
+            bilhetesBindingSource1.DataSource = null;
             int s1 = int.Parse(idSessao);
-            Console.WriteLine(s1);
-            var bilhetes = cineGestDataSet.Bilhetes;
-            var bilhetes2 = bilhetes.Where(bilhete => bilhete.SessaoId == s1);
-            bilhetesBindingSource.DataSource = bilhetes2;
+            var bilhetes = cinegest.Bilhetes.ToList().Where(b => b.SessaoId == s1);
+            Console.WriteLine(bilhetes);
+            bilhetesBindingSource1.DataSource = bilhetes;
+
         }
 
         private void FormAtendimento_Load(object sender, EventArgs e)
@@ -52,8 +83,8 @@ namespace Cinegest.Forms
             // TODO: This line of code loads data into the 'cineGestDataSet1.Pessoas_Cliente' table. You can move, or remove it, as needed.
             this.pessoas_ClienteTableAdapter.Fill(this.cineGestDataSet1.Pessoas_Cliente);
             // TODO: This line of code loads data into the 'cineGestDataSet.Bilhetes' table. You can move, or remove it, as needed.
-            this.bilhetesTableAdapter.Fill(this.cineGestDataSet.Bilhetes);
             funcionariolbl.Text = "Funcionário atual: " + funcionario_Nome;
+            criarBilhetes();
             listarBilhetes();
             funcionario = cinegest.Funcionarios.FirstOrDefault(b => b.Nome == funcionario_Nome);
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
@@ -62,15 +93,39 @@ namespace Cinegest.Forms
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dataGridView1.Rows[e.RowIndex].Cells["Estado"].Value.ToString() == "Disponível")
+            // Verifica se o valor da célula não é nulo ou vazio antes de acessá-lo
+            if (dataGridView1.Rows[e.RowIndex].Cells["Estado"].Value != null && !string.IsNullOrEmpty(dataGridView1.Rows[e.RowIndex].Cells["Estado"].Value.ToString()))
             {
-                e.CellStyle.BackColor = Color.LightGreen;
-            }
-            else if (dataGridView1.Rows[e.RowIndex].Cells["Estado"].Value.ToString() == "Vendido")
-            {
-                e.CellStyle.BackColor = Color.Gray;
+                // Define a cor de fundo da célula com base no valor da coluna "Estado"
+                if (dataGridView1.Rows[e.RowIndex].Cells["Estado"].Value.ToString() == "Disponível")
+                {
+                    e.CellStyle.BackColor = Color.LightGreen;
+                }
+                else if (dataGridView1.Rows[e.RowIndex].Cells["Estado"].Value.ToString() == "Vendido")
+                {
+                    e.CellStyle.BackColor = Color.Gray;
+                }
             }
 
+            // Obtém o ID da sessão selecionada
+            int s1 = int.Parse(idSessao);
+
+            // Obtém a sala associada à sessão
+            Sessao sessao = cinegest.Sessaos.FirstOrDefault(b => b.Id == s1);
+            Sala sala = cinegest.Salas.FirstOrDefault(b => b.Id == sessao.SalaId);
+
+            // Obtém o nome da sala
+            string nomeSala = sala.Nome.ToString();
+
+            // Define o valor da célula com base no índice da coluna
+            if (e.ColumnIndex == this.dataGridView1.Columns["NomeSala"].Index)
+            {
+                e.Value = nomeSala;
+            }
+            else
+            {
+                e.Value = e.Value;
+            }
         }
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -85,9 +140,10 @@ namespace Cinegest.Forms
 
         }
 
-        private void emitir_bilhete()
+        private void emitir_bilhete(string nomeCliente)
         {
-            contador++;
+            int s1 = int.Parse(idSessao);
+
             // Cria um arquivo de texto com um nome de arquivo exclusivo para cada bilhete
             TextWriter bilhete1 = new StreamWriter($"C:\\\\Users\\\\Public\\\\bilhete{contador}.txt");
             // Escreve os dados do bilhete
@@ -108,42 +164,105 @@ namespace Cinegest.Forms
             bilhete1.Write($"{hora} ");
             // lugar(es) do bilhete 
             bilhete1.Write("\nLugar/Lugares Do Bilhete = ");
-            foreach (var lugar1 in Bilhete)
+            foreach (var lugar2 in Bilhete)
             {
-                bilhete1.Write($"{lugar1} ");
-                var lugar2 = int.Parse(lugar1);
-                Bilhete bilhete = cinegest.Bilhetes.FirstOrDefault(b => b.Lugar == lugar2);
+                bilhete1.Write($"{lugar2} ");
+                int lugar3 = int.Parse(lugar2);
+                Bilhete bilhete = cinegest.Bilhetes.FirstOrDefault(b => b.Lugar == lugar3 && b.SessaoId == s1);
                 bilhete.Estado = "Vendido";
-                bilhete.ClienteId = cliente.Id;
+                cinegest.SaveChanges();
+
+                var cliente3 = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
+                if (cliente3 == null)
+                {
+                    bilhete.ClienteId = 4;
+                    cinegest.SaveChanges();
+
+                }
+                else
+                {
+                    bilhete.ClienteId = cliente3.Id;
+                    cinegest.SaveChanges();
+
+                }
                 bilhete.FuncionarioId = funcionario.Id;
                 cinegest.SaveChanges();
             }
             // nome do funcionário 
             bilhete1.Write("\nFuncionário = ");
             bilhete1.Write($"{funcionario_Nome} ");
-            
             // Fecha o arquivo
             bilhete1.Close();
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            var lugar1 = "";
+            int lugar1 = 0;
+            int s1 = int.Parse(idSessao);
 
             if (e.RowIndex >= 0)
             {
                 // Obtém o lugar do bilhete que foi alterado
-                var lugar = dataGridView1.Rows[e.RowIndex].Cells["Lugar"].Value;
-                lugar1 = lugar.ToString();
+                var lugar = dataGridView1.Rows[e.RowIndex].Cells["Lugar"].Value.ToString();
+                lugar1 = int.Parse(lugar);
                 // Adiciona o lugar a um array de lugares do bilhete
-                Bilhete.Add(lugar1);
+
+                var bilhetes = cinegest.Bilhetes.ToList().Where(b => b.SessaoId == s1 && b.Lugar == lugar1);
+                foreach (var bilhete in bilhetes)
+                {
+                    if (bilhete.Estado == "Disponível" && bilhete.SessaoId == s1)
+                    {
+                        lugar2 = lugar1.ToString();
+                        Bilhete.Add(lugar2);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("O bilhete que selecionou já foi vendido");
+
+                    }
+                }
+
             }
         }
 
         private void emitirbtn_Click(object sender, EventArgs e)
         {
 
-            emitir_bilhete();
+            string nome = cliente_Nometb.Text;
+            string morada = cliente_Moradatb.Text;
+            int numFiscal = int.Parse(cliente_Numfiscaltb.Text);
+            if (nome == "" || morada == "")
+            {
+                MessageBox.Show("Tem de insirir todos os campos");
+            }
+            var cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nome);
+            contador++;
+
+            if (cliente == null)
+            {
+                DialogResult result = MessageBox.Show("Deseja guardar os dados do novo cliente na base de dados", "Confirmar", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+
+                    Cliente novocliente = new Cliente(nome, morada, numFiscal);
+                    cinegest.Pessoas.Add(novocliente);
+                    cinegest.SaveChanges();
+                    nomeCliente = novocliente.Nome;
+                    emitir_bilhete(nomeCliente);
+                }
+                else
+                {
+                    nomeCliente1 = nomeCliente;
+                    emitir_bilhete(nomeCliente1);
+                }
+
+            }
+            else
+            {
+                emitir_bilhete(nome);
+            }
+
         }
     }
 }

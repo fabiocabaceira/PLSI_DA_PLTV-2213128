@@ -39,28 +39,27 @@
             this.funcionariolbl = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bilhetesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cineGestDataSet = new Cinegest.CineGestDataSet();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pessoasClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cineGestDataSet1 = new Cinegest.CineGestDataSet();
+            this.bilhetesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.cineGestDataSet = new Cinegest.CineGestDataSet();
+            this.bilhetesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bilhetesTableAdapter = new Cinegest.CineGestDataSetTableAdapters.BilhetesTableAdapter();
-            this.label6 = new System.Windows.Forms.Label();
             this.pessoas_ClienteTableAdapter = new Cinegest.CineGestDataSetTableAdapters.Pessoas_ClienteTableAdapter();
-            this.Selecionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Lugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NomeSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datahoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.duracaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Selecionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // emitirbtn
@@ -142,26 +141,13 @@
             this.Selecionar,
             this.Lugar,
             this.Estado,
-            this.datahoraDataGridViewTextBoxColumn,
-            this.precoDataGridViewTextBoxColumn,
-            this.nomeDataGridViewTextBoxColumn,
-            this.duracaoDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.bilhetesBindingSource;
+            this.NomeSala});
+            this.dataGridView1.DataSource = this.bilhetesBindingSource1;
             this.dataGridView1.Location = new System.Drawing.Point(256, 1);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(778, 699);
             this.dataGridView1.TabIndex = 9;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
-            // 
-            // bilhetesBindingSource
-            // 
-            this.bilhetesBindingSource.DataMember = "Bilhetes";
-            this.bilhetesBindingSource.DataSource = this.cineGestDataSet;
-            // 
-            // cineGestDataSet
-            // 
-            this.cineGestDataSet.DataSetName = "CineGestDataSet";
-            this.cineGestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dataGridView3
             // 
@@ -175,6 +161,14 @@
             this.dataGridView3.Size = new System.Drawing.Size(231, 648);
             this.dataGridView3.TabIndex = 11;
             this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(1044, 1);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(238, 23);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Selecionar Cliente Existente:";
             // 
             // Nome
             // 
@@ -192,32 +186,34 @@
             this.cineGestDataSet1.DataSetName = "CineGestDataSet";
             this.cineGestDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // bilhetesBindingSource1
+            // 
+            this.bilhetesBindingSource1.DataMember = "Bilhetes";
+            this.bilhetesBindingSource1.DataSource = this.cineGestDataSet;
+            // 
+            // cineGestDataSet
+            // 
+            this.cineGestDataSet.DataSetName = "CineGestDataSet";
+            this.cineGestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // bilhetesBindingSource
+            // 
+            this.bilhetesBindingSource.DataMember = "Bilhetes";
+            this.bilhetesBindingSource.DataSource = this.cineGestDataSet;
+            // 
             // bilhetesTableAdapter
             // 
             this.bilhetesTableAdapter.ClearBeforeFill = true;
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(1044, 1);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(238, 23);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Selecionar Cliente Existente:";
             // 
             // pessoas_ClienteTableAdapter
             // 
             this.pessoas_ClienteTableAdapter.ClearBeforeFill = true;
             // 
-            // Selecionar
+            // NomeSala
             // 
-            this.Selecionar.HeaderText = ":";
-            this.Selecionar.Name = "Selecionar";
-            // 
-            // Lugar
-            // 
-            this.Lugar.DataPropertyName = "Lugar";
-            this.Lugar.HeaderText = "Lugar";
-            this.Lugar.Name = "Lugar";
+            this.NomeSala.DataPropertyName = "Nome";
+            this.NomeSala.HeaderText = "Nome";
+            this.NomeSala.Name = "NomeSala";
             // 
             // Estado
             // 
@@ -225,29 +221,16 @@
             this.Estado.HeaderText = "Estado";
             this.Estado.Name = "Estado";
             // 
-            // datahoraDataGridViewTextBoxColumn
+            // Lugar
             // 
-            this.datahoraDataGridViewTextBoxColumn.DataPropertyName = "Datahora";
-            this.datahoraDataGridViewTextBoxColumn.HeaderText = "Datahora";
-            this.datahoraDataGridViewTextBoxColumn.Name = "datahoraDataGridViewTextBoxColumn";
+            this.Lugar.DataPropertyName = "Lugar";
+            this.Lugar.HeaderText = "Lugar";
+            this.Lugar.Name = "Lugar";
             // 
-            // precoDataGridViewTextBoxColumn
+            // Selecionar
             // 
-            this.precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
-            this.precoDataGridViewTextBoxColumn.HeaderText = "Preco";
-            this.precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
-            // 
-            // nomeDataGridViewTextBoxColumn
-            // 
-            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
-            this.nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
-            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-            // 
-            // duracaoDataGridViewTextBoxColumn
-            // 
-            this.duracaoDataGridViewTextBoxColumn.DataPropertyName = "Duracao";
-            this.duracaoDataGridViewTextBoxColumn.HeaderText = "Duracao";
-            this.duracaoDataGridViewTextBoxColumn.Name = "duracaoDataGridViewTextBoxColumn";
+            this.Selecionar.HeaderText = ":";
+            this.Selecionar.Name = "Selecionar";
             // 
             // FormAtendimento
             // 
@@ -270,11 +253,12 @@
             this.Text = "FormAtendimento";
             this.Load += new System.EventHandler(this.FormAtendimento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,12 +285,10 @@
         private System.Windows.Forms.BindingSource pessoasClienteBindingSource;
         private CineGestDataSetTableAdapters.Pessoas_ClienteTableAdapter pessoas_ClienteTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
+        private System.Windows.Forms.BindingSource bilhetesBindingSource1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Selecionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lugar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datahoraDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn duracaoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NomeSala;
     }
 }
