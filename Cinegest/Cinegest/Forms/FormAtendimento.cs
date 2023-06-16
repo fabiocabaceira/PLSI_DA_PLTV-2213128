@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Cinegest.Forms
 {
     public partial class FormAtendimento : Form
     {
-        // Variáveis 
+        // Variáveis de instância
         public int contador = 1;
         public string idSessao;
         public string funcionario_Nome;
@@ -27,9 +24,16 @@ namespace Cinegest.Forms
         public int i = 1;
         public string nomeCliente1;
         public string lugar2;
+
+        /// <summary>
+        /// Construtor da classe FormAtendimento    
+        /// </summary>
+        /// <param name="idSessao"></param>
+        /// <param name="funcionario_Nome"></param>
+        /// <param name="nomeFilme"></param>
+        /// <param name="hora"></param>
         public FormAtendimento(string idSessao, string funcionario_Nome, string nomeFilme, DateTime hora)
         {
-            // Construtor que recebe o ID da sessão selecionada e o nome do funcionario
             this.idSessao = idSessao;
             this.funcionario_Nome = funcionario_Nome;
             this.nomeFilme = nomeFilme;
@@ -38,60 +42,87 @@ namespace Cinegest.Forms
             InitializeComponent();
         }
 
-        private void criarBilhetes()
+        /// <summary>
+        /// Método que cria os bilhetes para a sessão selecionada
+        /// </summary>
+        private void CriarBilhetes()
         {
-            int s1 = int.Parse(idSessao);
+            try
+            {
+                // Obter o id da sessão
+                int.TryParse(idSessao, out int s1);
+                // Obter os bilhetes da sessão
+                var bilhetes = cinegest.Bilhetes.FirstOrDefault(b => b.SessaoId == s1);
 
-            var bilhetes = cinegest.Bilhetes.FirstOrDefault(b => b.SessaoId == s1);
+                // Se não existirem bilhetes para a sessão
+                if (bilhetes == null)
+                {
+                    // Obter a Sessão
+                    Sessao sessao = cinegest.Sessaos.FirstOrDefault(b => b.Id == s1);
+                    // Obter a sala
+                    Sala sala = cinegest.Salas.FirstOrDefault(b => b.Id == sessao.SalaId);
+                    // Obter o número de lugares
+                    int lugares = sala.Filas * sala.Colunas;
+                    // Obter o funcionário
+                    funcionario = cinegest.Funcionarios.FirstOrDefault(b => b.Nome == funcionario_Nome);
+                    // Enquanto o contador for menor ou igual ao número de lugares
+                    while (i <= lugares)
+                    {
+                        // Criar um bilhete
+                        int lugar = i;
+                        string estado = "Disponível";
+                        int sessao_id = int.Parse(idSessao);
+                        int funcionario_id = funcionario.Id;
+                        int cliente_id = 4;
+                        Bilhete bilhete = new Bilhete(lugar, estado, sessao_id, funcionario_id, cliente_id);
+                        cinegest.Bilhetes.Add(bilhete);
+                        cinegest.SaveChanges();
+                        // Incrementar o contador
+                        i++;
+                    }
+                }
 
-            if (bilhetes == null)
+            }
+            catch (Exception ex)
             {
 
-                Sessao sessao = cinegest.Sessaos.FirstOrDefault(b => b.Id == s1);
-                Sala sala = cinegest.Salas.FirstOrDefault(b => b.Id == sessao.SalaId);
-                int lugares = sala.Filas * sala.Colunas;
-                funcionario = cinegest.Funcionarios.FirstOrDefault(b => b.Nome == funcionario_Nome);
-                while (i <= lugares)
-                {
-                    int lugar = i;
-                    string estado = "Disponível";
-                    int sessao_id = int.Parse(idSessao);
-                    int funcionario_id = funcionario.Id;
-                    int cliente_id = 4;
-                    Bilhete bilhete = new Bilhete(lugar, estado, sessao_id, funcionario_id, cliente_id);
-                    cinegest.Bilhetes.Add(bilhete);
-                    cinegest.SaveChanges();
-                    i++;
-                }
+                MessageBox.Show(ex.Message);
             }
 
         }
 
-        // Método que lista os bilhetes disponíveis para a sessão selecionada
-        private void listarBilhetes()
+        /// <summary>
+        /// Método que lista os bilhetes da sessão selecionada
+        /// </summary>
+        private void ListarBilhetes()
         {
+            // Limpar a fonte de dados
             bilhetesBindingSource1.DataSource = null;
-            int s1 = int.Parse(idSessao);
+            // Obter o id da sessão
+            int.TryParse(idSessao, out int s1);
+            // Obter os bilhetes da sessão
             var bilhetes = cinegest.Bilhetes.ToList().Where(b => b.SessaoId == s1);
-            Console.WriteLine(bilhetes);
+            // Adicionar os bilhetes à fonte de dados
             bilhetesBindingSource1.DataSource = bilhetes;
 
         }
 
+        /// <summary>
+        /// Método que carrega os dados da sessão para o formulário
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormAtendimento_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cineGestDataSet1.Pessoas_Cliente' table. You can move, or remove it, as needed.
             this.pessoas_ClienteTableAdapter.Fill(this.cineGestDataSet1.Pessoas_Cliente);
-            // TODO: This line of code loads data into the 'cineGestDataSet.Bilhetes' table. You can move, or remove it, as needed.
             funcionariolbl.Text = "Funcionário atual: " + funcionario_Nome;
-            criarBilhetes();
-            listarBilhetes();
+            CriarBilhetes();
+            ListarBilhetes();
             funcionario = cinegest.Funcionarios.FirstOrDefault(b => b.Nome == funcionario_Nome);
-            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
-
+            dataGridView1.CellFormatting += DataGridView1_CellFormatting;
         }
 
-        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             // Verifica se o valor da célula não é nulo ou vazio antes de acessá-lo
             if (dataGridView1.Rows[e.RowIndex].Cells["Estado"].Value != null && !string.IsNullOrEmpty(dataGridView1.Rows[e.RowIndex].Cells["Estado"].Value.ToString()))
@@ -108,7 +139,7 @@ namespace Cinegest.Forms
             }
 
             // Obtém o ID da sessão selecionada
-            int s1 = int.Parse(idSessao);
+            int.TryParse(idSessao, out int s1);
 
             // Obtém a sala associada à sessão
             Sessao sessao = cinegest.Sessaos.FirstOrDefault(b => b.Id == s1);
@@ -120,29 +151,23 @@ namespace Cinegest.Forms
             // Define o valor da célula com base no índice da coluna
             if (e.ColumnIndex == this.dataGridView1.Columns["NomeSala"].Index)
             {
+                // Define o valor da célula
                 e.Value = nomeSala;
             }
             else
             {
+                // Define o valor da célula
                 e.Value = e.Value;
             }
         }
 
-        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// Método que emite um bilhete para o cliente selecionado
+        /// </summary>
+        /// <param name="nomeCliente"></param>
+        private void Emitir_bilhete(string nomeCliente)
         {
-            string nomeCliente = dataGridView3.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
-            cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
-            var clientes = this.pessoas_ClienteTableAdapter.GetData().ToList();
-
-            cliente_Nometb.Text = cliente.Nome;
-            cliente_Moradatb.Text = cliente.Morada;
-            cliente_Numfiscaltb.Text = cliente.NumFiscal.ToString();
-
-        }
-
-        private void emitir_bilhete(string nomeCliente)
-        {
-            int s1 = int.Parse(idSessao);
+            int.TryParse(idSessao, out int s1);
 
             // Cria um arquivo de texto com um nome de arquivo exclusivo para cada bilhete
             TextWriter bilhete1 = new StreamWriter($"C:\\\\Users\\\\Public\\\\bilhete{contador}.txt");
@@ -177,13 +202,11 @@ namespace Cinegest.Forms
                 {
                     bilhete.ClienteId = 4;
                     cinegest.SaveChanges();
-
                 }
                 else
                 {
                     bilhete.ClienteId = cliente3.Id;
                     cinegest.SaveChanges();
-
                 }
                 bilhete.FuncionarioId = funcionario.Id;
                 cinegest.SaveChanges();
@@ -195,26 +218,35 @@ namespace Cinegest.Forms
             bilhete1.Close();
         }
 
-        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// Evento que é acionado quando o valor de uma célula é alterado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            int lugar1 = 0;
-            int s1 = int.Parse(idSessao);
+            // Obtém o ID da sessão selecionada
+            int.TryParse(idSessao, out int s1);
 
+            // Verifica se o índice da linha é maior ou igual a 0
             if (e.RowIndex >= 0)
             {
                 // Obtém o lugar do bilhete que foi alterado
                 var lugar = dataGridView1.Rows[e.RowIndex].Cells["Lugar"].Value.ToString();
-                lugar1 = int.Parse(lugar);
-                // Adiciona o lugar a um array de lugares do bilhete
-
-                var bilhetes = cinegest.Bilhetes.ToList().Where(b => b.SessaoId == s1 && b.Lugar == lugar1);
-                foreach (var bilhete in bilhetes)
+                // Converte o lugar para inteiro
+                int.TryParse(lugar, out int lugar1);
+                // Obtém os bilhetes que têm o lugar selecionado
+                IEnumerable<Bilhete> bilhetes = cinegest.Bilhetes.ToList().Where(b => b.SessaoId == s1 && b.Lugar == lugar1);
+                // foreach que percorre os bilhetes
+                foreach (Bilhete bilhete in bilhetes)
                 {
+                    // Verifica se o estado do bilhete é "Disponível" e se a sessão é a selecionada
                     if (bilhete.Estado == "Disponível" && bilhete.SessaoId == s1)
                     {
+                        // Converte o lugar para string
                         lugar2 = lugar1.ToString();
+                        // Adiciona o lugar à lista de lugares do bilhete
                         Bilhete.Add(lugar2);
-
                     }
                     else
                     {
@@ -222,46 +254,89 @@ namespace Cinegest.Forms
 
                     }
                 }
-
             }
         }
 
-        private void emitirbtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Evento que é acionado quando o utilizador clica numa célula
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Obtém o nome do cliente selecionado
+            string nomeCliente = dataGridView3.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
 
+            // Procura o cliente na base de dados
+            cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
+
+            // Obtém os dados do cliente selecionado
+            var clientes = this.pessoas_ClienteTableAdapter.GetData().ToList();
+
+            // Preenche os campos com os dados do cliente selecionado
+            cliente_Nometb.Text = cliente.Nome;
+            cliente_Moradatb.Text = cliente.Morada;
+            cliente_Numfiscaltb.Text = cliente.NumFiscal.ToString();
+        }
+
+        /// <summary>
+        /// Evento que é acionado quando o utilizador clica no botão emitir bilhete
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Emitirbtn_Click(object sender, EventArgs e)
+        {
+            // obtem o nome do cliente
             string nome = cliente_Nometb.Text;
+            // obtem a morada do cliente
             string morada = cliente_Moradatb.Text;
+            // obtem o numero fiscal do cliente
             int numFiscal = int.Parse(cliente_Numfiscaltb.Text);
             if (nome == "" || morada == "")
             {
                 MessageBox.Show("Tem de insirir todos os campos");
             }
-            var cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nome);
+            // Procura o cliente na base de dados
+            Cliente cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nome);
+            // Incrementa o contador
             contador++;
 
+            // Verifica se o cliente existe na base de dados
             if (cliente == null)
             {
                 DialogResult result = MessageBox.Show("Deseja guardar os dados do novo cliente na base de dados", "Confirmar", MessageBoxButtons.YesNo);
+                // Verifica se o utilizador clicou no botão "Sim"
                 if (result == DialogResult.Yes)
                 {
+                    try
+                    {
+                        // Cria um novo cliente
+                        Cliente novocliente = new Cliente(nome, morada, numFiscal);
+                        cinegest.Pessoas.Add(novocliente);
+                        cinegest.SaveChanges();
+                        nomeCliente = novocliente.Nome;
+                        Emitir_bilhete(nomeCliente);
+                    }
+                    catch (Exception ex)
+                    {
 
-                    Cliente novocliente = new Cliente(nome, morada, numFiscal);
-                    cinegest.Pessoas.Add(novocliente);
-                    cinegest.SaveChanges();
-                    nomeCliente = novocliente.Nome;
-                    emitir_bilhete(nomeCliente);
+                        MessageBox.Show(ex.Message);
+                    }
+
                 }
                 else
                 {
+                    // Preenche os campos com os dados do cliente selecionado
                     nomeCliente1 = nomeCliente;
-                    emitir_bilhete(nomeCliente1);
+                    Emitir_bilhete(nomeCliente1);
                 }
 
             }
             else
             {
-                emitir_bilhete(nome);
+                Emitir_bilhete(nome);
             }
+            FormAtendimento_Load(sender, e);
 
         }
     }

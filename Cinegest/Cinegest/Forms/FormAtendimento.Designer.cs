@@ -39,99 +39,110 @@
             this.funcionariolbl = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Selecionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Lugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NomeSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bilhetesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.cineGestDataSet = new Cinegest.CineGestDataSet();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pessoasClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cineGestDataSet1 = new Cinegest.CineGestDataSet();
-            this.bilhetesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.cineGestDataSet = new Cinegest.CineGestDataSet();
+            this.clientelbl = new System.Windows.Forms.Label();
             this.bilhetesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bilhetesTableAdapter = new Cinegest.CineGestDataSetTableAdapters.BilhetesTableAdapter();
             this.pessoas_ClienteTableAdapter = new Cinegest.CineGestDataSetTableAdapters.Pessoas_ClienteTableAdapter();
-            this.NomeSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Selecionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.sessoeslbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // emitirbtn
             // 
-            this.emitirbtn.Location = new System.Drawing.Point(12, 203);
+            this.emitirbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emitirbtn.Location = new System.Drawing.Point(2, 260);
             this.emitirbtn.Name = "emitirbtn";
-            this.emitirbtn.Size = new System.Drawing.Size(238, 23);
+            this.emitirbtn.Size = new System.Drawing.Size(245, 188);
             this.emitirbtn.TabIndex = 0;
             this.emitirbtn.Text = "Emitir Bilhete";
             this.emitirbtn.UseVisualStyleBackColor = true;
-            this.emitirbtn.Click += new System.EventHandler(this.emitirbtn_Click);
+            this.emitirbtn.Click += new System.EventHandler(this.Emitirbtn_Click);
             // 
             // cliente_Moradatb
             // 
-            this.cliente_Moradatb.Location = new System.Drawing.Point(118, 126);
+            this.cliente_Moradatb.Location = new System.Drawing.Point(2, 188);
             this.cliente_Moradatb.Name = "cliente_Moradatb";
-            this.cliente_Moradatb.Size = new System.Drawing.Size(132, 20);
+            this.cliente_Moradatb.Size = new System.Drawing.Size(245, 20);
             this.cliente_Moradatb.TabIndex = 1;
             // 
             // cliente_Nometb
             // 
-            this.cliente_Nometb.Location = new System.Drawing.Point(118, 90);
+            this.cliente_Nometb.Location = new System.Drawing.Point(2, 142);
             this.cliente_Nometb.Name = "cliente_Nometb";
-            this.cliente_Nometb.Size = new System.Drawing.Size(132, 20);
+            this.cliente_Nometb.Size = new System.Drawing.Size(245, 20);
             this.cliente_Nometb.TabIndex = 2;
             // 
             // cliente_Numfiscaltb
             // 
-            this.cliente_Numfiscaltb.Location = new System.Drawing.Point(118, 156);
+            this.cliente_Numfiscaltb.Location = new System.Drawing.Point(3, 234);
             this.cliente_Numfiscaltb.Name = "cliente_Numfiscaltb";
-            this.cliente_Numfiscaltb.Size = new System.Drawing.Size(132, 20);
+            this.cliente_Numfiscaltb.Size = new System.Drawing.Size(245, 20);
             this.cliente_Numfiscaltb.TabIndex = 3;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 159);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(2, 211);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
+            this.label1.Size = new System.Drawing.Size(245, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "NumFiscal";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 129);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(2, 165);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 20);
+            this.label2.Size = new System.Drawing.Size(245, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Morada";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(12, 93);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(-1, 119);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 20);
+            this.label3.Size = new System.Drawing.Size(248, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Nome";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // funcionariolbl
             // 
-            this.funcionariolbl.Location = new System.Drawing.Point(12, 1);
+            this.funcionariolbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.funcionariolbl.Location = new System.Drawing.Point(0, 4);
             this.funcionariolbl.Name = "funcionariolbl";
-            this.funcionariolbl.Size = new System.Drawing.Size(238, 23);
+            this.funcionariolbl.Size = new System.Drawing.Size(248, 23);
             this.funcionariolbl.TabIndex = 7;
             this.funcionariolbl.Text = "Funcionário Atual:";
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(9, 41);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(6, 79);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(238, 23);
+            this.label5.Size = new System.Drawing.Size(244, 40);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Novo Cliente";
+            this.label5.Text = "Cliente";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // dataGridView1
             // 
@@ -143,11 +154,44 @@
             this.Estado,
             this.NomeSala});
             this.dataGridView1.DataSource = this.bilhetesBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(256, 1);
+            this.dataGridView1.Location = new System.Drawing.Point(256, 41);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(778, 699);
+            this.dataGridView1.Size = new System.Drawing.Size(455, 407);
             this.dataGridView1.TabIndex = 9;
-            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellValueChanged);
+            // 
+            // Selecionar
+            // 
+            this.Selecionar.HeaderText = ":";
+            this.Selecionar.Name = "Selecionar";
+            // 
+            // Lugar
+            // 
+            this.Lugar.DataPropertyName = "Lugar";
+            this.Lugar.HeaderText = "Lugar";
+            this.Lugar.Name = "Lugar";
+            // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "Estado";
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            // 
+            // NomeSala
+            // 
+            this.NomeSala.DataPropertyName = "Nome";
+            this.NomeSala.HeaderText = "Nome";
+            this.NomeSala.Name = "NomeSala";
+            // 
+            // bilhetesBindingSource1
+            // 
+            this.bilhetesBindingSource1.DataMember = "Bilhetes";
+            this.bilhetesBindingSource1.DataSource = this.cineGestDataSet;
+            // 
+            // cineGestDataSet
+            // 
+            this.cineGestDataSet.DataSetName = "CineGestDataSet";
+            this.cineGestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dataGridView3
             // 
@@ -156,19 +200,11 @@
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nome});
             this.dataGridView3.DataSource = this.pessoasClienteBindingSource;
-            this.dataGridView3.Location = new System.Drawing.Point(1051, 41);
+            this.dataGridView3.Location = new System.Drawing.Point(721, 37);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(231, 648);
+            this.dataGridView3.Size = new System.Drawing.Size(231, 411);
             this.dataGridView3.TabIndex = 11;
-            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(1044, 1);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(238, 23);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Selecionar Cliente Existente:";
+            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView3_CellContentClick);
             // 
             // Nome
             // 
@@ -186,15 +222,15 @@
             this.cineGestDataSet1.DataSetName = "CineGestDataSet";
             this.cineGestDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // bilhetesBindingSource1
+            // clientelbl
             // 
-            this.bilhetesBindingSource1.DataMember = "Bilhetes";
-            this.bilhetesBindingSource1.DataSource = this.cineGestDataSet;
-            // 
-            // cineGestDataSet
-            // 
-            this.cineGestDataSet.DataSetName = "CineGestDataSet";
-            this.cineGestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.clientelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clientelbl.Location = new System.Drawing.Point(717, 1);
+            this.clientelbl.Name = "clientelbl";
+            this.clientelbl.Size = new System.Drawing.Size(231, 37);
+            this.clientelbl.TabIndex = 12;
+            this.clientelbl.Text = "Selecionar Cliente:";
+            this.clientelbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // bilhetesBindingSource
             // 
@@ -209,35 +245,23 @@
             // 
             this.pessoas_ClienteTableAdapter.ClearBeforeFill = true;
             // 
-            // NomeSala
+            // sessoeslbl
             // 
-            this.NomeSala.DataPropertyName = "Nome";
-            this.NomeSala.HeaderText = "Nome";
-            this.NomeSala.Name = "NomeSala";
-            // 
-            // Estado
-            // 
-            this.Estado.DataPropertyName = "Estado";
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            // 
-            // Lugar
-            // 
-            this.Lugar.DataPropertyName = "Lugar";
-            this.Lugar.HeaderText = "Lugar";
-            this.Lugar.Name = "Lugar";
-            // 
-            // Selecionar
-            // 
-            this.Selecionar.HeaderText = ":";
-            this.Selecionar.Name = "Selecionar";
+            this.sessoeslbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sessoeslbl.Location = new System.Drawing.Point(256, 1);
+            this.sessoeslbl.Name = "sessoeslbl";
+            this.sessoeslbl.Size = new System.Drawing.Size(455, 37);
+            this.sessoeslbl.TabIndex = 13;
+            this.sessoeslbl.Text = "Sessões:";
+            this.sessoeslbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // FormAtendimento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1294, 701);
-            this.Controls.Add(this.label6);
+            this.ClientSize = new System.Drawing.Size(971, 465);
+            this.Controls.Add(this.sessoeslbl);
+            this.Controls.Add(this.clientelbl);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label5);
@@ -253,11 +277,11 @@
             this.Text = "FormAtendimento";
             this.Load += new System.EventHandler(this.FormAtendimento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasClienteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bilhetesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -280,7 +304,7 @@
         private CineGestDataSet cineGestDataSet;
         private System.Windows.Forms.BindingSource bilhetesBindingSource;
         private CineGestDataSetTableAdapters.BilhetesTableAdapter bilhetesTableAdapter;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label clientelbl;
         private CineGestDataSet cineGestDataSet1;
         private System.Windows.Forms.BindingSource pessoasClienteBindingSource;
         private CineGestDataSetTableAdapters.Pessoas_ClienteTableAdapter pessoas_ClienteTableAdapter;
@@ -290,5 +314,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Lugar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn NomeSala;
+        private System.Windows.Forms.Label sessoeslbl;
     }
 }
