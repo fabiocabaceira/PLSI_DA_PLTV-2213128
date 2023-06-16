@@ -37,13 +37,11 @@
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.duracaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoriaIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.filmesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.activolbl = new System.Windows.Forms.Label();
             this.duracaoFilmelbl = new System.Windows.Forms.Label();
             this.nomeFilmelbl = new System.Windows.Forms.Label();
             this.filmelbl = new System.Windows.Forms.Label();
-            this.activoFilmetb = new System.Windows.Forms.TextBox();
             this.duracaoFilmetb = new System.Windows.Forms.TextBox();
             this.nomeFilmetb = new System.Windows.Forms.TextBox();
             this.novoFilmebtn = new System.Windows.Forms.Button();
@@ -51,6 +49,7 @@
             this.alterarFilmebtn = new System.Windows.Forms.Button();
             this.categorialbl = new System.Windows.Forms.Label();
             this.categoriaFilmecb = new System.Windows.Forms.ComboBox();
+            this.filmecb = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.filmesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.filmesdgv)).BeginInit();
@@ -79,12 +78,11 @@
             this.idDataGridViewTextBoxColumn,
             this.Nome,
             this.duracaoDataGridViewTextBoxColumn,
-            this.activoDataGridViewTextBoxColumn,
-            this.categoriaIdDataGridViewTextBoxColumn});
+            this.activoDataGridViewTextBoxColumn});
             this.filmesdgv.DataSource = this.filmesBindingSource1;
             this.filmesdgv.Location = new System.Drawing.Point(12, 12);
             this.filmesdgv.Name = "filmesdgv";
-            this.filmesdgv.Size = new System.Drawing.Size(600, 474);
+            this.filmesdgv.Size = new System.Drawing.Size(459, 246);
             this.filmesdgv.TabIndex = 0;
             this.filmesdgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.filmesdgv_CellContentClick);
             // 
@@ -113,12 +111,6 @@
             this.activoDataGridViewTextBoxColumn.HeaderText = "Activo";
             this.activoDataGridViewTextBoxColumn.Name = "activoDataGridViewTextBoxColumn";
             // 
-            // categoriaIdDataGridViewTextBoxColumn
-            // 
-            this.categoriaIdDataGridViewTextBoxColumn.DataPropertyName = "Categoria_Id";
-            this.categoriaIdDataGridViewTextBoxColumn.HeaderText = "Categoria_Id";
-            this.categoriaIdDataGridViewTextBoxColumn.Name = "categoriaIdDataGridViewTextBoxColumn";
-            // 
             // filmesBindingSource1
             // 
             this.filmesBindingSource1.DataMember = "Filmes";
@@ -126,7 +118,8 @@
             // 
             // activolbl
             // 
-            this.activolbl.Location = new System.Drawing.Point(621, 158);
+            this.activolbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.activolbl.Location = new System.Drawing.Point(480, 158);
             this.activolbl.Name = "activolbl";
             this.activolbl.Size = new System.Drawing.Size(345, 23);
             this.activolbl.TabIndex = 22;
@@ -135,7 +128,8 @@
             // 
             // duracaoFilmelbl
             // 
-            this.duracaoFilmelbl.Location = new System.Drawing.Point(618, 109);
+            this.duracaoFilmelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.duracaoFilmelbl.Location = new System.Drawing.Point(477, 109);
             this.duracaoFilmelbl.Name = "duracaoFilmelbl";
             this.duracaoFilmelbl.Size = new System.Drawing.Size(349, 23);
             this.duracaoFilmelbl.TabIndex = 21;
@@ -144,7 +138,8 @@
             // 
             // nomeFilmelbl
             // 
-            this.nomeFilmelbl.Location = new System.Drawing.Point(621, 60);
+            this.nomeFilmelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nomeFilmelbl.Location = new System.Drawing.Point(480, 60);
             this.nomeFilmelbl.Name = "nomeFilmelbl";
             this.nomeFilmelbl.Size = new System.Drawing.Size(346, 23);
             this.nomeFilmelbl.TabIndex = 20;
@@ -153,39 +148,34 @@
             // 
             // filmelbl
             // 
-            this.filmelbl.Location = new System.Drawing.Point(624, 12);
+            this.filmelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filmelbl.Location = new System.Drawing.Point(483, 12);
             this.filmelbl.Name = "filmelbl";
-            this.filmelbl.Size = new System.Drawing.Size(342, 23);
+            this.filmelbl.Size = new System.Drawing.Size(342, 48);
             this.filmelbl.TabIndex = 19;
             this.filmelbl.Text = "Alterar Filme Selecionado";
             this.filmelbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // activoFilmetb
-            // 
-            this.activoFilmetb.Location = new System.Drawing.Point(621, 188);
-            this.activoFilmetb.Name = "activoFilmetb";
-            this.activoFilmetb.Size = new System.Drawing.Size(345, 20);
-            this.activoFilmetb.TabIndex = 18;
-            // 
             // duracaoFilmetb
             // 
-            this.duracaoFilmetb.Location = new System.Drawing.Point(621, 135);
+            this.duracaoFilmetb.Location = new System.Drawing.Point(483, 135);
             this.duracaoFilmetb.Name = "duracaoFilmetb";
-            this.duracaoFilmetb.Size = new System.Drawing.Size(345, 20);
+            this.duracaoFilmetb.Size = new System.Drawing.Size(342, 20);
             this.duracaoFilmetb.TabIndex = 17;
             // 
             // nomeFilmetb
             // 
-            this.nomeFilmetb.Location = new System.Drawing.Point(621, 86);
+            this.nomeFilmetb.Location = new System.Drawing.Point(483, 86);
             this.nomeFilmetb.Name = "nomeFilmetb";
-            this.nomeFilmetb.Size = new System.Drawing.Size(344, 20);
+            this.nomeFilmetb.Size = new System.Drawing.Size(341, 20);
             this.nomeFilmetb.TabIndex = 16;
             // 
             // novoFilmebtn
             // 
-            this.novoFilmebtn.Location = new System.Drawing.Point(1054, 12);
+            this.novoFilmebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.novoFilmebtn.Location = new System.Drawing.Point(12, 264);
             this.novoFilmebtn.Name = "novoFilmebtn";
-            this.novoFilmebtn.Size = new System.Drawing.Size(75, 195);
+            this.novoFilmebtn.Size = new System.Drawing.Size(459, 71);
             this.novoFilmebtn.TabIndex = 15;
             this.novoFilmebtn.Text = "Criar Filme";
             this.novoFilmebtn.UseVisualStyleBackColor = true;
@@ -193,9 +183,10 @@
             // 
             // apagarFilmebtn
             // 
-            this.apagarFilmebtn.Location = new System.Drawing.Point(1135, 12);
+            this.apagarFilmebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.apagarFilmebtn.Location = new System.Drawing.Point(483, 264);
             this.apagarFilmebtn.Name = "apagarFilmebtn";
-            this.apagarFilmebtn.Size = new System.Drawing.Size(75, 196);
+            this.apagarFilmebtn.Size = new System.Drawing.Size(170, 71);
             this.apagarFilmebtn.TabIndex = 14;
             this.apagarFilmebtn.Text = "Apagar ";
             this.apagarFilmebtn.UseVisualStyleBackColor = true;
@@ -203,9 +194,10 @@
             // 
             // alterarFilmebtn
             // 
-            this.alterarFilmebtn.Location = new System.Drawing.Point(973, 12);
+            this.alterarFilmebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.alterarFilmebtn.Location = new System.Drawing.Point(657, 264);
             this.alterarFilmebtn.Name = "alterarFilmebtn";
-            this.alterarFilmebtn.Size = new System.Drawing.Size(75, 196);
+            this.alterarFilmebtn.Size = new System.Drawing.Size(167, 71);
             this.alterarFilmebtn.TabIndex = 13;
             this.alterarFilmebtn.Text = "Guardar Alterações";
             this.alterarFilmebtn.UseVisualStyleBackColor = true;
@@ -213,7 +205,8 @@
             // 
             // categorialbl
             // 
-            this.categorialbl.Location = new System.Drawing.Point(621, 211);
+            this.categorialbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categorialbl.Location = new System.Drawing.Point(480, 211);
             this.categorialbl.Name = "categorialbl";
             this.categorialbl.Size = new System.Drawing.Size(345, 23);
             this.categorialbl.TabIndex = 26;
@@ -223,23 +216,31 @@
             // categoriaFilmecb
             // 
             this.categoriaFilmecb.FormattingEnabled = true;
-            this.categoriaFilmecb.Location = new System.Drawing.Point(624, 237);
+            this.categoriaFilmecb.Location = new System.Drawing.Point(483, 237);
             this.categoriaFilmecb.Name = "categoriaFilmecb";
             this.categoriaFilmecb.Size = new System.Drawing.Size(341, 21);
             this.categoriaFilmecb.TabIndex = 27;
+            // 
+            // filmecb
+            // 
+            this.filmecb.FormattingEnabled = true;
+            this.filmecb.Location = new System.Drawing.Point(483, 187);
+            this.filmecb.Name = "filmecb";
+            this.filmecb.Size = new System.Drawing.Size(341, 21);
+            this.filmecb.TabIndex = 28;
             // 
             // FormFilmes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1218, 643);
+            this.ClientSize = new System.Drawing.Size(836, 362);
+            this.Controls.Add(this.filmecb);
             this.Controls.Add(this.categoriaFilmecb);
             this.Controls.Add(this.categorialbl);
             this.Controls.Add(this.activolbl);
             this.Controls.Add(this.duracaoFilmelbl);
             this.Controls.Add(this.nomeFilmelbl);
             this.Controls.Add(this.filmelbl);
-            this.Controls.Add(this.activoFilmetb);
             this.Controls.Add(this.duracaoFilmetb);
             this.Controls.Add(this.nomeFilmetb);
             this.Controls.Add(this.novoFilmebtn);
@@ -268,7 +269,6 @@
         private System.Windows.Forms.Label duracaoFilmelbl;
         private System.Windows.Forms.Label nomeFilmelbl;
         private System.Windows.Forms.Label filmelbl;
-        private System.Windows.Forms.TextBox activoFilmetb;
         private System.Windows.Forms.TextBox duracaoFilmetb;
         private System.Windows.Forms.TextBox nomeFilmetb;
         private System.Windows.Forms.Button novoFilmebtn;
@@ -281,5 +281,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn activoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoriaIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.ComboBox categoriaFilmecb;
+        private System.Windows.Forms.ComboBox filmecb;
     }
 }

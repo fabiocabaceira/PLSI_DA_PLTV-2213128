@@ -8,7 +8,7 @@ namespace Cinegest.Forms
 {
     public partial class FormAgendamentoAutomatico : Form
     {
-        //Declaração de Variáveis
+        // Variáveis de instância
         CineGestEntities5 cinegest;
         DateTime tempoInicial;
         DateTime tempoFinal;
