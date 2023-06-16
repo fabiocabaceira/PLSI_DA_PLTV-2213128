@@ -19,7 +19,9 @@ namespace Cinegest.Forms
         DateTime tempoFinal;
         private int selectedHour;
 
-        //Construtor
+        /// <summary>
+        /// Construtor do FormAgendamentoAutomatico
+        /// </summary>
         public FormAgendamentoAutomatico()
         {
             InitializeComponent();
@@ -159,44 +161,115 @@ namespace Cinegest.Forms
             }
         }
 
+        /// <summary>
+        /// Evento que é acionado quando o botão de "definir tempo" é clicado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void definirTempobtn_Click(object sender, EventArgs e)
         {
             tempoInicial = agenAutoIniciodtp.Value.Date;
             tempoFinal = agenAutoFimdtp.Value.Date;
         }
 
-        private void CriarSessoesDiarias(DateTime tempoInicial, DateTime tempoFinal, DateTime dataHora)
+        /// <summary>
+        /// Verifica se há conflito de sessões na sala e data/hora especificadas
+        /// </summary>
+        /// <param name="dataHora"></param>
+        /// <param name="salaId"></param>
+        /// <returns></returns>
+        private bool VerificarConflitoDeSessoes(DateTime dataHora, int salaId, DateTime dataDia)
         {
-            string nomeSala = salacb.Text.ToString();
-            string nomeFilme = filmescb.Text.ToString();
-            var salaSelecionada = cinegest.Salas.FirstOrDefault(b => b.Nome == nomeSala);
-            var filmeSelecionado = cinegest.Filmes.FirstOrDefault(f => f.Nome == nomeFilme);
-            int SalaId = salaSelecionada.Id;
-            int FilmeId = filmeSelecionado.Id;
-            int Preco = int.Parse(filmePrecotb.Text.ToString());
-
-            for (var data = tempoInicial.Date; data <= tempoFinal.Date; data = data.AddDays(1))
+            // Seleciona todas as sessões existentes na sala após a data/hora especificadas
+            var sessoesExistente = cinegest.Sessaos.Where(s => s.SalaId == salaId && s.Datahora >= dataHora && s.Datahora >= dataDia);
+            // Verifica se há alguma sessão existente na mesma data/hora especificada
+            foreach (var sessao in sessoesExistente)
             {
-                dataHora = dataHora.AddDays(1);
-                Sessao sessao = new Sessao(SalaId, dataHora, Preco, FilmeId);
-                cinegest.Sessaos.Add(sessao);
+                if (sessao.Datahora == dataHora)
+                {
+                    return true;
+                }
             }
 
+            return false;
+        }
+
+        /// <summary>
+        /// Cria sessões diárias para o período entre duas datas especificadas
+        /// </summary>
+        /// <param name="tempoInicial"></param>
+        /// <param name="tempoFinal"></param>
+        /// <param name="dataHora"></param>
+        private void CriarSessoesDiarias(DateTime tempoInicial, DateTime tempoFinal, DateTime dataHora)
+        {
+            // Obtém o nome da sala e do filme selecionados
+            string nomeSala = salacb.Text.ToString();
+            string nomeFilme = filmescb.Text.ToString();
+
+            // Seleciona a sala e o filme correspondentes
+            var salaSelecionada = cinegest.Salas.FirstOrDefault(b => b.Nome == nomeSala);
+            var filmeSelecionado = cinegest.Filmes.FirstOrDefault(f => f.Nome == nomeFilme);
+
+            // Obtém os IDs da sala e do filme
+            int SalaId = salaSelecionada.Id;
+            int FilmeId = filmeSelecionado.Id;
+
+            // Obtém o preço do filme
+            int Preco = int.Parse(filmePrecotb.Text.ToString());
+
+            // Cria sessões para cada dia no intervalo especificado
+            for (var data = tempoInicial.Date; data <= tempoFinal.Date; data = data.AddDays(1))
+            {
+                // Adiciona um dia à data/hora atual
+                dataHora = dataHora.AddDays(1);
+                DateTime dataHora2 = dataHora.Date;
+
+                // Verifica se há conflito de sessões na sala e data/hora especificadas
+                if (!VerificarConflitoDeSessoes(dataHora, SalaId, dataHora2))
+                {
+                    // Cria uma nova sessão e a adiciona ao contexto do EF
+                    Sessao sessao = new Sessao(SalaId, dataHora, Preco, FilmeId);
+                    cinegest.Sessaos.Add(sessao);
+                }
+                else
+                {
+                    // Mostra uma mensagem de erro se houver conflito de sessões
+                    MessageBox.Show("Já existe uma sessão marcada para essa hora");
+                }
+            }
+
+            // Salva as alterações no contexto do EF
             cinegest.SaveChanges();
         }
 
+        /// <summary>
+        /// Obtém uma data/hora a partir de um DateTimePicker
+        /// </summary>
+        /// <param name="dtp"></param>
+        /// <returns></returns>
         private DateTimePicker GetDateTimeFromPicker(DateTimePicker dtp)
         {
+            // Obtém a hora selecionada a partir do DateTimePicker
             string selectedHour = dtp.Value.ToString("HH");
             string selectedMinute = dtp.Value.ToString("mm");
+
+            // Cria um TimeSpan com a hora selecionada
             TimeSpan time = new TimeSpan(int.Parse(selectedHour), int.Parse(selectedMinute), 0);
+
+            // Cria um novo DateTimePicker com a data/hora especificadas
             DateTimePicker result = new DateTimePicker();
             result.Value = dtp.Value.Date.Add(time);
             return result;
         }
 
+        /// <summary>
+        /// Evento que é acionado quando o botão "Agendar" é clickado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void agendarbtn_Click(object sender, EventArgs e)
         {
+            // Obtém as datas/horas selecionadas a partir dos DateTimePickers visíveis
             DateTimePicker[] datasHoras = new DateTimePicker[] {
           sessao1dtp,
           sessao2dtp,
@@ -208,6 +281,7 @@ namespace Cinegest.Forms
               .Select(dtp => GetDateTimeFromPicker(dtp))
               .ToArray();
 
+            // Cria sessões diárias para cada data/hora selecionada
             foreach (DateTimePicker dataHora in datasHoras)
             {
                 CriarSessoesDiarias(tempoInicial, tempoFinal, dataHora.Value);
