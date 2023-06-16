@@ -133,7 +133,7 @@
             this.nrSessoesnud.Name = "nrSessoesnud";
             this.nrSessoesnud.Size = new System.Drawing.Size(120, 20);
             this.nrSessoesnud.TabIndex = 7;
-            this.nrSessoesnud.ValueChanged += new System.EventHandler(this.nrSessoesnud_ValueChanged);
+            this.nrSessoesnud.ValueChanged += new System.EventHandler(this.NrSessoesnud_ValueChanged);
             // 
             // sessao1dtp
             // 
@@ -257,7 +257,7 @@
             this.definirTempobtn.TabIndex = 22;
             this.definirTempobtn.Text = "Definir Espaço Tempo";
             this.definirTempobtn.UseVisualStyleBackColor = true;
-            this.definirTempobtn.Click += new System.EventHandler(this.definirTempobtn_Click);
+            this.definirTempobtn.Click += new System.EventHandler(this.DefinirTempobtn_Click);
             // 
             // label2
             // 
@@ -292,7 +292,7 @@
             this.agendarbtn.TabIndex = 28;
             this.agendarbtn.Text = "Agendar";
             this.agendarbtn.UseVisualStyleBackColor = true;
-            this.agendarbtn.Click += new System.EventHandler(this.agendarbtn_Click);
+            this.agendarbtn.Click += new System.EventHandler(this.Agendarbtn_Click);
             // 
             // FormAgendamentoAutomatico
             // 

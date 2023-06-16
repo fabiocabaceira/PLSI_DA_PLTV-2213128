@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Cinegest.Forms
@@ -14,10 +10,8 @@ namespace Cinegest.Forms
     {
         //Declaração de Variáveis
         CineGestEntities5 cinegest;
-        int nrSessoes;
         DateTime tempoInicial;
         DateTime tempoFinal;
-        private int selectedHour;
 
         /// <summary>
         /// Construtor do FormAgendamentoAutomatico
@@ -37,7 +31,7 @@ namespace Cinegest.Forms
         {
             try
             {
-                preencher_E_FormatarElementos();
+                Preencher_E_FormatarElementos();
             }
             catch (Exception ex)
             {
@@ -48,17 +42,18 @@ namespace Cinegest.Forms
         /// <summary>
         /// Método utilizado para preencher e formatar os dados do formulário
         /// </summary>
-        private void preencher_E_FormatarElementos()
+        private void Preencher_E_FormatarElementos()
         {
             try
             {
                 //ComboBoxes
-                var filmes = cinegest.Filmes.ToList();
-                var salas = cinegest.Salas.ToList();
+                List<Filme> filmes = cinegest.Filmes.ToList();
+                List<Sala> salas = cinegest.Salas.ToList();
                 filmescb.DataSource = filmes;
                 salacb.DataSource = salas;
                 filmescb.DisplayMember = "Nome";
                 salacb.DisplayMember = "Nome";
+
                 //DateTimePicker
                 agenAutoIniciodtp.Format = DateTimePickerFormat.Custom;
                 agenAutoIniciodtp.CustomFormat = "dd/MM/yyyy";
@@ -108,7 +103,7 @@ namespace Cinegest.Forms
         /// </summary>
         /// <param name="i"></param>
         /// <returns></returns>
-        private void formatar_DateTimePicker(DateTimePicker picker)
+        private void Formatar_DateTimePicker(DateTimePicker picker)
         {
             picker.Format = DateTimePickerFormat.Custom;
             picker.CustomFormat = "HH:mm";
@@ -119,7 +114,7 @@ namespace Cinegest.Forms
         /// Método que mostra ou esconde os DatetimePickers de acordo com o número de sessões que foram selecionadas no NumericUpDown
         /// </summary>
         /// <param name="nrdesessoes"></param>
-        private void mostrarOuEsconderDateTimePickers(int nrdesessoes)
+        private void MostrarOuEsconderDateTimePickers(int nrdesessoes)
         {
             try
             {
@@ -134,7 +129,7 @@ namespace Cinegest.Forms
                         labels[0].Visible = visible;
                         if (visible)
                         {
-                            formatar_DateTimePicker((DateTimePicker)dateTimePickers[0]);
+                            Formatar_DateTimePicker((DateTimePicker)dateTimePickers[0]);
                         }
                     }
                 }
@@ -149,27 +144,34 @@ namespace Cinegest.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void nrSessoesnud_ValueChanged(object sender, EventArgs e)
+        private void NrSessoesnud_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                mostrarOuEsconderDateTimePickers((int)nrSessoesnud.Value);
+                MostrarOuEsconderDateTimePickers((int)nrSessoesnud.Value);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro: " + ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
         /// <summary>
-        /// Evento que é acionado quando o botão de "definir tempo" é clicado
+        /// Event that is triggered when the "set time" button is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void definirTempobtn_Click(object sender, EventArgs e)
+        private void DefinirTempobtn_Click(object sender, EventArgs e)
         {
-            tempoInicial = agenAutoIniciodtp.Value.Date;
-            tempoFinal = agenAutoFimdtp.Value.Date;
+            try
+            {
+                tempoInicial = agenAutoIniciodtp.Value.Date;
+                tempoFinal = agenAutoFimdtp.Value.Date;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
@@ -180,17 +182,25 @@ namespace Cinegest.Forms
         /// <returns></returns>
         private bool VerificarConflitoDeSessoes(DateTime dataHora, int salaId, DateTime dataDia)
         {
-            // Seleciona todas as sessões existentes na sala após a data/hora especificadas
-            var sessoesExistente = cinegest.Sessaos.Where(s => s.SalaId == salaId && s.Datahora >= dataHora && s.Datahora >= dataDia);
-            // Verifica se há alguma sessão existente na mesma data/hora especificada
-            foreach (var sessao in sessoesExistente)
+            try
             {
-                if (sessao.Datahora == dataHora)
+                // Seleciona todas as sessões existentes na sala após a data/hora especificadas
+                IQueryable<Sessao> sessoesExistente = cinegest.Sessaos.Where(s => s.SalaId == salaId && s.Datahora >= dataHora && s.Datahora >= dataDia);
+                // Verifica se há alguma sessão existente na mesma data/hora especificada
+                foreach (Sessao sessao in sessoesExistente)
                 {
-                    return true;
+                    if (sessao.Datahora == dataHora)
+                    {
+                        return true;
+                    }
                 }
-            }
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
             return false;
         }
 
@@ -202,44 +212,51 @@ namespace Cinegest.Forms
         /// <param name="dataHora"></param>
         private void CriarSessoesDiarias(DateTime tempoInicial, DateTime tempoFinal, DateTime dataHora)
         {
+
             // Obtém o nome da sala e do filme selecionados
-            string nomeSala = salacb.Text.ToString();
-            string nomeFilme = filmescb.Text.ToString();
-
-            // Seleciona a sala e o filme correspondentes
-            var salaSelecionada = cinegest.Salas.FirstOrDefault(b => b.Nome == nomeSala);
-            var filmeSelecionado = cinegest.Filmes.FirstOrDefault(f => f.Nome == nomeFilme);
-
-            // Obtém os IDs da sala e do filme
-            int SalaId = salaSelecionada.Id;
-            int FilmeId = filmeSelecionado.Id;
-
-            // Obtém o preço do filme
-            int Preco = int.Parse(filmePrecotb.Text.ToString());
-
-            // Cria sessões para cada dia no intervalo especificado
-            for (var data = tempoInicial.Date; data <= tempoFinal.Date; data = data.AddDays(1))
+            try
             {
-                // Adiciona um dia à data/hora atual
-                dataHora = dataHora.AddDays(1);
-                DateTime dataHora2 = dataHora.Date;
 
-                // Verifica se há conflito de sessões na sala e data/hora especificadas
-                if (!VerificarConflitoDeSessoes(dataHora, SalaId, dataHora2))
+                string nomeSala = salacb.Text.ToString();
+                string nomeFilme = filmescb.Text.ToString();
+                // Seleciona a sala e o filme correspondentes
+                Sala salaSelecionada = cinegest.Salas.FirstOrDefault(b => b.Nome == nomeSala);
+                Filme filmeSelecionado = cinegest.Filmes.FirstOrDefault(f => f.Nome == nomeFilme);
+                // Obtém os IDs da sala e do filme
+                int SalaId = salaSelecionada.Id;
+                int FilmeId = filmeSelecionado.Id;
+                // Obtém o preço do filme
+                int.TryParse(filmePrecotb.Text.ToString(), out int Preco);
+                // Cria sessões para cada dia no intervalo especificado
+                for (DateTime data = tempoInicial.Date; data <= tempoFinal.Date; data = data.AddDays(1))
                 {
-                    // Cria uma nova sessão e a adiciona ao contexto do EF
-                    Sessao sessao = new Sessao(SalaId, dataHora, Preco, FilmeId);
-                    cinegest.Sessaos.Add(sessao);
-                }
-                else
-                {
+                    // Adiciona um dia à data/hora atual
+                    dataHora = dataHora.AddDays(1);
+                    DateTime dataHora2 = dataHora.Date;
+
+                    // Verifica se há conflito de sessões na sala e data/hora especificadas
+                    if (!VerificarConflitoDeSessoes(dataHora, SalaId, dataHora2))
+                    {
+                        // Cria uma nova sessão e a adiciona ao contexto do EF
+                        Sessao sessao = new Sessao(SalaId, dataHora, Preco, FilmeId);
+                        cinegest.Sessaos.Add(sessao);
+                        continue;
+                    }
+
                     // Mostra uma mensagem de erro se houver conflito de sessões
                     MessageBox.Show("Já existe uma sessão marcada para essa hora");
+
                 }
+
+                // Salva as alterações no contexto do EF
+                cinegest.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
-            // Salva as alterações no contexto do EF
-            cinegest.SaveChanges();
         }
 
         /// <summary>
@@ -249,7 +266,9 @@ namespace Cinegest.Forms
         /// <returns></returns>
         private DateTimePicker GetDateTimeFromPicker(DateTimePicker dtp)
         {
+
             // Obtém a hora selecionada a partir do DateTimePicker
+
             string selectedHour = dtp.Value.ToString("HH");
             string selectedMinute = dtp.Value.ToString("mm");
 
@@ -267,24 +286,28 @@ namespace Cinegest.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void agendarbtn_Click(object sender, EventArgs e)
+        private void Agendarbtn_Click(object sender, EventArgs e)
         {
-            // Obtém as datas/horas selecionadas a partir dos DateTimePickers visíveis
-            DateTimePicker[] datasHoras = new DateTimePicker[] {
+            try
+            {
+                // Obtém as datas/horas selecionadas a partir dos DateTimePickers visíveis
+                DateTimePicker[] datasHoras = new DateTimePicker[] {
           sessao1dtp,
           sessao2dtp,
           sessao3dtp,
           sessao4dtp,
           sessao5dtp
-        }
-              .Where(dtp => dtp.Visible)
-              .Select(dtp => GetDateTimeFromPicker(dtp))
-              .ToArray();
+        }.Where(dtp => dtp.Visible).Select(dtp => GetDateTimeFromPicker(dtp)).ToArray();
 
-            // Cria sessões diárias para cada data/hora selecionada
-            foreach (DateTimePicker dataHora in datasHoras)
+                // Cria sessões diárias para cada data/hora selecionada
+                foreach (DateTimePicker dataHora in datasHoras)
+                {
+                    CriarSessoesDiarias(tempoInicial, tempoFinal, dataHora.Value);
+                }
+            }
+            catch (Exception ex)
             {
-                CriarSessoesDiarias(tempoInicial, tempoFinal, dataHora.Value);
+                MessageBox.Show(ex.Message);
             }
         }
 
