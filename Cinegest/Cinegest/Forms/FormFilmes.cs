@@ -50,8 +50,6 @@ namespace Cinegest.Forms
 
         }
 
-
-        
         private void alterarFilmebtn_Click(object sender, EventArgs e)
         {
 

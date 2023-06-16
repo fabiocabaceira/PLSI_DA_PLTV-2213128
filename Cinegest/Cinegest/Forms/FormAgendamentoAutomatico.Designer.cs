@@ -57,6 +57,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.filmePrecotb = new System.Windows.Forms.TextBox();
+            this.agendarbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.filmesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nrSessoesnud)).BeginInit();
@@ -283,11 +284,22 @@
             this.filmePrecotb.Size = new System.Drawing.Size(121, 20);
             this.filmePrecotb.TabIndex = 26;
             // 
+            // agendarbtn
+            // 
+            this.agendarbtn.Location = new System.Drawing.Point(880, 12);
+            this.agendarbtn.Name = "agendarbtn";
+            this.agendarbtn.Size = new System.Drawing.Size(75, 426);
+            this.agendarbtn.TabIndex = 28;
+            this.agendarbtn.Text = "Agendar";
+            this.agendarbtn.UseVisualStyleBackColor = true;
+            this.agendarbtn.Click += new System.EventHandler(this.agendarbtn_Click);
+            // 
             // FormAgendamentoAutomatico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1366, 450);
+            this.ClientSize = new System.Drawing.Size(980, 450);
+            this.Controls.Add(this.agendarbtn);
             this.Controls.Add(this.filmePrecotb);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -353,5 +365,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox filmePrecotb;
+        private System.Windows.Forms.Button agendarbtn;
     }
 }

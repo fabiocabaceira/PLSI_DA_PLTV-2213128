@@ -17,6 +17,7 @@ namespace Cinegest.Forms
         int nrSessoes;
         DateTime tempoInicial;
         DateTime tempoFinal;
+        private int selectedHour;
 
         //Construtor
         public FormAgendamentoAutomatico()
@@ -67,8 +68,6 @@ namespace Cinegest.Forms
                 agenAutoFimdtp.MaxDate = new DateTime(2100, 12, 31);
                 Controls.Add(agenAutoIniciodtp);
                 Controls.Add(agenAutoFimdtp);
-
-                
 
                 //NumericUpDown
                 nrSessoesnud.Value = 0;
@@ -159,7 +158,6 @@ namespace Cinegest.Forms
                 MessageBox.Show("Erro: " + ex.Message);
             }
         }
-       
 
         private void definirTempobtn_Click(object sender, EventArgs e)
         {
@@ -167,38 +165,52 @@ namespace Cinegest.Forms
             tempoFinal = agenAutoFimdtp.Value.Date;
         }
 
-        private void CriarSessoesDiarias(DateTime tempoInicial, DateTime tempoFinal)
+        private void CriarSessoesDiarias(DateTime tempoInicial, DateTime tempoFinal, DateTime dataHora)
         {
+            string nomeSala = salacb.Text.ToString();
+            string nomeFilme = filmescb.Text.ToString();
+            var salaSelecionada = cinegest.Salas.FirstOrDefault(b => b.Nome == nomeSala);
+            var filmeSelecionado = cinegest.Filmes.FirstOrDefault(f => f.Nome == nomeFilme);
+            int SalaId = salaSelecionada.Id;
+            int FilmeId = filmeSelecionado.Id;
+            int Preco = int.Parse(filmePrecotb.Text.ToString());
 
             for (var data = tempoInicial.Date; data <= tempoFinal.Date; data = data.AddDays(1))
             {
-                for (var hora = new DateTime(data.Year, data.Month, data.Day, 10, 0, 0); hora <= new DateTime(data.Year, data.Month, data.Day, 22, 0, 0);)
-                {
-                    //NomeSala
-                    string nomeSala = salacb.Text.ToString();
-                    var salaSelecionadas = cinegest.Salas.ToList().Where(s => s.Nome == nomeSala);
-                    foreach (var salaSelecionada in salaSelecionadas)
-                    {
-                        //Sala Id
-                        int SalaId = salaSelecionada.Id;
-                    }
+                dataHora = dataHora.AddDays(1);
+                Sessao sessao = new Sessao(SalaId, dataHora, Preco, FilmeId);
+                cinegest.Sessaos.Add(sessao);
+            }
 
-                    //NomeFilme
-                    string nomeFilme = filmescb.Text.ToString();
-                    var filmeSelecionados = cinegest.Filmes.ToList().Where(f => f.Nome == nomeFilme);
-                    foreach (var filmeSelecionado in filmeSelecionados)
-                    {
-                        //Filme 
-                        int FilmeId = filmeSelecionado.Id;
+            cinegest.SaveChanges();
+        }
 
-                    }
+        private DateTimePicker GetDateTimeFromPicker(DateTimePicker dtp)
+        {
+            string selectedHour = dtp.Value.ToString("HH");
+            string selectedMinute = dtp.Value.ToString("mm");
+            TimeSpan time = new TimeSpan(int.Parse(selectedHour), int.Parse(selectedMinute), 0);
+            DateTimePicker result = new DateTimePicker();
+            result.Value = dtp.Value.Date.Add(time);
+            return result;
+        }
 
-                    //Preço
-                    int Preco = int.Parse(filmePrecotb.Text.ToString()); 
+        private void agendarbtn_Click(object sender, EventArgs e)
+        {
+            DateTimePicker[] datasHoras = new DateTimePicker[] {
+          sessao1dtp,
+          sessao2dtp,
+          sessao3dtp,
+          sessao4dtp,
+          sessao5dtp
+        }
+              .Where(dtp => dtp.Visible)
+              .Select(dtp => GetDateTimeFromPicker(dtp))
+              .ToArray();
 
-                    //Datahora
-                   
-                }
+            foreach (DateTimePicker dataHora in datasHoras)
+            {
+                CriarSessoesDiarias(tempoInicial, tempoFinal, dataHora.Value);
             }
         }
 
