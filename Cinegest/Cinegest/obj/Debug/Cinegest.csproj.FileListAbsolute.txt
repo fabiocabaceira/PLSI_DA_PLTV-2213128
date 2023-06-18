@@ -14,7 +14,6 @@ C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.csproj.
 C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.exe
 C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.pdb
 C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormPrincipal.resources
-C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormFuncionarios.resources
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\bin\Debug\Cinegest.exe.config
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\bin\Debug\Cinegest.exe
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\bin\Debug\Cinegest.pdb
@@ -45,3 +44,11 @@ C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cineg
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormSessoes.resources
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormAutenticacao.resources
 C:\Users\Fábio Cabaceira\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormAgendamentoAutomatico.resources
+C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormAgendamentoAutomatico.resources
+C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormAutenticacao.resources
+C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormCinema.resources
+C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormFilmes.resources
+C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormNovaSala.resources
+C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormNovoFilme.resources
+C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormNovoFuncionario.resources
+C:\Users\fabio\PLSI_DA_PLTV-2213128\Cinegest\Cinegest\obj\Debug\Cinegest.Forms.FormSessoes.resources

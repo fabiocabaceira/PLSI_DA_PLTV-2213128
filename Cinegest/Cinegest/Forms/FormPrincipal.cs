@@ -92,6 +92,9 @@ namespace Cinegest.Forms
             fmcinema2.ShowDialog();
         }
 
-       
+        private void refreshbtn_Click(object sender, EventArgs e)
+        {
+           FormPrincipal_Load(sender, e);
+        }
     }
 }
