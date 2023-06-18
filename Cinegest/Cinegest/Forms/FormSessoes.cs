@@ -43,6 +43,18 @@ namespace Cinegest.Forms
 
         }
 
+        private int  verificarSeOFilmeTemEstadoActivo (Filme filme)
+        {
+            if (filme.Activo == "Activo")
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         private void criarSessaobtn_Click(object sender, EventArgs e)
         {
             string nomeFilme = filmescb.Text.ToString();
@@ -52,18 +64,26 @@ namespace Cinegest.Forms
             Sala sala = cinegest.Salas.ToList().FirstOrDefault(c => c.Nome == nomeSala);
             int salaId = sala.Id;
             Filme filme = cinegest.Filmes.ToList().FirstOrDefault(c => c.Nome == nomeFilme);
-            int filmeId = filme.Id;
-            if (verificarSeExisteSessaoMarcada(sala, Datahora) == 0)
+            verificarSeOFilmeTemEstadoActivo(filme);
+            if (verificarSeOFilmeTemEstadoActivo(filme) == 0)
             {
-                Sessao novaSessao = new Sessao(salaId, Datahora, preco, filmeId);
-                cinegest.Sessaos.Add(novaSessao);
-                cinegest.SaveChanges();
+                MessageBox.Show("O filme não está activo, não pode ser agendado");
             }
             else
             {
-                MessageBox.Show("A sala já está ocupada a esta hora, escolha uma hora/sala diferente");
-            }
 
+                int filmeId = filme.Id;
+                if (verificarSeExisteSessaoMarcada(sala, Datahora) == 0)
+                {
+                    Sessao novaSessao = new Sessao(salaId, Datahora, preco, filmeId);
+                    cinegest.Sessaos.Add(novaSessao);
+                    cinegest.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("A sala já está ocupada a esta hora, escolha uma hora/sala diferente");
+                }
+            }
         }
 
         private void agendamentoAutomaticobtn_Click(object sender, EventArgs e)

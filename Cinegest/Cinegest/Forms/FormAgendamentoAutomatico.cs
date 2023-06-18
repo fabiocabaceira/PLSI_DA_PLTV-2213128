@@ -222,8 +222,15 @@ namespace Cinegest.Forms
                 // Seleciona a sala e o filme correspondentes
                 Sala salaSelecionada = cinegest.Salas.FirstOrDefault(b => b.Nome == nomeSala);
                 Filme filmeSelecionado = cinegest.Filmes.FirstOrDefault(f => f.Nome == nomeFilme);
-                // Obtém os IDs da sala e do filme
-                int SalaId = salaSelecionada.Id;
+                verificarSeOFilmeTemEstadoActivo(filmeSelecionado);
+                if (verificarSeOFilmeTemEstadoActivo(filmeSelecionado) == 0)
+                {
+                    MessageBox.Show("O filme não está activo, não pode ser agendado");
+                }
+                else
+                {
+                    // Obtém os IDs da sala e do filme
+                    int SalaId = salaSelecionada.Id;
                 int FilmeId = filmeSelecionado.Id;
                 // Obtém o preço do filme
                 int.TryParse(filmePrecotb.Text.ToString(), out int Preco);
@@ -251,6 +258,8 @@ namespace Cinegest.Forms
                 // Salva as alterações no contexto do EF
                 cinegest.SaveChanges();
 
+
+            }
             }
             catch (Exception ex)
             {
@@ -279,6 +288,19 @@ namespace Cinegest.Forms
             DateTimePicker result = new DateTimePicker();
             result.Value = dtp.Value.Date.Add(time);
             return result;
+        }
+
+
+        private int verificarSeOFilmeTemEstadoActivo(Filme filme)
+        {
+            if (filme.Activo == "Activo")
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         /// <summary>
