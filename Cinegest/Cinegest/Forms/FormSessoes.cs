@@ -43,46 +43,65 @@ namespace Cinegest.Forms
 
         }
 
-        private int  verificarSeOFilmeTemEstadoActivo (Filme filme)
+        private int verificarSeOFilmeTemEstadoActivo(Filme filme)
         {
-            if (filme.Activo == "Activo")
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
+            return filme.Activo == "Activo" ? 1 : 0;
         }
 
+
+        /// <summary>
+        /// Evento que é ativado quando o botão de criar sessão é clicado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void criarSessaobtn_Click(object sender, EventArgs e)
         {
-            string nomeFilme = filmescb.Text.ToString();
-            string nomeSala = salascb.Text.ToString();
-            System.DateTime Datahora = DateTime.Parse(dateTimePicker1.Value.ToString());
-            int preco = int.Parse(precotb.Text);
-            Sala sala = cinegest.Salas.ToList().FirstOrDefault(c => c.Nome == nomeSala);
-            int salaId = sala.Id;
-            Filme filme = cinegest.Filmes.ToList().FirstOrDefault(c => c.Nome == nomeFilme);
-            verificarSeOFilmeTemEstadoActivo(filme);
-            if (verificarSeOFilmeTemEstadoActivo(filme) == 0)
+            try
             {
-                MessageBox.Show("O filme não está activo, não pode ser agendado");
-            }
-            else
-            {
-
-                int filmeId = filme.Id;
-                if (verificarSeExisteSessaoMarcada(sala, Datahora) == 0)
+                // Verificar se os campos obrigatórios estão preenchidos
+                if (string.IsNullOrWhiteSpace(precotb.Text) ||
+                    string.IsNullOrWhiteSpace(filmescb.Text) ||
+                    string.IsNullOrWhiteSpace(salascb.Text))
                 {
-                    Sessao novaSessao = new Sessao(salaId, Datahora, preco, filmeId);
-                    cinegest.Sessaos.Add(novaSessao);
-                    cinegest.SaveChanges();
+                    MessageBox.Show("Por favor, preencha todos os campos obrigatórios.");
+                }
+                else if (!int.TryParse(precotb.Text, out int preco))
+                {
+                    MessageBox.Show("Por favor, insira um valor numérico válido para o preço.");
                 }
                 else
                 {
-                    MessageBox.Show("A sala já está ocupada a esta hora, escolha uma hora/sala diferente");
+                    // Obter os dados dos campos
+                    string nomeFilme = filmescb.Text.ToString();
+                    string nomeSala = salascb.Text.ToString();
+                    System.DateTime Datahora = DateTime.Parse(dateTimePicker1.Value.ToString());
+                    Sala sala = cinegest.Salas.ToList().FirstOrDefault(c => c.Nome == nomeSala);
+                    int salaId = sala.Id;
+                    Filme filme = cinegest.Filmes.ToList().FirstOrDefault(c => c.Nome == nomeFilme);
+
+                    // Verificar se o filme está activo
+                    if (verificarSeOFilmeTemEstadoActivo(filme) == 0)
+                    {
+                        MessageBox.Show("O filme não está activo, não pode ser agendado");
+                    }
+                    // Verificar se a sala está ocupada a esta hora
+                    else if (verificarSeExisteSessaoMarcada(sala, Datahora) == 0)
+                    {
+                        // Criar a sessão
+                        int filmeId = filme.Id;
+                        Sessao novaSessao = new Sessao(salaId, Datahora, preco, filmeId);
+                        cinegest.Sessaos.Add(novaSessao);
+                        cinegest.SaveChanges();
+                    }
+                    else
+                    {
+                        MessageBox.Show("A sala já está ocupada a esta hora, escolha uma hora/sala diferente");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
