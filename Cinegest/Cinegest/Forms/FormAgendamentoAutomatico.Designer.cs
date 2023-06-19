@@ -102,6 +102,7 @@
             // 
             // label1
             // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(18, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 23);
@@ -111,6 +112,7 @@
             // 
             // nomeDaSalalbl
             // 
+            this.nomeDaSalalbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nomeDaSalalbl.Location = new System.Drawing.Point(164, 38);
             this.nomeDaSalalbl.Name = "nomeDaSalalbl";
             this.nomeDaSalalbl.Size = new System.Drawing.Size(124, 23);
@@ -120,7 +122,8 @@
             // 
             // espacoDeTempolbl
             // 
-            this.espacoDeTempolbl.Location = new System.Drawing.Point(320, 38);
+            this.espacoDeTempolbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.espacoDeTempolbl.Location = new System.Drawing.Point(319, 32);
             this.espacoDeTempolbl.Name = "espacoDeTempolbl";
             this.espacoDeTempolbl.Size = new System.Drawing.Size(265, 23);
             this.espacoDeTempolbl.TabIndex = 6;
@@ -201,6 +204,7 @@
             // 
             // sessoeslbl
             // 
+            this.sessoeslbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sessoeslbl.Location = new System.Drawing.Point(18, 150);
             this.sessoeslbl.Name = "sessoeslbl";
             this.sessoeslbl.Size = new System.Drawing.Size(649, 23);
@@ -261,6 +265,7 @@
             // 
             // label2
             // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(726, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 23);
@@ -270,6 +275,7 @@
             // 
             // label3
             // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(599, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(124, 23);
@@ -286,6 +292,7 @@
             // 
             // agendarbtn
             // 
+            this.agendarbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agendarbtn.Location = new System.Drawing.Point(880, 12);
             this.agendarbtn.Name = "agendarbtn";
             this.agendarbtn.Size = new System.Drawing.Size(75, 426);

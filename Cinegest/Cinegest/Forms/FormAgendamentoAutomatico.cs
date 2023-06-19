@@ -31,6 +31,7 @@ namespace Cinegest.Forms
         {
             try
             {
+                //Preencher e formata os elementos do formulário
                 Preencher_E_FormatarElementos();
             }
             catch (Exception ex)
@@ -72,21 +73,27 @@ namespace Cinegest.Forms
                 nrSessoesnud.Maximum = 5;
 
                 //Visibilidade das Labels e DateTimePickers
+
+                //Esconde as Labels e DateTimePickers que não são necessários
                 for (int i = 0; i <= 5; i++)
                 {
+                    //Procura os DateTimePickers e Labels
                     var dateTimePickers = Controls.Find("sessao" + i + "dtp", true);
                     var labels = Controls.Find("sessao" + i + "lbl", true);
-
+                    //Se existirem
                     if (dateTimePickers.Length > 0)
                     {
+                        //Esconde os DateTimePickers
                         DateTimePicker dateTimePicker = dateTimePickers[0] as DateTimePicker;
                         dateTimePicker.Visible = false;
+                        //Formata os DateTimePickers
                         dateTimePicker.Format = DateTimePickerFormat.Custom;
                         dateTimePicker.CustomFormat = "HH:mm:ss tt";
                     }
-
+                    //Se existirem
                     if (labels.Length > 0)
                     {
+                        //Esconde as Labels
                         Label label = labels[0] as Label;
                         label.Visible = false;
                     }
@@ -105,6 +112,7 @@ namespace Cinegest.Forms
         /// <returns></returns>
         private void Formatar_DateTimePicker(DateTimePicker picker)
         {
+            //Formata os DateTimePickers para mostrar apenas a hora e os minutos
             picker.Format = DateTimePickerFormat.Custom;
             picker.CustomFormat = "HH:mm";
             picker.ShowUpDown = true;
@@ -118,17 +126,22 @@ namespace Cinegest.Forms
         {
             try
             {
+                //Mostra ou esconde os DateTimePickers e Labels de acordo com o número de sessões que foram selecionadas no NumericUpDown
                 for (int i = 0; i <= 5; i++)
                 {
+                    //Procura os DateTimePickers e Labels
                     Control[] dateTimePickers = Controls.Find("sessao" + i + "dtp", true);
                     Control[] labels = Controls.Find("sessao" + i + "lbl", true);
+                    //Se existirem
                     if (dateTimePickers.Length > 0 && labels.Length > 0)
                     {
+                        //Mostra ou esconde os DateTimePickers e Labels
                         bool visible = i <= nrdesessoes;
                         dateTimePickers[0].Visible = visible;
                         labels[0].Visible = visible;
                         if (visible)
                         {
+                            //Formata os DateTimePickers
                             Formatar_DateTimePicker((DateTimePicker)dateTimePickers[0]);
                         }
                     }
@@ -148,6 +161,7 @@ namespace Cinegest.Forms
         {
             try
             {
+                //Mostra ou esconde os DateTimePickers e Labels de acordo com o número de sessões que foram selecionadas no NumericUpDown
                 MostrarOuEsconderDateTimePickers((int)nrSessoesnud.Value);
             }
             catch (Exception ex)
@@ -165,6 +179,7 @@ namespace Cinegest.Forms
         {
             try
             {
+                // define o tempo inicial e final
                 tempoInicial = agenAutoIniciodtp.Value.Date;
                 tempoFinal = agenAutoFimdtp.Value.Date;
             }
@@ -230,7 +245,7 @@ namespace Cinegest.Forms
                 Filme filmeSelecionado = cinegest.Filmes.FirstOrDefault(f => f.Nome == nomeFilme);
 
                 // Verifica se o filme está ativo
-                if (verificarSeOFilmeTemEstadoActivo(filmeSelecionado) == 0)
+                if (VerificarSeOFilmeTemEstadoActivo(filmeSelecionado) == 0)
                 {
                     MessageBox.Show("O filme não está ativo, não pode ser agendado");
                     return;
@@ -276,7 +291,6 @@ namespace Cinegest.Forms
             }
         }
 
-
         /// <summary>
         /// Obtém uma data/hora a partir de um DateTimePicker
         /// </summary>
@@ -299,8 +313,12 @@ namespace Cinegest.Forms
             return result;
         }
 
-
-        private int verificarSeOFilmeTemEstadoActivo(Filme filme)
+        /// <summary>
+        /// verifica se o filme está ativo
+        /// </summary>
+        /// <param name="filme"></param>
+        /// <returns></returns>
+        private int VerificarSeOFilmeTemEstadoActivo(Filme filme)
         {
             if (filme.Activo == "Activo")
             {
