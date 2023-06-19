@@ -165,12 +165,6 @@
     <Compile Include="Forms\FormSessoes.Designer.cs">
       <DependentUpon>FormSessoes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Funcionario.cs">
       <DependentUpon>CineGestModel.tt</DependentUpon>
     </Compile>

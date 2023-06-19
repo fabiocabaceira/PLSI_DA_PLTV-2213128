@@ -142,14 +142,23 @@ namespace Cinegest.Forms
 
         private void apagarSalabtn_Click(object sender, EventArgs e)
         {
-            Sala sala = cinegest.Salas.OfType<Sala>().FirstOrDefault(f => f.Nome == nomeSala);
-            if (sala != null)
+            try
             {
-                cinegest.Salas.Remove(sala);
-                cinegest.SaveChanges();
-                FormCinema_Load(sender, e);
+                Sala sala = cinegest.Salas.OfType<Sala>().FirstOrDefault(f => f.Nome == nomeSala);
+                if (sala != null)
+                {
+                    cinegest.Salas.Remove(sala);
+                    cinegest.SaveChanges();
+                    FormCinema_Load(sender, e);
 
+                }
             }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Nenhuma sala selecionada");
+            }
+           
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -168,27 +177,53 @@ namespace Cinegest.Forms
 
         private void guardarSalabtn_Click(object sender, EventArgs e)
         {
-            Sala sala = cinegest.Salas.OfType<Sala>().FirstOrDefault(f => f.Nome == nomeSala);
+            try
+            {
+                Sala sala = cinegest.Salas.OfType<Sala>().FirstOrDefault(f => f.Nome == nomeSala);
+                if (sala != null)
+                {
+                    sala.Nome = salaNometb.Text.ToString();
+                    sala.Colunas = int.Parse(salaColunastb.Text);
+                    sala.Filas = int.Parse(salaFilastb.Text);
+                    cinegest.SaveChanges();
+                    FormCinema_Load(sender, e);
 
-            sala.Nome = salaNometb.Text.ToString();
-            sala.Colunas = int.Parse(salaColunastb.Text);
-            sala.Filas = int.Parse(salaFilastb.Text);
-            cinegest.SaveChanges();
-            FormCinema_Load(sender, e);
+                }
+                MessageBox.Show("Não pode guardar alterações numa sala antes de o criar");
+             
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
         private void guardarCinemabtn_Click(object sender, EventArgs e)
         {
-            Cinema cinema = cinegest.Cinemas.OfType<Cinema>().FirstOrDefault(f => f.Id == cinemaId);
-            cinema.Nome = cinemaNometb.Text;
-            cinema.Morada = cinemaMoradatb.Text;
-            cinema.Email = cinemaEmailtb.Text;
-            cinegest.SaveChanges();
-            FormCinema_Load(sender, e);
+            try
+            {
+                Cinema cinema = cinegest.Cinemas.OfType<Cinema>().FirstOrDefault(f => f.Id == cinemaId);
+                if (cinema != null)
+                {
+                    cinema.Nome = cinemaNometb.Text;
+                    cinema.Morada = cinemaMoradatb.Text;
+                    cinema.Email = cinemaEmailtb.Text;
+                    cinegest.SaveChanges();
+                    FormCinema_Load(sender, e);
 
+                }
+                MessageBox.Show("Não pode guardar alterações num cinema antes de o criar");
+                
 
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         
