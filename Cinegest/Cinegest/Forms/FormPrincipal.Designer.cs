@@ -226,6 +226,7 @@
             this.Controls.Add(this.cinemabtn);
             this.Controls.Add(this.sessoesdgv);
             this.Controls.Add(this.funcionariocb);
+            this.MinimumSize = new System.Drawing.Size(795, 364);
             this.Name = "FormPrincipal";
             this.Text = "FormPrincipal";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);

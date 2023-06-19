@@ -133,6 +133,7 @@
             this.Controls.Add(this.salarioFuncionariotb);
             this.Controls.Add(this.nomeFuncionariotb);
             this.Controls.Add(this.label1);
+            this.MinimumSize = new System.Drawing.Size(231, 271);
             this.Name = "FormNovoFuncionario";
             this.Text = "FormNovoFuncionario";
             this.Load += new System.EventHandler(this.FormNovoFuncionario_Load);

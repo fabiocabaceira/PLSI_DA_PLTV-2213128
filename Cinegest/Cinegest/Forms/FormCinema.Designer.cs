@@ -472,6 +472,7 @@
             this.Controls.Add(this.cinemaMoradatb);
             this.Controls.Add(this.cinemaNometb);
             this.Controls.Add(this.headerlbl);
+            this.MinimumSize = new System.Drawing.Size(1337, 505);
             this.Name = "FormCinema";
             this.Text = "FormCinema";
             this.Load += new System.EventHandler(this.FormCinema_Load);

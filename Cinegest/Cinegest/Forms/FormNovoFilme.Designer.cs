@@ -115,6 +115,7 @@
             this.Controls.Add(this.duracaoFilmetb);
             this.Controls.Add(this.nomeFilmetb);
             this.Controls.Add(this.label1);
+            this.MinimumSize = new System.Drawing.Size(318, 447);
             this.Name = "FormNovoFilme";
             this.Text = "FormNovoFilme";
             this.Load += new System.EventHandler(this.FormNovoFilme_Load);

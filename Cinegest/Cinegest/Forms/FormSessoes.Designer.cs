@@ -156,6 +156,8 @@
             this.Controls.Add(this.filmescb);
             this.Controls.Add(this.salascb);
             this.Controls.Add(this.criarSessaobtn);
+            this.MaximumSize = new System.Drawing.Size(739, 533);
+            this.MinimumSize = new System.Drawing.Size(739, 533);
             this.Name = "FormSessoes";
             this.Text = "FormSessoes";
             this.Load += new System.EventHandler(this.FormSessoes_Load);

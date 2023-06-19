@@ -118,6 +118,7 @@
             this.Controls.Add(this.salaFilastb);
             this.Controls.Add(this.salaNometb);
             this.Controls.Add(this.salaColunastb);
+            this.MinimumSize = new System.Drawing.Size(300, 210);
             this.Name = "FormNovaSala";
             this.Text = "FormNovaSala";
             this.Load += new System.EventHandler(this.FormNovaSala_Load);

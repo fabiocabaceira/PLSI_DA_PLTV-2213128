@@ -247,6 +247,7 @@
             this.Controls.Add(this.apagarFilmebtn);
             this.Controls.Add(this.alterarFilmebtn);
             this.Controls.Add(this.filmesdgv);
+            this.MinimumSize = new System.Drawing.Size(852, 401);
             this.Name = "FormFilmes";
             this.Text = "FormFilmes";
             this.Load += new System.EventHandler(this.FormFilmes_Load);

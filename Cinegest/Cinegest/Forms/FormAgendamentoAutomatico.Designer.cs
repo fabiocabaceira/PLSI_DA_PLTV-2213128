@@ -325,6 +325,7 @@
             this.Controls.Add(this.filmescb);
             this.Controls.Add(this.agenAutoIniciodtp);
             this.Controls.Add(this.salacb);
+            this.MinimumSize = new System.Drawing.Size(996, 489);
             this.Name = "FormAgendamentoAutomatico";
             this.Text = "FormAgendamentoAutomatico";
             this.Load += new System.EventHandler(this.FormAgendamentoAutomatico_Load);

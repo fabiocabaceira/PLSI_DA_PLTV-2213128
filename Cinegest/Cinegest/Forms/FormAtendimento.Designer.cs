@@ -273,6 +273,7 @@
             this.Controls.Add(this.cliente_Nometb);
             this.Controls.Add(this.cliente_Moradatb);
             this.Controls.Add(this.emitirbtn);
+            this.MinimumSize = new System.Drawing.Size(987, 504);
             this.Name = "FormAtendimento";
             this.Text = "FormAtendimento";
             this.Load += new System.EventHandler(this.FormAtendimento_Load);

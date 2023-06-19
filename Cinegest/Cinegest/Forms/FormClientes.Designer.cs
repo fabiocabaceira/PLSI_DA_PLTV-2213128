@@ -238,6 +238,7 @@
             this.Controls.Add(this.apagarClientebtn);
             this.Controls.Add(this.alterarClientebtn);
             this.Controls.Add(this.dataGridView1);
+            this.MinimumSize = new System.Drawing.Size(1074, 537);
             this.Name = "FormClientes";
             this.Text = "FormClientes";
             this.Load += new System.EventHandler(this.FormClientes_Load);

@@ -114,6 +114,7 @@
             this.Controls.Add(this.numFiscaltb);
             this.Controls.Add(this.nometb);
             this.Controls.Add(this.label1);
+            this.MinimumSize = new System.Drawing.Size(236, 225);
             this.Name = "FormNovoCliente";
             this.Text = "FormClientes";
             this.Load += new System.EventHandler(this.FormClientes_Load);

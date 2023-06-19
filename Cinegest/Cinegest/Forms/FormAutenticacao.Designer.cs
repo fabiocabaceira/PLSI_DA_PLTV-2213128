@@ -68,6 +68,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.funcionarioNometb);
+            this.MinimumSize = new System.Drawing.Size(265, 182);
             this.Name = "FormAutenticacao";
             this.Text = "FormAutenticacao";
             this.Load += new System.EventHandler(this.FormAutenticacao_Load);
