@@ -24,20 +24,31 @@ namespace Cinegest.Forms
 
         private void adicionarbtn_Click(object sender, EventArgs e)
         {
-            string nome = nometb.Text;
-            string morada = moradatb.Text;
-            int numFiscal = int.Parse(numFiscaltb.Text);
-            if (nome == "" || morada == "" )
+            try
             {
-                MessageBox.Show("Tem de insirir todos os campo");
-            }
-            else
-            { 
-                Cliente novocliente = new Cliente(nome, morada, numFiscal);
-                db.Pessoas.Add(novocliente);     
-                db.SaveChanges();
-            }
+                string nome = nometb.Text;
+                string morada = moradatb.Text;
+                int numFiscal = 0;
 
+                if (nome == "" || morada == "" || !int.TryParse(numFiscaltb.Text, out numFiscal) || numFiscaltb.Text.Length != 9)
+                {
+                    MessageBox.Show("Tem de preencher todos os campos corretamente. O número fiscal deve ser um número de 9 dígitos.");
+                }
+                else
+                {
+                    Cliente novoCliente = new Cliente(nome, morada, numFiscal);
+                    db.Pessoas.Add(novoCliente);
+                    db.SaveChanges();
+                    MessageBox.Show("Cliente adicionado com sucesso.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void FormClientes_Load(object sender, EventArgs e)

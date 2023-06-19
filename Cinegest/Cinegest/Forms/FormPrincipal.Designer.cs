@@ -47,7 +47,6 @@
             this.sessaobtn = new System.Windows.Forms.Button();
             this.clientesbtn = new System.Windows.Forms.Button();
             this.funcionariosbtn = new System.Windows.Forms.Button();
-            this.refreshbtn = new System.Windows.Forms.Button();
             this.funcionariolbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pessoasFuncionarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cineGestDataSet)).BeginInit();
@@ -62,10 +61,9 @@
             this.funcionariocb.DataSource = this.pessoasFuncionarioBindingSource;
             this.funcionariocb.DisplayMember = "Nome";
             this.funcionariocb.FormattingEnabled = true;
-            this.funcionariocb.Location = new System.Drawing.Point(18, 66);
-            this.funcionariocb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.funcionariocb.Location = new System.Drawing.Point(12, 43);
             this.funcionariocb.Name = "funcionariocb";
-            this.funcionariocb.Size = new System.Drawing.Size(180, 28);
+            this.funcionariocb.Size = new System.Drawing.Size(121, 21);
             this.funcionariocb.TabIndex = 0;
             this.funcionariocb.ValueMember = "Nome";
             // 
@@ -90,11 +88,10 @@
             this.FilmeNome,
             this.Id});
             this.sessoesdgv.DataSource = this.sessaosBindingSource;
-            this.sessoesdgv.Location = new System.Drawing.Point(208, 66);
-            this.sessoesdgv.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.sessoesdgv.Location = new System.Drawing.Point(139, 43);
             this.sessoesdgv.Name = "sessoesdgv";
             this.sessoesdgv.RowHeadersWidth = 62;
-            this.sessoesdgv.Size = new System.Drawing.Size(906, 395);
+            this.sessoesdgv.Size = new System.Drawing.Size(604, 257);
             this.sessoesdgv.TabIndex = 1;
             this.sessoesdgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.sessoesdgv_CellContentClick);
             // 
@@ -159,10 +156,9 @@
             // 
             // cinemabtn
             // 
-            this.cinemabtn.Location = new System.Drawing.Point(208, 22);
-            this.cinemabtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cinemabtn.Location = new System.Drawing.Point(139, 14);
             this.cinemabtn.Name = "cinemabtn";
-            this.cinemabtn.Size = new System.Drawing.Size(174, 35);
+            this.cinemabtn.Size = new System.Drawing.Size(116, 23);
             this.cinemabtn.TabIndex = 5;
             this.cinemabtn.Text = "Cinema";
             this.cinemabtn.UseVisualStyleBackColor = true;
@@ -170,10 +166,9 @@
             // 
             // filmesbtn
             // 
-            this.filmesbtn.Location = new System.Drawing.Point(392, 22);
-            this.filmesbtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.filmesbtn.Location = new System.Drawing.Point(261, 14);
             this.filmesbtn.Name = "filmesbtn";
-            this.filmesbtn.Size = new System.Drawing.Size(174, 35);
+            this.filmesbtn.Size = new System.Drawing.Size(116, 23);
             this.filmesbtn.TabIndex = 6;
             this.filmesbtn.Text = "Filmes";
             this.filmesbtn.UseVisualStyleBackColor = true;
@@ -181,10 +176,9 @@
             // 
             // sessaobtn
             // 
-            this.sessaobtn.Location = new System.Drawing.Point(574, 22);
-            this.sessaobtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.sessaobtn.Location = new System.Drawing.Point(383, 14);
             this.sessaobtn.Name = "sessaobtn";
-            this.sessaobtn.Size = new System.Drawing.Size(174, 35);
+            this.sessaobtn.Size = new System.Drawing.Size(116, 23);
             this.sessaobtn.TabIndex = 7;
             this.sessaobtn.Text = "Sessões";
             this.sessaobtn.UseVisualStyleBackColor = true;
@@ -192,10 +186,9 @@
             // 
             // clientesbtn
             // 
-            this.clientesbtn.Location = new System.Drawing.Point(758, 22);
-            this.clientesbtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.clientesbtn.Location = new System.Drawing.Point(505, 14);
             this.clientesbtn.Name = "clientesbtn";
-            this.clientesbtn.Size = new System.Drawing.Size(174, 35);
+            this.clientesbtn.Size = new System.Drawing.Size(116, 23);
             this.clientesbtn.TabIndex = 8;
             this.clientesbtn.Text = "Clientes";
             this.clientesbtn.UseVisualStyleBackColor = true;
@@ -203,40 +196,29 @@
             // 
             // funcionariosbtn
             // 
-            this.funcionariosbtn.Location = new System.Drawing.Point(940, 22);
-            this.funcionariosbtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.funcionariosbtn.Location = new System.Drawing.Point(627, 14);
             this.funcionariosbtn.Name = "funcionariosbtn";
-            this.funcionariosbtn.Size = new System.Drawing.Size(174, 35);
+            this.funcionariosbtn.Size = new System.Drawing.Size(116, 23);
             this.funcionariosbtn.TabIndex = 9;
             this.funcionariosbtn.Text = "Funcionarios";
             this.funcionariosbtn.UseVisualStyleBackColor = true;
             this.funcionariosbtn.Click += new System.EventHandler(this.funcionariosbtn_Click);
             // 
-            // refreshbtn
-            // 
-            this.refreshbtn.Location = new System.Drawing.Point(1134, 66);
-            this.refreshbtn.Name = "refreshbtn";
-            this.refreshbtn.Size = new System.Drawing.Size(93, 395);
-            this.refreshbtn.TabIndex = 10;
-            this.refreshbtn.Text = "Refresh";
-            this.refreshbtn.UseVisualStyleBackColor = true;
-            this.refreshbtn.Click += new System.EventHandler(this.refreshbtn_Click);
-            // 
             // funcionariolbl
             // 
-            this.funcionariolbl.Location = new System.Drawing.Point(18, 36);
+            this.funcionariolbl.Location = new System.Drawing.Point(12, 23);
+            this.funcionariolbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.funcionariolbl.Name = "funcionariolbl";
-            this.funcionariolbl.Size = new System.Drawing.Size(183, 25);
+            this.funcionariolbl.Size = new System.Drawing.Size(122, 16);
             this.funcionariolbl.TabIndex = 11;
             this.funcionariolbl.Text = "Funcionário atual:";
             // 
             // FormPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1239, 500);
+            this.ClientSize = new System.Drawing.Size(779, 325);
             this.Controls.Add(this.funcionariolbl);
-            this.Controls.Add(this.refreshbtn);
             this.Controls.Add(this.funcionariosbtn);
             this.Controls.Add(this.clientesbtn);
             this.Controls.Add(this.sessaobtn);
@@ -244,7 +226,6 @@
             this.Controls.Add(this.cinemabtn);
             this.Controls.Add(this.sessoesdgv);
             this.Controls.Add(this.funcionariocb);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormPrincipal";
             this.Text = "FormPrincipal";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
@@ -277,7 +258,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn FilmeNome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.Button refreshbtn;
         private System.Windows.Forms.Label funcionariolbl;
     }
 }

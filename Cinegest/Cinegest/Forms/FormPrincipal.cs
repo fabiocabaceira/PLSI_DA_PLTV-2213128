@@ -33,6 +33,7 @@ namespace Cinegest.Forms
            
                 FormCinema FmCinemas = new FormCinema(); // Instancia o formulário FormCinema
                 FmCinemas.ShowDialog(); // Abre o formulário FormCinema
+                FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
             
             
 
@@ -43,8 +44,10 @@ namespace Cinegest.Forms
             
                 FormFilmes FmFilmes = new FormFilmes(); // Instancia o formulário FormFilmes
                 FmFilmes.ShowDialog(); // Abre o formulário FormFilmes
-            
-           
+            FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
+
+
+
 
         }
 
@@ -53,8 +56,10 @@ namespace Cinegest.Forms
             
                 FormSessoes FmSessoes = new FormSessoes(); // Instancia o formulário FormSessoes
                 FmSessoes.ShowDialog(); // Abre o formulário FormSessoes
-           
-            
+            FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
+
+
+
 
         }
 
@@ -63,11 +68,12 @@ namespace Cinegest.Forms
 
             FormClientes FmClientes = new FormClientes(); // Instancia o formulário FormClientes
             FmClientes.ShowDialog(); // Abre o formulário FormClientes
+            FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
 
         }
 
-       
-        
+
+
 
         private void sessoesdgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -83,6 +89,8 @@ namespace Cinegest.Forms
             FormAtendimento FmAtendimento = new FormAtendimento(idSessao, funcionario_Nome, NomeFilme, hora);
             // Abre o formulário FormAtendimento
             FmAtendimento.ShowDialog();
+            FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
+
 
         }
 
@@ -90,11 +98,10 @@ namespace Cinegest.Forms
         {
             FormCinema fmcinema2 = new FormCinema();
             fmcinema2.ShowDialog();
+            FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
+
         }
 
-        private void refreshbtn_Click(object sender, EventArgs e)
-        {
-           FormPrincipal_Load(sender, e);
-        }
+       
     }
 }

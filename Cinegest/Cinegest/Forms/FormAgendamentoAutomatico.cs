@@ -212,28 +212,41 @@ namespace Cinegest.Forms
         /// <param name="dataHora"></param>
         private void CriarSessoesDiarias(DateTime tempoInicial, DateTime tempoFinal, DateTime dataHora)
         {
-
-            // Obtém o nome da sala e do filme selecionados
             try
             {
-
+                // Obtém o nome da sala e do filme selecionados
                 string nomeSala = salacb.Text.ToString();
                 string nomeFilme = filmescb.Text.ToString();
+
+                // Verifica se todos os campos foram preenchidos
+                if (string.IsNullOrEmpty(nomeSala) || string.IsNullOrEmpty(nomeFilme) || string.IsNullOrEmpty(filmePrecotb.Text.ToString()))
+                {
+                    MessageBox.Show("Por favor, preencha todos os campos");
+                    return;
+                }
+
                 // Seleciona a sala e o filme correspondentes
                 Sala salaSelecionada = cinegest.Salas.FirstOrDefault(b => b.Nome == nomeSala);
                 Filme filmeSelecionado = cinegest.Filmes.FirstOrDefault(f => f.Nome == nomeFilme);
-                verificarSeOFilmeTemEstadoActivo(filmeSelecionado);
+
+                // Verifica se o filme está ativo
                 if (verificarSeOFilmeTemEstadoActivo(filmeSelecionado) == 0)
                 {
-                    MessageBox.Show("O filme não está activo, não pode ser agendado");
+                    MessageBox.Show("O filme não está ativo, não pode ser agendado");
+                    return;
                 }
-                else
-                {
-                    // Obtém os IDs da sala e do filme
-                    int SalaId = salaSelecionada.Id;
+
+                // Obtém os IDs da sala e do filme
+                int SalaId = salaSelecionada.Id;
                 int FilmeId = filmeSelecionado.Id;
+
                 // Obtém o preço do filme
-                int.TryParse(filmePrecotb.Text.ToString(), out int Preco);
+                if (!int.TryParse(filmePrecotb.Text.ToString(), out int Preco))
+                {
+                    MessageBox.Show("O preço deve ser um número");
+                    return;
+                }
+
                 // Cria sessões para cada dia no intervalo especificado
                 for (DateTime data = tempoInicial.Date; data <= tempoFinal.Date; data = data.AddDays(1))
                 {
@@ -252,21 +265,17 @@ namespace Cinegest.Forms
 
                     // Mostra uma mensagem de erro se houver conflito de sessões
                     MessageBox.Show("Já existe uma sessão marcada para essa hora");
-
                 }
 
                 // Salva as alterações no contexto do EF
                 cinegest.SaveChanges();
-
-
-            }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
+
 
         /// <summary>
         /// Obtém uma data/hora a partir de um DateTimePicker

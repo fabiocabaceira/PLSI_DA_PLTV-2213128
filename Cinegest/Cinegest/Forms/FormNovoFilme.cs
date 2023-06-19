@@ -30,19 +30,47 @@ namespace Cinegest.Forms
 
         private void adicionarbtn_Click(object sender, EventArgs e)
         {
-            string nomeFilme = nomeFilmetb.Text;
-            string duracaoFilme = duracaoFilmetb.Text;
-            string Activo = "Desactivado";
-            string categoria_nome = categoriaFilmescb.Text.ToString();
+            try
+            {
+                string nomeFilme = nomeFilmetb.Text;
+                string duracaoFilme = duracaoFilmetb.Text;
+                string categoria_nome = categoriaFilmescb.Text.ToString();
 
-            Categoria categoria = cinegest.Categorias.ToList().FirstOrDefault(c => c.Nome == categoria_nome);
-            Filme novoFilme = new Filme(nomeFilme, duracaoFilme, Activo, categoria);
-            cinegest.Filmes.Add(novoFilme);
-            cinegest.SaveChanges();
+                if (string.IsNullOrEmpty(nomeFilme) || string.IsNullOrEmpty(duracaoFilme) || string.IsNullOrEmpty(categoria_nome))
+                {
+                    MessageBox.Show("Por favor, preencha todos os campos.");
+                    return;
+                }
 
+                if (!duracaoFilme.All(char.IsDigit))
+                {
+                    MessageBox.Show("A duração deve ser um número.");
+                    return;
+                }
 
+                Categoria categoria = cinegest.Categorias.ToList().FirstOrDefault(c => c.Nome == categoria_nome);
+                if (categoria == null)
+                {
+                    MessageBox.Show("A categoria selecionada não existe.");
+                    return;
+                }
+
+                Filme novoFilme = new Filme(nomeFilme, duracaoFilme, "Desactivado", categoria);
+                cinegest.Filmes.Add(novoFilme);
+                cinegest.SaveChanges();
+
+                MessageBox.Show("Filme adicionado com sucesso!");
+            }
+
+            catch (Exception ex )
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
 
-       
+        
+
+
     }
 }

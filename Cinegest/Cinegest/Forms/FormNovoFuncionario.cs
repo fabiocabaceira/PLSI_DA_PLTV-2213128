@@ -26,14 +26,29 @@ namespace Cinegest.Forms
 
         private void adicionarbtn_Click(object sender, EventArgs e)
         {
-            string nome = nomeFuncionariotb.Text;
-            string morada = moradaFuncionariotb.Text;
-            int salario = int.Parse(salarioFuncionariotb.Text);
-            string funcao = funcaoFuncionariotb.Text;
-            Funcionario novoFuncionario = new Funcionario(nome, morada, funcao, salario);
-            cinegest.Pessoas.Add(novoFuncionario);
-            cinegest.SaveChanges();
+            if (nomeFuncionariotb.Text == "" || moradaFuncionariotb.Text == "" || salarioFuncionariotb.Text == "" || !int.TryParse(salarioFuncionariotb.Text, out int salario))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos e verifique se o salário é um número válido.");
+                return;
+            }
+
+            try
+            {
+                string nome = nomeFuncionariotb.Text;
+                string morada = moradaFuncionariotb.Text;
+                string funcao = funcaoFuncionariotb.Text;
+                Funcionario novoFuncionario = new Funcionario(nome, morada, funcao, salario);
+                cinegest.Pessoas.Add(novoFuncionario);
+                cinegest.SaveChanges();
+                MessageBox.Show("Funcionário adicionado com sucesso.");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
             
         }
+
     }
 }

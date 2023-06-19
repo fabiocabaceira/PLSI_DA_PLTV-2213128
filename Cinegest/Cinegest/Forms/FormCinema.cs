@@ -25,11 +25,18 @@ namespace Cinegest.Forms
 
         private void FormCinema_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cineGestDataSet.Salas' table. You can move, or remove it, as needed.
-            this.salasTableAdapter.Fill(this.cineGestDataSet.Salas);
-            // TODO: This line of code loads data into the 'cineGestDataSet.Pessoas_Funcionario' table. You can move, or remove it, as needed.
-            this.pessoas_FuncionarioTableAdapter.Fill(this.cineGestDataSet.Pessoas_Funcionario);
-            listarCinema();
+            try
+            {
+                salasBindingSource.DataSource = cinegest.Salas.ToList();
+                pessoasFuncionarioBindingSource.DataSource = cinegest.Funcionarios.ToList();
+                listarCinema();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         public void listarCinema()
@@ -56,9 +63,18 @@ namespace Cinegest.Forms
                 String Nome = cinemaNometb.Text;
                 String Morada = cinemaMoradatb.Text;
                 String Email = cinemaEmailtb.Text;
-                Cinema novoCinema = new Cinema(Nome, Morada, Email);
-                cinegest.Cinemas.Add(novoCinema);
-                cinegest.SaveChanges();
+
+                if (Nome != "" && Morada != "" && Email.Contains("@"))
+                {
+                    Cinema novoCinema = new Cinema(Nome, Email, Morada);
+                    cinegest.Cinemas.Add(novoCinema);
+                    cinegest.SaveChanges();
+                    MessageBox.Show("Cinema criado com sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, preencha todos os campos e insira um email válido.");
+                }
             }
             else
             {
@@ -88,6 +104,8 @@ namespace Cinegest.Forms
             {
                 cinegest.Funcionarios.Remove(funcionario);
                 cinegest.SaveChanges();
+                FormCinema_Load(sender, e);
+
             }
         }
 
@@ -96,6 +114,8 @@ namespace Cinegest.Forms
 
             FormNovoFuncionario fmNovoFuncionario = new FormNovoFuncionario();
             fmNovoFuncionario.ShowDialog();
+            FormCinema_Load(sender, e);
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -107,6 +127,8 @@ namespace Cinegest.Forms
             funcionario.Morada = funcionarioMoradatb.Text.ToString();
             funcionario.Salario = int.Parse(funcionarioSalariotb.Text);
             cinegest.SaveChanges();
+            FormCinema_Load(sender, e);
+
 
         }
 
@@ -114,6 +136,8 @@ namespace Cinegest.Forms
         {
             FormNovaSala fmNovaSala = new FormNovaSala(cinemaId);
             fmNovaSala.ShowDialog();
+            FormCinema_Load(sender, e);
+
         }
 
         private void apagarSalabtn_Click(object sender, EventArgs e)
@@ -123,6 +147,8 @@ namespace Cinegest.Forms
             {
                 cinegest.Salas.Remove(sala);
                 cinegest.SaveChanges();
+                FormCinema_Load(sender, e);
+
             }
         }
 
@@ -148,6 +174,8 @@ namespace Cinegest.Forms
             sala.Colunas = int.Parse(salaColunastb.Text);
             sala.Filas = int.Parse(salaFilastb.Text);
             cinegest.SaveChanges();
+            FormCinema_Load(sender, e);
+
 
         }
 
@@ -158,7 +186,11 @@ namespace Cinegest.Forms
             cinema.Morada = cinemaMoradatb.Text;
             cinema.Email = cinemaEmailtb.Text;
             cinegest.SaveChanges();
+            FormCinema_Load(sender, e);
+
 
         }
+
+        
     }
 }

@@ -36,6 +36,7 @@ namespace Cinegest.Forms
         {
             FormNovoCliente formNovoCliente = new FormNovoCliente();
             formNovoCliente.ShowDialog();
+            FormClientes_Load(sender, e);
         }
 
         //Alterar
@@ -50,6 +51,8 @@ namespace Cinegest.Forms
             cliente.Morada = morada;
             cliente.NumFiscal = numFiscal;
             cinegest.SaveChanges();
+            FormClientes_Load(sender, e);
+
         }
 
         //Apagar
@@ -58,6 +61,8 @@ namespace Cinegest.Forms
             Cliente cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
             cinegest.Clientes.Remove(cliente);
             cinegest.SaveChanges();
+            FormClientes_Load(sender, e);
+
         }
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

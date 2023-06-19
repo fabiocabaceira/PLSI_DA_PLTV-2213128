@@ -141,7 +141,7 @@
             // 
             this.criarCinemabtn.Location = new System.Drawing.Point(5, 226);
             this.criarCinemabtn.Name = "criarCinemabtn";
-            this.criarCinemabtn.Size = new System.Drawing.Size(221, 129);
+            this.criarCinemabtn.Size = new System.Drawing.Size(221, 228);
             this.criarCinemabtn.TabIndex = 7;
             this.criarCinemabtn.Text = "Criar Cinema";
             this.criarCinemabtn.UseVisualStyleBackColor = true;
@@ -429,7 +429,7 @@
             // 
             this.guardarCinemabtn.Location = new System.Drawing.Point(244, 226);
             this.guardarCinemabtn.Name = "guardarCinemabtn";
-            this.guardarCinemabtn.Size = new System.Drawing.Size(221, 129);
+            this.guardarCinemabtn.Size = new System.Drawing.Size(221, 228);
             this.guardarCinemabtn.TabIndex = 33;
             this.guardarCinemabtn.Text = "Guardar Cinema";
             this.guardarCinemabtn.UseVisualStyleBackColor = true;
@@ -439,7 +439,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1321, 494);
+            this.ClientSize = new System.Drawing.Size(1321, 466);
             this.Controls.Add(this.guardarCinemabtn);
             this.Controls.Add(this.guardarSalabtn);
             this.Controls.Add(this.apagarSalabtn);
