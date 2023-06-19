@@ -313,7 +313,7 @@ namespace Cinegest.Forms
                 else
                 {
                     // Preenche os campos com os dados do cliente selecionado
-                    nomeCliente1 = nomeCliente;
+                    nomeCliente1 = nome;
                     EmitirBilhete(nomeCliente1);
                 }
 
