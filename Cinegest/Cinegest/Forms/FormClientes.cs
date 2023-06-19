@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Cinegest.Forms
@@ -17,13 +12,21 @@ namespace Cinegest.Forms
         string nomeCliente = "";
         int nrDeBilhetes;
         int precoTotal;
+
+        /// <summary>
+        /// construtor da classe
+        /// </summary>
         public FormClientes()
         {
             cinegest = new CineGestEntities5();
             InitializeComponent();
         }
 
-        // Consultar
+        /// <summary>
+        /// Evento que carrega a tabela com os dados da base de dados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormClientes_Load(object sender, EventArgs e)
         {
 
@@ -31,16 +34,24 @@ namespace Cinegest.Forms
 
         }
 
-        //Registar
-        private void novoClientebtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Metodo que permite registar um novo cliente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NovoClientebtn_Click(object sender, EventArgs e)
         {
             FormNovoCliente formNovoCliente = new FormNovoCliente();
             formNovoCliente.ShowDialog();
             FormClientes_Load(sender, e);
         }
 
-        //Alterar
-        private void alterarClientebtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Metodo que permite alterar os dados de um cliente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AlterarClientebtn_Click(object sender, EventArgs e)
         {
             string nome = alterarNomelbl.Text;
             string morada = alterarMoradalbl.Text;
@@ -55,9 +66,14 @@ namespace Cinegest.Forms
 
         }
 
-        //Apagar
-        private void apagarClientebtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Metodo que permite apagar um cliente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ApagarClientebtn_Click(object sender, EventArgs e)
         {
+
             Cliente cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
             cinegest.Clientes.Remove(cliente);
             cinegest.SaveChanges();
@@ -65,6 +81,11 @@ namespace Cinegest.Forms
 
         }
 
+        /// <summary>
+        /// Metodo que permite selecionar um cliente da tabela
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             // Verifica se a coluna atual é a "BilhetesVendidos" ou "ValorTotal"
@@ -95,14 +116,21 @@ namespace Cinegest.Forms
             e.Value = e.ColumnIndex == this.dataGridView1.Columns["BilhetesVendidos"].Index ? nrDeBilhetes : precoTotal;
         }
 
+        /// <summary>
+        /// Metodo que permite selecionar um cliente da tabela
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Obtém o nome do cliente a partir da linha atual
             nomeCliente = dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
-
+            // Obtém o cliente correspondente ao nome
             var cliente = cinegest.Pessoas.OfType<Cliente>().FirstOrDefault(c => c.Nome.Contains(nomeCliente));
-
+            // Verifica se o cliente existe
             if (cliente != null)
             {
+                // Define os valores dos campos de texto com os dados do cliente
                 alterarNomelbl.Text = cliente.Nome;
                 alterarMoradalbl.Text = cliente.Morada;
                 alterarNumFiscallbl.Text = cliente.NumFiscal.ToString();

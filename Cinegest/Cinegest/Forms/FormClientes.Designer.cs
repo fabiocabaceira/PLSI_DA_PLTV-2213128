@@ -119,27 +119,29 @@
             this.alterarClientebtn.TabIndex = 1;
             this.alterarClientebtn.Text = "Guardar Alterações";
             this.alterarClientebtn.UseVisualStyleBackColor = true;
-            this.alterarClientebtn.Click += new System.EventHandler(this.alterarClientebtn_Click);
+            this.alterarClientebtn.Click += new System.EventHandler(this.AlterarClientebtn_Click);
             // 
             // apagarClientebtn
             // 
-            this.apagarClientebtn.Location = new System.Drawing.Point(616, 415);
+            this.apagarClientebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.apagarClientebtn.Location = new System.Drawing.Point(616, 363);
             this.apagarClientebtn.Name = "apagarClientebtn";
             this.apagarClientebtn.Size = new System.Drawing.Size(433, 70);
             this.apagarClientebtn.TabIndex = 2;
             this.apagarClientebtn.Text = "Apagar ";
             this.apagarClientebtn.UseVisualStyleBackColor = true;
-            this.apagarClientebtn.Click += new System.EventHandler(this.apagarClientebtn_Click);
+            this.apagarClientebtn.Click += new System.EventHandler(this.ApagarClientebtn_Click);
             // 
             // novoClientebtn
             // 
-            this.novoClientebtn.Location = new System.Drawing.Point(619, 301);
+            this.novoClientebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.novoClientebtn.Location = new System.Drawing.Point(619, 249);
             this.novoClientebtn.Name = "novoClientebtn";
             this.novoClientebtn.Size = new System.Drawing.Size(430, 70);
             this.novoClientebtn.TabIndex = 3;
             this.novoClientebtn.Text = "Criar Cliente";
             this.novoClientebtn.UseVisualStyleBackColor = true;
-            this.novoClientebtn.Click += new System.EventHandler(this.novoClientebtn_Click);
+            this.novoClientebtn.Click += new System.EventHandler(this.NovoClientebtn_Click);
             // 
             // alterarNomelbl
             // 
@@ -164,6 +166,7 @@
             // 
             // label1
             // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(625, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(342, 23);
@@ -173,6 +176,7 @@
             // 
             // label2
             // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(622, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(346, 23);
@@ -182,6 +186,7 @@
             // 
             // label3
             // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(619, 109);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(349, 23);
@@ -191,6 +196,7 @@
             // 
             // label4
             // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(622, 158);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(345, 23);
@@ -200,7 +206,8 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(619, 257);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(619, 223);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(430, 23);
             this.label5.TabIndex = 11;
@@ -209,9 +216,10 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(616, 389);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(615, 337);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(427, 23);
+            this.label6.Size = new System.Drawing.Size(431, 23);
             this.label6.TabIndex = 12;
             this.label6.Text = "Apagar Um Cliente";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
