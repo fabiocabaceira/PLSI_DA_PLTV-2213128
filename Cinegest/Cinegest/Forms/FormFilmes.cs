@@ -110,14 +110,22 @@ namespace Cinegest.Forms
                 //Obter o filme
                 Filme filme = cinegest.Filmes.FirstOrDefault(f => f.Nome == filmeNome);
 
-                // Editar os dados do filme
-                filme.Nome = nomeFilme;
-                filme.Duracao = duracaoFilme;
-                filme.Activo = Activo;
-                filme.Categoria = categoria;
+                if (filme != null)
+                {
+                    // Editar os dados do filme
+                    filme.Nome = nomeFilme;
+                    filme.Duracao = duracaoFilme;
+                    filme.Activo = Activo;
+                    filme.Categoria = categoria;
 
-                // Guardar as alterações
-                cinegest.SaveChanges();
+                    // Guardar as alterações
+                    cinegest.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Não foi possível editar o filme");
+                }
+                
             }
             catch (Exception ex)
             {

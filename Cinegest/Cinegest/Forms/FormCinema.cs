@@ -168,12 +168,20 @@ namespace Cinegest.Forms
             // Obter o funcionário
             Funcionario funcionario = cinegest.Funcionarios.OfType<Funcionario>().FirstOrDefault(f => f.Nome == nomeFuncionario);
             // definir os novos dados do funcionário
-            funcionario.Nome = funcionarioNometb.Text.ToString();
-            funcionario.Funcao = funcionarioFuncaotb.Text.ToString();
-            funcionario.Morada = funcionarioMoradatb.Text.ToString();
-            funcionario.Salario = int.Parse(funcionarioSalariotb.Text);
-            cinegest.SaveChanges();
-            FormCinema_Load(sender, e);
+            if (funcionario != null)
+            {
+                funcionario.Nome = funcionarioNometb.Text.ToString();
+                funcionario.Funcao = funcionarioFuncaotb.Text.ToString();
+                funcionario.Morada = funcionarioMoradatb.Text.ToString();
+                funcionario.Salario = int.Parse(funcionarioSalariotb.Text);
+                cinegest.SaveChanges();
+                FormCinema_Load(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecione um funcionário");
+            }
+            
         }
 
         /// <summary>
