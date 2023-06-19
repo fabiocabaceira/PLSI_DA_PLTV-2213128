@@ -54,7 +54,7 @@
             this.adicionarbtn.TabIndex = 25;
             this.adicionarbtn.Text = "Adicionar";
             this.adicionarbtn.UseVisualStyleBackColor = true;
-            this.adicionarbtn.Click += new System.EventHandler(this.adicionarbtn_Click);
+            this.adicionarbtn.Click += new System.EventHandler(this.Adicionarbtn_Click);
             // 
             // duracaolbl
             // 
@@ -88,9 +88,10 @@
             // 
             // label1
             // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(9, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 15);
+            this.label1.Size = new System.Drawing.Size(192, 31);
             this.label1.TabIndex = 18;
             this.label1.Text = "Novo Filme";
             // 

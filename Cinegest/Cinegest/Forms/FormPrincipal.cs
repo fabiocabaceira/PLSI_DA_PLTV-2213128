@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Cinegest.Forms
@@ -13,12 +6,21 @@ namespace Cinegest.Forms
     public partial class FormPrincipal : Form
     {
         CineGestEntities5 db;
+
+        /// <summary>
+        /// Construtor da classe
+        /// </summary>
         public FormPrincipal()
         {
             InitializeComponent(); // Inicializa os componentes do FormPrincipal
             db = new CineGestEntities5();
         }
 
+        /// <summary>
+        /// Evento que carrega os dados das tabelas Sessaos e Pessoas_Funcionario no FormPrincipal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             // Carrega os dados da tabela Sessaos no cineGestDataSet1
@@ -28,53 +30,60 @@ namespace Cinegest.Forms
 
         }
 
-        private void cinemabtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Evento que permite abrir o formulário FormCinema
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Cinemabtn_Click(object sender, EventArgs e)
         {
            
                 FormCinema FmCinemas = new FormCinema(); // Instancia o formulário FormCinema
                 FmCinemas.ShowDialog(); // Abre o formulário FormCinema
                 FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
-            
-            
-
         }
 
-        private void filmesbtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Evento que permite abrir o formulário FormFilmes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Filmesbtn_Click(object sender, EventArgs e)
         {
-            
-                FormFilmes FmFilmes = new FormFilmes(); // Instancia o formulário FormFilmes
-                FmFilmes.ShowDialog(); // Abre o formulário FormFilmes
+            FormFilmes FmFilmes = new FormFilmes(); // Instancia o formulário FormFilmes
+            FmFilmes.ShowDialog(); // Abre o formulário FormFilmes
             FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
-
-
-
-
         }
 
-        private void sessaobtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Evento que permite abrir o formulário FormSessoes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Sessaobtn_Click(object sender, EventArgs e)
         {
-            
-                FormSessoes FmSessoes = new FormSessoes(); // Instancia o formulário FormSessoes
-                FmSessoes.ShowDialog(); // Abre o formulário FormSessoes
+            FormSessoes FmSessoes = new FormSessoes(); // Instancia o formulário FormSessoes
+            FmSessoes.ShowDialog(); // Abre o formulário FormSessoes
             FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
-
-
-
-
         }
 
-        private void clientesbtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Evento que permite abrir o formulário FormClientes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Clientesbtn_Click(object sender, EventArgs e)
         {
-
             FormClientes FmClientes = new FormClientes(); // Instancia o formulário FormClientes
             FmClientes.ShowDialog(); // Abre o formulário FormClientes
             FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
-
         }
 
-
-
-
+        /// <summary>
+        /// evento que permite selecionar uma sessão e abrir o formulário FormAtendimento
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sessoesdgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Obtém o Nome do Funcionario da célula selecionada da combobox
@@ -90,18 +99,19 @@ namespace Cinegest.Forms
             // Abre o formulário FormAtendimento
             FmAtendimento.ShowDialog();
             FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
-
-
         }
 
-        private void funcionariosbtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Abre o formulário FormCinema
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Funcionariosbtn_Click(object sender, EventArgs e)
         {
             FormCinema fmcinema2 = new FormCinema();
             fmcinema2.ShowDialog();
             FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
-
         }
-
        
     }
 }

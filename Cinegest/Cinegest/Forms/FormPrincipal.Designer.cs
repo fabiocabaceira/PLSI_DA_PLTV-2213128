@@ -162,7 +162,7 @@
             this.cinemabtn.TabIndex = 5;
             this.cinemabtn.Text = "Cinema";
             this.cinemabtn.UseVisualStyleBackColor = true;
-            this.cinemabtn.Click += new System.EventHandler(this.cinemabtn_Click);
+            this.cinemabtn.Click += new System.EventHandler(this.Cinemabtn_Click);
             // 
             // filmesbtn
             // 
@@ -172,7 +172,7 @@
             this.filmesbtn.TabIndex = 6;
             this.filmesbtn.Text = "Filmes";
             this.filmesbtn.UseVisualStyleBackColor = true;
-            this.filmesbtn.Click += new System.EventHandler(this.filmesbtn_Click);
+            this.filmesbtn.Click += new System.EventHandler(this.Filmesbtn_Click);
             // 
             // sessaobtn
             // 
@@ -182,7 +182,7 @@
             this.sessaobtn.TabIndex = 7;
             this.sessaobtn.Text = "Sessões";
             this.sessaobtn.UseVisualStyleBackColor = true;
-            this.sessaobtn.Click += new System.EventHandler(this.sessaobtn_Click);
+            this.sessaobtn.Click += new System.EventHandler(this.Sessaobtn_Click);
             // 
             // clientesbtn
             // 
@@ -192,7 +192,7 @@
             this.clientesbtn.TabIndex = 8;
             this.clientesbtn.Text = "Clientes";
             this.clientesbtn.UseVisualStyleBackColor = true;
-            this.clientesbtn.Click += new System.EventHandler(this.clientesbtn_Click);
+            this.clientesbtn.Click += new System.EventHandler(this.Clientesbtn_Click);
             // 
             // funcionariosbtn
             // 
@@ -202,7 +202,7 @@
             this.funcionariosbtn.TabIndex = 9;
             this.funcionariosbtn.Text = "Funcionarios";
             this.funcionariosbtn.UseVisualStyleBackColor = true;
-            this.funcionariosbtn.Click += new System.EventHandler(this.funcionariosbtn_Click);
+            this.funcionariosbtn.Click += new System.EventHandler(this.Funcionariosbtn_Click);
             // 
             // funcionariolbl
             // 

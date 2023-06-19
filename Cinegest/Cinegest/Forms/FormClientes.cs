@@ -73,11 +73,25 @@ namespace Cinegest.Forms
         /// <param name="e"></param>
         private void ApagarClientebtn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // recolher os dados do formulário
+                string nome = alterarNomelbl.Text;
+                var clientes = cinegest.Clientes.ToList().Where(b => b.Nome == nome);
+                // apagar o cliente
+                foreach (var cliente in clientes)
+                {
+                    cinegest.Clientes.Remove(cliente);
+                    cinegest.SaveChanges();
+                    FormClientes_Load(sender, e);
 
-            Cliente cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
-            cinegest.Clientes.Remove(cliente);
-            cinegest.SaveChanges();
-            FormClientes_Load(sender, e);
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Não é possível apagar este cliente porque tem bilhetes associados.");
+            }
 
         }
 

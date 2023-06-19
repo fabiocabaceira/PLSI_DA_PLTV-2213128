@@ -42,7 +42,6 @@ namespace Cinegest.Forms
                 fmPrincipal.ShowDialog();
 
             }
-
             else
             {
                 MessageBox.Show("Autenticação Falhou");

@@ -88,6 +88,7 @@
             // 
             // label1
             // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(13, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(260, 23);
@@ -103,7 +104,7 @@
             this.adicionarSalabtn.TabIndex = 37;
             this.adicionarSalabtn.Text = "Adicionar Sala";
             this.adicionarSalabtn.UseVisualStyleBackColor = true;
-            this.adicionarSalabtn.Click += new System.EventHandler(this.adicionarSalabtn_Click);
+            this.adicionarSalabtn.Click += new System.EventHandler(this.AdicionarSalabtn_Click);
             // 
             // FormNovaSala
             // 

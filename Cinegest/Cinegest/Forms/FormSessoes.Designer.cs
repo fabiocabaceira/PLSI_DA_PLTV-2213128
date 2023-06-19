@@ -49,7 +49,7 @@
             this.criarSessaobtn.TabIndex = 0;
             this.criarSessaobtn.Text = "Criar Sessão";
             this.criarSessaobtn.UseVisualStyleBackColor = true;
-            this.criarSessaobtn.Click += new System.EventHandler(this.criarSessaobtn_Click);
+            this.criarSessaobtn.Click += new System.EventHandler(this.CriarSessaobtn_Click);
             // 
             // salascb
             // 
@@ -138,7 +138,7 @@
             this.agendamentoAutomaticobtn.TabIndex = 11;
             this.agendamentoAutomaticobtn.Text = "Agendamento Automatico";
             this.agendamentoAutomaticobtn.UseVisualStyleBackColor = true;
-            this.agendamentoAutomaticobtn.Click += new System.EventHandler(this.agendamentoAutomaticobtn_Click);
+            this.agendamentoAutomaticobtn.Click += new System.EventHandler(this.AgendamentoAutomaticobtn_Click);
             // 
             // FormSessoes
             // 

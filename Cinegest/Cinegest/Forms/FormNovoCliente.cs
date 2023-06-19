@@ -1,13 +1,4 @@
-﻿using Cinegest;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Cinegest.Forms
@@ -16,19 +7,29 @@ namespace Cinegest.Forms
     {
 
         CineGestEntities5 db;
+
+        /// <summary>
+        /// construtor da classe
+        /// </summary>
         public FormNovoCliente()
         {
             InitializeComponent();
             db = new CineGestEntities5();
         }
 
-        private void adicionarbtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Metodo que permite adicionar um novo cliente à base de dados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Adicionarbtn_Click(object sender, EventArgs e)
         {
             try
             {
+                // recolher os dados do formulário
                 string nome = nometb.Text;
                 string morada = moradatb.Text;
-                int numFiscal = 0;
+                int.TryParse(numFiscaltb.Text, out int numFiscal);
 
                 if (nome == "" || morada == "" || !int.TryParse(numFiscaltb.Text, out numFiscal) || numFiscaltb.Text.Length != 9)
                 {
