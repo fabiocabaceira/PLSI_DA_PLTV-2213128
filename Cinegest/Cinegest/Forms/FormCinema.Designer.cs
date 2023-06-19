@@ -278,7 +278,7 @@
             this.novoFuncionariotb.TabIndex = 19;
             this.novoFuncionariotb.Text = "Criar Funcionario";
             this.novoFuncionariotb.UseVisualStyleBackColor = true;
-            this.novoFuncionariotb.Click += new System.EventHandler(this.novoFuncionariotb_Click);
+            this.novoFuncionariotb.Click += new System.EventHandler(this.NovoFuncionariotb_Click);
             // 
             // apagarFuncionariobtn
             // 
@@ -288,7 +288,7 @@
             this.apagarFuncionariobtn.TabIndex = 18;
             this.apagarFuncionariobtn.Text = "Apagar Funcionario";
             this.apagarFuncionariobtn.UseVisualStyleBackColor = true;
-            this.apagarFuncionariobtn.Click += new System.EventHandler(this.apagarFuncionariobtn_Click);
+            this.apagarFuncionariobtn.Click += new System.EventHandler(this.ApagarFuncionariobtn_Click);
             // 
             // guardarAlteracoesFuncionariobtn
             // 
@@ -413,7 +413,7 @@
             this.apagarSalabtn.TabIndex = 31;
             this.apagarSalabtn.Text = "Apagar Sala";
             this.apagarSalabtn.UseVisualStyleBackColor = true;
-            this.apagarSalabtn.Click += new System.EventHandler(this.apagarSalabtn_Click);
+            this.apagarSalabtn.Click += new System.EventHandler(this.ApagarSalabtn_Click);
             // 
             // guardarSalabtn
             // 
@@ -423,7 +423,7 @@
             this.guardarSalabtn.TabIndex = 32;
             this.guardarSalabtn.Text = "Guardar Alterações Na Sala";
             this.guardarSalabtn.UseVisualStyleBackColor = true;
-            this.guardarSalabtn.Click += new System.EventHandler(this.guardarSalabtn_Click);
+            this.guardarSalabtn.Click += new System.EventHandler(this.GuardarSalabtn_Click);
             // 
             // guardarCinemabtn
             // 
@@ -433,7 +433,7 @@
             this.guardarCinemabtn.TabIndex = 33;
             this.guardarCinemabtn.Text = "Guardar Cinema";
             this.guardarCinemabtn.UseVisualStyleBackColor = true;
-            this.guardarCinemabtn.Click += new System.EventHandler(this.guardarCinemabtn_Click);
+            this.guardarCinemabtn.Click += new System.EventHandler(this.GuardarCinemabtn_Click);
             // 
             // FormCinema
             // 

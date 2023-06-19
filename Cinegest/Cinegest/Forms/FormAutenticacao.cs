@@ -8,6 +8,10 @@ namespace Cinegest.Forms
     public partial class FormAutenticacao : Form
     {
         CineGestEntities5 cinegest;
+
+        /// <summary>
+        /// construtor da classe
+        /// </summary>
         public FormAutenticacao()
         {
             cinegest = new CineGestEntities5();
