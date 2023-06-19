@@ -350,7 +350,7 @@ INSERT INTO [dbo].[Pessoas] ([Nome], [Morada])
 VALUES ('João Silva', 'Rua A'),
        ('Marta Oliveira', 'Rua B'),
        ('Pedro Santos', 'Rua C'),
-       ('Pedro Miguel', 'Rua D'),
+       ('Cliente Anónimo', 'Rua D'),
        ('Mateus Leandro', 'Rua E'),
        ('Luis Matos', 'Rua F');
 
@@ -362,7 +362,7 @@ VALUES ('1000', 'Bilheteira', 1),
 
 -- Pessoas_Cliente
 INSERT INTO [dbo].[Pessoas_Cliente] ([NumFiscal], [Id])
-VALUES ('123456789', 4),
+VALUES ('999999999', 4),
        ('987654321', 5),
        ('654321987', 6);
 

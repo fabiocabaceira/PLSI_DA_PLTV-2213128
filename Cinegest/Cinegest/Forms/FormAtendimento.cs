@@ -162,60 +162,46 @@ namespace Cinegest.Forms
         }
 
         /// <summary>
-        /// Método que emite um bilhete para o cliente selecionado
+        /// Emite um bilhete para o cliente selecionado
         /// </summary>
-        /// <param name="nomeCliente"></param>
-        private void Emitir_bilhete(string nomeCliente)
+        /// <param name="nomeCliente">Nome do cliente</param>
+        private void EmitirBilhete(string nomeCliente)
         {
             int.TryParse(idSessao, out int s1);
 
-            // Cria um arquivo de texto com um nome de arquivo exclusivo para cada bilhete
-            TextWriter bilhete1 = new StreamWriter($"C:\\\\Users\\\\Public\\\\bilhete{contador}.txt");
-            // Escreve os dados do bilhete
-            // nome do cliente
-            bilhete1.Write("Nome = ");
-            bilhete1.Write($"{cliente_Nometb.Text} ");
-            //  morada do cliente
-            bilhete1.Write("\nMorada = ");
-            bilhete1.Write($"{cliente_Moradatb.Text} ");
-            // número fiscal do cliente
-            bilhete1.Write("\nNumFiscal = ");
-            bilhete1.Write($"{cliente_Numfiscaltb.Text} ");
-            // nome do filme 
-            bilhete1.Write("\nNome Do Filme = ");
-            bilhete1.Write($"{nomeFilme} ");
-            // data e hora da sessão
-            bilhete1.Write("\nData/hora = ");
-            bilhete1.Write($"{hora} ");
-            // lugar(es) do bilhete 
-            bilhete1.Write("\nLugar/Lugares Do Bilhete = ");
-            foreach (var lugar2 in Bilhete)
+            using (TextWriter bilhete1 = new StreamWriter($"C:\\\\\\\\Users\\\\\\\\Public\\\\\\\\bilhete{contador}.txt"))
             {
-                bilhete1.Write($"{lugar2} ");
-                int lugar3 = int.Parse(lugar2);
-                Bilhete bilhete = cinegest.Bilhetes.FirstOrDefault(b => b.Lugar == lugar3 && b.SessaoId == s1);
-                bilhete.Estado = "Vendido";
-                cinegest.SaveChanges();
+                // Obtém informações do cliente
+                Cliente cliente = cinegest.Clientes.FirstOrDefault(c => c.Nome == nomeCliente);
+                if (cliente == null)
+                {
+                    cliente = cinegest.Clientes.FirstOrDefault(c => c.Id == 4);
+                }
 
-                var cliente3 = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
-                if (cliente3 == null)
+                // Escreve as informações do bilhete no arquivo
+                bilhete1.WriteLine($"Nome = {cliente.Nome}");
+                bilhete1.WriteLine($"Morada = {cliente.Morada}");
+                bilhete1.WriteLine($"NumFiscal = {cliente.NumFiscal}");
+                bilhete1.WriteLine($"Nome Do Filme = {nomeFilme}");
+                bilhete1.WriteLine($"Data/hora = {hora}");
+
+                // Altera o estado do(s) bilhete(s) vendido(s)
+                foreach (var lugar in Bilhete)
                 {
-                    bilhete.ClienteId = 4;
-                    cinegest.SaveChanges();
+                    int.TryParse(lugar, out int lugarNum);
+                    Bilhete bilhete = cinegest.Bilhetes.FirstOrDefault(b => b.Lugar == lugarNum && b.SessaoId == s1);
+                    if (bilhete != null)
+                    {
+                        bilhete.Estado = "Vendido";
+                        bilhete.ClienteId = cliente.Id;
+                        bilhete.FuncionarioId = funcionario.Id;
+                        cinegest.SaveChanges();
+                    }
                 }
-                else
-                {
-                    bilhete.ClienteId = cliente3.Id;
-                    cinegest.SaveChanges();
-                }
-                bilhete.FuncionarioId = funcionario.Id;
-                cinegest.SaveChanges();
+
+                // Escreve informações do funcionário no bilhete
+                bilhete1.WriteLine($"Funcionário = {funcionario_Nome}");
             }
-            // nome do funcionário 
-            bilhete1.Write("\nFuncionário = ");
-            bilhete1.Write($"{funcionario_Nome} ");
-            // Fecha o arquivo
-            bilhete1.Close();
         }
 
         /// <summary>
@@ -315,7 +301,7 @@ namespace Cinegest.Forms
                         cinegest.Pessoas.Add(novocliente);
                         cinegest.SaveChanges();
                         nomeCliente = novocliente.Nome;
-                        Emitir_bilhete(nomeCliente);
+                        EmitirBilhete(nomeCliente);
                     }
                     catch (Exception ex)
                     {
@@ -328,16 +314,18 @@ namespace Cinegest.Forms
                 {
                     // Preenche os campos com os dados do cliente selecionado
                     nomeCliente1 = nomeCliente;
-                    Emitir_bilhete(nomeCliente1);
+                    EmitirBilhete(nomeCliente1);
                 }
 
             }
             else
             {
-                Emitir_bilhete(nome);
+                EmitirBilhete(nome);
             }
             FormAtendimento_Load(sender, e);
 
         }
+
+        
     }
 }
