@@ -189,7 +189,11 @@ namespace Cinegest.Forms
                     FormCinema_Load(sender, e);
 
                 }
-                MessageBox.Show("Não pode guardar alterações numa sala antes de o criar");
+                else
+                {
+                  MessageBox.Show("Não pode guardar alterações numa sala antes de o criar");
+
+                }
              
             }
             catch (Exception ex)
@@ -214,7 +218,11 @@ namespace Cinegest.Forms
                     FormCinema_Load(sender, e);
 
                 }
-                MessageBox.Show("Não pode guardar alterações num cinema antes de o criar");
+                else
+                {
+                    MessageBox.Show("Não pode guardar alterações num cinema antes de o criar");
+
+                }
                 
 
             }
