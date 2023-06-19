@@ -214,9 +214,18 @@ namespace Cinegest.Forms
         /// <param name="e"></param>
         private void filmesdgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Obter o nome do filme selecionado através da célula selecionada
-            filmeNome = filmesdgv.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
-            Formatar_Dados_Form();
+            try
+            {
+                // Obter o nome do filme selecionado através da célula selecionada
+                filmeNome = filmesdgv.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
+                Formatar_Dados_Form();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
     }

@@ -108,19 +108,28 @@ namespace Cinegest.Forms
         /// <param name="e"></param>
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Obter o nome do funcionário
-            nomeFuncionario = dataGridView1.Rows[e.RowIndex].Cells["nomefunc"].Value.ToString();
-            // Obter o funcionário
-            var funcionario = cinegest.Pessoas.OfType<Funcionario>().FirstOrDefault(f => f.Nome == nomeFuncionario);
-            // Se o funcionário existir
-            if (funcionario != null)
+            try
             {
-                // Mostrar os dados do funcionário
-                funcionarioNometb.Text = funcionario.Nome.ToString();
-                funcionarioFuncaotb.Text = funcionario.Funcao.ToString();
-                funcionarioMoradatb.Text = funcionario.Morada.ToString();
-                funcionarioSalariotb.Text = funcionario.Salario.ToString();
+                // Obter o nome do funcionário
+                nomeFuncionario = dataGridView1.Rows[e.RowIndex].Cells["nomefunc"].Value.ToString();
+                // Obter o funcionário
+                var funcionario = cinegest.Pessoas.OfType<Funcionario>().FirstOrDefault(f => f.Nome == nomeFuncionario);
+                // Se o funcionário existir
+                if (funcionario != null)
+                {
+                    // Mostrar os dados do funcionário
+                    funcionarioNometb.Text = funcionario.Nome.ToString();
+                    funcionarioFuncaotb.Text = funcionario.Funcao.ToString();
+                    funcionarioMoradatb.Text = funcionario.Morada.ToString();
+                    funcionarioSalariotb.Text = funcionario.Salario.ToString();
+                }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
 
         }
 
@@ -170,18 +179,27 @@ namespace Cinegest.Forms
             // definir os novos dados do funcionário
             if (funcionario != null)
             {
-                funcionario.Nome = funcionarioNometb.Text.ToString();
-                funcionario.Funcao = funcionarioFuncaotb.Text.ToString();
-                funcionario.Morada = funcionarioMoradatb.Text.ToString();
-                funcionario.Salario = int.Parse(funcionarioSalariotb.Text);
-                cinegest.SaveChanges();
-                FormCinema_Load(sender, e);
+                try
+                {
+                    funcionario.Nome = funcionarioNometb.Text.ToString();
+                    funcionario.Funcao = funcionarioFuncaotb.Text.ToString();
+                    funcionario.Morada = funcionarioMoradatb.Text.ToString();
+                    funcionario.Salario = int.Parse(funcionarioSalariotb.Text);
+                    cinegest.SaveChanges();
+                    FormCinema_Load(sender, e);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+
             }
             else
             {
                 MessageBox.Show("Por favor, selecione um funcionário");
             }
-            
+
         }
 
         /// <summary>
@@ -233,18 +251,27 @@ namespace Cinegest.Forms
         /// <param name="e"></param>
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Obter o nome da sala
-            nomeSala = dataGridView2.Rows[e.RowIndex].Cells["salanome"].Value.ToString();
-            // Obter a sala
-            var sala = cinegest.Salas.OfType<Sala>().FirstOrDefault(v => v.Nome == (nomeSala));
-            // Se a sala existir
-            if (sala != null)
+            try
             {
-                // Mostrar os dados da sala
-                salaNometb.Text = sala.Nome.ToString();
-                salaColunastb.Text = sala.Colunas.ToString();
-                salaFilastb.Text = sala.Filas.ToString();
+                // Obter o nome da sala
+                nomeSala = dataGridView2.Rows[e.RowIndex].Cells["salanome"].Value.ToString();
+                // Obter a sala
+                var sala = cinegest.Salas.OfType<Sala>().FirstOrDefault(v => v.Nome == (nomeSala));
+                // Se a sala existir
+                if (sala != null)
+                {
+                    // Mostrar os dados da sala
+                    salaNometb.Text = sala.Nome.ToString();
+                    salaColunastb.Text = sala.Colunas.ToString();
+                    salaFilastb.Text = sala.Filas.ToString();
+                }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         /// <summary>

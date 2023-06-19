@@ -86,19 +86,28 @@ namespace Cinegest.Forms
         /// <param name="e"></param>
         private void sessoesdgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Obtém o Nome do Funcionario da célula selecionada da combobox
-            string funcionario_Nome = funcionariocb.Text;
-            // Obtém o id da sessão da célula selecionada
-            string idSessao = sessoesdgv.Rows[e.RowIndex].Cells["Id"].Value.ToString();
-            // Obtém o nome do filme da célula selecionada
-            string NomeFilme = sessoesdgv.Rows[e.RowIndex].Cells["FilmeNome"].Value.ToString();
-            // Obtém a data e hora da célula selecionada
-            DateTime hora = DateTime.Parse(sessoesdgv.Rows[e.RowIndex].Cells["Datahora"].Value.ToString());
-            // Instancia o formulário com o id da sessão como argumento
-            FormAtendimento FmAtendimento = new FormAtendimento(idSessao, funcionario_Nome, NomeFilme, hora);
-            // Abre o formulário FormAtendimento
-            FmAtendimento.ShowDialog();
-            FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
+            try
+            {
+                // Obtém o Nome do Funcionario da célula selecionada da combobox
+                string funcionario_Nome = funcionariocb.Text;
+                // Obtém o id da sessão da célula selecionada
+                string idSessao = sessoesdgv.Rows[e.RowIndex].Cells["Id"].Value.ToString();
+                // Obtém o nome do filme da célula selecionada
+                string NomeFilme = sessoesdgv.Rows[e.RowIndex].Cells["FilmeNome"].Value.ToString();
+                // Obtém a data e hora da célula selecionada
+                DateTime hora = DateTime.Parse(sessoesdgv.Rows[e.RowIndex].Cells["Datahora"].Value.ToString());
+                // Instancia o formulário com o id da sessão como argumento
+                FormAtendimento FmAtendimento = new FormAtendimento(idSessao, funcionario_Nome, NomeFilme, hora);
+                // Abre o formulário FormAtendimento
+                FmAtendimento.ShowDialog();
+                FormPrincipal_Load(sender, e); // Atualiza os dados do FormPrincipal
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+           
         }
 
         /// <summary>

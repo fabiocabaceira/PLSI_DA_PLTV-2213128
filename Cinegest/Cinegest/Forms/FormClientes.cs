@@ -53,16 +53,35 @@ namespace Cinegest.Forms
         /// <param name="e"></param>
         private void AlterarClientebtn_Click(object sender, EventArgs e)
         {
-            string nome = alterarNomelbl.Text;
-            string morada = alterarMoradalbl.Text;
-            int numFiscal = int.Parse(alterarNumFiscallbl.Text);
-            Cliente cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
+            try
+            {
+                string nome = alterarNomelbl.Text;
+                string morada = alterarMoradalbl.Text;
+                int numFiscal = int.Parse(alterarNumFiscallbl.Text);
+                Cliente cliente = cinegest.Clientes.FirstOrDefault(b => b.Nome == nomeCliente);
+                if (cliente == null)
+                {
+                    MessageBox.Show("Não existe nenhum cliente com esse nome");
+                    return;
+                }
+                else
+                {
+                    cliente.Nome = nome;
+                    cliente.Morada = morada;
+                    cliente.NumFiscal = numFiscal;
+                    cinegest.SaveChanges();
+                    FormClientes_Load(sender, e);
 
-            cliente.Nome = nome;
-            cliente.Morada = morada;
-            cliente.NumFiscal = numFiscal;
-            cinegest.SaveChanges();
-            FormClientes_Load(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
+            
+
 
         }
 
@@ -137,18 +156,27 @@ namespace Cinegest.Forms
         /// <param name="e"></param>
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Obtém o nome do cliente a partir da linha atual
-            nomeCliente = dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
-            // Obtém o cliente correspondente ao nome
-            var cliente = cinegest.Pessoas.OfType<Cliente>().FirstOrDefault(c => c.Nome.Contains(nomeCliente));
-            // Verifica se o cliente existe
-            if (cliente != null)
+            try
             {
-                // Define os valores dos campos de texto com os dados do cliente
-                alterarNomelbl.Text = cliente.Nome;
-                alterarMoradalbl.Text = cliente.Morada;
-                alterarNumFiscallbl.Text = cliente.NumFiscal.ToString();
+                // Obtém o nome do cliente a partir da linha atual
+                nomeCliente = dataGridView1.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
+                // Obtém o cliente correspondente ao nome
+                var cliente = cinegest.Pessoas.OfType<Cliente>().FirstOrDefault(c => c.Nome.Contains(nomeCliente));
+                // Verifica se o cliente existe
+                if (cliente != null)
+                {
+                    // Define os valores dos campos de texto com os dados do cliente
+                    alterarNomelbl.Text = cliente.Nome;
+                    alterarMoradalbl.Text = cliente.Morada;
+                    alterarNumFiscallbl.Text = cliente.NumFiscal.ToString();
+                }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }             
+           
         }
 
     }
