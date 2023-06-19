@@ -30,7 +30,7 @@
         {
             this.funcionarioNometb = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.entrarbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // funcionarioNometb
@@ -39,7 +39,6 @@
             this.funcionarioNometb.Name = "funcionarioNometb";
             this.funcionarioNometb.Size = new System.Drawing.Size(221, 20);
             this.funcionarioNometb.TabIndex = 0;
-            this.funcionarioNometb.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
@@ -50,22 +49,22 @@
             this.label1.Text = "Insira o seu nome para se autenticar";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // button1
+            // entrarbtn
             // 
-            this.button1.Location = new System.Drawing.Point(12, 89);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(221, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Entrar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.entrarbtn.Location = new System.Drawing.Point(12, 89);
+            this.entrarbtn.Name = "entrarbtn";
+            this.entrarbtn.Size = new System.Drawing.Size(221, 23);
+            this.entrarbtn.TabIndex = 2;
+            this.entrarbtn.Text = "Entrar";
+            this.entrarbtn.UseVisualStyleBackColor = true;
+            this.entrarbtn.Click += new System.EventHandler(this.entrarbtn_Click);
             // 
             // FormAutenticacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(249, 143);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.entrarbtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.funcionarioNometb);
             this.MinimumSize = new System.Drawing.Size(265, 182);
@@ -81,6 +80,6 @@
 
         private System.Windows.Forms.TextBox funcionarioNometb;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button entrarbtn;
     }
 }
